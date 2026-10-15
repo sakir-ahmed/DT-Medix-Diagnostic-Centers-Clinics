@@ -1,0 +1,62 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'UNAUTHENTICATED' => 'Please sign in to continue.',
+    'FORBIDDEN' => 'You do not have permission to do this.',
+    'NOT_FOUND' => 'The record was not found.',
+    'VALIDATION_FAILED' => 'Some fields need your attention.',
+    'DUPLICATE_PATIENT_SUSPECTED' => 'A patient with this mobile and a similar name already exists. Use the existing record or confirm a new patient.',
+    'SLOT_UNAVAILABLE' => 'This slot is no longer free. Choose another time.',
+    'SAMPLE_ALREADY_COLLECTED' => 'The sample is already collected. This change needs approval through the refund policy.',
+    'INVOICE_ALREADY_PAID' => 'This invoice is already fully paid.',
+    'PAYMENT_EXCEEDS_DUE' => 'The payment is larger than the due amount.',
+    'REPORT_LOCKED' => 'Released reports cannot be edited. Create an amendment instead.',
+    'REPORT_NOT_VERIFIED' => 'The report must be verified before it can be released.',
+    'REPORT_HELD_FOR_PAYMENT' => 'The report is held until the invoice is fully paid.',
+    'CRITICAL_NOT_ACKNOWLEDGED' => 'A critical value needs an acknowledgement before the report can move on.',
+    'SELF_VERIFICATION_NOT_ALLOWED' => 'You entered this result, so another person must verify it.',
+    'SHIFT_NOT_OPEN' => 'Open a cash shift before taking cash payments.',
+    'PLAN_LIMIT_REACHED' => 'Your plan limit has been reached. Upgrade the plan to add more.',
+    'MODULE_DISABLED' => 'This module is not included in your plan. Upgrade the plan to use it.',
+    'TENANT_SUSPENDED' => 'This account is suspended. Contact Datatech support to restore access.',
+    'TENANT_READ_ONLY' => 'The account is read-only because the trial or subscription has ended. Renew to make changes.',
+    'TOO_MANY_REQUESTS' => 'Too many attempts. Wait a moment and try again.',
+    'PAYMENT_GATEWAY_ERROR' => 'Could not reach the payment gateway. Check the internet and try again.',
+    'MESSAGE_CHANNEL_ERROR' => 'The message could not be sent. Try again later.',
+    'SERVER_ERROR' => 'Something went wrong on our side. Please try again.',
+    'OTP_INVALID' => 'The code is wrong or has expired. Request a new code.',
+    'IDEMPOTENCY_KEY_REQUIRED' => 'The Idempotency-Key header is required for this request.',
+    'IDEMPOTENCY_IN_PROGRESS' => 'The same request is still being processed. Wait a moment.',
+    'APPROVAL_REQUIRED' => 'This action needs a manager approval.',
+    'APPROVAL_INVALID' => 'The approver login or PIN is not correct, or the approver lacks permission.',
+    'DISCOUNT_LIMIT_EXCEEDED' => 'The discount is above your limit and needs manager approval.',
+    'INVALID_STATE' => 'This action is not allowed in the current status.',
+    'BRANCH_MISMATCH' => 'This item belongs to another branch.',
+    'REASON_REQUIRED' => 'A reason is required.',
+    'STATEMENT_LOCKED' => 'Paid statements cannot be changed.',
+    'IMPORT_FAILED' => 'The import could not be completed. See the error report.',
+    'pages' => [
+        '403' => [
+            'title' => 'Access denied',
+            'message' => 'You do not have permission to open this page. Ask your administrator if you need access.',
+        ],
+        '404' => [
+            'title' => 'Page not found',
+            'message' => 'The page does not exist, has moved, or belongs to another branch.',
+        ],
+        '500' => [
+            'title' => 'Something went wrong',
+            'message' => 'Please try again in a moment. If it keeps happening, contact support.',
+        ],
+        '503' => [
+            'title' => 'Under maintenance',
+            'message' => 'We are doing planned maintenance and will be back shortly.',
+        ],
+        'offline' => [
+            'title' => 'You are offline',
+            'message' => 'Check the internet connection and try again.',
+        ],
+    ],
+];

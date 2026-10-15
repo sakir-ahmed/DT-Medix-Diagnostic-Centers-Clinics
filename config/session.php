@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Str;
 
 return [
@@ -31,6 +33,8 @@ return [
     | indicate that via the expire_on_close configuration option.
     |
     */
+
+    'idle_timeout' => (int) env('SESSION_IDLE_TIMEOUT', 15),
 
     'lifetime' => (int) env('SESSION_LIFETIME', 120),
 

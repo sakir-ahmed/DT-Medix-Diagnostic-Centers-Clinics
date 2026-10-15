@@ -1,32 +1,131 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\RoleName;
+use App\Models\Concerns\BelongsToTenant;
 use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\Models\Concerns\LogsActivity;
+use Spatie\Activitylog\Support\LogOptions;
+use Spatie\Permission\PermissionRegistrar;
+use Spatie\Permission\Traits\HasRoles;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
+/**
+ * @property int $id
+ * @property int|null $tenant_id
+ * @property string $name
+ * @property string|null $username
+ * @property string|null $email
+ * @property string|null $mobile
+ * @property string $password
+ * @property string $locale
+ * @property bool $is_active
+ * @property string|null $approval_pin
+ * @property string|null $two_factor_secret
+ * @property Carbon|null $two_factor_confirmed_at
+ * @property Carbon|null $last_login_at
+ * @property-read Tenant|null $tenant
+ */
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use BelongsToTenant;
+    use HasApiTokens;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+    /** @use HasFactory<UserFactory> */
+    use HasFactory;
+
+    use HasRoles;
+    use LogsActivity;
+    use Notifiable;
+    use SoftDeletes;
+
+    protected $fillable = [
+        'name', 'username', 'email', 'mobile', 'password', 'locale', 'is_active', 'approval_pin',
+    ];
+
+    protected $hidden = ['password', 'remember_token', 'approval_pin', 'two_factor_secret'];
+
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'approval_pin' => 'hashed',
+            'is_active' => 'boolean',
+            'two_factor_secret' => 'encrypted',
+            'two_factor_confirmed_at' => 'datetime',
+            'last_login_at' => 'datetime',
         ];
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name', 'email', 'mobile', 'username', 'is_active'])
+            ->logOnlyDirty();
+    }
+
+    /**
+     * @return BelongsToMany<Branch, $this>
+     */
+    public function branches(): BelongsToMany
+    {
+        return $this->belongsToMany(Branch::class);
+    }
+
+    /**
+     * Platform role assignments use team ID 0 (no tenant).
+     */
+    public const PLATFORM_TEAM_ID = 0;
+
+    public function isSuperAdmin(): bool
+    {
+        if ($this->tenant_id !== null) {
+            return false;
+        }
+
+        $registrar = app(PermissionRegistrar::class);
+        $previous = $registrar->getPermissionsTeamId();
+        $registrar->setPermissionsTeamId(self::PLATFORM_TEAM_ID);
+
+        try {
+            $this->unsetRelation('roles');
+
+            return $this->hasRole(RoleName::SuperAdmin->value);
+        } finally {
+            $registrar->setPermissionsTeamId($previous);
+            $this->unsetRelation('roles');
+        }
+    }
+
+    public function hasTwoFactorEnabled(): bool
+    {
+        return $this->two_factor_secret !== null && $this->two_factor_confirmed_at !== null;
+    }
+
+    /**
+     * Branch IDs this user may access, or null when the user sees all branches.
+     *
+     * @return list<int>|null
+     */
+    public function accessibleBranchIds(): ?array
+    {
+        if ($this->can('branches.all')) {
+            return null;
+        }
+
+        /** @var list<int> $ids */
+        $ids = $this->branches()->withoutGlobalScopes()->pluck('branches.id')->map(fn ($id): int => (int) $id)->all();
+
+        return $ids;
     }
 }

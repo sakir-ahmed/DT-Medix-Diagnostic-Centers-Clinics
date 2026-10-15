@@ -9,18 +9,18 @@ Mark finished phases with `[x]`.
 
 ## Phase 0: Foundation, Tenancy & UI Kit
 
-- [ ] Docker Compose (nginx, php-fpm with Chromium, mysql, redis, queue, scheduler, reverb), `.env.example`
-- [ ] Multi-tenancy: `Tenant` model, `ResolveTenant`, `BelongsToTenant`, `BelongsToBranch`, tenant-aware jobs, prefixed cache, channels and storage
-- [ ] Architecture test that fails when a tenant-owned model lacks the trait
-- [ ] Inertia + Vue 3 + Tailwind v4 tokens (`design.md`), Sonner, dark mode, SSR on public pages only
-- [ ] Localization middleware, `en` / `bn` files, language switcher
-- [ ] Staff auth (username / email / mobile), OTP service, rate limits, idle timeout, optional TOTP for owners
-- [ ] Spatie Permission with teams, per-tenant role seeding, platform `super-admin`
-- [ ] Activity log, `patient_access_logs`, encrypted backups, tenant export command
-- [ ] `PlanGate` skeleton (plan limits and module toggles) and a minimal `/platform` area: create tenant, plan, trial dates
-- [ ] **Shared UI kit** from `design.md` section 22 (dialogs, forms, tables, filters, charts, empty and error states) with `AppIcon` and `NoEmojiTest` in CI
-- [ ] OpenAPI docs generator at `/api-docs`
-- [ ] A hidden `/admin/ui-kit` showcase page that renders every component in light, dark, `en` and `bn`
+- [x] Docker Compose (nginx, php-fpm with Chromium, mysql, redis, queue, scheduler, reverb), `.env.example`
+- [x] Multi-tenancy: `Tenant` model, `ResolveTenant`, `BelongsToTenant`, `BelongsToBranch`, tenant-aware jobs, prefixed cache, channels and storage
+- [x] Architecture test that fails when a tenant-owned model lacks the trait
+- [x] Inertia + Vue 3 + Tailwind v4 tokens (`design.md`), Sonner, dark mode, SSR on public pages only
+- [x] Localization middleware, `en` / `bn` files, language switcher
+- [x] Staff auth (username / email / mobile), OTP service, rate limits, idle timeout, optional TOTP for owners
+- [x] Spatie Permission with teams, per-tenant role seeding, platform `super-admin`
+- [x] Activity log, `patient_access_logs`, encrypted backups, tenant export command
+- [x] `PlanGate` skeleton (plan limits and module toggles) and a minimal `/platform` area: create tenant, plan, trial dates
+- [x] **Shared UI kit** from `design.md` section 22 (dialogs, forms, tables, filters, charts, empty and error states) with `AppIcon` and `NoEmojiTest` in CI
+- [x] OpenAPI docs generator at `/api-docs`
+- [x] A hidden `/admin/ui-kit` showcase page that renders every component in light, dark, `en` and `bn`
 
 **Acceptance:** `migrate:fresh --seed` works; two seeded tenants cannot see each other's data (tested); each role sees only its menu; the UI-kit page renders without errors; a form with server errors shows messages under fields and focuses the first one.
 
