@@ -47,51 +47,53 @@ function suspend() {
 </script>
 
 <template>
-    <Head :title="tenant.name" />
-    <PageHeader :title="tenant.name" :breadcrumbs="[{ label: t('platform.tenants'), href: route('platform.tenants.index') }, { label: tenant.name }]">
-        <template #actions>
-            <StatusBadge :status="tenant.status" />
-            <UiButton icon="file-export" @click="router.post(route('platform.tenants.export', tenant.id))">{{ t('platform.export') }}</UiButton>
-            <UiButton v-if="tenant.status === 'suspended'" icon="play" @click="router.post(route('platform.tenants.resume', tenant.id))">{{ t('platform.resume') }}</UiButton>
-            <UiButton v-else variant="ghost-danger" icon="ban" @click="suspend">{{ t('platform.suspend') }}</UiButton>
-        </template>
-    </PageHeader>
-    <form class="max-w-2xl space-y-4" novalidate @submit.prevent="submit">
-        <section class="card space-y-3">
-            <h2 class="text-sm font-semibold">{{ t('platform.plan_and_trial') }}</h2>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-3">
-                <FormField id="name" :label="t('fields.name')" :error="form.errors.name" required>
-                    <TextInput id="name" v-model="form.name" :invalid="!!form.errors.name" />
-                </FormField>
-                <FormField id="plan" :label="t('platform.plan')" :error="form.errors.plan" required>
-                    <SelectInput id="plan" v-model="form.plan" :options="plans.map((p) => ({ value: p.value, label: p.label }))" />
-                </FormField>
-                <FormField id="trial_ends_at" :label="t('platform.trial_ends_at')" :error="form.errors.trial_ends_at" optional>
-                    <input id="trial_ends_at" v-model="form.trial_ends_at" type="date" class="control" />
-                </FormField>
-                <FormField id="subscription_ends_at" :label="t('platform.subscription_ends_at')" :error="form.errors.subscription_ends_at" optional>
-                    <input id="subscription_ends_at" v-model="form.subscription_ends_at" type="date" class="control" />
-                </FormField>
-                <FormField id="limits.branches" :label="t('platform.limit_branches')" :error="form.errors['limits.branches']" :helper="t('platform.unlimited_hint')">
-                    <TextInput id="limits.branches" v-model="form.limits.branches" type="number" min="1" align="right" />
-                </FormField>
-                <FormField id="limits.users" :label="t('platform.limit_users')" :error="form.errors['limits.users']" :helper="t('platform.unlimited_hint')">
-                    <TextInput id="limits.users" v-model="form.limits.users" type="number" min="1" align="right" />
-                </FormField>
-                <FormField id="message_credits" :label="t('platform.message_credits')" :error="form.errors.message_credits">
-                    <TextInput id="message_credits" v-model="form.message_credits" type="number" min="0" align="right" />
-                </FormField>
+    <div>
+        <Head :title="tenant.name" />
+        <PageHeader :title="tenant.name" :breadcrumbs="[{ label: t('platform.tenants'), href: route('platform.tenants.index') }, { label: tenant.name }]">
+            <template #actions>
+                <StatusBadge :status="tenant.status" />
+                <UiButton icon="file-export" @click="router.post(route('platform.tenants.export', tenant.id))">{{ t('platform.export') }}</UiButton>
+                <UiButton v-if="tenant.status === 'suspended'" icon="play" @click="router.post(route('platform.tenants.resume', tenant.id))">{{ t('platform.resume') }}</UiButton>
+                <UiButton v-else variant="ghost-danger" icon="ban" @click="suspend">{{ t('platform.suspend') }}</UiButton>
+            </template>
+        </PageHeader>
+        <form class="max-w-2xl space-y-4" novalidate @submit.prevent="submit">
+            <section class="card space-y-3">
+                <h2 class="text-sm font-semibold">{{ t('platform.plan_and_trial') }}</h2>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-3">
+                    <FormField id="name" :label="t('fields.name')" :error="form.errors.name" required>
+                        <TextInput id="name" v-model="form.name" :invalid="!!form.errors.name" />
+                    </FormField>
+                    <FormField id="plan" :label="t('platform.plan')" :error="form.errors.plan" required>
+                        <SelectInput id="plan" v-model="form.plan" :options="plans.map((p) => ({ value: p.value, label: p.label }))" />
+                    </FormField>
+                    <FormField id="trial_ends_at" :label="t('platform.trial_ends_at')" :error="form.errors.trial_ends_at" optional>
+                        <input id="trial_ends_at" v-model="form.trial_ends_at" type="date" class="control" />
+                    </FormField>
+                    <FormField id="subscription_ends_at" :label="t('platform.subscription_ends_at')" :error="form.errors.subscription_ends_at" optional>
+                        <input id="subscription_ends_at" v-model="form.subscription_ends_at" type="date" class="control" />
+                    </FormField>
+                    <FormField id="limits.branches" :label="t('platform.limit_branches')" :error="form.errors['limits.branches']" :helper="t('platform.unlimited_hint')">
+                        <TextInput id="limits.branches" v-model="form.limits.branches" type="number" min="1" align="right" />
+                    </FormField>
+                    <FormField id="limits.users" :label="t('platform.limit_users')" :error="form.errors['limits.users']" :helper="t('platform.unlimited_hint')">
+                        <TextInput id="limits.users" v-model="form.limits.users" type="number" min="1" align="right" />
+                    </FormField>
+                    <FormField id="message_credits" :label="t('platform.message_credits')" :error="form.errors.message_credits">
+                        <TextInput id="message_credits" v-model="form.message_credits" type="number" min="0" align="right" />
+                    </FormField>
+                </div>
+            </section>
+            <section class="card space-y-3">
+                <h2 class="text-sm font-semibold">{{ t('platform.modules') }}</h2>
+                <div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    <CheckboxField v-for="module in modules" :key="module" v-model="form.modules" :value="module" :label="t(`modules.${module}`)" />
+                </div>
+            </section>
+            <div class="flex justify-end gap-2">
+                <UiButton :href="route('platform.tenants.index')">{{ t('common.cancel') }}</UiButton>
+                <UiButton type="submit" variant="primary" icon="floppy-disk" :loading="form.processing">{{ t('common.save_changes') }}</UiButton>
             </div>
-        </section>
-        <section class="card space-y-3">
-            <h2 class="text-sm font-semibold">{{ t('platform.modules') }}</h2>
-            <div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                <CheckboxField v-for="module in modules" :key="module" v-model="form.modules" :value="module" :label="t(`modules.${module}`)" />
-            </div>
-        </section>
-        <div class="flex justify-end gap-2">
-            <UiButton :href="route('platform.tenants.index')">{{ t('common.cancel') }}</UiButton>
-            <UiButton type="submit" variant="primary" icon="floppy-disk" :loading="form.processing">{{ t('common.save_changes') }}</UiButton>
-        </div>
-    </form>
+        </form>
+    </div>
 </template>

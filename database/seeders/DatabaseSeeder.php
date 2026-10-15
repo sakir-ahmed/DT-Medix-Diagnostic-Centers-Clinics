@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             PlatformAdminSeeder::class,
             DemoTenantSeeder::class,
+            DemoClinicalDataSeeder::class,
         ]);
     }
 }

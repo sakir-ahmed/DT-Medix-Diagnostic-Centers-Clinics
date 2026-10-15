@@ -9,6 +9,3 @@ parameters:
         - database/seeders
     tmpDir: storage/framework/phpstan
     treatPhpDocTypesAsCertain: false
-    ignoreErrors:
-        -
-            identifier: trait.unused

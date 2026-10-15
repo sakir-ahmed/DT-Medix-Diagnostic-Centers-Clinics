@@ -113,160 +113,162 @@ async function askReason() {
 </script>
 
 <template>
-    <Head :title="t('ui_kit.title')" />
-    <PageHeader :title="t('ui_kit.title')" :description="t('ui_kit.description')">
-        <template #actions>
-            <UiButton icon="file-export">{{ t('common.export') }}</UiButton>
-            <UiButton variant="primary" icon="plus" @click="slideOver = true">{{ t('ui_kit.open_slide_over') }}</UiButton>
-        </template>
-    </PageHeader>
-
-    <TabsNav v-model="tab" :tabs="[{ key: 'controls', label: t('ui_kit.tab_controls') }, { key: 'data', label: t('ui_kit.tab_data') }, { key: 'clinical', label: t('ui_kit.tab_clinical') }]" />
-
-    <div v-show="tab === 'controls'" class="grid gap-3 lg:grid-cols-2">
-        <section class="card space-y-3">
-            <h2 class="text-sm font-semibold">{{ t('ui_kit.buttons') }}</h2>
-            <div class="flex flex-wrap items-center gap-2">
-                <UiButton variant="primary" icon="floppy-disk">{{ t('common.save') }}</UiButton>
-                <UiButton>{{ t('common.cancel') }}</UiButton>
-                <UiButton variant="ghost" icon="print">{{ t('common.print') }}</UiButton>
-                <UiButton variant="accent" icon="print">{{ t('ui_kit.save_and_print') }}</UiButton>
-                <UiButton variant="destructive" icon="trash">{{ t('common.delete') }}</UiButton>
-                <UiButton loading>{{ t('common.save') }}</UiButton>
-                <UiButton disabled :disabled-reason="t('ui_kit.disabled_reason')">{{ t('common.save') }}</UiButton>
-                <UiButton icon-only icon="pen-to-square" :label="t('common.edit')" />
-                <UiButton size="xs" icon="plus">{{ t('common.add') }}</UiButton>
-                <UiButton size="touch" variant="primary">{{ t('ui_kit.touch') }}</UiButton>
-            </div>
-            <h2 class="pt-2 text-sm font-semibold">{{ t('ui_kit.badges') }}</h2>
-            <div class="flex flex-wrap gap-2">
-                <StatusBadge v-for="s in ['paid', 'partial', 'due', 'released', 'verified', 'critical', 'cancelled', 'booked']" :key="s" :status="s" />
-            </div>
-            <h2 class="pt-2 text-sm font-semibold">{{ t('ui_kit.dialogs') }}</h2>
-            <div class="flex flex-wrap gap-2">
-                <UiButton @click="askSimple">{{ t('ui_kit.simple_confirm') }}</UiButton>
-                <UiButton @click="askReason">{{ t('ui_kit.reason_confirm') }}</UiButton>
-                <UiButton @click="reasonOpen = true">ReasonDialog</UiButton>
-                <UiButton @click="approvalOpen = true">ApprovalDialog</UiButton>
-                <UiButton @click="typedOpen = true">TypedConfirmDialog</UiButton>
-                <UiButton @click="modal = true">{{ t('ui_kit.small_dialog') }}</UiButton>
-            </div>
-            <h2 class="pt-2 text-sm font-semibold">{{ t('ui_kit.toasts') }}</h2>
-            <div class="flex flex-wrap gap-2">
-                <UiButton icon="circle-check" @click="notify.success(t('ui_kit.toast_success'))">success</UiButton>
-                <UiButton icon="circle-xmark" @click="notify.error(t('ui_kit.toast_error'))">error</UiButton>
-                <UiButton icon="triangle-exclamation" @click="notify.warning(t('ui_kit.toast_warning'))">warning</UiButton>
-                <UiButton icon="circle-info" @click="notify.info(t('ui_kit.toast_info'))">info</UiButton>
-            </div>
-        </section>
-
-        <form class="card space-y-3" novalidate @submit.prevent="submitDemo">
-            <h2 class="text-sm font-semibold">{{ t('ui_kit.server_validation') }}</h2>
-            <p class="text-xs text-muted">{{ t('ui_kit.server_validation_hint') }}</p>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-3">
-                <FormField id="name" :label="t('fields.name')" :error="form.errors.name" required>
-                    <TextInput id="name" v-model="form.name" :invalid="!!form.errors.name" />
-                </FormField>
-                <FormField id="mobile" :label="t('fields.mobile')" :error="form.errors.mobile" :helper="t('fields.mobile_helper')" required>
-                    <MobileInput id="mobile" v-model="form.mobile" :invalid="!!form.errors.mobile" />
-                </FormField>
-                <FormField id="amount" :label="t('ui_kit.amount')" :error="form.errors.amount" required>
-                    <MoneyInput id="amount" v-model="form.amount" :invalid="!!form.errors.amount" />
-                </FormField>
-                <FormField id="note" :label="t('fields.notes')" optional>
-                    <TextInput id="note" />
-                </FormField>
-            </div>
-            <p class="text-xs text-muted">* {{ t('common.required') }}</p>
-            <div class="flex justify-end gap-2">
-                <UiButton @click="form.reset(); form.clearErrors()">{{ t('common.reset') }}</UiButton>
-                <UiButton type="submit" variant="primary" :loading="form.processing">{{ t('ui_kit.validate') }}</UiButton>
-            </div>
-        </form>
-
-        <section class="card space-y-3 lg:col-span-2">
-            <h2 class="text-sm font-semibold">{{ t('ui_kit.inputs') }}</h2>
-            <div class="grid gap-x-4 gap-y-3 md:grid-cols-3">
-                <FormField id="combo" :label="t('ui_kit.combobox')"><ComboBox id="combo" v-model="combo" :options="tests" allow-create /></FormField>
-                <FormField id="multi" :label="t('ui_kit.multiselect')"><MultiSelect id="multi" v-model="multi" :options="tests" /></FormField>
-                <FormField id="select" :label="t('ui_kit.select')"><SelectInput id="select" :model-value="'a'" :options="[{ value: 'a', label: 'Option A' }, { value: 'b', label: 'Option B' }]" /></FormField>
-                <FormField id="textarea" :label="t('fields.notes')"><TextArea id="textarea" /></FormField>
-                <FormField id="qty" :label="t('ui_kit.quantity')"><QuantityStepper v-model="quantity" /></FormField>
-                <div class="space-y-2 pt-5"><SwitchField v-model="switchValue" :label="t('ui_kit.switch')" /><CheckboxField v-model="checkbox" :label="t('ui_kit.checkbox')" /></div>
-                <FormField id="range" :label="t('periods.label')" span><DateRangePicker id="range" v-model="range" /></FormField>
-                <FormField id="payment" :label="t('ui_kit.payment_method')" span>
-                    <RadioCards v-model="payment" name="payment" :columns="4" :options="[{ value: 'cash', label: t('payments.methods.cash'), icon: 'money-bill-wave' }, { value: 'bkash', label: t('payments.methods.bkash'), icon: 'mobile-screen' }, { value: 'card', label: t('payments.methods.card'), icon: 'credit-card' }, { value: 'due', label: t('payments.methods.due'), icon: 'clock' }]" />
-                </FormField>
-                <FormField id="upload" :label="t('ui_kit.upload')" span><FileUpload id="upload" v-model="file" /></FormField>
-            </div>
-        </section>
-    </div>
-
-    <div v-show="tab === 'data'" class="space-y-3">
-        <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
-            <KpiCard :label="t('ui_kit.kpi_patients')" :value="128" :change="8.2" :sparkline="[3, 5, 4, 7, 6, 9, 8]" icon="hospital-user" />
-            <KpiCard :label="t('ui_kit.kpi_billed')" :value="1234567" format="money" :change="-3.1" :sparkline="[9, 7, 8, 6, 5, 6, 4]" icon="file-invoice" />
-            <KpiCard :label="t('ui_kit.kpi_dues')" :value="45200" format="money" :change="2.4" invert-change icon="money-bill-wave" />
-            <KpiCard :label="t('ui_kit.kpi_pending')" loading />
-        </div>
-        <FilterBar :filters="{}">
-            <SelectInput :model-value="null" class="!w-36" :placeholder="t('ui_kit.status')" :options="[{ value: 'paid', label: t('statuses.paid') }]" />
-        </FilterBar>
-        <DataTable :columns="columns" :rows="rows" :totals="{ amount: rows.reduce((s, r) => s + Number(r.amount), 0).toFixed(2) }" selectable clickable :sync-url="false" @row-click="slideOver = true">
-            <template #row-actions>
-                <RowActions :items="[{ label: t('common.edit'), icon: 'pen-to-square' }, { label: t('common.print'), icon: 'print' }, { separator: true }, { label: t('common.delete'), icon: 'trash', danger: true, onSelect: askSimple }]" />
+    <div>
+        <Head :title="t('ui_kit.title')" />
+        <PageHeader :title="t('ui_kit.title')" :description="t('ui_kit.description')">
+            <template #actions>
+                <UiButton icon="file-export">{{ t('common.export') }}</UiButton>
+                <UiButton variant="primary" icon="plus" @click="slideOver = true">{{ t('ui_kit.open_slide_over') }}</UiButton>
             </template>
-            <template #bulk-actions><UiButton size="xs" icon="file-export">{{ t('common.export') }}</UiButton></template>
-        </DataTable>
-        <div class="grid gap-3 lg:grid-cols-3">
-            <ChartCard :title="t('ui_kit.chart_trend')" type="line" money :labels="['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']" :datasets="[{ label: t('ui_kit.this_week'), data: [12000, 15000, 11000, 18000, 21000, 19000, 24000], fill: true }, { label: t('ui_kit.last_week'), data: [10000, 12000, 13000, 15000, 16000, 17000, 20000], dashed: true }]" />
-            <ChartCard :title="t('ui_kit.chart_methods')" type="doughnut" money :labels="['Cash', 'bKash', 'Nagad', 'Card']" :datasets="[{ label: t('ui_kit.amount'), data: [52000, 21000, 9000, 6000] }]" center-label="৳88K" />
-            <ChartCard :title="t('ui_kit.chart_top')" type="bar" horizontal :labels="['CBC', 'FBS', 'Lipid', 'TSH', 'Urine RE']" :datasets="[{ label: t('ui_kit.tests'), data: [120, 98, 76, 54, 40] }]" />
+        </PageHeader>
+
+        <TabsNav v-model="tab" :tabs="[{ key: 'controls', label: t('ui_kit.tab_controls') }, { key: 'data', label: t('ui_kit.tab_data') }, { key: 'clinical', label: t('ui_kit.tab_clinical') }]" />
+
+        <div v-show="tab === 'controls'" class="grid gap-3 lg:grid-cols-2">
+            <section class="card space-y-3">
+                <h2 class="text-sm font-semibold">{{ t('ui_kit.buttons') }}</h2>
+                <div class="flex flex-wrap items-center gap-2">
+                    <UiButton variant="primary" icon="floppy-disk">{{ t('common.save') }}</UiButton>
+                    <UiButton>{{ t('common.cancel') }}</UiButton>
+                    <UiButton variant="ghost" icon="print">{{ t('common.print') }}</UiButton>
+                    <UiButton variant="accent" icon="print">{{ t('ui_kit.save_and_print') }}</UiButton>
+                    <UiButton variant="destructive" icon="trash">{{ t('common.delete') }}</UiButton>
+                    <UiButton loading>{{ t('common.save') }}</UiButton>
+                    <UiButton disabled :disabled-reason="t('ui_kit.disabled_reason')">{{ t('common.save') }}</UiButton>
+                    <UiButton icon-only icon="pen-to-square" :label="t('common.edit')" />
+                    <UiButton size="xs" icon="plus">{{ t('common.add') }}</UiButton>
+                    <UiButton size="touch" variant="primary">{{ t('ui_kit.touch') }}</UiButton>
+                </div>
+                <h2 class="pt-2 text-sm font-semibold">{{ t('ui_kit.badges') }}</h2>
+                <div class="flex flex-wrap gap-2">
+                    <StatusBadge v-for="s in ['paid', 'partial', 'due', 'released', 'verified', 'critical', 'cancelled', 'booked']" :key="s" :status="s" />
+                </div>
+                <h2 class="pt-2 text-sm font-semibold">{{ t('ui_kit.dialogs') }}</h2>
+                <div class="flex flex-wrap gap-2">
+                    <UiButton @click="askSimple">{{ t('ui_kit.simple_confirm') }}</UiButton>
+                    <UiButton @click="askReason">{{ t('ui_kit.reason_confirm') }}</UiButton>
+                    <UiButton @click="reasonOpen = true">ReasonDialog</UiButton>
+                    <UiButton @click="approvalOpen = true">ApprovalDialog</UiButton>
+                    <UiButton @click="typedOpen = true">TypedConfirmDialog</UiButton>
+                    <UiButton @click="modal = true">{{ t('ui_kit.small_dialog') }}</UiButton>
+                </div>
+                <h2 class="pt-2 text-sm font-semibold">{{ t('ui_kit.toasts') }}</h2>
+                <div class="flex flex-wrap gap-2">
+                    <UiButton icon="circle-check" @click="notify.success(t('ui_kit.toast_success'))">success</UiButton>
+                    <UiButton icon="circle-xmark" @click="notify.error(t('ui_kit.toast_error'))">error</UiButton>
+                    <UiButton icon="triangle-exclamation" @click="notify.warning(t('ui_kit.toast_warning'))">warning</UiButton>
+                    <UiButton icon="circle-info" @click="notify.info(t('ui_kit.toast_info'))">info</UiButton>
+                </div>
+            </section>
+
+            <form class="card space-y-3" novalidate @submit.prevent="submitDemo">
+                <h2 class="text-sm font-semibold">{{ t('ui_kit.server_validation') }}</h2>
+                <p class="text-xs text-muted">{{ t('ui_kit.server_validation_hint') }}</p>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-3">
+                    <FormField id="name" :label="t('fields.name')" :error="form.errors.name" required>
+                        <TextInput id="name" v-model="form.name" :invalid="!!form.errors.name" />
+                    </FormField>
+                    <FormField id="mobile" :label="t('fields.mobile')" :error="form.errors.mobile" :helper="t('fields.mobile_helper')" required>
+                        <MobileInput id="mobile" v-model="form.mobile" :invalid="!!form.errors.mobile" />
+                    </FormField>
+                    <FormField id="amount" :label="t('ui_kit.amount')" :error="form.errors.amount" required>
+                        <MoneyInput id="amount" v-model="form.amount" :invalid="!!form.errors.amount" />
+                    </FormField>
+                    <FormField id="note" :label="t('fields.notes')" optional>
+                        <TextInput id="note" />
+                    </FormField>
+                </div>
+                <p class="text-xs text-muted">* {{ t('common.required') }}</p>
+                <div class="flex justify-end gap-2">
+                    <UiButton @click="form.reset(); form.clearErrors()">{{ t('common.reset') }}</UiButton>
+                    <UiButton type="submit" variant="primary" :loading="form.processing">{{ t('ui_kit.validate') }}</UiButton>
+                </div>
+            </form>
+
+            <section class="card space-y-3 lg:col-span-2">
+                <h2 class="text-sm font-semibold">{{ t('ui_kit.inputs') }}</h2>
+                <div class="grid gap-x-4 gap-y-3 md:grid-cols-3">
+                    <FormField id="combo" :label="t('ui_kit.combobox')"><ComboBox id="combo" v-model="combo" :options="tests" allow-create /></FormField>
+                    <FormField id="multi" :label="t('ui_kit.multiselect')"><MultiSelect id="multi" v-model="multi" :options="tests" /></FormField>
+                    <FormField id="select" :label="t('ui_kit.select')"><SelectInput id="select" :model-value="'a'" :options="[{ value: 'a', label: 'Option A' }, { value: 'b', label: 'Option B' }]" /></FormField>
+                    <FormField id="textarea" :label="t('fields.notes')"><TextArea id="textarea" /></FormField>
+                    <FormField id="qty" :label="t('ui_kit.quantity')"><QuantityStepper v-model="quantity" /></FormField>
+                    <div class="space-y-2 pt-5"><SwitchField v-model="switchValue" :label="t('ui_kit.switch')" /><CheckboxField v-model="checkbox" :label="t('ui_kit.checkbox')" /></div>
+                    <FormField id="range" :label="t('periods.label')" span><DateRangePicker id="range" v-model="range" /></FormField>
+                    <FormField id="payment" :label="t('ui_kit.payment_method')" span>
+                        <RadioCards v-model="payment" name="payment" :columns="4" :options="[{ value: 'cash', label: t('payments.methods.cash'), icon: 'money-bill-wave' }, { value: 'bkash', label: t('payments.methods.bkash'), icon: 'mobile-screen' }, { value: 'card', label: t('payments.methods.card'), icon: 'credit-card' }, { value: 'due', label: t('payments.methods.due'), icon: 'clock' }]" />
+                    </FormField>
+                    <FormField id="upload" :label="t('ui_kit.upload')" span><FileUpload id="upload" v-model="file" /></FormField>
+                </div>
+            </section>
         </div>
-        <div class="grid gap-3 lg:grid-cols-3">
-            <div class="card"><EmptyState :title="t('ui_kit.empty_title')" :description="t('ui_kit.empty_text')"><UiButton variant="primary" icon="plus">{{ t('common.add') }}</UiButton></EmptyState></div>
-            <div class="card"><ErrorState reference="REF-1234" /></div>
-            <div class="card"><SkeletonRows :rows="4" :columns="3" /></div>
+
+        <div v-show="tab === 'data'" class="space-y-3">
+            <div class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+                <KpiCard :label="t('ui_kit.kpi_patients')" :value="128" :change="8.2" :sparkline="[3, 5, 4, 7, 6, 9, 8]" icon="hospital-user" />
+                <KpiCard :label="t('ui_kit.kpi_billed')" :value="1234567" format="money" :change="-3.1" :sparkline="[9, 7, 8, 6, 5, 6, 4]" icon="file-invoice" />
+                <KpiCard :label="t('ui_kit.kpi_dues')" :value="45200" format="money" :change="2.4" invert-change icon="money-bill-wave" />
+                <KpiCard :label="t('ui_kit.kpi_pending')" loading />
+            </div>
+            <FilterBar :filters="{}">
+                <SelectInput :model-value="null" class="!w-36" :placeholder="t('ui_kit.status')" :options="[{ value: 'paid', label: t('statuses.paid') }]" />
+            </FilterBar>
+            <DataTable :columns="columns" :rows="rows" :totals="{ amount: rows.reduce((s, r) => s + Number(r.amount), 0).toFixed(2) }" selectable clickable :sync-url="false" @row-click="slideOver = true">
+                <template #row-actions>
+                    <RowActions :items="[{ label: t('common.edit'), icon: 'pen-to-square' }, { label: t('common.print'), icon: 'print' }, { separator: true }, { label: t('common.delete'), icon: 'trash', danger: true, onSelect: askSimple }]" />
+                </template>
+                <template #bulk-actions><UiButton size="xs" icon="file-export">{{ t('common.export') }}</UiButton></template>
+            </DataTable>
+            <div class="grid gap-3 lg:grid-cols-3">
+                <ChartCard :title="t('ui_kit.chart_trend')" type="line" money :labels="['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']" :datasets="[{ label: t('ui_kit.this_week'), data: [12000, 15000, 11000, 18000, 21000, 19000, 24000], fill: true }, { label: t('ui_kit.last_week'), data: [10000, 12000, 13000, 15000, 16000, 17000, 20000], dashed: true }]" />
+                <ChartCard :title="t('ui_kit.chart_methods')" type="doughnut" money :labels="['Cash', 'bKash', 'Nagad', 'Card']" :datasets="[{ label: t('ui_kit.amount'), data: [52000, 21000, 9000, 6000] }]" center-label="৳88K" />
+                <ChartCard :title="t('ui_kit.chart_top')" type="bar" horizontal :labels="['CBC', 'FBS', 'Lipid', 'TSH', 'Urine RE']" :datasets="[{ label: t('ui_kit.tests'), data: [120, 98, 76, 54, 40] }]" />
+            </div>
+            <div class="grid gap-3 lg:grid-cols-3">
+                <div class="card"><EmptyState :title="t('ui_kit.empty_title')" :description="t('ui_kit.empty_text')"><UiButton variant="primary" icon="plus">{{ t('common.add') }}</UiButton></EmptyState></div>
+                <div class="card"><ErrorState reference="REF-1234" /></div>
+                <div class="card"><SkeletonRows :rows="4" :columns="3" /></div>
+            </div>
+            <p class="text-[13px]">
+                <MoneyText value="1234567.5" symbol /> | <MoneyText value="-1250" /> | <MoneyText value="0" /> | <DateText :value="new Date().toISOString()" time /> | <DateText :value="new Date(Date.now() - 300000).toISOString()" relative />
+            </p>
         </div>
-        <p class="text-[13px]">
-            <MoneyText value="1234567.5" symbol /> | <MoneyText value="-1250" /> | <MoneyText value="0" /> | <DateText :value="new Date().toISOString()" time /> | <DateText :value="new Date(Date.now() - 300000).toISOString()" relative />
-        </p>
+
+        <div v-show="tab === 'clinical'" class="space-y-3">
+            <PatientBanner :patient="{ name: 'Rahim Uddin', name_bn: 'রহিম উদ্দিন', patient_code: 'P-26-000123', age_text: '32 Y 4 M', sex: 'male', mobile: '01711000000', blood_group: 'B+', allergies: 'Penicillin', due: '450.00' }">
+                <template #due-action><UiButton size="xs" variant="primary">{{ t('patients.collect_due') }}</UiButton></template>
+            </PatientBanner>
+            <StatusStepper current="entered" />
+            <StatusStepper current="received" failed="received" compact />
+            <ResultGrid v-model="results" :rows="gridRows" />
+            <ul class="card">
+                <TimelineItem :date="new Date().toISOString()" icon="file-medical" :title="t('ui_kit.timeline_report')" status="released" />
+                <TimelineItem :date="new Date(Date.now() - 86400000).toISOString()" icon="file-invoice" :title="t('ui_kit.timeline_invoice')" status="partial" last />
+            </ul>
+            <ReportPreview :report="report" />
+        </div>
+
+        <SlideOver v-model:open="slideOver" :title="t('ui_kit.slide_over_title')" :description="t('ui_kit.slide_over_text')">
+            <div class="space-y-3">
+                <FormField id="so-name" :label="t('fields.name')" required><TextInput id="so-name" /></FormField>
+                <FormField id="so-notes" :label="t('fields.notes')" optional><TextArea id="so-notes" /></FormField>
+            </div>
+            <template #footer>
+                <UiButton @click="slideOver = false">{{ t('common.cancel') }}</UiButton>
+                <UiButton variant="primary" icon="floppy-disk" @click="slideOver = false">{{ t('common.save') }}</UiButton>
+            </template>
+        </SlideOver>
+
+        <ModalDialog v-model:open="modal" :title="t('ui_kit.small_dialog')" size="sm">
+            <FormField id="modal-qty" :label="t('ui_kit.quantity')"><TextInput id="modal-qty" inputmode="numeric" /></FormField>
+            <template #footer>
+                <UiButton @click="modal = false">{{ t('common.cancel') }}</UiButton>
+                <UiButton variant="primary" @click="modal = false">{{ t('common.save') }}</UiButton>
+            </template>
+        </ModalDialog>
+
+        <ReasonDialog v-model:open="reasonOpen" variant="warning" :title="t('ui_kit.reason_title')" :confirm-text="t('ui_kit.confirm_action')" @confirm="reasonOpen = false" />
+        <ApprovalDialog v-model:open="approvalOpen" variant="warning" :title="t('ui_kit.approval_title')" :message="t('ui_kit.approval_text')" :confirm-text="t('ui_kit.approve')" @confirm="approvalOpen = false" />
+        <TypedConfirmDialog v-model:open="typedOpen" :title="t('ui_kit.typed_title')" :message="t('ui_kit.typed_text')" :confirm-text="t('ui_kit.typed_action')" @confirm="typedOpen = false" />
     </div>
-
-    <div v-show="tab === 'clinical'" class="space-y-3">
-        <PatientBanner :patient="{ name: 'Rahim Uddin', name_bn: 'রহিম উদ্দিন', patient_code: 'P-26-000123', age_text: '32 Y 4 M', sex: 'male', mobile: '01711000000', blood_group: 'B+', allergies: 'Penicillin', due: '450.00' }">
-            <template #due-action><UiButton size="xs" variant="primary">{{ t('patients.collect_due') }}</UiButton></template>
-        </PatientBanner>
-        <StatusStepper current="entered" />
-        <StatusStepper current="received" failed="received" compact />
-        <ResultGrid v-model="results" :rows="gridRows" />
-        <ul class="card">
-            <TimelineItem :date="new Date().toISOString()" icon="file-medical" :title="t('ui_kit.timeline_report')" status="released" />
-            <TimelineItem :date="new Date(Date.now() - 86400000).toISOString()" icon="file-invoice" :title="t('ui_kit.timeline_invoice')" status="partial" last />
-        </ul>
-        <ReportPreview :report="report" />
-    </div>
-
-    <SlideOver v-model:open="slideOver" :title="t('ui_kit.slide_over_title')" :description="t('ui_kit.slide_over_text')">
-        <div class="space-y-3">
-            <FormField id="so-name" :label="t('fields.name')" required><TextInput id="so-name" /></FormField>
-            <FormField id="so-notes" :label="t('fields.notes')" optional><TextArea id="so-notes" /></FormField>
-        </div>
-        <template #footer>
-            <UiButton @click="slideOver = false">{{ t('common.cancel') }}</UiButton>
-            <UiButton variant="primary" icon="floppy-disk" @click="slideOver = false">{{ t('common.save') }}</UiButton>
-        </template>
-    </SlideOver>
-
-    <ModalDialog v-model:open="modal" :title="t('ui_kit.small_dialog')" size="sm">
-        <FormField id="modal-qty" :label="t('ui_kit.quantity')"><TextInput id="modal-qty" inputmode="numeric" /></FormField>
-        <template #footer>
-            <UiButton @click="modal = false">{{ t('common.cancel') }}</UiButton>
-            <UiButton variant="primary" @click="modal = false">{{ t('common.save') }}</UiButton>
-        </template>
-    </ModalDialog>
-
-    <ReasonDialog v-model:open="reasonOpen" variant="warning" :title="t('ui_kit.reason_title')" :confirm-text="t('ui_kit.confirm_action')" @confirm="reasonOpen = false" />
-    <ApprovalDialog v-model:open="approvalOpen" variant="warning" :title="t('ui_kit.approval_title')" :message="t('ui_kit.approval_text')" :confirm-text="t('ui_kit.approve')" @confirm="approvalOpen = false" />
-    <TypedConfirmDialog v-model:open="typedOpen" :title="t('ui_kit.typed_title')" :message="t('ui_kit.typed_text')" :confirm-text="t('ui_kit.typed_action')" @confirm="typedOpen = false" />
 </template>

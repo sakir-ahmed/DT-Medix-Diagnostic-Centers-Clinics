@@ -12,7 +12,10 @@ export function translate(translations, key, replacements = {}) {
         return key;
     }
 
-    for (const [name, replacement] of Object.entries(replacements)) {
+    // Longest keys first so ":total" is not broken by ":to".
+    const entries = Object.entries(replacements).sort(([a], [b]) => b.length - a.length);
+
+    for (const [name, replacement] of entries) {
         value = value.replaceAll(`:${name}`, String(replacement ?? ''));
     }
 

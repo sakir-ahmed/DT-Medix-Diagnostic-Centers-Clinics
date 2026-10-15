@@ -100,6 +100,7 @@ it('blocks staff of a suspended tenant and lets them back after resume', functio
     $token = $owner->createToken('t', ['staff'])->plainTextToken;
     Route::middleware(['auth:sanctum', 'tenant', 'tenant.active'])->get('/api/v1/_probe', fn () => 'ok');
     $this->withToken($token)->getJson('/api/v1/_probe')->assertForbidden()->assertJsonPath('error.code', 'TENANT_SUSPENDED');
+    $this->withoutToken();
 
     $this->actingAs($admin)->post(route('platform.tenants.resume', $tenant))->assertRedirect();
     $this->actingAs($owner)->get(route('admin.dashboard'))->assertOk();

@@ -26,6 +26,11 @@ abstract class TestCase extends BaseTestCase
     {
         $this->app->make(TenantContext::class)->set(null);
 
+        // Bearer token requests authenticate from scratch, like a real API call.
+        if (isset($server['HTTP_AUTHORIZATION'])) {
+            $this->app['auth']->forgetGuards();
+        }
+
         return parent::call($method, $uri, $parameters, $cookies, $files, $server, $content);
     }
 }

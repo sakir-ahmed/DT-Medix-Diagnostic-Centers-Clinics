@@ -26,11 +26,11 @@ Mark finished phases with `[x]`.
 
 ## Phase 1: Branches, Staff, Doctors & Patients
 
-- [ ] Branch CRUD and branch scoping, tenant settings
-- [ ] Staff and doctors (BMDC number, specialty, fees, signature image), weekly schedules and leave
-- [ ] Patients: registration, patient ID, duplicate detection, family linking by mobile, allergy alerts, photo, search by mobile, name or ID
-- [ ] `PatientBanner` and the patient access log
-- [ ] Referrer records (master data only)
+- [x] Branch CRUD and branch scoping, tenant settings
+- [x] Staff and doctors (BMDC number, specialty, fees, signature image), weekly schedules and leave
+- [x] Patients: registration, patient ID, duplicate detection, family linking by mobile, allergy alerts, photo, search by mobile, name or ID
+- [x] `PatientBanner` and the patient access log
+- [x] Referrer records (master data only)
 
 **Acceptance:** search returns in under 300 ms on 500,000 seeded patients; duplicate warning works; opening a patient writes an access log row; cross-tenant and cross-branch tests pass.
 

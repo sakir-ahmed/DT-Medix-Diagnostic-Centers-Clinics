@@ -50,4 +50,5 @@ return [
     'scheduled' => 'Scheduled',
     'routine' => 'Routine',
     'urgent' => 'Urgent',
+    'inactive' => 'Inactive',
 ];

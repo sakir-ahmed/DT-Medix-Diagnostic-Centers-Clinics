@@ -41,7 +41,16 @@ const emit = defineEmits(['row-click', 'sort', 'retry', 'clear-filters', 'update
 const { t } = useI18n();
 
 const items = computed(() => (Array.isArray(props.rows) ? props.rows : (props.rows?.data ?? [])));
-const paginator = computed(() => (Array.isArray(props.rows) ? null : props.rows));
+// Accepts a Laravel paginator or an API resource collection ({ data, meta, links }).
+const paginator = computed(() => {
+    if (Array.isArray(props.rows) || !props.rows) {
+        return null;
+    }
+    if (props.rows.meta) {
+        return { ...props.rows.meta, prev_page_url: props.rows.links?.prev ?? null, next_page_url: props.rows.links?.next ?? null };
+    }
+    return props.rows;
+});
 const selected = ref([]);
 
 watch(items, () => {

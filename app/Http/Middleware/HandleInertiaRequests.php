@@ -89,6 +89,8 @@ class HandleInertiaRequests extends Middleware
                 'error' => fn () => $request->session()->get('error'),
                 'warning' => fn () => $request->session()->get('warning'),
                 'info' => fn () => $request->session()->get('info'),
+                'duplicates' => fn () => $request->session()->get('duplicates'),
+                'created_patient_id' => fn () => $request->session()->get('created_patient_id'),
             ],
         ];
     }

@@ -59,4 +59,5 @@ return [
             'message' => 'Check the internet connection and try again.',
         ],
     ],
+    'SCHEDULE_OVERLAP' => 'This time overlaps another schedule of the doctor on the same day.',
 ];

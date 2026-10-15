@@ -50,4 +50,5 @@ return [
     'scheduled' => 'নির্ধারিত',
     'routine' => 'সাধারণ',
     'urgent' => 'জরুরি',
+    'inactive' => 'নিষ্ক্রিয়',
 ];

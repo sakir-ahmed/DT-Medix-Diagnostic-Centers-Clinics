@@ -67,26 +67,28 @@ const statuses = ['trial', 'active', 'read_only', 'suspended'].map((value) => ({
 </script>
 
 <template>
-    <Head :title="t('platform.tenants')" />
-    <PageHeader :title="t('platform.tenants')" :description="t('platform.tenants_description')">
-        <template #actions>
-            <UiButton variant="primary" icon="plus" :href="route('platform.tenants.create')">{{ t('platform.new_tenant') }}</UiButton>
-        </template>
-    </PageHeader>
-    <FilterBar v-slot="{ form }" :filters="filters" :search-placeholder="t('platform.search_tenants')">
-        <SelectInput v-model="form.status" class="!w-36" :placeholder="t('common.all_statuses')" :options="statuses" :aria-label="t('common.status')" />
-    </FilterBar>
-    <DataTable
-        :columns="columns"
-        :rows="tenants"
-        :filtered="!!(filters.q || filters.status)"
-        :empty-title="t('platform.no_tenants')"
-        clickable
-        @row-click="(row) => router.visit(route('platform.tenants.edit', row.id))"
-        @clear-filters="router.get(route('platform.tenants.index'))"
-    >
-        <template #cell-plan="{ value }">{{ t(`platform.plans.${value}`) }}</template>
-        <template #row-actions="{ row }"><RowActions :items="actions(row)" /></template>
-        <template #empty-actions><UiButton variant="primary" icon="plus" :href="route('platform.tenants.create')">{{ t('platform.new_tenant') }}</UiButton></template>
-    </DataTable>
+    <div>
+        <Head :title="t('platform.tenants')" />
+        <PageHeader :title="t('platform.tenants')" :description="t('platform.tenants_description')">
+            <template #actions>
+                <UiButton variant="primary" icon="plus" :href="route('platform.tenants.create')">{{ t('platform.new_tenant') }}</UiButton>
+            </template>
+        </PageHeader>
+        <FilterBar v-slot="{ form }" :filters="filters" :search-placeholder="t('platform.search_tenants')">
+            <SelectInput v-model="form.status" class="!w-36" :placeholder="t('common.all_statuses')" :options="statuses" :aria-label="t('common.status')" />
+        </FilterBar>
+        <DataTable
+            :columns="columns"
+            :rows="tenants"
+            :filtered="!!(filters.q || filters.status)"
+            :empty-title="t('platform.no_tenants')"
+            clickable
+            @row-click="(row) => router.visit(route('platform.tenants.edit', row.id))"
+            @clear-filters="router.get(route('platform.tenants.index'))"
+        >
+            <template #cell-plan="{ value }">{{ t(`platform.plans.${value}`) }}</template>
+            <template #row-actions="{ row }"><RowActions :items="actions(row)" /></template>
+            <template #empty-actions><UiButton variant="primary" icon="plus" :href="route('platform.tenants.create')">{{ t('platform.new_tenant') }}</UiButton></template>
+        </DataTable>
+    </div>
 </template>
