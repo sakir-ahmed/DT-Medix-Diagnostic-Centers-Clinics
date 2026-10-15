@@ -60,4 +60,6 @@ return [
         ],
     ],
     'SCHEDULE_OVERLAP' => 'This time overlaps another schedule of the doctor on the same day.',
+    'INVALID_FORMULA' => 'A calculated parameter formula is not valid. Use only codes of this test in braces and + - * / ( ).',
+    'INVALID_PLACEHOLDER' => 'These placeholders are not allowed: :placeholders',
 ];

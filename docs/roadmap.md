@@ -36,10 +36,10 @@ Mark finished phases with `[x]`.
 
 ## Phase 2: Test Catalog, Packages & Report Templates
 
-- [ ] Departments, tests, parameters, units, result types, reference ranges by age and sex, critical limits
-- [ ] Packages, outsourced test flag, optional branch price lists
-- [ ] Report template builder: table templates (pathology) and narrative templates (imaging) with quick phrases
-- [ ] Message templates (English and Bangla) with SMS segment counter
+- [x] Departments, tests, parameters, units, result types, reference ranges by age and sex, critical limits
+- [x] Packages, outsourced test flag, optional branch price lists
+- [x] Report template builder: table templates (pathology) and narrative templates (imaging) with quick phrases
+- [x] Message templates (English and Bangla) with SMS segment counter
 
 **Acceptance:** the correct reference range is chosen for age and sex (tested with edge ages); templates render in a preview; a package expands into its tests.
 

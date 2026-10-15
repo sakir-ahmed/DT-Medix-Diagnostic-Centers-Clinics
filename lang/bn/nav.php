@@ -53,4 +53,5 @@ return [
     'import' => 'ডেটা ইমপোর্ট',
     'access_log' => 'অ্যাক্সেস লগ',
     'activity_log' => 'কার্যক্রম লগ',
+    'departments' => 'বিভাগ',
 ];

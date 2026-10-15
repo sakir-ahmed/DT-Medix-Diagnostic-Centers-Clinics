@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             PlatformAdminSeeder::class,
             DemoTenantSeeder::class,
             DemoClinicalDataSeeder::class,
+            DemoCatalogSeeder::class,
         ]);
     }
 }

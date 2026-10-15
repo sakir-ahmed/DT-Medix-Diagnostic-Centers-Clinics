@@ -93,6 +93,7 @@ final class Navigation
                 ['key' => 'mis_reports', 'route' => 'admin.mis.index', 'icon' => 'chart-pie', 'permission' => 'mis.view', 'module' => 'dashboard'],
             ],
             'catalog' => [
+                ['key' => 'departments', 'route' => 'admin.departments.index', 'icon' => 'building', 'permission' => 'catalog.manage', 'module' => null],
                 ['key' => 'tests', 'route' => 'admin.tests.index', 'icon' => 'flask', 'permission' => 'catalog.view', 'module' => null],
                 ['key' => 'packages', 'route' => 'admin.packages.index', 'icon' => 'boxes-stacked', 'permission' => 'catalog.view', 'module' => null],
                 ['key' => 'report_templates', 'route' => 'admin.report-templates.index', 'icon' => 'file-lines', 'permission' => 'templates.manage', 'module' => null],

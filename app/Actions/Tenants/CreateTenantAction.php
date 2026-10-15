@@ -22,6 +22,7 @@ final class CreateTenantAction
     public function __construct(
         private readonly SyncPermissionsAction $syncPermissions,
         private readonly TenantContext $context,
+        private readonly SeedTenantDefaultsAction $defaults,
     ) {}
 
     /**
@@ -69,6 +70,8 @@ final class CreateTenantAction
                     'username' => $data['owner']['username'] ?? null,
                     'password' => $data['owner']['password'],
                 ]);
+
+                $this->defaults->execute();
 
                 $owner->assignRole(RoleName::Owner->value);
                 $owner->branches()->attach($branch->id);

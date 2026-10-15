@@ -6,13 +6,18 @@ use App\Http\Controllers\Admin\AccessLogController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\BranchSwitchController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\MessageTemplateController;
+use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReferrerController;
+use App\Http\Controllers\Admin\ReportTemplateController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\Admin\UiKitController;
 use Illuminate\Support\Facades\Route;
 
@@ -93,3 +98,35 @@ Route::middleware('can:referrers.manage')->group(function (): void {
 });
 
 Route::get('/access-logs', [AccessLogController::class, 'index'])->middleware('can:access-log.view')->name('access-logs.index');
+
+Route::middleware('can:catalog.view')->group(function (): void {
+    Route::get('/tests', [TestController::class, 'index'])->name('tests.index');
+    Route::get('/tests/lookup', [TestController::class, 'lookup'])->name('tests.lookup');
+    Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
+});
+
+Route::middleware('can:catalog.manage')->group(function (): void {
+    Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
+    Route::post('/departments', [DepartmentController::class, 'store'])->name('departments.store');
+    Route::put('/departments/{department}', [DepartmentController::class, 'update'])->name('departments.update');
+    Route::get('/tests/create', [TestController::class, 'create'])->name('tests.create');
+    Route::post('/tests', [TestController::class, 'store'])->name('tests.store');
+    Route::get('/tests/{test}/edit', [TestController::class, 'edit'])->name('tests.edit');
+    Route::put('/tests/{test}', [TestController::class, 'update'])->name('tests.update');
+    Route::post('/packages', [PackageController::class, 'store'])->name('packages.store');
+    Route::put('/packages/{package}', [PackageController::class, 'update'])->name('packages.update');
+});
+
+Route::middleware('can:templates.manage')->group(function (): void {
+    Route::get('/report-templates', [ReportTemplateController::class, 'index'])->name('report-templates.index');
+    Route::get('/report-templates/create', [ReportTemplateController::class, 'create'])->name('report-templates.create');
+    Route::post('/report-templates', [ReportTemplateController::class, 'store'])->name('report-templates.store');
+    Route::get('/report-templates/{reportTemplate}/edit', [ReportTemplateController::class, 'edit'])->name('report-templates.edit');
+    Route::put('/report-templates/{reportTemplate}', [ReportTemplateController::class, 'update'])->name('report-templates.update');
+});
+
+Route::middleware('can:message-templates.manage')->group(function (): void {
+    Route::get('/message-templates', [MessageTemplateController::class, 'index'])->name('message-templates.index');
+    Route::put('/message-templates/{messageTemplate}', [MessageTemplateController::class, 'update'])->name('message-templates.update');
+    Route::post('/message-templates/{messageTemplate}/reset', [MessageTemplateController::class, 'reset'])->name('message-templates.reset');
+});

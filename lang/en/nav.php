@@ -53,4 +53,5 @@ return [
     'import' => 'Data import',
     'access_log' => 'Access log',
     'activity_log' => 'Activity log',
+    'departments' => 'Departments',
 ];
