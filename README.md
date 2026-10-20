@@ -9,7 +9,7 @@ DT Medix connects the whole diagnostic workflow in one place:
 Patient -> Appointment -> Test Order -> Lab Processing -> Report -> SMS / WhatsApp -> Payment
 ```
 
-It also covers doctor commission, referral tracking, collection tracking, due payments, report templates and patient history. The interface is bilingual (English and Bangla). Built as a multi-tenant SaaS: many clinics, each with their own branches, on one platform.
+It also covers doctor commission, referral tracking, collection tracking, due payments, report templates and patient history. The interface is bilingual (English and Bangla). Datatech deploys one copy of this app and one database for each diagnostic center or clinic. Branches of one center share that server.
 
 > This project is built phase by phase from the specification in `docs/`. Start with `docs/roadmap.md`.
 
@@ -28,7 +28,7 @@ It also covers doctor commission, referral tracking, collection tracking, due pa
 - **Patient history:** timeline, parameter trend charts, report comparison
 - **Notifications:** SMS (BdBulkSMS) and WhatsApp Business, secure report links with OTP, no results in message text
 - **Owner dashboard:** patients, billed vs collected, dues, department revenue, turnaround, commission payable
-- **Platform console (Datatech):** tenants, plans, 30-day trial, module toggles, import wizard, impersonation with audit
+- **Data import:** import wizard for patients, doctors and test catalogs from Excel, with a dry run, row-level errors and safe re-run
 - **Mobile-ready API:** documented, versioned `/api/v1` for future apps (the apps are a separate project)
 
 Full scope and business rules: `docs/prd.md`.
@@ -40,12 +40,12 @@ Full scope and business rules: `docs/prd.md`.
 | Area                  | Technology                                                                  |
 | --------------------- | --------------------------------------------------------------------------- |
 | Backend               | Laravel 13.x, PHP 8.3+                                                      |
-| Database              | MySQL 8 (shared database, `tenant_id` isolation)                            |
+| Database              | MySQL 8 (one database per installation)                                     |
 | Cache, session, queue | Redis                                                                       |
 | Frontend              | Inertia.js v2, Vue 3, Tailwind CSS v4, shadcn-vue                           |
 | Icons and charts      | Font Awesome Free, Chart.js                                                 |
 | Real-time             | Laravel Reverb                                                              |
-| Auth and roles        | Laravel Sanctum, Spatie Permission (teams)                                  |
+| Auth and roles        | Laravel Sanctum, Spatie Permission                                          |
 | Audit and backup      | Spatie Activitylog, Spatie Backup                                           |
 | PDF, barcode, import  | spatie/laravel-pdf (Browsershot), picqer barcode, endroid QR, Laravel Excel |
 | Messaging             | BdBulkSMS, WhatsApp Business Cloud API                                      |
@@ -60,8 +60,8 @@ AI coding agents read `CLAUDE.md` first.
 
 | File                   | Purpose                                                                              |
 | ---------------------- | ------------------------------------------------------------------------------------ |
-| `docs/prd.md`          | Product requirements: roles, modules, business rules, scope, plans                   |
-| `docs/architecture.md` | Stack, structure, coding rules, multi-tenancy, health data rules, Definition of Done |
+| `docs/prd.md`          | Product requirements: roles, modules, business rules, scope                          |
+| `docs/architecture.md` | Stack, structure, coding rules, one center per installation, health data rules, Definition of Done |
 | `docs/api.md`          | API conventions, endpoints, payment gateways, real-time channels                     |
 | `docs/design.md`       | Design system, reception, lab and report screens, icons, sizing, tables              |
 | `docs/roadmap.md`      | Build phases with acceptance criteria                                                |
@@ -95,22 +95,16 @@ docker compose exec app npm run dev
 
 The service name `app` follows the Docker Compose file created in Phase 0; adjust if yours differs.
 
-The platform administrator is created by the seeder from `.env` (never commit real values):
+The seeder creates the hidden Datatech `super-admin` from `.env` (never commit real values).
 
-```text
-PLATFORM_ADMIN_NAME=
-PLATFORM_ADMIN_EMAIL=
-PLATFORM_ADMIN_PASSWORD=
-```
-
-For local development, the seeder also creates two demo tenants so tenant isolation can be tested.
+For local development, the seeder also creates one center with two branches so branch isolation can be tested.
 
 ### Background processes
 
 | Process                                                    | Command                     |
 | ---------------------------------------------------------- | --------------------------- |
 | Queue worker                                               | `php artisan queue:work`    |
-| Scheduler (backups, reminders, trial expiry, report links) | `php artisan schedule:work` |
+| Scheduler (backups, reminders, report links)               | `php artisan schedule:work` |
 | Real-time server                                           | `php artisan reverb:start`  |
 
 ---
@@ -127,7 +121,7 @@ php artisan migrate:fresh --seed
 Rules:
 
 - Build one roadmap phase at a time; finish its acceptance criteria and the Definition of Done in `docs/architecture.md`.
-- Every feature has Pest tests, including authorization, branch isolation and **cross-tenant isolation**.
+- Every feature has Pest tests, including authorization and **cross-branch isolation**.
 - Never put patient data in logs, SMS or WhatsApp text, URLs or broadcast payloads.
 - No emojis anywhere. Icons come from Font Awesome through `AppIcon`.
 - Every text key exists in both `lang/en` and `lang/bn`.
@@ -136,7 +130,7 @@ Rules:
 
 ## Roles
 
-Tenant roles: `owner`, `branch-manager`, `receptionist`, `sample-collector`, `lab-technician`, `pathologist`, `doctor`, `accountant`. Platform role: `super-admin`. Patients use a separate portal login.
+Center roles: `owner`, `branch-manager`, `receptionist`, `sample-collector`, `lab-technician`, `pathologist`, `doctor`, `accountant`, plus a hidden Datatech `super-admin`. Patients use a separate portal login.
 
 ---
 
@@ -147,6 +141,8 @@ Tenant roles: `owner`, `branch-manager`, `receptionist`, `sample-collector`, `la
 - The PHP image must include Chromium and the Inter and Noto Sans Bengali fonts for PDF reports.
 - Schedule encrypted daily backups and test a restore before going live.
 - Confirm data protection, health records, referral commission and VAT or invoice rules with a legal advisor and the client's accountant.
+
+Note: the Phase 0-3 migrations still carry `tenant_id` columns and a `tenants` table from the earlier SaaS design; removing them is tracked separately.
 
 ---
 

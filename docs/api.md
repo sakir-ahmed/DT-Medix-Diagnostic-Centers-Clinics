@@ -11,7 +11,7 @@
 | Topic         | Rule                                                                                                                                                                                   |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Base path     | `/api/v1/...` in `routes/api.php`                                                                                                                                                      |
-| Tenant        | Taken from the authenticated token (staff, patient) or from the host for public routes. **Never accepted from the client body.**                                                       |
+| Installation | One deployment is one center. The API never accepts a center id from the client.                                                                                                      |
 | Auth          | Laravel Sanctum bearer tokens. Guards: `staff` and `patient`. Token abilities: `staff`, `patient`.                                                                                     |
 | Docs          | OpenAPI generated automatically (Scramble) at `/api-docs`; every endpoint has request and response examples.                                                                           |
 | Versioning    | No breaking changes inside `v1`: add fields freely, never rename or remove. Clients send `X-App-Version` and `X-Platform`.                                                             |
@@ -32,7 +32,7 @@
 | ---- | --------------------------------------- | ---------------------------------------------------------------------- |
 | 401  | `UNAUTHENTICATED`                       | Missing or invalid token                                               |
 | 403  | `FORBIDDEN`                             | Role lacks permission                                                  |
-| 404  | `NOT_FOUND`                             | Missing, or belongs to another branch or tenant                        |
+| 404  | `NOT_FOUND`                             | Missing, or belongs to another branch                                   |
 | 422  | `VALIDATION_FAILED`                     | Invalid input, `details` has field errors                              |
 | 409  | `DUPLICATE_PATIENT_SUSPECTED`           | Mobile and name match an existing patient (`details` lists candidates) |
 | 409  | `SLOT_UNAVAILABLE`                      | Appointment slot taken                                                 |
@@ -45,9 +45,6 @@
 | 409  | `CRITICAL_NOT_ACKNOWLEDGED`             | Critical value needs acknowledgement                                   |
 | 403  | `SELF_VERIFICATION_NOT_ALLOWED`         | Same user entered and verified                                         |
 | 409  | `SHIFT_NOT_OPEN`                        | Cashier has no open cash shift                                         |
-| 403  | `PLAN_LIMIT_REACHED`                    | Branch, user or message limit hit                                      |
-| 403  | `MODULE_DISABLED`                       | Module not in the tenant's plan                                        |
-| 403  | `TENANT_SUSPENDED` / `TENANT_READ_ONLY` | Trial ended or account suspended                                       |
 | 429  | `TOO_MANY_REQUESTS`                     | Rate limit hit                                                         |
 | 502  | `PAYMENT_GATEWAY_ERROR`                 | bKash, Nagad or SSLCommerz failure                                     |
 | 502  | `MESSAGE_CHANNEL_ERROR`                 | SMS or WhatsApp provider failure                                       |
@@ -63,7 +60,7 @@
 | ------ | --------------------------- | ----------------------------------------------------------------------- |
 | POST   | `/login`                    | `login` (username, email or mobile) + `password`; returns token         |
 | POST   | `/logout`                   | Revokes current token                                                   |
-| GET    | `/me`                       | User, roles, permissions, branches, tenant plan and enabled modules     |
+| GET    | `/me`                       | User, roles, permissions, branches                                     |
 | POST   | `/otp/send` / `/otp/verify` | Rate limited by IP and mobile; hashed code, 5-minute expiry, 5 attempts |
 
 **Patients (`/api/v1/patient/auth`)**: `POST /otp/send` and `POST /otp/verify` by mobile. One mobile may map to several family members; the response lists them and the app selects one.
@@ -191,21 +188,7 @@ A patient sees only their own records (and family members linked by the same mob
 
 ---
 
-## 5. Platform API (`/api/v1/platform`, super-admin only)
-
-| Method       | Path                                    | Notes                                                 |
-| ------------ | --------------------------------------- | ----------------------------------------------------- |
-| GET/POST/PUT | `/tenants`                              | Create and manage tenants                             |
-| PUT          | `/tenants/{tenant}/plan`                | Plan, limits, module toggles, trial dates             |
-| POST         | `/tenants/{tenant}/suspend` / `/resume` | Suspension                                            |
-| POST         | `/tenants/{tenant}/impersonate`         | Short-lived, audited, with a visible banner           |
-| POST         | `/tenants/{tenant}/export`              | Starts a full data export job                         |
-| POST         | `/tenants/{tenant}/imports`             | Import wizard: upload, `dry_run`, map columns, commit |
-| GET          | `/tenants/{tenant}/usage`               | Patients, invoices, messages, credits                 |
-
----
-
-## 6. Payment Gateways
+## 5. Payment Gateways
 
 **Principle:** never trust the browser or the callback payload alone. Confirm the final status with the gateway server to server, then update the invoice inside a transaction. Confirmation is idempotent: a duplicate callback never double-pays. Callbacks and IPN are **public web routes** (CSRF-excluded), not Sanctum API routes. Credentials live in `.env` and `config/services.php`. Gateways implement one `PaymentGateway` interface.
 
@@ -215,7 +198,7 @@ A patient sees only their own records (and family members linked by the same mob
 
 ---
 
-## 7. Messaging Webhooks
+## 6. Messaging Webhooks
 
 - **WhatsApp:** `POST /webhooks/whatsapp` receives delivery and read status. Verify the signature, ignore unknown payloads, update the message log, and answer quickly (heavy work in a queued job).
 - **Opt-out:** inbound "STOP" style replies mark the patient as opted out of non-essential messages.
@@ -223,14 +206,14 @@ A patient sees only their own records (and family members linked by the same mob
 
 ---
 
-## 8. Real-time (Reverb)
+## 7. Real-time (Reverb)
 
-Private channels authorized by tenant, branch and permission. **Payloads contain IDs only.**
+Private channels authorized by branch and permission. **Payloads contain IDs only.**
 
-| Channel                                   | Events                                                                        |
-| ----------------------------------------- | ----------------------------------------------------------------------------- |
-| `private-tenant.{t}.branch.{b}.lab`       | `SampleReceived`, `ResultSubmitted`, `ReportVerified`, `CriticalResultRaised` |
-| `private-tenant.{t}.branch.{b}.reception` | `AppointmentUpdated`, `ReportReleased`, `PaymentReceived`                     |
-| `private-tenant.{t}.doctor.{id}.queue`    | `QueueUpdated`                                                                |
-| `private-tenant.{t}.branch.{b}.alerts`    | `TatBreached`, `DueOverdue`                                                   |
-| `private-tenant.{t}.owner.alerts`         | Cross-branch alerts for owners                                                |
+| Channel                       | Events                                                                        |
+| ----------------------------- | ----------------------------------------------------------------------------- |
+| `private-branch.{b}.lab`      | `SampleReceived`, `ResultSubmitted`, `ReportVerified`, `CriticalResultRaised` |
+| `private-branch.{b}.reception` | `AppointmentUpdated`, `ReportReleased`, `PaymentReceived`                    |
+| `private-doctor.{id}.queue`   | `QueueUpdated`                                                                |
+| `private-branch.{b}.alerts`   | `TatBreached`, `DueOverdue`                                                   |
+| `private-owner.alerts`        | Cross-branch alerts for owners                                                |

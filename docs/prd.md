@@ -23,28 +23,11 @@ and adds doctor commission, referral tracking, collection tracking, due payments
 
 ## 2. Business Model & Deployment _(decision)_
 
-**Multi-tenant SaaS.** One application and one shared database serve many clients (tenants). Each tenant is a clinic or diagnostic group with one or more branches. Per-client servers do not fit a price of 2,000 to 10,000 BDT per month.
+**One installation per center.** Datatech copies this codebase, creates that center's database, and points a web address at it. The app does not provision centers, and it does not bill Datatech's fee. If the center has several branches, those branches live in that same codebase and that same database. Datatech charges the customer outside this app (one-time or yearly, decided per deal).
 
-> Isolation, export and security rules are in `architecture.md` sections 11 and 12. Change this decision only if you decide to sell dedicated installations.
+There is no `tenant_id`, no shared database, no subdomain tenant resolver, no platform console, no impersonation, no trial, and no subscription ledger.
 
-### Sales and onboarding flow
-
-Free setup, then import existing patient data, then 30-day trial, then subscription. The product must support every step:
-
-1. **Platform admin console** (Datatech only) to create a tenant, set the plan and trial dates, and enable modules.
-2. **Import wizard** for patients, doctors, referrers, test catalog and opening dues (module O).
-3. **Trial:** 30 days with all modules, a visible "days left" banner, and an upgrade prompt.
-4. **After trial:** 7-day grace period in read-only mode, then suspension. Data is kept for 90 days, and tenants can export all of their data.
-
-### Plans _(suggested, editable in the platform console)_
-
-| Plan    | Price per month (BDT) | Limits and modules                                                                                                               |
-| ------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Starter | about 2,000           | 1 branch, 5 staff users, core flow: patients, appointments, test orders, lab, reports, billing, dues, SMS                        |
-| Growth  | about 5,000           | Up to 3 branches, 15 users, plus doctor commission, referral tracking, report templates, WhatsApp, patient portal, due reminders |
-| Pro     | about 10,000          | Up to 10 branches, unlimited users, all modules, API access, custom branding, priority support                                   |
-
-Prices, limits and message credits (SMS and WhatsApp are billed per use or in bundles) are business decisions. The code only needs plan limits and module toggles to be configurable per tenant (`PlanGate`).
+> Isolation, export and security rules are in `architecture.md` sections 11 and 12. Change this decision only if Datatech decides to build a shared SaaS; that changes the database design.
 
 ---
 
@@ -52,7 +35,7 @@ Prices, limits and message credits (SMS and WhatsApp are billed per use or in bu
 
 | Role               | Scope                         | Main needs                                                                                           |
 | ------------------ | ----------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `owner`            | All branches of the tenant    | Dashboard, collections, dues, commissions, branch comparison, approvals, settings                    |
+| `owner`            | All branches of the center   | Dashboard, collections, dues, commissions, branch comparison, approvals, settings                    |
 | `branch-manager`   | Assigned branch               | Daily operations, staff, discount and refund approval, cash closing review                           |
 | `receptionist`     | Assigned branch               | Register patients, appointments, test orders, invoices, collect payments                             |
 | `sample-collector` | Assigned branch               | Collect samples (counter and home), print labels                                                     |
@@ -61,7 +44,7 @@ Prices, limits and message credits (SMS and WhatsApp are billed per use or in bu
 | `doctor`           | Own patients and appointments | Queue, consultation notes, patient history, own commission statement                                 |
 | `accountant`       | All branches (finance only)   | Collections, dues, commissions, payouts, expenses, financial reports                                 |
 
-Platform role: `super-admin` (Datatech staff), not tied to a tenant.
+`super-admin` — hidden Datatech login on that server, seeded from `.env`.
 
 **Referrers** (outside doctors, agents or institutions who refer patients) and **consultants** are records, not necessarily users. Referrers do not log in.
 **Patients** are not staff. They use the patient portal (mobile OTP) and cannot reach `/admin`.
@@ -70,17 +53,16 @@ Platform role: `super-admin` (Datatech staff), not tied to a tenant.
 
 ## 4. Modules
 
-### A. Tenants, Plans & Platform Admin (Datatech)
+### A. Center Profile & Setup
 
-- Tenant CRUD, plan, trial dates, module toggles, limits (branches, users, message credits), suspend and resume.
-- Usage overview (patients, invoices, messages) and trial status list.
-- Support impersonation with a visible banner and an audit log entry.
-- Tenant data export.
+- Center profile and logo, branches, document number formats, setup wizard with onboarding checklist.
+- Import wizard (dry run, row-level errors, safe re-run) for patients, doctors and test catalogs from Excel.
+- Datatech hand-over for a new center: deploy the installation, seed the `owner` and the hidden `super-admin` from `.env`, hand over the first owner login.
 
 ### B. Patients
 
 - Registration: name, age (or date of birth), sex, mobile, address, blood group, optional NID, emergency contact, optional photo, notes and allergy alerts.
-- **Patient ID** generated per tenant (`P-26-000123`); one mobile number may belong to several family members.
+- **Patient ID** generated per center (`P-26-000123`); one mobile number may belong to several family members.
 - **Duplicate detection** on mobile plus name similarity, with a clear warning and "Use existing".
 - Search by mobile, name or patient ID in under 300 ms on 500,000 patients.
 - Age shown as "32 Y 4 M". Every view of a patient record is written to the access log.
@@ -108,7 +90,7 @@ Platform role: `super-admin` (Datatech staff), not tied to a tenant.
 
 - Order tests and packages for a patient, optionally linked to an appointment and a referrer.
 - Urgency: routine or urgent.
-- Invoice with discount (percent or fixed), referrer discount, free or charity cases with a reason, and VAT or service charge only if enabled for the tenant.
+- Invoice with discount (percent or fixed), referrer discount, free or charity cases with a reason, and VAT or service charge only if enabled for the center.
 - Prints invoice, money receipt and sample labels in one action.
 - Cancel and refund flows with approval.
 
@@ -132,7 +114,7 @@ Platform role: `super-admin` (Datatech staff), not tied to a tenant.
 - **Report templates:** table-based for pathology, narrative (Findings and Impression) for imaging, with the center's header, footer and signatures; quick phrases for common findings.
 - Workflow: `draft -> entered -> verified (signed) -> released`. Released reports are immutable; corrections are **amendments** that create a new version with a reason.
 - A4 PDF with verification QR code; "print without header" for letterhead.
-- **Release rule** (per tenant): hold until fully paid, allow with manager override, or always allow.
+- **Release rule** (per center): hold until fully paid, allow with manager override, or always allow.
 - Delivery: print, secure link by SMS or WhatsApp, patient portal download.
 
 ### I. Payments, Dues & Collection Tracking
@@ -146,7 +128,7 @@ Platform role: `super-admin` (Datatech staff), not tied to a tenant.
 ### J. Doctor Commission & Referral Tracking
 
 - **Referrers:** doctor, agent or institution with contact, bank or bKash details, and notes.
-- **Commission rules:** percentage or fixed amount, by referrer, department, test or package. Priority: test rule, then department rule, then referrer default, then tenant default.
+- **Commission rules:** percentage or fixed amount, by referrer, department, test or package. Priority: test rule, then department rule, then referrer default, then center default.
 - **Consultant share:** a split of the consultation fee for visiting doctors.
 - Accrual basis is configurable: on billed amount or on paid amount; after discount; excluding VAT. Accrues when the invoice is fully paid (default) and reverses on refund.
 - **Payouts:** monthly statements per referrer or doctor, mark as paid with method and reference, payable balance, history. Paid statements are immutable.
@@ -164,7 +146,7 @@ Platform role: `super-admin` (Datatech staff), not tied to a tenant.
 - Channels: BdBulkSMS (SMS) and WhatsApp Business Cloud API, behind one `MessageChannel` interface with SMS fallback.
 - Messages: appointment confirmation and reminder, sample collected, report ready (secure link), payment receipt, due reminder, owner daily summary.
 - **No test results or diagnoses in message text.** Only a short notice and a secure link.
-- Templates per tenant in English and Bangla with placeholders, patient opt-out, usage metering and credit balance.
+- Templates per center in English and Bangla with placeholders, patient opt-out.
 
 ### M. Owner Dashboard & Reports
 
@@ -175,7 +157,7 @@ Per day, week or month and per branch:
 - Pending reports, reports past TAT, critical results waiting, sample rejection rate
 - Commission and referral payable
 - Expenses and estimated net result
-- Alerts for overdue dues, TAT breaches, trial expiry
+- Alerts for overdue dues and TAT breaches
 
 Exports to PDF and Excel. Dashboard totals must equal the report totals.
 
@@ -188,7 +170,7 @@ Exports to PDF and Excel. Dashboard totals must equal the report totals.
 
 - Import wizard for patients, doctors, referrers, tests with parameters, and opening dues from CSV or Excel.
 - Column mapping, **dry-run validation**, duplicate handling choices, row-level error report, safe re-run, and an import summary.
-- Downloadable templates and a checklist for setting up a new tenant.
+- Downloadable templates and a checklist for setting up a new center.
 
 ### P. Patient Portal & API
 
@@ -202,28 +184,27 @@ Exports to PDF and Excel. Dashboard totals must equal the report totals.
 
 | Topic                    | Rule                                                                                                                                                                       |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Patient ID**           | Sequential per tenant and year (`P-26-000123`). Never reused.                                                                                                              |
+| **Patient ID**           | Sequential per center and year (`P-26-000123`). Never reused.                                                                             |
 | **Invoice numbers**      | Sequential per branch and year with no gaps (`INV-BR01-26-000123`). Confirm legal requirements with the client's accountant.                                               |
 | **Sample IDs**           | Unique per branch per day (`BR01-260115-0042`), generated under a lock.                                                                                                    |
 | **Pricing**              | An invoice stores a price snapshot per test. Later price changes never change old invoices.                                                                                |
-| **Discounts**            | Percent or fixed. Above the tenant's limit (default 10%) needs manager approval. Referrer discounts and free cases need a reason. Every override is logged.                |
-| **VAT / service charge** | Off by default and configurable per tenant and per test category. Confirm applicable rules with the client's accountant.                                                   |
+| **Discounts**            | Percent or fixed. Above the center's limit (default 10%) needs manager approval. Referrer discounts and free cases need a reason. Every override is logged.                 |
+| **VAT / service charge** | Off by default and configurable per center and per test category. Confirm applicable rules with the client's accountant.                                                   |
 | **Payments**             | Partial payments allowed; paid amount can never exceed the total; the due balance is always calculated, never typed.                                                       |
 | **Refunds**              | Allowed only through a refund record with a reason and approval. Collected samples may be non-refundable by policy. Refunds reverse commissions.                           |
 | **Cancel**               | Tests not yet collected can be cancelled. After collection, cancellation needs approval and follows the refund policy.                                                     |
-| **Release rule**         | Configurable per tenant: hold until fully paid (default), manager override, or always release. A report can never be released before it is verified.                       |
-| **Verification**         | The person who entered a result cannot verify the same result unless the tenant explicitly allows it.                                                                      |
+| **Release rule**         | Configurable per center: hold until fully paid (default), manager override, or always release. A report can never be released before it is verified.                       |
+| **Verification**         | The person who entered a result cannot verify the same result unless the center explicitly allows it.                                                                      |
 | **Critical values**      | A critical result requires an acknowledgement (who was informed, when) before release.                                                                                     |
 | **Immutability**         | Released reports are never edited. Amendments create a new version with a reason; old versions are kept.                                                                   |
 | **Reference ranges**     | A result stores the range and flag used at entry time.                                                                                                                     |
 | **Commission**           | Calculated on net amount after discount, excluding VAT, accrued when fully paid by default, reversed on refund. Rule changes are logged and apply only to future invoices. |
 | **Messages**             | Never include results or diagnoses. Report links are signed, expire (default 30 days) and need OTP or PIN.                                                                 |
-| **Records**              | Patient and clinical records are never hard-deleted. Patients can request export; anonymization follows the tenant's retention policy and legal advice.                    |
+| **Records**              | Patient and clinical records are never hard-deleted. Patients can request export; anonymization follows the center's retention policy and legal advice.                    |
 | **Access log**           | Opening a patient record or report is logged with user, time and IP.                                                                                                       |
-| **Tenant isolation**     | No query may ever return another tenant's data. Tested for every model and endpoint.                                                                                       |
-| **Plan limits**          | Trial and plan limits are enforced centrally. Over-limit actions return a clear message with an upgrade path.                                                              |
+| **Branch isolation**     | Non-owner users must never read another branch's data. Tested for every branch-scoped model and endpoint.                                                                  |
 
-> Referral commission practices are ethically and legally sensitive. Confirm the applicable rules with the client or a legal advisor. The feature is optional, permission-protected and can be disabled per tenant.
+> Referral commission practices are ethically and legally sensitive. Confirm the applicable rules with the client or a legal advisor. The feature is optional, permission-protected and can be disabled per center.
 
 ---
 
@@ -240,9 +221,9 @@ Exports to PDF and Excel. Dashboard totals must equal the report totals.
 - **Localization:** UI, receipts and messages in `en` and `bn`.
 - **Performance:** patient search under 300 ms; invoice save under 1 second; single report PDF under 5 seconds; dashboard under 2 seconds for one year of data.
 - **Security:** HTTPS only, encrypted sensitive fields, private file storage, access logs, rate-limited OTP and login, optional two-factor for owners and pathologists, idle timeout.
-- **Backup:** daily encrypted backup of the shared database and files, tested restore, per-tenant export.
+- **Backup:** daily encrypted backup of the database and files, tested restore, center data export.
 - **Availability:** target 99.5% monthly; planned maintenance outside clinic hours.
-- **Audit:** activity log for discounts, cancellations, refunds, report release and amendment, commission rule changes, payouts, role changes, impersonation.
+- **Audit:** activity log for discounts, cancellations, refunds, report release and amendment, commission rule changes, payouts, role changes.
 - **Browsers and devices:** latest Chrome and Edge, Android tablets and phones (Chrome), iOS Safari for the patient portal.
 - **Connectivity:** the app shows a clear offline banner and never loses a form silently; full offline mode is out of scope.
 
@@ -252,7 +233,7 @@ Exports to PDF and Excel. Dashboard totals must equal the report totals.
 
 | Role                | Screens                                                                                                                                                                  |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| owner               | Dashboard, collections, dues, commissions and payouts, referral performance, branches, staff and roles, settings (plans, release rule, templates), access log, approvals |
+| owner               | Dashboard, collections, dues, commissions and payouts, referral performance, branches, staff and roles, settings (release rule, templates), access log, approvals |
 | branch-manager      | Branch dashboard, approvals (discount, refund, cancel), cash closing review, staff, doctors and schedules, test catalog (if allowed)                                     |
 | receptionist        | Reception counter (search, order, invoice, pay), appointments, dues collection, shift open and close, patient list                                                       |
 | sample-collector    | Collection worklist, home collection list, label printing                                                                                                                |
@@ -260,7 +241,6 @@ Exports to PDF and Excel. Dashboard totals must equal the report totals.
 | pathologist         | Verification queue, report amendment, template management, critical result log                                                                                           |
 | doctor              | My queue, consultation, patient history, my commission statement                                                                                                         |
 | accountant          | Collections, dues, commissions and payouts, expenses, financial reports                                                                                                  |
-| platform (Datatech) | Tenants, plans and trials, module toggles, usage, impersonation, import monitor                                                                                          |
 | patient (portal)    | Login, reports, due payment, appointments                                                                                                                                |
 
 ---
@@ -276,6 +256,7 @@ Exports to PDF and Excel. Dashboard totals must equal the report totals.
 - Telemedicine and video consultation.
 - Native mobile apps (separate project).
 - Full offline mode.
+- Multi-tenant SaaS, a shared database, a platform console, subscription billing, trials, plan limits, impersonation.
 
 ---
 
@@ -309,10 +290,8 @@ Exports to PDF and Excel. Dashboard totals must equal the report totals.
     - Done when: the timeline lists visits, tests and reports, a trend chart shows a chosen parameter over time with the reference band, and the view is access-logged.
 14. **Import.** _As Datatech support, I import a clinic's old data._
     - Done when: a dry run reports errors per row without saving, the real import is repeatable without duplicates, and a summary lists created, skipped and failed rows.
-15. **Trial and plan.** _As Datatech, I run a 30-day trial._
-    - Done when: a banner shows days left, limits are enforced, expiry goes to read-only for 7 days then suspends, and the data can be exported.
-16. **Tenant isolation.** _As a clinic owner, my data is never visible to another clinic._
-    - Done when: automated tests prove that every model and endpoint returns 404 across tenants.
+15. **Branch isolation.** _As an owner, my branch staff see only their own branch._
+    - Done when: automated tests prove that every branch-scoped model and endpoint returns 404 across branches for non-owner users.
 
 ---
 

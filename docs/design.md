@@ -206,7 +206,7 @@ Never open a dialog from inside a dialog (maximum one level; a confirm on top of
 | 1 Simple   | Reversible, low risk (archive, cancel draft)                                       | Confirm dialog                                                                           |
 | 2 Reason   | Needs an audit trail (cancel invoice, discount override, refund, report amendment) | Dialog with a required reason (dropdown of reason codes plus optional note)              |
 | 3 Approval | Needs a higher role (void, large discount, refund)                                 | Dialog asking for the **manager's PIN or login**; shows who approved in the activity log |
-| 4 Typed    | Irreversible and high impact (deactivate branch, delete tenant data, bulk delete)  | User must type the exact name or the word `CONFIRM` before the button enables            |
+| 4 Typed    | Irreversible and high impact (deactivate branch, delete center data, bulk delete)  | User must type the exact name or the word `CONFIRM` before the button enables            |
 
 ### Other dialog types
 
@@ -294,7 +294,7 @@ All confirm texts live in `lang/en` and `lang/bn`.
 1. **Sticky filter bar:** period presets (Today, Yesterday, 7 days, This month, Last month, Custom), branch selector (All branches / one branch), channel filter. Filters sync to the URL so a view can be shared and the Back button works.
 2. **KPI row:** 4–6 cards (Patients, Tests ordered, Billed, Collected, Dues outstanding, Pending reports). Each card: label, big value, **change vs previous period** (an arrow-up icon with +8.2% in emerald, or an arrow-down icon with −3.1% in rose; the icon, not color alone, carries the meaning), and a tiny sparkline. Clicking a card drills into the matching report with the same filters.
 3. **Main charts:** sales trend (line/area), sales by channel (donut), top items (horizontal bar), profit breakdown.
-4. **Alerts panel:** reports past turnaround time, critical results waiting, pending verifications, overdue dues, trial expiry, each with a one-click action.
+4. **Alerts panel:** reports past turnaround time, critical results waiting, pending verifications, overdue dues, each with a one-click action.
 5. **Tables:** branch comparison, top referrers, department revenue (compact, 5–10 rows with "View all").
 
 **Behavior**

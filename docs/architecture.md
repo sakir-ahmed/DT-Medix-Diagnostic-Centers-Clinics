@@ -1,6 +1,6 @@
 # ARCHITECTURE & CODING RULES: DT Medix
 
-> Shared engineering rules for Datatech products, adapted for DT Medix (multi-tenant SaaS handling health data). Sections 11 to 13 are specific to this product.
+> Shared engineering rules for Datatech products, adapted for DT Medix (one installation per center, handling health data). Sections 11 to 13 are specific to this product.
 > If this file conflicts with the product's `prd.md`, **the PRD wins** for business rules and roles. This file wins for code structure.
 
 ---
@@ -14,7 +14,7 @@
 | Cache / Session / Queue | Redis (`CACHE_STORE`, `SESSION_DRIVER`, `QUEUE_CONNECTION` = `redis`)                                                                       |
 | Frontend                | Inertia.js v2, Vue 3 (`<script setup>`), Tailwind CSS v4, shadcn-vue (Radix Vue)                                                            |
 | Toasts                  | `vue-sonner`                                                                                                                                |
-| Auth                    | Staff: username / email / mobile login. Patients: mobile OTP (separate `patient` guard). Spatie Permission with **teams** (tenant as team). |
+| Auth                    | Staff: username / email / mobile login. Patients: mobile OTP (separate `patient` guard). Spatie Permission without teams, one role set per installation. |
 | Real-time               | Laravel Reverb (Pusher protocol): lab worklists, doctor queues, alerts. Payloads carry IDs only.                                            |
 | Audit                   | `spatie/laravel-activitylog`                                                                                                                |
 | Backup                  | `spatie/laravel-backup` (daily, via scheduler)                                                                                              |
@@ -25,7 +25,7 @@
 | Containers              | Docker Compose: nginx, php-fpm, mysql, redis, queue worker, scheduler, reverb                                                               |
 | Icons                   | Font Awesome Free via `@fortawesome/vue-fontawesome` (tree-shaken SVG), wrapped in `AppIcon`                                                |
 | Charts                  | `chart.js` + `vue-chartjs` (one library only)                                                                                               |
-| Multi-tenancy           | One app, shared MySQL database, `tenant_id` on every tenant-owned table (section 11)                                                        |
+| Deployment             | One app and one MySQL database per center. No tenant id and no platform billing.                                                                     |
 | PDF                     | `spatie/laravel-pdf` with the Browsershot (headless Chromium) driver                                                                        |
 | Barcode / QR            | `picqer/php-barcode-generator` (Code 128), `endroid/qr-code`                                                                                |
 | Excel import / export   | `maatwebsite/excel`                                                                                                                         |
@@ -35,7 +35,7 @@
 
 **Rendering**
 
-- Public pages (`Web/` controllers): tenant landing page, online booking page, report verification page. Inertia SSR with dynamic meta tags. The patient portal after login is client-side only.
+- Public pages (`Web/` controllers): center landing page, online booking page, report verification page. Inertia SSR with dynamic meta tags. The patient portal after login is client-side only.
 - Admin panel (`/admin`): client-side SPA, **SSR disabled**. No Filament.
 
 ---
@@ -70,7 +70,7 @@ app/
 4. **No over-engineering.** No factories, abstractions or patterns without a concrete need today.
 5. **Money:** store as `decimal(12,2)` in BDT. Never use floats. API returns money as strings (`"1250.00"`).
 6. **Invoices, payments, commissions, sample status changes and report release run inside `DB::transaction()`.** Use `lockForUpdate()` on counters (invoice numbers, sample IDs) and on balances.
-7. **Tenant and branch scoping:** every tenant-owned model uses `BelongsToTenant`, and branch-owned models also use `BelongsToBranch` (section 11). A user must never read another tenant's data, and non-owner users must never read another branch's data. Test both.
+7. **Branch scoping:** every branch-owned model uses a global branch scope (`BelongsToBranch`, section 11). Non-owner users must never read another branch's data. Test this.
 8. **All user-facing text uses translation keys** (`__('orders.created')`), never hard-coded strings.
 9. **Secrets only in `.env`**, accessed via `config()`. Never call `env()` outside config files.
 10. **No emojis anywhere** (UI, translations, SMS, receipts, seeders, comments, commits). Icons come from Font Awesome through `AppIcon`; see `design.md` section 23.
@@ -81,9 +81,9 @@ app/
 
 ## 4. Roles & Permissions
 
-Spatie Permission with **teams enabled** (`teams => true`, team key `tenant_id`), so every role and assignment belongs to one tenant. Roles are defined in `prd.md` and seeded per tenant when the tenant is created. `super-admin` is a platform role (Datatech staff) that is not tied to a tenant.
+Spatie Permission **without teams**. This installation is one center. Roles are defined in `prd.md` and seeded once for the installation. `super-admin` is a hidden Datatech login on that server, seeded from `.env`.
 
-Use permissions (`reports.verify`, `reports.release`, `invoices.discount`, `commissions.view`), not role names, in policies and `@can` checks. The root platform account comes from `.env` values (never hard-code a password).
+Use permissions (`reports.verify`, `reports.release`, `invoices.discount`, `commissions.view`), not role names, in policies and `@can` checks. Never hard-code a password.
 
 ---
 
@@ -228,7 +228,7 @@ class User extends Authenticatable
 A feature is **done** only when all of these are true:
 
 - [ ] Pest feature tests cover the happy path and main failure cases
-- [ ] Authorization tested (allowed role passes, other role gets 403, other branch gets 404, **other tenant gets 404**)
+- [ ] Authorization tested (allowed role passes, other role gets 403, other branch gets 404)
 - [ ] No patient data in logs, SMS or WhatsApp text, URLs or broadcast payloads (section 12)
 - [ ] `./vendor/bin/pint` is clean and `./vendor/bin/phpstan` passes
 - [ ] Both `en` and `bn` translations added
@@ -240,17 +240,15 @@ A feature is **done** only when all of these are true:
 
 ---
 
-## 11. Multi-Tenancy (SaaS)
+## 11. One Center per Installation
 
-- **Model:** one application and one shared database. Every tenant-owned table has a non-null, indexed `tenant_id`, and unique keys include it (for example `unique(tenant_id, patient_code)`).
-- **Tenant resolution:** a `ResolveTenant` middleware reads the host (`{slug}.dtmedix.example` or a custom domain). API requests take the tenant from the authenticated token. Never trust a `tenant_id` sent by the client.
-- **Traits:** `BelongsToTenant` adds a global scope and fills `tenant_id` on create. `BelongsToBranch` adds branch scoping for non-owner users. An architecture test fails if a model with a `tenant_id` column lacks the trait.
-- **Queues and scheduler:** every queued job, notification and listener carries the tenant ID and restores the tenant context before running. Per-tenant scheduled tasks loop over active tenants.
-- **Isolation by prefix:** cache keys, Redis keys, Reverb channels (`private-tenant.{id}.branch.{id}.lab`) and storage paths (`tenants/{id}/...` on a private disk) all include the tenant ID.
-- **Platform area (`/platform`)** for Datatech only: create tenants, plans, trial dates, module toggles, limits, suspend or resume, usage, and support impersonation. Impersonation shows a permanent banner and is written to the audit log.
-- **Plan limits** are enforced in one place, a `PlanGate` service (branches, users, modules, message credits). It returns `PLAN_LIMIT_REACHED` or `MODULE_DISABLED`. Never check plan limits in scattered controllers.
-- **Tests:** every model and every endpoint has a cross-tenant test (tenant A cannot read or write tenant B, and gets 404).
-- **Export and exit:** a command exports all of one tenant's data (CSV or JSON plus files). Tenant deletion is scheduled and only runs after the retention period.
+- **Model:** one Laravel application and one MySQL database per center. Datatech deploys both by hand, and a center's branches share that server. There is no `tenant_id`, no `ResolveTenant` middleware, and no client-supplied center id.
+- **Branches:** a center may add branches in that same database. `BelongsToBranch` scopes non-owner staff to assigned branches. Owners and the super-admin see every branch. An architecture test fails if a model with a `branch_id` column lacks the trait. Unique keys are per this database (for example `unique(patient_code)`).
+- **Queues and scheduler:** jobs run for this installation only. There is no loop over tenants.
+- **Storage:** private disk paths stay inside this server (`reports/{id}/...`) and never use tenant prefixes. Never use public storage for patient files.
+- **Accounts:** the seeder creates `owner` and the hidden `super-admin` from `.env`. There is no `/platform` console, no impersonation, no plan gate, and no subscription state.
+- **Tests:** every branch-owned endpoint has a cross-branch test (a user of branch A gets 404 for branch B).
+- **Export:** a command exports this center's data (CSV or JSON plus files).
 
 ---
 
@@ -278,7 +276,7 @@ Patient data is sensitive health data. Design for least access, auditing and no 
 - **PDF:** use `spatie/laravel-pdf` with the Browsershot (headless Chromium) driver, because simple PDF libraries mis-render Bangla conjunct letters. The Docker image includes Chromium and the fonts (Inter, Noto Sans Bengali). Layouts are HTML with CSS `@page` (A4). A single report must generate in under 5 seconds; batches run in a queue.
 - **Barcode and QR:** Code 128 sample labels with `picqer/php-barcode-generator`; QR codes with `endroid/qr-code` for report verification.
 - **Import:** `maatwebsite/excel`, run in a queue with chunking, a dry-run validation step, a downloadable row-level error report, and a safe re-run (match on an external key). Never leave a half-imported dataset without a summary.
-- **Messaging:** a `MessageChannel` interface with `SmsChannel` and `WhatsAppChannel`. Templates are stored per tenant, bilingual, with placeholders. WhatsApp templates must match the names approved by Meta. Fall back to SMS when WhatsApp fails. Meter usage per tenant (credits).
+- **Messaging:** a `MessageChannel` interface with `SmsChannel` and `WhatsAppChannel`. Templates are stored for the center, bilingual, with placeholders. WhatsApp templates must match the names approved by Meta. Fall back to SMS when WhatsApp fails.
 - **SMS length:** Bangla SMS is Unicode (70 characters per segment). Keep templates short and show the segment count and cost estimate in the template editor.
 - **Message content:** messages never contain results or diagnoses. They contain only a short notice and a secure link.
 

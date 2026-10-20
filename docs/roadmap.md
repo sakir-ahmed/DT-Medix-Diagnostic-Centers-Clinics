@@ -1,38 +1,37 @@
 # ROADMAP: DT Medix
 
 > The AI builds **one phase at a time**, runs tests, and stops. Each phase must satisfy the Definition of Done in `architecture.md`.
-> **First sellable release = Phases 0 to 7.** Phases 8 to 12 are upgrades for the Growth and Pro plans and for onboarding.
+> **First sellable release = Phases 0 to 7.** Phases 8 to 12 are later modules.
 
 Mark finished phases with `[x]`.
 
 ---
 
-## Phase 0: Foundation, Tenancy & UI Kit
+## Phase 0: Foundation & UI Kit
 
 - [x] Docker Compose (nginx, php-fpm with Chromium, mysql, redis, queue, scheduler, reverb), `.env.example`
-- [x] Multi-tenancy: `Tenant` model, `ResolveTenant`, `BelongsToTenant`, `BelongsToBranch`, tenant-aware jobs, prefixed cache, channels and storage
-- [x] Architecture test that fails when a tenant-owned model lacks the trait
+- [x] Branch scoping: `BelongsToBranch`, branch-aware jobs, channels and storage
+- [x] Architecture test that fails when a branch-owned model lacks the trait
 - [x] Inertia + Vue 3 + Tailwind v4 tokens (`design.md`), Sonner, dark mode, SSR on public pages only
 - [x] Localization middleware, `en` / `bn` files, language switcher
 - [x] Staff auth (username / email / mobile), OTP service, rate limits, idle timeout, optional TOTP for owners
-- [x] Spatie Permission with teams, per-tenant role seeding, platform `super-admin`
-- [x] Activity log, `patient_access_logs`, encrypted backups, tenant export command
-- [x] `PlanGate` skeleton (plan limits and module toggles) and a minimal `/platform` area: create tenant, plan, trial dates
+- [x] Spatie Permission without teams, one role set per installation, hidden `super-admin` seeded from `.env`
+- [x] Activity log, `patient_access_logs`, encrypted backups, center export command
 - [x] **Shared UI kit** from `design.md` section 22 (dialogs, forms, tables, filters, charts, empty and error states) with `AppIcon` and `NoEmojiTest` in CI
 - [x] OpenAPI docs generator at `/api-docs`
 - [x] A hidden `/admin/ui-kit` showcase page that renders every component in light, dark, `en` and `bn`
 
-**Acceptance:** `migrate:fresh --seed` works; two seeded tenants cannot see each other's data (tested); each role sees only its menu; the UI-kit page renders without errors; a form with server errors shows messages under fields and focuses the first one.
+**Acceptance:** `migrate:fresh --seed` works; branch isolation tested (a branch user cannot see another branch's data); each role sees only its menu; the UI-kit page renders without errors; a form with server errors shows messages under fields and focuses the first one.
 
 ## Phase 1: Branches, Staff, Doctors & Patients
 
-- [x] Branch CRUD and branch scoping, tenant settings
+- [x] Branch CRUD and branch scoping, center settings
 - [x] Staff and doctors (BMDC number, specialty, fees, signature image), weekly schedules and leave
 - [x] Patients: registration, patient ID, duplicate detection, family linking by mobile, allergy alerts, photo, search by mobile, name or ID
 - [x] `PatientBanner` and the patient access log
 - [x] Referrer records (master data only)
 
-**Acceptance:** search returns in under 300 ms on 500,000 seeded patients; duplicate warning works; opening a patient writes an access log row; cross-tenant and cross-branch tests pass.
+**Acceptance:** search returns in under 300 ms on 500,000 seeded patients; duplicate warning works; opening a patient writes an access log row; cross-branch tests pass.
 
 ## Phase 2: Test Catalog, Packages & Report Templates
 
@@ -45,12 +44,12 @@ Mark finished phases with `[x]`.
 
 ## Phase 3: Appointments & Reception Billing (cash)
 
-- [ ] Appointment booking, token numbers, doctor queue, status flow, follow-up window
-- [ ] Reception counter screen from `design.md` section 6
-- [ ] Test orders and invoices with price snapshots, discount rules and approval, numbering under lock
-- [ ] Cash payment, partial payment, due calculation, money receipt
-- [ ] Invoice and receipt printing (A5 and 80mm), sample labels with Code 128
-- [ ] Cancel and refund with approval and reasons
+- [x] Appointment booking, token numbers, doctor queue, status flow, follow-up window
+- [x] Reception counter screen from `design.md` section 6
+- [x] Test orders and invoices with price snapshots, discount rules and approval, numbering under lock
+- [x] Cash payment, partial payment, due calculation, money receipt
+- [x] Invoice and receipt printing (A5 and 80mm), sample labels with Code 128
+- [x] Cancel and refund with approval and reasons
 
 **Acceptance:** a returning patient is billed in under 90 seconds; invoice numbers never duplicate under concurrent requests (tested); the due is always calculated, never typed.
 
@@ -86,13 +85,13 @@ Mark finished phases with `[x]`.
 
 ## Phase 7: Notifications & Patient Delivery
 
-- [ ] `MessageChannel` with `SmsChannel` (BdBulkSMS) and `WhatsAppChannel` (Cloud API templates), SMS fallback, per-tenant credits and metering
+- [ ] `MessageChannel` with `SmsChannel` (BdBulkSMS) and `WhatsAppChannel` (Cloud API templates), SMS fallback
 - [ ] Appointment confirmation and reminder, sample collected, report ready, payment receipt, owner daily summary
 - [ ] Secure report links with OTP or PIN, expiry, rate limiting, access logging
 - [ ] Minimal patient portal: login by OTP, reports, report verification page
 - [ ] Tests that no message contains results or diagnoses
 
-**Acceptance:** a report-ready message contains only a notice and a link; expired or wrong-OTP access is refused and logged; credit balance decreases per message sent. **This completes the first sellable release.**
+**Acceptance:** a report-ready message contains only a notice and a link; expired or wrong-OTP access is refused and logged. **This completes the first sellable release.**
 
 ## Phase 8: Doctor Commission & Referral Tracking
 
@@ -112,26 +111,23 @@ Mark finished phases with `[x]`.
 - [ ] Portal: appointment booking, due payment, public booking page with Turnstile
 - [ ] Token display screen
 
-**Acceptance:** a trend chart for a parameter across five visits matches stored results; booking from the public page respects slots and plan limits.
+**Acceptance:** a trend chart for a parameter across five visits matches stored results; booking from the public page respects slots.
 
 ## Phase 10: Owner Dashboard, MIS Reports & Expenses
 
 - [ ] Dashboard: patients, billed, collected, dues, department revenue, top tests, TAT and sample rejection, commission payable
-- [ ] Alerts: TAT breaches, critical results waiting, overdue dues, trial expiry
+- [ ] Alerts: TAT breaches, critical results waiting, overdue dues
 - [ ] Reports with PDF and Excel export following `design.md` section 17
 - [ ] Simple expenses and staff shifts, net result estimate
 
 **Acceptance:** dashboard totals equal report totals exactly; the dashboard loads in under 2 seconds on one year of seeded data.
 
-## Phase 11: Subscription, Trial & Import Wizard
+## Phase 11: Import Wizard & Onboarding
 
-- [ ] Platform console: plans, module toggles, limits, suspend or resume, usage, impersonation with audit
-- [ ] Trial banner, 7-day read-only grace, suspension, scheduled data retention
 - [ ] Import wizard for patients, doctors, referrers, tests and opening dues with dry run, row-level error report and safe re-run
-- [ ] Tenant onboarding checklist and downloadable import templates
-- [ ] Subscription invoices and manual payment recording (online recurring billing is optional)
+- [ ] Center onboarding checklist and downloadable import templates
 
-**Acceptance:** importing the same file twice creates no duplicates; a dry run saves nothing; an expired trial becomes read-only then suspended on schedule; every `PlanGate` limit is tested.
+**Acceptance:** importing the same file twice creates no duplicates; a dry run saves nothing; the row-level error report lists each failing row with a reason.
 
 ## Phase 12: Home Collection, Sample Transfer & Polish
 

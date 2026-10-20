@@ -159,12 +159,12 @@ Vue components must have a single root element.
 
 # Project Instructions
 
-This is a Laravel 13 project (DT Medix, a multi-tenant SaaS for diagnostic centers and clinics) built from the specification in `docs/`.
+This is a Laravel 13 project (DT Medix, a single-business product for one diagnostic center or clinic per installation, with multiple branches) built from the specification in `docs/`.
 
 Read these files before writing any code, in this order:
 
-1. `docs/prd.md`: what to build (roles, modules, business rules, plans, scope)
-2. `docs/architecture.md`: tech stack, structure, coding rules, multi-tenancy, health data rules, Definition of Done
+1. `docs/prd.md`: what to build (roles, modules, business rules, scope)
+2. `docs/architecture.md`: tech stack, structure, coding rules, one center per installation, health data rules, Definition of Done
 3. `docs/api.md`: API conventions, endpoints, payment gateways, real-time channels
 4. `docs/design.md`: design tokens, components, icons, sizing, tables, reception, lab and report screens
 5. `docs/roadmap.md`: build phases and acceptance criteria
@@ -175,7 +175,7 @@ Read these files before writing any code, in this order:
 - Build **one phase at a time** from `docs/roadmap.md`. Never start the next phase until asked.
 - If `prd.md` and `architecture.md` conflict, the PRD wins on business rules and roles; `architecture.md` wins on code structure.
 - If Laravel Boost guidelines conflict with `docs/`, the `docs/` files win for product rules, structure and design. Boost guidelines apply to Laravel and package usage details.
-- **Tenant isolation is mandatory.** Every tenant-owned model uses `BelongsToTenant`; never accept a tenant ID from the client; write a cross-tenant test for every model and endpoint.
+- **Branch isolation is mandatory.** Non-owner users must never read another branch's data. Every branch-owned model uses `BelongsToBranch`; write a cross-branch test (branch A user gets 404 for branch B) for every branch-scoped model and endpoint.
 - **Patient data is sensitive.** Never put patient data (names, mobile, NID, results, diagnoses) in logs, SMS or WhatsApp text, URLs or broadcast payloads. Released reports are immutable; corrections are new versions.
 - Never use emojis or Unicode symbol icons anywhere (UI, lang files, SMS, receipts, comments, commits). Use Font Awesome icons through `AppIcon`.
 - Follow the compact control sizes and table alignment rules in `docs/design.md` (sections 23 to 25).
