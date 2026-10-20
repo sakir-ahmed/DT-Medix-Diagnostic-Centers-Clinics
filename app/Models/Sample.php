@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\OrderItemStatus;
 use App\Enums\SampleStatus;
 use App\Models\Concerns\BelongsToBranch;
 use App\Models\Concerns\BelongsToTenant;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -73,5 +75,68 @@ class Sample extends Model
     public function items(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function collectedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'collected_by');
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function receivedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'received_by');
+    }
+
+    /**
+     * @return BelongsTo<Sample, $this>
+     */
+    public function recollectionOf(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'recollection_of_id');
+    }
+
+    /**
+     * @return HasMany<Sample, $this>
+     */
+    public function recollections(): HasMany
+    {
+        return $this->hasMany(self::class, 'recollection_of_id');
+    }
+
+    /**
+     * Samples waiting for collection at the counter.
+     *
+     * @param  Builder<Sample>  $query
+     */
+    public function scopePending(Builder $query): Builder
+    {
+        return $query->where('status', SampleStatus::Pending);
+    }
+
+    /**
+     * Collected samples waiting to be received by the lab.
+     *
+     * @param  Builder<Sample>  $query
+     */
+    public function scopeAwaitingReceive(Builder $query): Builder
+    {
+        return $query->where('status', SampleStatus::Collected);
+    }
+
+    /**
+     * Earliest expected report time across the tests in this sample.
+     */
+    public function expectedAt(): ?Carbon
+    {
+        return $this->items
+            ->filter(fn (OrderItem $item): bool => $item->expected_at !== null && $item->status !== OrderItemStatus::Cancelled)
+            ->map(fn (OrderItem $item): Carbon => $item->expected_at)
+            ->min();
     }
 }

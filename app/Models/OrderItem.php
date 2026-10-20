@@ -6,8 +6,11 @@ namespace App\Models;
 
 use App\Enums\OrderItemStatus;
 use App\Models\Concerns\BelongsToTenant;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 
 /**
@@ -34,6 +37,9 @@ use Illuminate\Support\Carbon;
  * @property-read Order $order
  * @property-read Test $test
  * @property-read Sample|null $sample
+ * @property-read Collection<int, TestResult> $results
+ * @property-read Collection<int, ResultAttachment> $attachments
+ * @property-read NarrativeResult|null $narrative
  */
 class OrderItem extends Model
 {
@@ -84,5 +90,37 @@ class OrderItem extends Model
     public function package(): BelongsTo
     {
         return $this->belongsTo(Package::class)->withTrashed();
+    }
+
+    /**
+     * @return HasMany<TestResult, $this>
+     */
+    public function results(): HasMany
+    {
+        return $this->hasMany(TestResult::class, 'order_item_id');
+    }
+
+    /**
+     * @return HasOne<NarrativeResult, $this>
+     */
+    public function narrative(): HasOne
+    {
+        return $this->hasOne(NarrativeResult::class, 'order_item_id');
+    }
+
+    /**
+     * @return HasMany<ResultAttachment, $this>
+     */
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(ResultAttachment::class, 'order_item_id');
+    }
+
+    /**
+     * A critical result that still needs its acknowledgement.
+     */
+    public function hasUnacknowledgedCritical(): bool
+    {
+        return $this->results()->where('flag', 'C')->whereNull('critical_ack_at')->exists();
     }
 }

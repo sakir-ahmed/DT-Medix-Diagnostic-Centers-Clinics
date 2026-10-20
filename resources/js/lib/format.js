@@ -54,6 +54,28 @@ export function formatMoney(value, { decimals = 2, symbol = true, locale = curre
 /**
  * Compact form for dashboard cards: 12.3L / 1.2Cr (লাখ / কোটি in Bangla).
  */
+/**
+ * Human-readable file size: "1.2 MB", "340 KB".
+ */
+export function formatFileSize(bytes, locale = currentLocale()) {
+    const value = Number(bytes ?? 0);
+
+    if (value < 1024) {
+        return formatNumber(value, 0, locale) + ' B';
+    }
+
+    const units = ['KB', 'MB', 'GB'];
+    let size = value;
+    let unit = -1;
+
+    do {
+        size /= 1024;
+        unit += 1;
+    } while (size >= 1024 && unit < units.length - 1);
+
+    return `${formatNumber(size, 1, locale)} ${units[unit]}`;
+}
+
 export function formatCompactMoney(value, locale = currentLocale()) {
     const amount = Number(value ?? 0);
     const abs = Math.abs(amount);
@@ -149,7 +171,7 @@ export function formatDuration(minutes, t, locale = currentLocale()) {
     const abs = Math.abs(Math.round(minutes));
     const h = Math.floor(abs / 60);
     const m = abs % 60;
-    const text = h > 0 ? t('time.hours_minutes', { hours: h, minutes: m }) : t('time.minutes', { minutes: m });
+    const text = h > 0 ? t('time.hours_minutes', { hours: h, minutes: m }) : t('time.minutes', { count: m });
 
     return localizeDigits(sign + text, locale);
 }

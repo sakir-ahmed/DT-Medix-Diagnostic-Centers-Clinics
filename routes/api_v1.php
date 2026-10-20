@@ -6,10 +6,12 @@ use App\Http\Controllers\Api\V1\AppointmentController;
 use App\Http\Controllers\Api\V1\CatalogController;
 use App\Http\Controllers\Api\V1\DoctorController;
 use App\Http\Controllers\Api\V1\InvoiceController;
+use App\Http\Controllers\Api\V1\LabController;
 use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\PatientController;
 use App\Http\Controllers\Api\V1\ReferrerController;
 use App\Http\Controllers\Api\V1\RefundController;
+use App\Http\Controllers\Api\V1\SampleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,4 +59,17 @@ Route::prefix('branches/{branch}')->middleware('branch')->group(function (): voi
 
     Route::post('/refunds', [RefundController::class, 'store'])->middleware('can:refunds.request')->name('refunds.store');
     Route::post('/refunds/{refund}/approve', [RefundController::class, 'decide'])->middleware('can:refunds.approve')->name('refunds.approve');
+
+    Route::prefix('samples')->group(function (): void {
+        Route::post('/{sample}/collect', [SampleController::class, 'collect'])->middleware('can:samples.collect')->name('samples.collect');
+        Route::post('/{sample}/receive', [SampleController::class, 'receive'])->middleware('can:samples.receive')->name('samples.receive');
+        Route::post('/{sample}/reject', [SampleController::class, 'reject'])->middleware('can:samples.reject')->name('samples.reject');
+        Route::get('/{sample}/label', [SampleController::class, 'label'])->middleware('can:samples.collect')->name('samples.label');
+    });
+
+    Route::get('/lab/worklist', [LabController::class, 'worklist'])->middleware('can:lab.worklist')->name('lab.worklist');
+    Route::get('/lab/results/{item}', [LabController::class, 'showResults'])->middleware('can:results.enter')->name('lab.results.show');
+    Route::put('/lab/results/{item}', [LabController::class, 'updateResults'])->middleware('can:results.enter')->name('lab.results.update');
+    Route::post('/lab/results/{item}/acknowledge-critical', [LabController::class, 'acknowledgeCritical'])->middleware('can:results.enter')->name('lab.results.acknowledge');
+    Route::post('/lab/results/{item}/submit', [LabController::class, 'submit'])->middleware('can:results.enter')->name('lab.results.submit');
 });

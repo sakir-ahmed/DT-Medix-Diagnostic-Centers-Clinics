@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\DoctorQueueController;
+use App\Http\Controllers\Admin\LabController;
 use App\Http\Controllers\Admin\MessageTemplateController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PackageController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\Admin\ReceptionController;
 use App\Http\Controllers\Admin\ReferrerController;
 use App\Http\Controllers\Admin\RefundController;
 use App\Http\Controllers\Admin\ReportTemplateController;
+use App\Http\Controllers\Admin\SampleController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\StaffController;
@@ -171,6 +173,36 @@ Route::post('/refunds', [RefundController::class, 'store'])->middleware('can:ref
 Route::middleware('can:refunds.approve')->group(function (): void {
     Route::get('/refunds', [RefundController::class, 'index'])->name('refunds.index');
     Route::post('/refunds/{refund}/decide', [RefundController::class, 'decide'])->name('refunds.decide');
+});
+
+Route::middleware('can:samples.collect')->group(function (): void {
+    Route::get('/samples/collection', [SampleController::class, 'collection'])->name('samples.collection');
+    Route::post('/samples/{sample}/collect', [SampleController::class, 'collect'])->name('samples.collect');
+    Route::get('/samples/{sample}/label', [PrintController::class, 'label'])->name('samples.label');
+});
+
+Route::middleware('can:samples.receive')->group(function (): void {
+    Route::get('/samples/receive', [SampleController::class, 'receive'])->name('samples.receive');
+    Route::post('/samples/receive', [SampleController::class, 'scan'])->name('samples.scan');
+});
+
+Route::post('/samples/{sample}/reject', [SampleController::class, 'reject'])->middleware('can:samples.reject')->name('samples.reject');
+
+Route::middleware('can:lab.worklist')->group(function (): void {
+    Route::get('/lab/worklist', [LabController::class, 'worklist'])->name('lab.worklist');
+    Route::get('/lab/samples/{sample}', [LabController::class, 'show'])->name('lab.sample');
+});
+
+Route::get('/lab/critical', [LabController::class, 'critical'])->middleware('can:critical.view')->name('lab.critical');
+
+Route::middleware('can:results.enter')->group(function (): void {
+    Route::get('/lab/items/{item}', [LabController::class, 'results'])->name('lab.results');
+    Route::put('/lab/items/{item}', [LabController::class, 'save'])->name('lab.results.update');
+    Route::post('/lab/items/{item}/submit', [LabController::class, 'submit'])->name('lab.results.submit');
+    Route::post('/lab/items/{item}/acknowledge', [LabController::class, 'acknowledge'])->name('lab.results.acknowledge');
+    Route::post('/lab/items/{item}/attachments', [LabController::class, 'attach'])->name('lab.results.attachments');
+    Route::delete('/lab/attachments/{attachment}', [LabController::class, 'destroyAttachment'])->name('lab.attachments.destroy');
+    Route::get('/lab/attachments/{attachment}/download', [LabController::class, 'download'])->name('lab.attachments.download');
 });
 
 Route::middleware('can:message-templates.manage')->group(function (): void {

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Sample;
 use App\Services\Billing\PrintDocument;
 use Illuminate\View\View;
 
@@ -24,6 +25,18 @@ class PrintController extends Controller
             'invoice' => $documents->invoice($invoice),
             'receipts' => $invoice->payments->map(fn ($payment) => $documents->receipt($payment))->all(),
             'labels' => $order->samples->map(fn ($sample) => $documents->label($sample))->all(),
+        ]);
+    }
+
+    /**
+     * One Code 128 label, reprinted from the collection screen.
+     */
+    public function label(Sample $sample, PrintDocument $documents): View
+    {
+        $sample->loadMissing(['patient', 'items', 'branch']);
+
+        return view('prints.label-single', [
+            'label' => $documents->label($sample),
         ]);
     }
 }

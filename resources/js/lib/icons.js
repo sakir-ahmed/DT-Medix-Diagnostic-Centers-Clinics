@@ -1,6 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-    faArrowDown, faArrowRight, faArrowUp, faArrowsRotate, faBan, faBarcode, faBars, faBell, faBoxArchive,
+    faArrowDown, faArrowRight, faArrowUp, faArrowsRotate, faBan, faBarcode, faBars, faBell, faBolt, faBoxArchive,
     faBoxesStacked, faBuilding, faCalendar, faCalendarCheck, faCashRegister, faChartColumn, faChartLine,
     faChartPie, faCheck, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faCircle, faCircleCheck,
     faCircleExclamation, faCircleInfo, faCircleXmark, faClock, faClockRotateLeft, faCodeCompare, faCommentSms,
@@ -16,7 +16,7 @@ import {
 import { faBell as farBell, faCircle as farCircle, faFolderOpen as farFolderOpen, faFileLines as farFileLines } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
-    faArrowDown, faArrowRight, faArrowUp, faArrowsRotate, faBan, faBarcode, faBars, faBell, faBoxArchive,
+    faArrowDown, faArrowRight, faArrowUp, faArrowsRotate, faBan, faBarcode, faBars, faBell, faBolt, faBoxArchive,
     faBoxesStacked, faBuilding, faCalendar, faCalendarCheck, faCashRegister, faChartColumn, faChartLine,
     faChartPie, faCheck, faChevronDown, faChevronLeft, faChevronRight, faChevronUp, faCircle, faCircleCheck,
     faCircleExclamation, faCircleInfo, faCircleXmark, faClock, faClockRotateLeft, faCodeCompare, faCommentSms,

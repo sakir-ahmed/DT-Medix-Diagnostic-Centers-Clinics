@@ -7,5 +7,6 @@ return [
     'minutes_ago' => ':count min ago',
     'hours_ago' => ':count h ago',
     'hours_minutes' => ':hours h :minutes min',
-    'minutes' => ':minutes min',
+    'days_hours' => ':days d :hours h',
+    'minutes' => ':count min',
 ];

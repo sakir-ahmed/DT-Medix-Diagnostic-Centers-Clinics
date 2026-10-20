@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Actions\Billing\CreateOrderAction;
+use App\Actions\Lab\CollectSampleAction;
+use App\Actions\Lab\ReceiveSampleAction;
 use App\Actions\Patients\RegisterPatientAction;
 use App\Enums\ReferrerType;
 use App\Enums\RoleName;
 use App\Models\Branch;
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Referrer;
+use App\Models\Sample;
 use App\Models\Tenant;
+use App\Models\Test;
 use App\Models\User;
 use App\Support\Tenancy\TenantContext;
 use Illuminate\Database\Seeder;
@@ -70,7 +76,47 @@ class DemoClinicalDataSeeder extends Seeder
                 foreach ($patients as $data) {
                     $register->execute($data, true);
                 }
+
+                $this->seedLabOrders($context, $branches->first());
             });
         }
+    }
+
+    /**
+     * A few orders in every sample state so the lab screens have data.
+     */
+    private function seedLabOrders(TenantContext $context, ?Branch $branch): void
+    {
+        if ($branch === null || Sample::query()->exists()) {
+            return;
+        }
+
+        $receptionist = User::role(RoleName::Receptionist->value)->first();
+        $collector = User::role(RoleName::SampleCollector->value)->first();
+        $technician = User::role(RoleName::LabTechnician->value)->first();
+
+        $test = fn (string $code): int => (int) Test::query()->where('code', $code)->value('id');
+        $patient = fn (string $name): Patient => Patient::query()->where('name', $name)->firstOrFail();
+        $context->setCurrentBranch($branch->id);
+
+        $create = fn (string $name, array $codes, array $payments = []): Sample => app(CreateOrderAction::class)->execute(
+            $branch,
+            [
+                'patient_id' => $patient($name)->id,
+                'test_ids' => array_map($test(...), $codes),
+                'payments' => $payments,
+            ],
+            $receptionist,
+        )->samples->first();
+
+        $create('Rahim Uddin', ['CBC', 'FBS'], [['amount' => '550.00']]);
+        $inLab = $create('Fatema Begum', ['LIPID', 'TSH'], [['amount' => '2000.00']]);
+        $imaging = $create('Arif Hossain', ['USGWA'], [['amount' => '1500.00']]);
+
+        foreach ([$inLab, $imaging] as $sample) {
+            app(CollectSampleAction::class)->execute($sample, $collector);
+        }
+
+        app(ReceiveSampleAction::class)->execute($inLab, $technician);
     }
 }

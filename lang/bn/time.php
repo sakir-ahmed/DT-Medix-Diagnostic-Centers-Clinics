@@ -7,5 +7,6 @@ return [
     'minutes_ago' => ':count মিনিট আগে',
     'hours_ago' => ':count ঘণ্টা আগে',
     'hours_minutes' => ':hours ঘণ্টা :minutes মিনিট',
-    'minutes' => ':minutes মিনিট',
+    'days_hours' => ':days দিন :hours ঘণ্টা',
+    'minutes' => ':count মিনিট',
 ];

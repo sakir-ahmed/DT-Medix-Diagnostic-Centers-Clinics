@@ -55,11 +55,11 @@ Mark finished phases with `[x]`.
 
 ## Phase 4: Sample Collection & Lab Processing
 
-- [ ] Sample IDs, collection, receive, reject with reason and recollect
-- [ ] Department worklists with TAT countdown, urgent pinning, scan to open
-- [ ] Result entry grid with flags, previous results, delta warning, calculated parameters, critical acknowledgement
-- [ ] Imaging and narrative result editor with attachments
-- [ ] Real-time worklist updates through Reverb (IDs only)
+- [x] Sample IDs, collection, receive, reject with reason and recollect
+- [x] Department worklists with TAT countdown, urgent pinning, scan to open
+- [x] Result entry grid with flags, previous results, delta warning, calculated parameters, critical acknowledgement
+- [x] Imaging and narrative result editor with attachments
+- [x] Real-time worklist updates through Reverb (IDs only)
 
 **Acceptance:** keyboard-only entry of a 20-parameter test works; flags match reference ranges (tested); critical values cannot proceed without acknowledgement; results store range and flag snapshots.
 
