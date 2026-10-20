@@ -27,11 +27,10 @@ class AppointmentUpdated implements ShouldBroadcast
      */
     public function broadcastOn(): array
     {
-        $t = $this->appointment->tenant_id;
 
         return [
-            new PrivateChannel("tenant.{$t}.branch.{$this->appointment->branch_id}.reception"),
-            new PrivateChannel("tenant.{$t}.doctor.{$this->appointment->doctor_id}.queue"),
+            new PrivateChannel("branch.{$this->appointment->branch_id}.reception"),
+            new PrivateChannel("doctor.{$this->appointment->doctor_id}.queue"),
         ];
     }
 

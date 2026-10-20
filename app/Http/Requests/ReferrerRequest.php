@@ -25,7 +25,7 @@ class ReferrerRequest extends FormRequest
 
         return [
             'type' => ['required', Rule::enum(ReferrerType::class)],
-            'code' => ['nullable', 'string', 'max:20', Rule::unique('referrers', 'code')->where('tenant_id', tenant()?->id)->ignore($referrer)],
+            'code' => ['nullable', 'string', 'max:20', Rule::unique('referrers', 'code')->ignore($referrer)],
             'name' => ['required', 'string', 'max:150'],
             'organization' => ['nullable', 'string', 'max:150'],
             'specialty' => ['nullable', 'string', 'max:150'],

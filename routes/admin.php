@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 | Admin SPA routes. Loaded inside the "admin." name prefix with the auth,
-| tenant, tenant.active and idle middleware.
+| branch.scope and idle middleware.
 */
 
 Route::get('/', DashboardController::class)->name('dashboard');

@@ -15,7 +15,7 @@ class BranchSwitchController extends Controller
     {
         $validated = $request->validate(['branch_id' => ['required', 'integer']]);
 
-        // Branch global scopes return 404 for other tenants and inaccessible branches.
+        // The branch scope returns 404 for branches the user may not access.
         $branch = Branch::query()->where('is_active', true)->findOrFail($validated['branch_id']);
 
         $request->session()->put('branch_id', $branch->id);

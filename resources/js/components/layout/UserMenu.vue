@@ -23,7 +23,7 @@ const roles = computed(() => page.props.auth?.roles ?? []);
                     <div class="text-xs text-muted">{{ roles.map((r) => $t(`roles.${r}`)).join(', ') }}</div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator class="my-1 h-px bg-border" />
-                <DropdownMenuItem v-if="route().has('admin.profile.edit') && page.props.tenant" as-child>
+                <DropdownMenuItem v-if="route().has('admin.profile.edit')" as-child>
                     <Link :href="route('admin.profile.edit')" class="flex h-7 items-center gap-2 rounded px-2 outline-none data-[highlighted]:bg-subtle">
                         <AppIcon name="user" size="sm" /> {{ $t('nav.profile') }}
                     </Link>

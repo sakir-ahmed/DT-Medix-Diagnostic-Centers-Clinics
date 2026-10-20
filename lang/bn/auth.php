@@ -24,4 +24,7 @@ return [
     'session_expiring_message' => 'নিষ্ক্রিয়তার কারণে :seconds সেকেন্ডের মধ্যে আপনাকে সাইন আউট করা হবে।',
     'sign_out' => 'সাইন আউট',
     'stay_signed_in' => 'সাইন ইন থাকুন',
+    'demo_accounts' => 'ডেমো অ্যাকাউন্ট',
+    'demo_accounts_hint' => 'এক ক্লিকেই সাইন ইন হবে। শুধু ডেমো বিল্ডের জন্য।',
+    'demo_login_as' => ':name (:role) হিসেবে সাইন ইন করুন',
 ];

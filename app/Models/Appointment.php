@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Enums\AppointmentStatus;
 use App\Models\Concerns\BelongsToBranch;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -15,7 +14,6 @@ use Spatie\Activitylog\Support\LogOptions;
 
 /**
  * @property int $id
- * @property int $tenant_id
  * @property int $branch_id
  * @property int $doctor_id
  * @property int $patient_id
@@ -38,7 +36,6 @@ use Spatie\Activitylog\Support\LogOptions;
 class Appointment extends Model
 {
     use BelongsToBranch;
-    use BelongsToTenant;
     use LogsActivity;
 
     protected $fillable = ['branch_id', 'doctor_id', 'patient_id', 'appointment_date', 'start_time', 'token_no', 'visit_type', 'status', 'source', 'fee', 'notes', 'booked_by'];

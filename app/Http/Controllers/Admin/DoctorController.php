@@ -88,7 +88,7 @@ class DoctorController extends Controller
     {
         abort_if($doctor->signature_path === null, 404);
 
-        return Storage::disk((string) config('tenancy.storage_disk'))->response($doctor->signature_path);
+        return Storage::disk((string) config('center.storage_disk'))->response($doctor->signature_path);
     }
 
     public function storeSchedule(ScheduleRequest $request, Doctor $doctor, ManageScheduleAction $schedules): RedirectResponse

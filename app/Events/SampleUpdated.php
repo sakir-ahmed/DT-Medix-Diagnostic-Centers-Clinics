@@ -28,11 +28,10 @@ class SampleUpdated implements ShouldBroadcast
      */
     public function broadcastOn(): array
     {
-        $t = $this->sample->tenant_id;
 
         return [
-            new PrivateChannel("tenant.{$t}.branch.{$this->sample->branch_id}.lab"),
-            new PrivateChannel("tenant.{$t}.branch.{$this->sample->branch_id}.reception"),
+            new PrivateChannel("branch.{$this->sample->branch_id}.lab"),
+            new PrivateChannel("branch.{$this->sample->branch_id}.reception"),
         ];
     }
 

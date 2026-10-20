@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Actions\Tenants\SeedTenantDefaultsAction;
+use App\Actions\Center\SeedCenterDefaultsAction;
 use App\Enums\RoleName;
 use App\Models\Appointment;
 use App\Models\Doctor;
@@ -10,14 +10,14 @@ use App\Models\Patient;
 
 beforeEach(function (): void {
     $this->travelTo('2026-10-16 08:00:00');
-    $this->tenant = makeTenant();
-    inTenant($this->tenant, fn () => app(SeedTenantDefaultsAction::class)->execute());
-    $this->branch = mainBranch($this->tenant);
-    $this->other = makeBranch($this->tenant, 'BR02');
-    $this->receptionist = makeUser($this->tenant, RoleName::Receptionist);
-    $this->doctorUser = makeUser($this->tenant, RoleName::Doctor, attributes: ['username' => 'dr.queue']);
-    $this->patient = inTenant($this->tenant, fn () => Patient::factory()->create());
-    $this->doctor = inTenant($this->tenant, function (): Doctor {
+    $this->center = makeCenter();
+    value(fn () => app(SeedCenterDefaultsAction::class)->execute());
+    $this->branch = mainBranch();
+    $this->other = makeBranch('BR02');
+    $this->receptionist = makeUser(RoleName::Receptionist);
+    $this->doctorUser = makeUser(RoleName::Doctor, attributes: ['username' => 'dr.queue']);
+    $this->patient = value(fn () => Patient::factory()->create());
+    $this->doctor = value(function (): Doctor {
         $doctor = Doctor::factory()->create([
             'user_id' => $this->doctorUser->id,
             'consultation_fee' => '1000.00',
@@ -101,25 +101,21 @@ it('calls the next arrived patient from the doctor queue', function (): void {
 
     $this->withoutToken()->actingAs($this->doctorUser)->post(route('admin.doctor.queue.next'))->assertRedirect();
 
-    expect(inTenant($this->tenant, fn () => Appointment::query()->findOrFail($id)->status->value))->toBe('in-consultation');
+    expect(Appointment::query()->findOrFail($id)->status->value)->toBe('in-consultation');
 
     $this->actingAs($this->doctorUser)->get(route('admin.doctor.queue'))
         ->assertOk()
         ->assertInertia(fn ($page) => $page->component('Admin/Doctor/Queue')->where('appointments.0.status', 'in-consultation'));
 });
 
-it('hides another branch and another tenant from appointment routes', function (): void {
-    $foreign = makeTenant();
-    $foreignBranch = mainBranch($foreign);
+it('hides another branch from appointment routes', function (): void {
     $token = $this->receptionist->createToken('t', ['staff'])->plainTextToken;
 
     $this->withToken($token)->getJson("/api/v1/branches/{$this->other->id}/doctors/{$this->doctor->id}/slots")->assertNotFound();
     $this->withToken($token)->postJson("/api/v1/branches/{$this->other->id}/appointments", bookPayload($this->patient->id, $this->doctor->id), ['Idempotency-Key' => 'book-other'])->assertNotFound();
-    $this->withToken($token)->getJson("/api/v1/branches/{$foreignBranch->id}/doctors/{$this->doctor->id}/slots")->assertNotFound();
 
     $doctorToken = $this->doctorUser->createToken('d', ['staff'])->plainTextToken;
     $this->withToken($doctorToken)->getJson("/api/v1/branches/{$this->other->id}/doctor/queue")->assertNotFound();
-    $this->withToken($doctorToken)->getJson("/api/v1/branches/{$foreignBranch->id}/doctor/queue")->assertNotFound();
 });
 
 it('shows visits on the patient record', function (): void {

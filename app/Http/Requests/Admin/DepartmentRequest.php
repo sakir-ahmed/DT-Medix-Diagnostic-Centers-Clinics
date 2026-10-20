@@ -22,7 +22,7 @@ class DepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => ['required', 'string', 'max:20', 'alpha_dash', Rule::unique('departments', 'code')->where('tenant_id', tenant()?->id)->ignore($this->route('department'))],
+            'code' => ['required', 'string', 'max:20', 'alpha_dash', Rule::unique('departments', 'code')->ignore($this->route('department'))],
             'name' => ['required', 'string', 'max:150'],
             'name_bn' => ['nullable', 'string', 'max:150'],
             'category' => ['required', Rule::enum(DepartmentCategory::class)],

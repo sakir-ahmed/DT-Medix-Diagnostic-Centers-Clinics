@@ -12,7 +12,6 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->string('code', 20);
             $table->string('name');
             $table->string('name_bn')->nullable();
@@ -22,12 +21,11 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->unique(['tenant_id', 'code']);
+            $table->unique(['code']);
         });
 
         Schema::create('report_templates', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('department_id')->nullable()->constrained()->nullOnDelete();
             $table->string('name');
             $table->string('type', 20)->default('table');
@@ -41,19 +39,17 @@ return new class extends Migration
 
         Schema::create('quick_phrases', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('report_template_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('shortcut', 40);
             $table->string('section', 20)->default('findings');
             $table->text('text');
             $table->timestamps();
 
-            $table->index(['tenant_id', 'shortcut']);
+            $table->index(['shortcut']);
         });
 
         Schema::create('tests', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('department_id')->constrained()->restrictOnDelete();
             $table->foreignId('report_template_id')->nullable()->constrained()->nullOnDelete();
             $table->string('code', 20);
@@ -76,13 +72,12 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['tenant_id', 'code']);
-            $table->index(['tenant_id', 'name']);
+            $table->unique(['code']);
+            $table->index(['name']);
         });
 
         Schema::create('test_parameters', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('test_id')->constrained()->cascadeOnDelete();
             $table->string('code', 30);
             $table->string('name');
@@ -103,7 +98,6 @@ return new class extends Migration
 
         Schema::create('reference_ranges', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('test_parameter_id')->constrained()->cascadeOnDelete();
             $table->string('sex', 10)->default('any');
             $table->unsignedSmallInteger('age_min')->default(0);
@@ -121,7 +115,6 @@ return new class extends Migration
 
         Schema::create('packages', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->string('code', 20);
             $table->string('name');
             $table->string('name_bn')->nullable();
@@ -131,7 +124,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['tenant_id', 'code']);
+            $table->unique(['code']);
         });
 
         Schema::create('package_test', function (Blueprint $table): void {
@@ -142,7 +135,6 @@ return new class extends Migration
 
         Schema::create('branch_test_prices', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->foreignId('test_id')->constrained()->cascadeOnDelete();
             $table->decimal('price', 12, 2);
@@ -153,7 +145,6 @@ return new class extends Migration
 
         Schema::create('message_templates', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->string('key', 40);
             $table->string('channel', 20)->default('sms');
             $table->text('body_en');
@@ -162,7 +153,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->unique(['tenant_id', 'key', 'channel']);
+            $table->unique(['key', 'channel']);
         });
     }
 

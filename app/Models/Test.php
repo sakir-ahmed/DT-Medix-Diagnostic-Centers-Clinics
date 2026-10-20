@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -17,7 +16,6 @@ use Spatie\Activitylog\Support\LogOptions;
  * A test in the catalog (CBC, Lipid profile, X-ray chest...).
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $department_id
  * @property int|null $report_template_id
  * @property string $code
@@ -41,7 +39,6 @@ use Spatie\Activitylog\Support\LogOptions;
  */
 class Test extends Model
 {
-    use BelongsToTenant;
     use LogsActivity;
     use SoftDeletes;
 

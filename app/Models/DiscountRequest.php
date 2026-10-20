@@ -6,14 +6,12 @@ namespace App\Models;
 
 use App\Enums\ApprovalStatus;
 use App\Models\Concerns\BelongsToBranch;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
- * @property int $tenant_id
  * @property int $branch_id
  * @property int $invoice_id
  * @property string $discount_type
@@ -30,7 +28,6 @@ use Illuminate\Support\Carbon;
 class DiscountRequest extends Model
 {
     use BelongsToBranch;
-    use BelongsToTenant;
 
     protected $fillable = ['branch_id', 'invoice_id', 'discount_type', 'discount_value', 'reason', 'status', 'requested_by'];
 

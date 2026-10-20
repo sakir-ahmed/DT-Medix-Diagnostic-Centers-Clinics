@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\Exceptions\DomainException;
-use App\Support\Tenancy\TenantContext;
 use Closure;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\JsonResponse;
@@ -21,8 +20,6 @@ use Throwable;
  */
 class EnsureIdempotency
 {
-    public function __construct(private readonly TenantContext $context) {}
-
     public function handle(Request $request, Closure $next): Response
     {
         $key = (string) $request->header('Idempotency-Key', '');
@@ -31,7 +28,7 @@ class EnsureIdempotency
             throw DomainException::make('IDEMPOTENCY_KEY_REQUIRED', 422);
         }
 
-        $scope = ($this->context->id() ?? 'central').':'.($request->user()?->getAuthIdentifier() ?? $request->ip());
+        $scope = (string) ($request->user()?->getAuthIdentifier() ?? $request->ip());
         $table = DB::table('idempotency_keys');
 
         DB::table('idempotency_keys')->where('scope', $scope)->where('key', $key)->where('created_at', '<', now()->subDay())->delete();

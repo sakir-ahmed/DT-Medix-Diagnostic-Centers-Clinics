@@ -20,7 +20,7 @@ class IdleTimeout
             return $next($request);
         }
 
-        $timeout = (int) (tenant()?->setting('idle_timeout_minutes') ?? config('session.idle_timeout', 15));
+        $timeout = (int) (center()?->setting('idle_timeout_minutes') ?? config('session.idle_timeout', 15));
         $last = $request->session()->get('last_activity_at');
 
         if ($last !== null && now()->timestamp - (int) $last > $timeout * 60) {

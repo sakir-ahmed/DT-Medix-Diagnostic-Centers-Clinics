@@ -34,7 +34,7 @@ enum MessageKey: string
     }
 
     /**
-     * Default bodies (en, bn) seeded for every tenant.
+     * Default bodies (en, bn) seeded for the center.
      *
      * @return array{0: string, 1: string}
      */

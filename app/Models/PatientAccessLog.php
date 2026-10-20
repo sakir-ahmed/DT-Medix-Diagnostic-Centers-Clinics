@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -14,7 +13,6 @@ use Illuminate\Support\Carbon;
  * Append-only log of every view of a patient record, report or history.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int|null $user_id
  * @property int $patient_id
  * @property string $action
@@ -24,8 +22,6 @@ use Illuminate\Support\Carbon;
  */
 class PatientAccessLog extends Model
 {
-    use BelongsToTenant;
-
     public const UPDATED_AT = null;
 
     protected $fillable = ['user_id', 'patient_id', 'action', 'subject_type', 'subject_id', 'channel', 'ip_address', 'user_agent'];

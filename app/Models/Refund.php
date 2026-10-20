@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Enums\ApprovalStatus;
 use App\Models\Concerns\BelongsToBranch;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -15,7 +14,6 @@ use Illuminate\Support\Carbon;
  * A refund with a reason; money leaves only after approval.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $branch_id
  * @property int $invoice_id
  * @property string $amount
@@ -32,7 +30,6 @@ use Illuminate\Support\Carbon;
 class Refund extends Model
 {
     use BelongsToBranch;
-    use BelongsToTenant;
 
     protected $fillable = ['branch_id', 'invoice_id', 'amount', 'method', 'reason', 'status', 'requested_by'];
 

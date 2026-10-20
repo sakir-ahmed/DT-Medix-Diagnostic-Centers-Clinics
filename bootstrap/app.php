@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 use App\Exceptions\DomainException;
 use App\Http\Middleware\EnsureBranchAccess;
+use App\Http\Middleware\EnsureDemoMode;
 use App\Http\Middleware\EnsureIdempotency;
-use App\Http\Middleware\EnsureKnownHost;
-use App\Http\Middleware\EnsureSuperAdmin;
-use App\Http\Middleware\EnsureTenantIsActive;
 use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Middleware\IdleTimeout;
-use App\Http\Middleware\ResolveTenant;
+use App\Http\Middleware\ResolveBranch;
 use App\Http\Middleware\SetLocale;
 use App\Http\Responses\ApiResponse;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -44,7 +42,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->web(append: [
-            EnsureKnownHost::class,
             SetLocale::class,
             HandleInertiaRequests::class,
         ]);
@@ -54,12 +51,11 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->alias([
-            'tenant' => ResolveTenant::class,
-            'tenant.active' => EnsureTenantIsActive::class,
+            'branch.scope' => ResolveBranch::class,
             'idle' => IdleTimeout::class,
-            'super-admin' => EnsureSuperAdmin::class,
             'idempotent' => EnsureIdempotency::class,
             'branch' => EnsureBranchAccess::class,
+            'demo.mode' => EnsureDemoMode::class,
             'locale' => SetLocale::class,
             'abilities' => CheckAbilities::class,
             'ability' => CheckForAnyAbility::class,
@@ -69,7 +65,7 @@ return Application::configure(basePath: dirname(__DIR__))
             StartSession::class,
             SetLocale::class,
             Authenticate::class,
-            ResolveTenant::class,
+            ResolveBranch::class,
             SubstituteBindings::class,
         ]);
 

@@ -12,7 +12,6 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->foreignId('doctor_id')->constrained()->cascadeOnDelete();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
@@ -31,14 +30,13 @@ return new class extends Migration
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
 
-            $table->index(['tenant_id', 'branch_id', 'appointment_date']);
+            $table->index(['branch_id', 'appointment_date']);
             $table->index(['doctor_id', 'appointment_date', 'start_time']);
             $table->index(['patient_id', 'doctor_id']);
         });
 
         Schema::create('orders', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
             $table->foreignId('appointment_id')->nullable()->constrained()->nullOnDelete();
@@ -49,14 +47,13 @@ return new class extends Migration
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
 
-            $table->index(['tenant_id', 'branch_id', 'created_at']);
+            $table->index(['branch_id', 'created_at']);
             $table->index(['patient_id']);
             $table->index(['referrer_id']);
         });
 
         Schema::create('invoices', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->foreignId('order_id')->constrained()->cascadeOnDelete();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
@@ -77,14 +74,13 @@ return new class extends Migration
             $table->timestamp('fully_paid_at')->nullable();
             $table->timestamps();
 
-            $table->unique(['tenant_id', 'invoice_no']);
-            $table->index(['tenant_id', 'branch_id', 'status']);
+            $table->unique(['invoice_no']);
+            $table->index(['branch_id', 'status']);
             $table->index(['patient_id', 'status']);
         });
 
         Schema::create('samples', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->foreignId('order_id')->constrained()->cascadeOnDelete();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
@@ -100,13 +96,12 @@ return new class extends Migration
             $table->foreignId('recollection_of_id')->nullable()->constrained('samples')->nullOnDelete();
             $table->timestamps();
 
-            $table->unique(['tenant_id', 'sample_code']);
-            $table->index(['tenant_id', 'branch_id', 'status']);
+            $table->unique(['sample_code']);
+            $table->index(['branch_id', 'status']);
         });
 
         Schema::create('order_items', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('order_id')->constrained()->cascadeOnDelete();
             $table->foreignId('test_id')->constrained()->restrictOnDelete();
             $table->foreignId('package_id')->nullable()->constrained()->nullOnDelete();
@@ -125,12 +120,11 @@ return new class extends Migration
             $table->timestamps();
 
             $table->index(['order_id', 'status']);
-            $table->index(['tenant_id', 'test_id']);
+            $table->index(['test_id']);
         });
 
         Schema::create('payments', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->foreignId('invoice_id')->constrained()->cascadeOnDelete();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
@@ -143,14 +137,13 @@ return new class extends Migration
             $table->timestamp('paid_at');
             $table->timestamps();
 
-            $table->unique(['tenant_id', 'receipt_no']);
-            $table->index(['tenant_id', 'branch_id', 'paid_at']);
+            $table->unique(['receipt_no']);
+            $table->index(['branch_id', 'paid_at']);
             $table->index(['invoice_id']);
         });
 
         Schema::create('discount_requests', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->foreignId('invoice_id')->constrained()->cascadeOnDelete();
             $table->string('discount_type', 10);
@@ -162,12 +155,11 @@ return new class extends Migration
             $table->timestamp('decided_at')->nullable();
             $table->timestamps();
 
-            $table->index(['tenant_id', 'branch_id', 'status']);
+            $table->index(['branch_id', 'status']);
         });
 
         Schema::create('refunds', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->foreignId('invoice_id')->constrained()->cascadeOnDelete();
             $table->decimal('amount', 12, 2);
@@ -179,7 +171,7 @@ return new class extends Migration
             $table->timestamp('decided_at')->nullable();
             $table->timestamps();
 
-            $table->index(['tenant_id', 'branch_id', 'status']);
+            $table->index(['branch_id', 'status']);
         });
     }
 

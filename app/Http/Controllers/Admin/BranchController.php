@@ -8,7 +8,6 @@ use App\Actions\Branches\SaveBranchAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BranchRequest;
 use App\Models\Branch;
-use App\Services\PlanGate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -16,11 +15,8 @@ use Inertia\Response;
 
 class BranchController extends Controller
 {
-    public function index(PlanGate $planGate): Response
+    public function index(): Response
     {
-        $tenant = tenant();
-        abort_if($tenant === null, 404);
-
         return Inertia::render('Admin/Branches/Index', [
             'branches' => Branch::query()->withCount('users')->orderBy('code')->get()->map(fn (Branch $branch): array => [
                 'id' => $branch->id,
@@ -35,8 +31,6 @@ class BranchController extends Controller
                 'status' => $branch->is_active ? 'active' : 'inactive',
                 'users_count' => $branch->users_count,
             ]),
-            'canAdd' => $planGate->canAddBranch($tenant),
-            'limit' => $tenant->limit('branches'),
         ]);
     }
 

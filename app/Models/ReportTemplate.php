@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\ReportStyle;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * Table templates (pathology) and narrative templates (imaging).
  *
  * @property int $id
- * @property int $tenant_id
  * @property int|null $department_id
  * @property string $name
  * @property ReportStyle $type
@@ -26,8 +24,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class ReportTemplate extends Model
 {
-    use BelongsToTenant;
-
     public const DEFAULT_OPTIONS = [
         'show_method' => true,
         'show_interpretation' => true,

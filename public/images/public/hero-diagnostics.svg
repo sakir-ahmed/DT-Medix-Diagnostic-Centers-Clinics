@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Laboratory diagnostics illustration" fill="none">
+    <!-- backdrop -->
+    <rect width="640" height="480" rx="24" fill="#eaf3fd"/>
+    <circle cx="540" cy="90" r="130" fill="#d9ecff" opacity="0.7"/>
+    <circle cx="90" cy="420" r="110" fill="#d9ecff" opacity="0.5"/>
+    <path d="M0 400c120-40 200 20 320-10s220-70 320-40v130H0Z" fill="#cfe6fb" opacity="0.6"/>
+
+    <!-- screen card -->
+    <rect x="96" y="120" width="300" height="210" rx="14" fill="#ffffff" stroke="#b9d6f2"/>
+    <rect x="96" y="120" width="300" height="34" rx="14" fill="#0b63ce"/>
+    <rect x="96" y="140" width="300" height="14" fill="#0b63ce"/>
+    <circle cx="116" cy="137" r="4" fill="#9fd0ff"/>
+    <circle cx="130" cy="137" r="4" fill="#9fd0ff"/>
+    <!-- heartbeat line -->
+    <polyline points="116,230 150,230 162,204 176,252 190,218 202,230 240,230 254,204 268,252 282,218 294,230 376,230"
+        stroke="#0b63ce" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="116" y="264" width="120" height="9" rx="4.5" fill="#d8e7f7"/>
+    <rect x="116" y="282" width="180" height="9" rx="4.5" fill="#d8e7f7"/>
+    <rect x="252" y="168" width="120" height="9" rx="4.5" fill="#e5f0fb"/>
+    <rect x="288" y="186" width="84" height="9" rx="4.5" fill="#e5f0fb"/>
+
+    <!-- rack with test tubes -->
+    <g>
+        <rect x="430" y="196" width="150" height="12" rx="6" fill="#0b63ce"/>
+        <g stroke="#ffffff" stroke-width="3">
+            <rect x="443" y="128" width="26" height="70" rx="13" fill="#38a8ff"/>
+            <rect x="481" y="140" width="26" height="58" rx="13" fill="#9fd0ff"/>
+            <rect x="519" y="122" width="26" height="76" rx="13" fill="#0b63ce"/>
+            <rect x="552" y="148" width="26" height="50" rx="13" fill="#38a8ff"/>
+        </g>
+        <rect x="452" y="164" width="8" height="26" rx="4" fill="#ffffff" opacity="0.65"/>
+        <rect x="528" y="158" width="8" height="32" rx="4" fill="#ffffff" opacity="0.65"/>
+        <rect x="436" y="208" width="138" height="10" rx="5" fill="#084ea3"/>
+    </g>
+
+    <!-- flask -->
+    <g>
+        <rect x="536" y="300" width="44" height="10" rx="5" fill="#0b63ce"/>
+        <path d="M552 310v34l-30 58a14 14 0 0 0 12 21h60a14 14 0 0 0 12-21l-30-58v-34Z" fill="#ffffff" stroke="#b9d6f2" stroke-width="3"/>
+        <path d="M532 386h58l10 17a14 14 0 0 1-12 20h-54a14 14 0 0 1-12-20Z" fill="#38a8ff"/>
+        <circle cx="548" cy="398" r="4" fill="#ffffff" opacity="0.7"/>
+        <circle cx="566" cy="404" r="3" fill="#ffffff" opacity="0.7"/>
+        <circle cx="574" cy="394" r="2.5" fill="#ffffff" opacity="0.7"/>
+    </g>
+
+    <!-- shield check -->
+    <g transform="translate(118,300)">
+        <path d="M34 0l30 11v24c0 20-13 34-30 41C17 69 4 55 4 35V11Z" fill="#ffffff" stroke="#0b63ce" stroke-width="3"/>
+        <path d="M22 35l9 9 16-18" stroke="#0b63ce" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- barcode tag -->
+    <g transform="translate(356,332)">
+        <rect width="86" height="56" rx="8" fill="#ffffff" stroke="#b9d6f2"/>
+        <g fill="#0a1428">
+            <rect x="12" y="12" width="4" height="22"/>
+            <rect x="20" y="12" width="2" height="22"/>
+            <rect x="26" y="12" width="5" height="22"/>
+            <rect x="35" y="12" width="2" height="22"/>
+            <rect x="41" y="12" width="4" height="22"/>
+            <rect x="49" y="12" width="2" height="22"/>
+            <rect x="55" y="12" width="5" height="22"/>
+            <rect x="64" y="12" width="2" height="22"/>
+        </g>
+        <rect x="12" y="40" width="46" height="5" rx="2.5" fill="#d8e7f7"/>
+    </g>
+</svg>

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 use App\Actions\Billing\CreateOrderAction;
 use App\Actions\Catalog\SaveTestAction;
+use App\Actions\Center\SeedCenterDefaultsAction;
 use App\Actions\Lab\CollectSampleAction;
 use App\Actions\Lab\ReceiveSampleAction;
 use App\Actions\Lab\SaveResultsAction;
-use App\Actions\Tenants\SeedTenantDefaultsAction;
 use App\Enums\OrderItemStatus;
 use App\Enums\RoleName;
 use App\Enums\SampleStatus;
@@ -18,24 +18,23 @@ use App\Models\Patient;
 use App\Models\ResultAttachment;
 use App\Models\Sample;
 use App\Models\TestResult;
-use App\Support\Tenancy\TenantContext;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Spatie\LaravelPdf\Facades\Pdf;
 
 beforeEach(function (): void {
-    $this->tenant = makeTenant();
-    inTenant($this->tenant, fn () => app(SeedTenantDefaultsAction::class)->execute());
-    $this->branch = mainBranch($this->tenant);
-    $this->other = makeBranch($this->tenant, 'BR02');
-    $this->department = inTenant($this->tenant, fn () => Department::query()->where('code', 'BIO')->firstOrFail());
-    $this->collector = makeUser($this->tenant, RoleName::SampleCollector);
-    $this->technician = makeUser($this->tenant, RoleName::LabTechnician);
-    $this->pathologist = makeUser($this->tenant, RoleName::Pathologist);
-    $this->receptionist = makeUser($this->tenant, RoleName::Receptionist);
-    $this->patient = inTenant($this->tenant, fn () => Patient::factory()->create(['name' => 'Rupali Begum']));
+    $this->center = makeCenter();
+    value(fn () => app(SeedCenterDefaultsAction::class)->execute());
+    $this->branch = mainBranch();
+    $this->other = makeBranch('BR02');
+    $this->department = value(fn () => Department::query()->where('code', 'BIO')->firstOrFail());
+    $this->collector = makeUser(RoleName::SampleCollector);
+    $this->technician = makeUser(RoleName::LabTechnician);
+    $this->pathologist = makeUser(RoleName::Pathologist);
+    $this->receptionist = makeUser(RoleName::Receptionist);
+    $this->patient = value(fn () => Patient::factory()->create(['name' => 'Rupali Begum']));
 
-    $this->test = inTenant($this->tenant, fn () => app(SaveTestAction::class)->execute([
+    $this->test = value(fn () => app(SaveTestAction::class)->execute([
         'code' => 'FBS',
         'name' => 'Fasting blood sugar',
         'department_id' => $this->department->id,
@@ -51,7 +50,7 @@ beforeEach(function (): void {
         ],
     ]));
 
-    $this->imaging = inTenant($this->tenant, fn () => app(SaveTestAction::class)->execute([
+    $this->imaging = value(fn () => app(SaveTestAction::class)->execute([
         'code' => 'XR',
         'name' => 'X-ray chest',
         'department_id' => Department::query()->where('code', 'IMG')->firstOrFail()->id,
@@ -67,7 +66,7 @@ beforeEach(function (): void {
  */
 function labOrderAt(string $state): OrderItem
 {
-    return inTenant(test()->tenant, function () use ($state): OrderItem {
+    return value(function () use ($state): OrderItem {
         $order = app(CreateOrderAction::class)->execute(test()->branch, [
             'patient_id' => test()->patient->id,
             'test_ids' => [test()->test->id],
@@ -88,7 +87,7 @@ function labOrderAt(string $state): OrderItem
 }
 
 it('renders the lab screens for the right roles only', function (): void {
-    $item = inTenant($this->tenant, fn () => labOrderAt('received'));
+    $item = value(fn () => labOrderAt('received'));
 
     $this->actingAs($this->collector)->get(route('admin.samples.collection'))->assertOk()->assertInertia(fn ($page) => $page->component('Admin/Samples/Collection'));
     $this->actingAs($this->collector)->get(route('admin.samples.receive'))->assertForbidden();
@@ -104,14 +103,14 @@ it('renders the lab screens for the right roles only', function (): void {
 });
 
 it('receives a sample by scanned code and reports unknown codes', function (): void {
-    $item = inTenant($this->tenant, fn () => labOrderAt('collected'));
-    $code = inTenant($this->tenant, fn () => $item->sample->sample_code);
+    $item = value(fn () => labOrderAt('collected'));
+    $code = $item->sample->sample_code;
 
     $this->actingAs($this->technician)->post(route('admin.samples.scan'), ['code' => strtolower($code)])
         ->assertRedirect()
         ->assertSessionHas('success');
 
-    expect(inTenant($this->tenant, fn () => Sample::query()->value('status')))->toBe(SampleStatus::Received);
+    expect(value(fn () => Sample::query()->value('status')))->toBe(SampleStatus::Received);
 
     $this->actingAs($this->technician)->post(route('admin.samples.scan'), ['code' => 'BR01-000000-9999'])
         ->assertRedirect()
@@ -119,19 +118,19 @@ it('receives a sample by scanned code and reports unknown codes', function (): v
 });
 
 it('saves and submits results through the admin routes, then blocks editing', function (): void {
-    $item = inTenant($this->tenant, fn () => labOrderAt('received'));
-    $parameter = inTenant($this->tenant, fn () => $item->test->parameters->first());
+    $item = value(fn () => labOrderAt('received'));
+    $parameter = value(fn () => $item->test->parameters->first());
 
     $this->actingAs($this->technician)->put(route('admin.lab.results.update', $item), [
         'results' => [$parameter->id => ['value' => '5.2', 'remarks' => '']],
     ])->assertRedirect()->assertSessionHas('success');
 
-    expect(inTenant($this->tenant, fn () => TestResult::query()->value('flag')))->toBe('N');
+    expect(value(fn () => TestResult::query()->value('flag')))->toBe('N');
 
     $this->actingAs($this->technician)->post(route('admin.lab.results.submit', $item))
         ->assertRedirect(route('admin.lab.worklist'));
 
-    expect(inTenant($this->tenant, fn () => OrderItem::query()->value('status')))->toBe(OrderItemStatus::Entered);
+    expect(value(fn () => OrderItem::query()->value('status')))->toBe(OrderItemStatus::Entered);
 
     $this->actingAs($this->receptionist)->put(route('admin.lab.results.update', $item), [
         'results' => [$parameter->id => ['value' => '5.3', 'remarks' => '']],
@@ -139,8 +138,8 @@ it('saves and submits results through the admin routes, then blocks editing', fu
 });
 
 it('acknowledges a critical value over HTTP before submission', function (): void {
-    $item = inTenant($this->tenant, fn () => labOrderAt('received'));
-    $parameter = inTenant($this->tenant, fn () => $item->test->parameters->first());
+    $item = value(fn () => labOrderAt('received'));
+    $parameter = value(fn () => $item->test->parameters->first());
 
     $this->actingAs($this->technician)->put(route('admin.lab.results.update', $item), [
         'results' => [$parameter->id => ['value' => '30', 'remarks' => '']],
@@ -163,31 +162,31 @@ it('acknowledges a critical value over HTTP before submission', function (): voi
 });
 
 it('shows 404 across branches on the lab item routes', function (): void {
-    $item = inTenant($this->tenant, fn () => labOrderAt('received'));
+    $item = value(fn () => labOrderAt('received'));
 
-    $branchTwo = makeUser($this->tenant, RoleName::LabTechnician, $this->other);
+    $branchTwo = makeUser(RoleName::LabTechnician, $this->other);
 
     $this->actingAs($branchTwo)->get(route('admin.lab.results', $item))->assertNotFound();
     $this->actingAs($branchTwo)->put(route('admin.lab.results.update', $item), [])->assertNotFound();
 });
 
 it('keeps the worklist inside the user branch', function (): void {
-    $mine = inTenant($this->tenant, fn () => labOrderAt('received'));
-    $mineCode = inTenant($this->tenant, fn () => Sample::query()->whereKey($mine->sample_id)->value('sample_code'));
+    $mine = value(fn () => labOrderAt('received'));
+    $mineCode = value(fn () => Sample::query()->whereKey($mine->sample_id)->value('sample_code'));
 
-    $foreignOrder = app(TenantContext::class)->run($this->tenant, fn () => app(CreateOrderAction::class)->execute($this->other, [
+    $foreignOrder = value(fn () => app(CreateOrderAction::class)->execute($this->other, [
         'patient_id' => $this->patient->id,
         'test_ids' => [$this->test->id],
     ], $this->receptionist));
     $foreign = $foreignOrder->samples->first();
-    app(TenantContext::class)->run($this->tenant, function () use ($foreign): void {
+    value(function () use ($foreign): void {
         app(CollectSampleAction::class)->execute($foreign, $this->collector);
         app(ReceiveSampleAction::class)->execute($foreign->fresh(), $this->technician);
     });
 
     $response = $this->actingAs($this->technician)->get(route('admin.lab.worklist'))->assertOk();
 
-    $codes = inTenant($this->tenant, fn () => Sample::query()->pluck('sample_code')->all());
+    $codes = value(fn () => Sample::query()->pluck('sample_code')->all());
     expect(count($codes))->toBe(2);
 
     $seen = collect($response->inertiaProps()['samples']['data'] ?? [])->pluck('sample_code')->all();
@@ -196,8 +195,8 @@ it('keeps the worklist inside the user branch', function (): void {
 });
 
 it('serves the whole lab flow through the API', function (): void {
-    $item = inTenant($this->tenant, fn () => labOrderAt('pending'));
-    $sample = inTenant($this->tenant, fn () => $item->sample);
+    $item = value(fn () => labOrderAt('pending'));
+    $sample = $item->sample;
     $token = $this->technician->createToken('t', ['staff'])->plainTextToken;
     $collectorToken = $this->collector->createToken('t', ['staff'])->plainTextToken;
 
@@ -210,7 +209,7 @@ it('serves the whole lab flow through the API', function (): void {
     $this->withToken($token)->getJson("/api/v1/branches/{$this->branch->id}/lab/worklist?status=received")
         ->assertOk()->assertJsonPath('data.0.sample_code', $sample->sample_code)->assertJsonPath('meta.total', 1);
 
-    $parameter = inTenant($this->tenant, fn () => $item->test->parameters->first());
+    $parameter = value(fn () => $item->test->parameters->first());
 
     $this->withToken($token)->getJson("/api/v1/branches/{$this->branch->id}/lab/results/{$item->id}")
         ->assertOk()->assertJsonPath('data.rows.0.code', 'GLU');
@@ -237,7 +236,7 @@ it('serves the whole lab flow through the API', function (): void {
 });
 
 it('prints the sample label as a PDF from the API', function (): void {
-    $item = inTenant($this->tenant, fn () => labOrderAt('collected'));
+    $item = value(fn () => labOrderAt('collected'));
     $token = $this->collector->createToken('t', ['staff'])->plainTextToken;
 
     Pdf::fake();
@@ -249,19 +248,19 @@ it('prints the sample label as a PDF from the API', function (): void {
 });
 
 it('uploads and downloads narrative attachments through authorized routes only', function (): void {
-    $order = app(TenantContext::class)->run($this->tenant, fn () => app(CreateOrderAction::class)->execute($this->branch, [
+    $order = value(fn () => app(CreateOrderAction::class)->execute($this->branch, [
         'patient_id' => $this->patient->id,
         'test_ids' => [$this->imaging->id],
     ], $this->receptionist));
     $item = $order->samples->first()->fresh()->items->first();
 
-    app(TenantContext::class)->run($this->tenant, function () use ($item): void {
+    value(function () use ($item): void {
         app(CollectSampleAction::class)->execute($item->sample, $this->collector);
         app(ReceiveSampleAction::class)->execute($item->sample->fresh(), $this->technician);
         app(SaveResultsAction::class)->execute($item->fresh(), ['findings' => 'Fibrosis.', 'impression' => 'OK'], $this->technician);
     });
 
-    expect(inTenant($this->tenant, fn () => NarrativeResult::query()->value('findings')))->toBe('Fibrosis.');
+    expect(value(fn () => NarrativeResult::query()->value('findings')))->toBe('Fibrosis.');
 
     $file = UploadedFile::fake()->image('scan.jpg');
 
@@ -270,15 +269,15 @@ it('uploads and downloads narrative attachments through authorized routes only',
         ->assertRedirect()
         ->assertSessionHas('success');
 
-    $attachment = inTenant($this->tenant, fn () => ResultAttachment::query()->firstOrFail());
+    $attachment = value(fn () => ResultAttachment::query()->firstOrFail());
     expect($attachment->original_name)->toBe('scan.jpg')
-        ->and($attachment->path)->toStartWith('tenants/');
+        ->and($attachment->path)->toStartWith('results/');
 
     Storage::disk(config('tenancy.storage_disk'))->assertExists($attachment->path);
 
     $this->actingAs($this->technician)->get(route('admin.lab.attachments.download', $attachment))->assertOk();
     $this->actingAs($this->receptionist)->get(route('admin.lab.attachments.download', $attachment))->assertForbidden();
 
-    $branchTwo = makeUser($this->tenant, RoleName::LabTechnician, $this->other);
+    $branchTwo = makeUser(RoleName::LabTechnician, $this->other);
     $this->actingAs($branchTwo)->get(route('admin.lab.attachments.download', $attachment))->assertNotFound();
 });

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Actions\Billing\CreateOrderAction;
 use App\Actions\Catalog\SaveTestAction;
-use App\Actions\Tenants\SeedTenantDefaultsAction;
+use App\Actions\Center\SeedCenterDefaultsAction;
 use App\Enums\RoleName;
 use App\Models\Department;
 use App\Models\Invoice;
@@ -37,13 +37,13 @@ it('never duplicates an invoice number when two orders are saved together', func
     DB::setDefaultConnection('concurrency');
     DB::connection()->getPdo()->exec('PRAGMA busy_timeout = 5000');
 
-    $tenant = makeTenant();
-    inTenant($tenant, fn () => app(SeedTenantDefaultsAction::class)->execute());
-    $branch = mainBranch($tenant);
-    $department = inTenant($tenant, fn () => Department::query()->where('code', 'BIO')->firstOrFail());
-    $receptionist = makeUser($tenant, RoleName::Receptionist);
-    $patient = inTenant($tenant, fn () => Patient::factory()->create());
-    $test = inTenant($tenant, fn () => app(SaveTestAction::class)->execute([
+    makeCenter();
+    value(fn () => app(SeedCenterDefaultsAction::class)->execute());
+    $branch = mainBranch();
+    $department = value(fn () => Department::query()->where('code', 'BIO')->firstOrFail());
+    $receptionist = makeUser(RoleName::Receptionist);
+    $patient = value(fn () => Patient::factory()->create());
+    $test = value(fn () => app(SaveTestAction::class)->execute([
         'code' => 'CBC',
         'name' => 'CBC test',
         'department_id' => $department->id,
@@ -77,7 +77,7 @@ it('never duplicates an invoice number when two orders are saved together', func
                 for ($attempt = 1; $attempt <= 40; $attempt++) {
                     try {
                         DB::reconnect('concurrency');
-                        inTenant($tenant, fn () => app(CreateOrderAction::class)->execute($branch, $payload, $receptionist));
+                        value(fn () => app(CreateOrderAction::class)->execute($branch, $payload, $receptionist));
                         break;
                     } catch (QueryException $e) {
                         DB::disconnect('concurrency');
@@ -114,7 +114,7 @@ it('never duplicates an invoice number when two orders are saved together', func
 
     DB::setDefaultConnection('concurrency');
     DB::reconnect('concurrency');
-    $numbers = inTenant($tenant, fn () => Invoice::query()->pluck('invoice_no')->all());
+    $numbers = value(fn () => Invoice::query()->pluck('invoice_no')->all());
     DB::disconnect('concurrency');
     DB::setDefaultConnection('sqlite');
     DB::purge('concurrency');

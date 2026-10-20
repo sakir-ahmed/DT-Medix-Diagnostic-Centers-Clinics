@@ -3,30 +3,38 @@
 declare(strict_types=1);
 
 use App\Models\Concerns\BelongsToBranch;
-use App\Models\Concerns\BelongsToTenant;
-use App\Support\Tenancy\ModelRegistry;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
-it('scopes every model with a tenant_id column to the tenant', function (): void {
-    $missing = [];
+/**
+ * Every Eloquent model class under app/Models.
+ *
+ * @return list<class-string<Model>>
+ */
+function appModels(): array
+{
+    $classes = [];
 
-    foreach (ModelRegistry::all() as $class) {
-        $model = new $class;
+    foreach (File::allFiles(app_path('Models')) as $file) {
+        $class = 'App\\Models\\'.Str::of($file->getRelativePathname())->replace('/', '\\')->beforeLast('.php')->toString();
 
-        if (Schema::hasColumn($model->getTable(), 'tenant_id') && ! in_array(BelongsToTenant::class, class_uses_recursive($class), true)) {
-            $missing[] = $class;
+        if (class_exists($class) && is_subclass_of($class, Model::class) && ! (new ReflectionClass($class))->isAbstract()) {
+            $classes[] = $class;
         }
     }
 
-    expect($missing)->toBe([]);
-});
+    return $classes;
+}
 
 it('scopes every model with a branch_id column to the branch', function (): void {
-    // Models that are deliberately visible across branches of the tenant.
-    $crossBranch = config('tenancy.cross_branch_models', []);
+    makeCenter();
+    // Models that are deliberately visible across branches of the center.
+    $crossBranch = config('center.cross_branch_models', []);
     $missing = [];
 
-    foreach (ModelRegistry::all() as $class) {
+    foreach (appModels() as $class) {
         $model = new $class;
 
         if (in_array($class, $crossBranch, true)) {

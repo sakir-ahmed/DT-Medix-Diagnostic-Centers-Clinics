@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -16,7 +15,6 @@ use Spatie\Activitylog\Support\LogOptions;
  * A group of tests sold at a package price (for example "Diabetes Panel").
  *
  * @property int $id
- * @property int $tenant_id
  * @property string $code
  * @property string $name
  * @property string|null $name_bn
@@ -27,7 +25,6 @@ use Spatie\Activitylog\Support\LogOptions;
  */
 class Package extends Model
 {
-    use BelongsToTenant;
     use LogsActivity;
     use SoftDeletes;
 

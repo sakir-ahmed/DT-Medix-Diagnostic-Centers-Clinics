@@ -20,7 +20,7 @@ use App\Models\ResultAttachment;
 use App\Models\Sample;
 use App\Models\TestResult;
 use App\Services\Lab\ResultRows;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +34,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
  */
 class LabController extends Controller
 {
-    public function __construct(private readonly TenantContext $context) {}
+    public function __construct(private readonly BranchContext $context) {}
 
     public function worklist(Request $request): Response
     {
@@ -130,7 +130,7 @@ class LabController extends Controller
                 'name' => $attachment->original_name,
                 'size' => $attachment->size,
             ])->all(),
-            'delta_percent' => (float) ($this->context->tenant()?->setting('delta_check_percent') ?? 50),
+            'delta_percent' => (float) (center()?->setting('delta_check_percent') ?? 50),
             'next_url' => $this->nextEntryUrl($item),
         ]);
     }
@@ -219,7 +219,7 @@ class LabController extends Controller
     {
         $this->authorizeAttachment($attachment);
 
-        $disk = Storage::disk((string) config('tenancy.storage_disk'));
+        $disk = Storage::disk((string) config('center.storage_disk'));
         abort_unless($disk->exists($attachment->path), 404);
 
         return $disk->download($attachment->path, $attachment->original_name);

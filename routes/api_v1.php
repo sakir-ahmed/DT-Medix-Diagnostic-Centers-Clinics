@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 | Staff API v1. Loaded inside the "api.v1." name prefix with the
-| auth:sanctum, abilities:staff, tenant, tenant.active and throttle:api
+| auth:sanctum, abilities:staff, branch.scope and throttle:api
 | middleware. Branch operations are prefixed /branches/{branch}.
 */
 

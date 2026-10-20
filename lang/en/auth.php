@@ -24,4 +24,7 @@ return [
     'session_expiring_message' => 'You will be signed out in :seconds seconds because of inactivity.',
     'sign_out' => 'Sign out',
     'stay_signed_in' => 'Stay signed in',
+    'demo_accounts' => 'Demo accounts',
+    'demo_accounts_hint' => 'One click signs you in. For the demo build only.',
+    'demo_login_as' => 'Sign in as :name (:role)',
 ];

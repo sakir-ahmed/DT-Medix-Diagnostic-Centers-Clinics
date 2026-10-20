@@ -13,8 +13,8 @@ const props = defineProps({
 });
 
 const page = usePage();
-const layout = computed(() => (page.props.auth?.user && page.props.tenant ? AdminLayout : GuestLayout));
-const home = computed(() => (page.props.auth?.user?.is_super_admin ? '/platform' : page.props.auth?.user ? '/admin' : '/'));
+const layout = computed(() => (page.props.auth?.user ? AdminLayout : GuestLayout));
+const home = computed(() => (page.props.auth?.user ? '/admin' : '/'));
 </script>
 
 <template>

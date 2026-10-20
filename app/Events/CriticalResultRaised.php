@@ -27,12 +27,11 @@ class CriticalResultRaised implements ShouldBroadcast
      */
     public function broadcastOn(): array
     {
-        $t = $this->item->tenant_id;
         $branchId = data_get($this->item, 'sample.branch_id', $this->item->order->branch_id);
 
         return [
-            new PrivateChannel("tenant.{$t}.branch.{$branchId}.lab"),
-            new PrivateChannel("tenant.{$t}.branch.{$branchId}.alerts"),
+            new PrivateChannel("branch.{$branchId}.lab"),
+            new PrivateChannel("branch.{$branchId}.alerts"),
         ];
     }
 

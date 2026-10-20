@@ -42,4 +42,5 @@ return [
         'tat_target_hours' => 'ডিফল্ট টিএটি লক্ষ্য',
         'collected_samples_refundable' => 'সংগৃহীত নমুনার টাকা ফেরতযোগ্য',
     ],
+    'contact_mobile' => 'যোগাযোগের মোবাইল',
 ];

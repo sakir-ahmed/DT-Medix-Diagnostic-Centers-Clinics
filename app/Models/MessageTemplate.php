@@ -5,14 +5,12 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\MessageKey;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
 
 /**
  * @property int $id
- * @property int $tenant_id
  * @property MessageKey $key
  * @property string $channel
  * @property string $body_en
@@ -22,7 +20,6 @@ use Spatie\Activitylog\Support\LogOptions;
  */
 class MessageTemplate extends Model
 {
-    use BelongsToTenant;
     use LogsActivity;
 
     protected $fillable = ['key', 'channel', 'body_en', 'body_bn', 'whatsapp_template', 'is_active'];

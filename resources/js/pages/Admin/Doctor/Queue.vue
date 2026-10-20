@@ -12,7 +12,6 @@ import { useI18n } from '@/lib/i18n';
 const props = defineProps({
     doctor: { type: Object, default: null },
     appointments: { type: Array, default: () => [] },
-    tenant_id: { type: Number, default: null },
     branch_id: { type: Number, default: null },
 });
 
@@ -30,10 +29,10 @@ let channelName = null;
 
 onMounted(() => {
     const connection = echo();
-    if (!connection || !props.tenant_id || !props.doctor) {
+    if (!connection || !props.doctor) {
         return;
     }
-    channelName = `tenant.${props.tenant_id}.doctor.${props.doctor.id}.queue`;
+    channelName = `doctor.${props.doctor.id}.queue`;
     connection.private(channelName).listen('.AppointmentUpdated', () => {
         router.reload({ only: ['appointments'], preserveScroll: true });
     });

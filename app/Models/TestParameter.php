@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\ResultType;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
- * @property int $tenant_id
  * @property int $test_id
  * @property string $code
  * @property string $name
@@ -31,8 +29,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class TestParameter extends Model
 {
-    use BelongsToTenant;
-
     protected $fillable = ['code', 'name', 'group_label', 'unit', 'result_type', 'choices', 'abnormal_values', 'formula', 'decimals', 'default_value', 'sort_order', 'is_active'];
 
     protected function casts(): array

@@ -42,4 +42,5 @@ return [
         'tat_target_hours' => 'Default turnaround target',
         'collected_samples_refundable' => 'Collected samples are refundable',
     ],
+    'contact_mobile' => 'Contact mobile',
 ];

@@ -20,7 +20,7 @@ class ScheduleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'branch_id' => ['required', 'integer', Rule::exists('branches', 'id')->where('tenant_id', tenant()?->id)],
+            'branch_id' => ['required', 'integer', Rule::exists('branches', 'id')],
             'weekday' => ['required', 'integer', 'between:0,6'],
             'start_time' => ['required', 'date_format:H:i'],
             'end_time' => ['required', 'date_format:H:i', 'after:start_time'],

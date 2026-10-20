@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Enums\InvoiceStatus;
 use App\Models\Concerns\BelongsToBranch;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,7 +18,6 @@ use Spatie\Activitylog\Support\LogOptions;
  * Money columns are recalculated by InvoiceCalculator; due is never typed.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $branch_id
  * @property int $order_id
  * @property int $patient_id
@@ -47,7 +45,6 @@ use Spatie\Activitylog\Support\LogOptions;
 class Invoice extends Model
 {
     use BelongsToBranch;
-    use BelongsToTenant;
     use LogsActivity;
 
     protected $fillable = ['branch_id', 'order_id', 'patient_id', 'invoice_no', 'discount_type', 'discount_value', 'discount_reason'];

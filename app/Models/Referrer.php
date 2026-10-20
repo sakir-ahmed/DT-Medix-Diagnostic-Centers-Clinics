@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\ReferrerType;
-use App\Models\Concerns\BelongsToTenant;
 use Database\Factories\ReferrerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +16,6 @@ use Spatie\Activitylog\Support\LogOptions;
  * Outside doctor, agent or institution that refers patients. Not a user.
  *
  * @property int $id
- * @property int $tenant_id
  * @property ReferrerType $type
  * @property string|null $code
  * @property string $name
@@ -34,8 +32,6 @@ use Spatie\Activitylog\Support\LogOptions;
  */
 class Referrer extends Model
 {
-    use BelongsToTenant;
-
     /** @use HasFactory<ReferrerFactory> */
     use HasFactory;
 

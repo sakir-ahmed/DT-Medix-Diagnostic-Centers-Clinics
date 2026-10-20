@@ -12,12 +12,11 @@ return new class extends Migration
     {
         Schema::create('sequences', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->string('key', 80);
             $table->unsignedBigInteger('value')->default(0);
             $table->timestamps();
 
-            $table->unique(['tenant_id', 'key']);
+            $table->unique(['key']);
         });
 
         Schema::table('users', function (Blueprint $table): void {
@@ -26,7 +25,6 @@ return new class extends Migration
 
         Schema::create('doctors', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->string('name');
             $table->string('name_bn')->nullable();
@@ -46,13 +44,12 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->index(['tenant_id', 'name']);
-            $table->unique(['tenant_id', 'bmdc_no']);
+            $table->index(['name']);
+            $table->unique(['bmdc_no']);
         });
 
         Schema::create('doctor_schedules', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('doctor_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
             $table->unsignedTinyInteger('weekday');
@@ -63,24 +60,22 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->index(['tenant_id', 'doctor_id', 'weekday']);
+            $table->index(['doctor_id', 'weekday']);
         });
 
         Schema::create('doctor_leaves', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('doctor_id')->constrained()->cascadeOnDelete();
             $table->date('start_date');
             $table->date('end_date');
             $table->string('reason')->nullable();
             $table->timestamps();
 
-            $table->index(['tenant_id', 'doctor_id', 'start_date']);
+            $table->index(['doctor_id', 'start_date']);
         });
 
         Schema::create('patients', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('registered_branch_id')->nullable()->constrained('branches')->nullOnDelete();
             $table->string('patient_code', 20);
             $table->string('name');
@@ -105,14 +100,13 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['tenant_id', 'patient_code']);
-            $table->index(['tenant_id', 'mobile']);
-            $table->index(['tenant_id', 'name']);
+            $table->unique(['patient_code']);
+            $table->index(['mobile']);
+            $table->index(['name']);
         });
 
         Schema::create('referrers', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->string('type', 20)->default('doctor');
             $table->string('code', 20)->nullable();
             $table->string('name');
@@ -129,9 +123,9 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->index(['tenant_id', 'name']);
-            $table->index(['tenant_id', 'mobile']);
-            $table->unique(['tenant_id', 'code']);
+            $table->index(['name']);
+            $table->index(['mobile']);
+            $table->unique(['code']);
         });
     }
 

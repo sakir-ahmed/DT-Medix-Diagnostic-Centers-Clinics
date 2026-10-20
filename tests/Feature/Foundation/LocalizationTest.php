@@ -6,8 +6,8 @@ use App\Enums\RoleName;
 use Inertia\Testing\AssertableInertia as Assert;
 
 it('switches the language and remembers it on the user', function (): void {
-    $tenant = makeTenant();
-    $user = makeUser($tenant, RoleName::Receptionist);
+    makeCenter();
+    $user = makeUser(RoleName::Receptionist);
 
     $this->actingAs($user)->post(route('locale.update'), ['locale' => 'bn'])->assertRedirect();
 

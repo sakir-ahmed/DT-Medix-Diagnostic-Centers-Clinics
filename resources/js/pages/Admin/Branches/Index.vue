@@ -1,6 +1,6 @@
 <script setup>
 import { Head, useForm } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import DataTable from '@/components/ui-kit/DataTable.vue';
 import FormField from '@/components/ui-kit/FormField.vue';
 import MobileInput from '@/components/ui-kit/MobileInput.vue';
@@ -17,8 +17,6 @@ import { useI18n } from '@/lib/i18n';
 
 const props = defineProps({
     branches: { type: Array, required: true },
-    canAdd: { type: Boolean, default: true },
-    limit: { type: Number, default: null },
 });
 
 const { t } = useI18n();
@@ -36,7 +34,6 @@ const columns = [
     { key: 'actions', label: '', type: 'actions' },
 ];
 
-const limitText = computed(() => (props.limit === null ? null : t('branches.limit_hint', { used: props.branches.length, limit: props.limit })));
 
 function edit(branch = null) {
     editing.value = branch;
@@ -70,9 +67,9 @@ function toggle(branch) {
 <template>
     <div>
         <Head :title="t('nav.branches')" />
-        <PageHeader :title="t('nav.branches')" :description="limitText">
+        <PageHeader :title="t('nav.branches')" :description="t('branches.description')">
             <template #actions>
-                <UiButton variant="primary" icon="plus" :disabled="!canAdd" :disabled-reason="t('errors.PLAN_LIMIT_REACHED')" @click="edit()">{{ t('branches.new_branch') }}</UiButton>
+                <UiButton variant="primary" icon="plus" @click="edit()">{{ t('branches.new_branch') }}</UiButton>
             </template>
         </PageHeader>
         <DataTable :columns="columns" :rows="branches" :sync-url="false" clickable @row-click="edit">

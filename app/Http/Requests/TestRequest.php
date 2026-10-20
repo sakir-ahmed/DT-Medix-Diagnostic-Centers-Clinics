@@ -28,12 +28,11 @@ class TestRequest extends FormRequest
      */
     public function rules(): array
     {
-        $tenantId = tenant()?->id;
 
         return [
-            'department_id' => ['required', 'integer', Rule::exists('departments', 'id')->where('tenant_id', $tenantId)],
-            'report_template_id' => ['nullable', 'integer', Rule::exists('report_templates', 'id')->where('tenant_id', $tenantId)],
-            'code' => ['required', 'string', 'max:20', 'alpha_dash', Rule::unique('tests', 'code')->where('tenant_id', $tenantId)->ignore($this->route('test'))],
+            'department_id' => ['required', 'integer', Rule::exists('departments', 'id')],
+            'report_template_id' => ['nullable', 'integer', Rule::exists('report_templates', 'id')],
+            'code' => ['required', 'string', 'max:20', 'alpha_dash', Rule::unique('tests', 'code')->ignore($this->route('test'))],
             'name' => ['required', 'string', 'max:150'],
             'name_bn' => ['nullable', 'string', 'max:150'],
             'sample_type' => ['nullable', Rule::in(Test::SAMPLE_TYPES)],

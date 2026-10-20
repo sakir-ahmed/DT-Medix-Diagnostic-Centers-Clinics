@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models\Concerns;
 
 use App\Models\Branch;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,7 +21,7 @@ trait BelongsToBranch
     public static function bootBelongsToBranch(): void
     {
         static::addGlobalScope('branch', function (Builder $builder): void {
-            $branchIds = app(TenantContext::class)->branchIds();
+            $branchIds = app(BranchContext::class)->branchIds();
 
             if ($branchIds !== null) {
                 $builder->whereIn($builder->qualifyColumn('branch_id'), $branchIds);
@@ -30,7 +30,7 @@ trait BelongsToBranch
 
         static::creating(function (Model $model): void {
             if ($model->getAttribute('branch_id') === null) {
-                $model->setAttribute('branch_id', app(TenantContext::class)->currentBranchId());
+                $model->setAttribute('branch_id', app(BranchContext::class)->currentBranchId());
             }
         });
     }

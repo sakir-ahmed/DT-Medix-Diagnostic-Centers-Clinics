@@ -12,7 +12,6 @@ return new class extends Migration
     {
         Schema::create('activity_log', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tenant_id')->nullable()->index();
             $table->string('log_name')->nullable()->index();
             $table->text('description');
             $table->nullableMorphs('subject', 'subject');

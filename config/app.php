@@ -32,6 +32,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Demo Mode
+    |--------------------------------------------------------------------------
+    |
+    | When true and the environment is not production, the login page lists
+    | the demo accounts and signs in with one click. Never enable in
+    | production: the check is enforced again in the demo routes.
+    |
+    */
+
+    'demo' => (bool) env('IS_DEMO', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |

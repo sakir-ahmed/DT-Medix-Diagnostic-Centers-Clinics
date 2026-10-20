@@ -7,7 +7,6 @@ namespace App\Models;
 use App\Enums\OrderItemStatus;
 use App\Enums\SampleStatus;
 use App\Models\Concerns\BelongsToBranch;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +18,6 @@ use Illuminate\Support\Carbon;
  * One sample container (BR01-260115-0042) holding one or more tests.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $branch_id
  * @property int $order_id
  * @property int $patient_id
@@ -40,7 +38,6 @@ use Illuminate\Support\Carbon;
 class Sample extends Model
 {
     use BelongsToBranch;
-    use BelongsToTenant;
 
     protected $fillable = ['branch_id', 'order_id', 'patient_id', 'sample_code', 'sample_type', 'container', 'status', 'recollection_of_id'];
 

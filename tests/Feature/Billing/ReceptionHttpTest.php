@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Actions\Catalog\SaveTestAction;
-use App\Actions\Tenants\SeedTenantDefaultsAction;
+use App\Actions\Center\SeedCenterDefaultsAction;
 use App\Enums\ApprovalStatus;
 use App\Enums\RoleName;
 use App\Models\Department;
@@ -16,18 +16,18 @@ use App\Models\Test;
 use Spatie\LaravelPdf\Facades\Pdf;
 
 beforeEach(function (): void {
-    $this->tenant = makeTenant();
-    inTenant($this->tenant, fn () => app(SeedTenantDefaultsAction::class)->execute());
-    $this->branch = mainBranch($this->tenant);
-    $this->other = makeBranch($this->tenant, 'BR02');
-    $this->department = inTenant($this->tenant, fn () => Department::query()->where('code', 'BIO')->firstOrFail());
-    $this->receptionist = makeUser($this->tenant, RoleName::Receptionist);
-    $this->manager = makeUser($this->tenant, RoleName::BranchManager, attributes: [
+    $this->center = makeCenter();
+    value(fn () => app(SeedCenterDefaultsAction::class)->execute());
+    $this->branch = mainBranch();
+    $this->other = makeBranch('BR02');
+    $this->department = value(fn () => Department::query()->where('code', 'BIO')->firstOrFail());
+    $this->receptionist = makeUser(RoleName::Receptionist);
+    $this->manager = makeUser(RoleName::BranchManager, attributes: [
         'username' => 'counter-manager',
         'approval_pin' => '2468',
     ]);
-    $this->patient = inTenant($this->tenant, fn () => Patient::factory()->create(['name' => 'Karim Ali']));
-    $this->test = inTenant($this->tenant, fn () => app(SaveTestAction::class)->execute([
+    $this->patient = value(fn () => Patient::factory()->create(['name' => 'Karim Ali']));
+    $this->test = value(fn () => app(SaveTestAction::class)->execute([
         'code' => 'CBC',
         'name' => 'CBC test',
         'department_id' => $this->department->id,
@@ -60,7 +60,7 @@ it('saves a cash order from the counter and opens the print view', function (): 
         ->assertRedirect(route('admin.reception.index'))
         ->assertSessionHas('print_order_id');
 
-    $order = inTenant($this->tenant, fn () => Order::query()->with(['invoice', 'samples'])->firstOrFail());
+    $order = value(fn () => Order::query()->with(['invoice', 'samples'])->firstOrFail());
 
     expect($order->invoice->due)->toBe('300.00')->and($order->invoice->paid)->toBe('200.00');
 
@@ -98,9 +98,9 @@ it('holds an over-limit discount until a manager approves it', function (): void
         'discount_reason' => 'Staff relative',
     ]))->assertRedirect();
 
-    $invoice = inTenant($this->tenant, fn () => Invoice::query()->firstOrFail());
+    $invoice = value(fn () => Invoice::query()->firstOrFail());
     expect($invoice->total)->toBe('500.00');
-    $request = inTenant($this->tenant, fn () => DiscountRequest::query()->firstOrFail());
+    $request = value(fn () => DiscountRequest::query()->firstOrFail());
     expect($request->status)->toBe(ApprovalStatus::Pending);
 
     $this->actingAs($this->manager)->post(route('admin.approvals.decide', $request), [
@@ -109,7 +109,7 @@ it('holds an over-limit discount until a manager approves it', function (): void
         'approval_pin' => '2468',
     ])->assertRedirect();
 
-    expect(inTenant($this->tenant, fn () => $invoice->fresh()->discount_amount))->toBe('250.00');
+    expect($invoice->fresh()->discount_amount)->toBe('250.00');
 });
 
 it('cancels an unordered line and approves the refund of cash already taken', function (): void {
@@ -117,14 +117,14 @@ it('cancels an unordered line and approves the refund of cash already taken', fu
         'payments' => [['amount' => '500.00', 'method' => 'cash']],
     ]))->assertRedirect();
 
-    $order = inTenant($this->tenant, fn () => Order::query()->with('items')->firstOrFail());
+    $order = value(fn () => Order::query()->with('items')->firstOrFail());
 
     $this->actingAs($this->receptionist)->post(route('admin.orders.cancel', $order), [
         'item_ids' => [$order->items[0]->id],
         'reason' => 'Patient left',
     ])->assertRedirect();
 
-    $refund = inTenant($this->tenant, fn () => Refund::query()->firstOrFail());
+    $refund = value(fn () => Refund::query()->firstOrFail());
     expect($refund->status)->toBe(ApprovalStatus::Pending)->and($refund->amount)->toBe('500.00');
 
     $this->actingAs($this->manager)->post(route('admin.refunds.decide', $refund), [
@@ -133,7 +133,7 @@ it('cancels an unordered line and approves the refund of cash already taken', fu
         'approval_pin' => '2468',
     ])->assertRedirect();
 
-    expect(inTenant($this->tenant, fn () => $refund->fresh()->status))->toBe(ApprovalStatus::Approved);
+    expect($refund->fresh()->status)->toBe(ApprovalStatus::Approved);
 });
 
 it('returns a pdf invoice without a portal qr', function (): void {
@@ -148,11 +148,11 @@ it('returns a pdf invoice without a portal qr', function (): void {
     Pdf::assertRespondedWithPdf(fn ($pdf): bool => $pdf->viewName === 'prints.invoice');
 });
 
-it('returns 404 for another branch and another tenant', function (): void {
+it('returns 404 for another branch', function (): void {
     $token = $this->receptionist->createToken('t', ['staff'])->plainTextToken;
     $orderId = $this->withToken($token)->postJson("/api/v1/branches/{$this->branch->id}/orders", orderPayload($this->patient, $this->test, ['payments' => []]), ['Idempotency-Key' => 'order-iso'])
         ->json('data.id');
-    $invoiceId = inTenant($this->tenant, fn () => Invoice::query()->value('id'));
+    $invoiceId = value(fn () => Invoice::query()->value('id'));
 
     $this->withToken($token)->getJson("/api/v1/branches/{$this->other->id}/orders/{$orderId}")->assertNotFound();
     $this->withToken($token)->postJson("/api/v1/branches/{$this->other->id}/orders", orderPayload($this->patient, $this->test), ['Idempotency-Key' => 'order-branch'])->assertNotFound();
@@ -161,14 +161,9 @@ it('returns 404 for another branch and another tenant', function (): void {
     $this->withToken($token)->getJson("/api/v1/branches/{$this->other->id}/invoices/{$invoiceId}/print")->assertNotFound();
     $this->withToken($token)->postJson("/api/v1/branches/{$this->other->id}/refunds", ['invoice_id' => $invoiceId, 'amount' => '1.00', 'reason' => 'No'])->assertNotFound();
 
-    $foreign = makeTenant();
-    $foreignBranch = mainBranch($foreign);
-    $this->withToken($token)->getJson("/api/v1/branches/{$foreignBranch->id}/orders/{$orderId}")->assertNotFound();
-    $this->withToken($token)->postJson("/api/v1/branches/{$foreignBranch->id}/orders", orderPayload($this->patient, $this->test), ['Idempotency-Key' => 'order-tenant'])->assertNotFound();
-
     $this->withoutToken()->actingAs($this->receptionist)->get(route('admin.orders.show', $orderId))->assertOk();
-    $foreignOrder = inTenant($foreign, fn () => Order::query()->create([
-        'branch_id' => $foreignBranch->id,
+    $foreignOrder = value(fn () => Order::query()->create([
+        'branch_id' => $this->other->id,
         'patient_id' => Patient::factory()->create()->id,
         'urgency' => 'routine',
         'status' => 'active',
@@ -177,7 +172,7 @@ it('returns 404 for another branch and another tenant', function (): void {
 });
 
 it('refuses the counter to a role that cannot create orders', function (): void {
-    $doctor = makeUser($this->tenant, RoleName::Doctor);
+    $doctor = makeUser(RoleName::Doctor);
 
     $this->actingAs($doctor)->get(route('admin.reception.index'))->assertForbidden();
     $this->actingAs($doctor)->post(route('admin.reception.store'), orderPayload($this->patient, $this->test))->assertForbidden();

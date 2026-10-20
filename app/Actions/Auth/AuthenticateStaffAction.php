@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Actions\Auth;
 
-use App\Http\Middleware\ResolveTenant;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +11,6 @@ use Illuminate\Validation\ValidationException;
 
 /**
  * Checks staff credentials (username, email or mobile) with rate limiting.
- * On a tenant host, only that tenant's users may sign in.
  */
 final class AuthenticateStaffAction
 {
@@ -25,13 +23,11 @@ final class AuthenticateStaffAction
         unset($credentials['password']);
 
         /** @var User|null $user */
-        $user = User::query()->withoutGlobalScopes()->where($credentials)->whereNull('deleted_at')->first();
-        $hostTenant = ResolveTenant::tenantFromHost($request->getHost());
+        $user = User::query()->where($credentials)->first();
 
         $valid = $user !== null
             && Hash::check($password, $user->password)
-            && $user->is_active
-            && ($hostTenant === null || $hostTenant->id === $user->tenant_id);
+            && $user->is_active;
 
         if (! $valid) {
             $request->hitRateLimiter();

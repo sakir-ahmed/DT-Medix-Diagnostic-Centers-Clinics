@@ -10,7 +10,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\MeResource;
 use App\Http\Responses\ApiResponse;
 use App\Models\User;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -25,14 +25,13 @@ class AuthController extends Controller
      *
      * @unauthenticated
      */
-    public function login(LoginRequest $request, AuthenticateStaffAction $authenticate, TenantContext $context): JsonResponse
+    public function login(LoginRequest $request, AuthenticateStaffAction $authenticate, BranchContext $context): JsonResponse
     {
         $user = $authenticate->execute($request);
         $authenticate->recordLogin($user);
 
         $token = $user->createToken((string) ($request->input('device_name') ?: 'api'), ['staff'])->plainTextToken;
 
-        $context->set($user->tenant);
         $context->restrictBranches($user->accessibleBranchIds());
 
         return ApiResponse::success([

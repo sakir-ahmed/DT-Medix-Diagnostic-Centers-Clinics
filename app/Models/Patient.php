@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\Sex;
-use App\Models\Concerns\BelongsToTenant;
 use Database\Factories\PatientFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,10 +16,9 @@ use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
 
 /**
- * A patient of the tenant (shared across its branches). Never hard-deleted.
+ * A patient of the center (shared across its branches). Never hard-deleted.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int|null $registered_branch_id
  * @property string $patient_code
  * @property string $name
@@ -46,8 +44,6 @@ use Spatie\Activitylog\Support\LogOptions;
  */
 class Patient extends Model
 {
-    use BelongsToTenant;
-
     /** @use HasFactory<PatientFactory> */
     use HasFactory;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\Tenants;
+namespace App\Actions\Center;
 
 use App\Enums\DepartmentCategory;
 use App\Enums\MessageKey;
@@ -13,9 +13,9 @@ use App\Models\ReportTemplate;
 
 /**
  * Default departments, report templates and message templates for a new
- * tenant. Runs inside the tenant context. Safe to run again.
+ * center. Safe to run again.
  */
-final class SeedTenantDefaultsAction
+final class SeedCenterDefaultsAction
 {
     public function execute(): void
     {

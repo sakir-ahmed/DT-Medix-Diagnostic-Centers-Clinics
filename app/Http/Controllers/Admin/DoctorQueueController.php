@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
 use App\Models\Doctor;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,7 +18,7 @@ use Inertia\Response;
 
 class DoctorQueueController extends Controller
 {
-    public function index(Request $request, TenantContext $context): Response
+    public function index(Request $request, BranchContext $context): Response
     {
         $doctor = Doctor::query()->where('user_id', $request->user()?->getAuthIdentifier())->first();
 
@@ -33,12 +33,11 @@ class DoctorQueueController extends Controller
         return Inertia::render('Admin/Doctor/Queue', [
             'doctor' => $doctor === null ? null : ['id' => $doctor->id, 'name' => $doctor->name],
             'appointments' => AppointmentResource::collection($appointments)->resolve(),
-            'tenant_id' => tenant()?->id,
             'branch_id' => $context->currentBranchId(),
         ]);
     }
 
-    public function next(Request $request, ChangeAppointmentStatusAction $change, TenantContext $context): RedirectResponse
+    public function next(Request $request, ChangeAppointmentStatusAction $change, BranchContext $context): RedirectResponse
     {
         $doctor = Doctor::query()->where('user_id', $request->user()?->getAuthIdentifier())->first();
         abort_if($doctor === null || $context->currentBranchId() === null, 404);

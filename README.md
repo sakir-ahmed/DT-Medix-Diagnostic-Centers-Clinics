@@ -155,7 +155,7 @@ Center roles: `owner`, `branch-manager`, `receptionist`, `sample-collector`, `la
 - Schedule encrypted daily backups and test a restore before going live.
 - Confirm data protection, health records, referral commission and VAT or invoice rules with a legal advisor and the client's accountant.
 
-Note: the Phase 0-3 migrations still carry `tenant_id` columns and a `tenants` table from the earlier SaaS design; removing them is tracked separately.
+The schema has no `tenant_id` and no `tenants` table: one installation is one center (`centers` holds the single profile row). Set `CENTER_*`, `SUPER_ADMIN_*` and, for demo builds, `DEMO_PASSWORD` plus `IS_DEMO=true` in `.env` before seeding.
 
 ---
 

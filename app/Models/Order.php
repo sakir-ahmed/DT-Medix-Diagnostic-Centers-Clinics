@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Concerns\BelongsToBranch;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,7 +16,6 @@ use Illuminate\Support\Carbon;
  * A test order for one patient visit. Billed by exactly one invoice.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $branch_id
  * @property int $patient_id
  * @property int|null $appointment_id
@@ -36,7 +34,6 @@ use Illuminate\Support\Carbon;
 class Order extends Model
 {
     use BelongsToBranch;
-    use BelongsToTenant;
 
     protected $fillable = ['branch_id', 'patient_id', 'appointment_id', 'referrer_id', 'urgency', 'status', 'notes', 'created_by'];
 

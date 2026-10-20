@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -14,7 +13,6 @@ use Illuminate\Support\Carbon;
  * at entry time, so later catalog changes never alter old reports.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $order_item_id
  * @property int $test_parameter_id
  * @property int $patient_id
@@ -41,8 +39,6 @@ use Illuminate\Support\Carbon;
  */
 class TestResult extends Model
 {
-    use BelongsToTenant;
-
     protected $fillable = [
         'order_item_id', 'test_parameter_id', 'patient_id', 'code', 'name', 'unit', 'result_type', 'value', 'flag',
         'range_low', 'range_high', 'range_critical_low', 'range_critical_high', 'range_text', 'remarks',

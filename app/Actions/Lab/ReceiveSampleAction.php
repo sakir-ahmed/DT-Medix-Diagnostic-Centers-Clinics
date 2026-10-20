@@ -10,7 +10,7 @@ use App\Events\SampleUpdated;
 use App\Exceptions\DomainException;
 use App\Models\Sample;
 use App\Models\User;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
  */
 final class ReceiveSampleAction
 {
-    public function __construct(private readonly TenantContext $context) {}
+    public function __construct(private readonly BranchContext $context) {}
 
     public function execute(Sample $sample, ?User $actor = null): Sample
     {

@@ -18,5 +18,5 @@ return [
     'staff_count' => 'Staff',
     'license_no' => 'License / registration no.',
     'code_helper' => 'Short code used in invoice and sample numbers, for example BR02.',
-    'limit_hint' => ':used of :limit branches used on your plan.',
+    'description' => 'Branches of this center. Non-owner staff see only their assigned branches.',
 ];

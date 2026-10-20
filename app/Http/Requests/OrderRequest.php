@@ -24,16 +24,15 @@ class OrderRequest extends FormRequest
      */
     public function rules(): array
     {
-        $tenantId = tenant()?->id;
 
         return [
-            'patient_id' => ['required', 'integer', Rule::exists('patients', 'id')->where('tenant_id', $tenantId)],
+            'patient_id' => ['required', 'integer', Rule::exists('patients', 'id')],
             'test_ids' => ['array'],
-            'test_ids.*' => ['integer', Rule::exists('tests', 'id')->where('tenant_id', $tenantId)->where('is_active', true)],
+            'test_ids.*' => ['integer', Rule::exists('tests', 'id')->where('is_active', true)],
             'package_ids' => ['array'],
-            'package_ids.*' => ['integer', Rule::exists('packages', 'id')->where('tenant_id', $tenantId)->where('is_active', true)],
-            'appointment_id' => ['nullable', 'integer', Rule::exists('appointments', 'id')->where('tenant_id', $tenantId)],
-            'referrer_id' => ['nullable', 'integer', Rule::exists('referrers', 'id')->where('tenant_id', $tenantId)],
+            'package_ids.*' => ['integer', Rule::exists('packages', 'id')->where('is_active', true)],
+            'appointment_id' => ['nullable', 'integer', Rule::exists('appointments', 'id')],
+            'referrer_id' => ['nullable', 'integer', Rule::exists('referrers', 'id')],
             'urgency' => ['nullable', Rule::in(['routine', 'urgent'])],
             'notes' => ['nullable', 'string', 'max:500'],
             'discount_type' => ['nullable', Rule::in(['percent', 'fixed'])],

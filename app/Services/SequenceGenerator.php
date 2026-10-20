@@ -36,7 +36,7 @@ final class SequenceGenerator
     }
 
     /**
-     * Patient ID: P-26-000123 (per tenant and year).
+     * Patient ID: P-26-000123 (per year).
      */
     public function patientCode(): string
     {

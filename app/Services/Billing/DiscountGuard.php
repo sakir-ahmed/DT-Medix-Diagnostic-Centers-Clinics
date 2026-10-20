@@ -8,7 +8,7 @@ use App\Support\Money;
 
 /**
  * Turns a percent or fixed discount into an amount and says whether it
- * sits above the tenant's approval limit. A free case is 100 percent.
+ * sits above the center's approval limit. A free case is 100 percent.
  */
 final class DiscountGuard
 {
@@ -44,7 +44,7 @@ final class DiscountGuard
             return null;
         }
 
-        $limit = (string) (tenant()?->setting('discount_limit_percent') ?? 10);
+        $limit = (string) (center()?->setting('discount_limit_percent') ?? 10);
 
         return [
             'type' => $type,

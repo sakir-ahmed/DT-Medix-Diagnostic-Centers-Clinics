@@ -12,7 +12,6 @@ return new class extends Migration
     {
         Schema::create('test_results', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('order_item_id')->constrained()->cascadeOnDelete();
             $table->foreignId('test_parameter_id')->constrained()->restrictOnDelete();
             $table->foreignId('patient_id')->constrained()->cascadeOnDelete();
@@ -35,25 +34,23 @@ return new class extends Migration
             $table->foreignId('entered_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
 
-            $table->unique(['tenant_id', 'order_item_id', 'test_parameter_id']);
-            $table->index(['tenant_id', 'patient_id', 'test_parameter_id']);
-            $table->index(['tenant_id', 'flag']);
+            $table->unique(['order_item_id', 'test_parameter_id']);
+            $table->index(['patient_id', 'test_parameter_id']);
+            $table->index(['flag']);
         });
 
         Schema::create('narrative_results', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('order_item_id')->constrained()->cascadeOnDelete();
             $table->text('findings')->nullable();
             $table->text('impression')->nullable();
             $table->timestamps();
 
-            $table->unique(['tenant_id', 'order_item_id']);
+            $table->unique(['order_item_id']);
         });
 
         Schema::create('result_attachments', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('order_item_id')->constrained()->cascadeOnDelete();
             $table->string('path');
             $table->string('original_name');
@@ -62,7 +59,7 @@ return new class extends Migration
             $table->foreignId('uploaded_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
 
-            $table->index(['tenant_id', 'order_item_id']);
+            $table->index(['order_item_id']);
         });
     }
 

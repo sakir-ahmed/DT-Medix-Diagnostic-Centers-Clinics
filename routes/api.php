@@ -12,12 +12,12 @@ Route::prefix('v1')->name('api.v1.')->group(function (): void {
         Route::post('/otp/send', [OtpController::class, 'send'])->name('otp.send');
         Route::post('/otp/verify', [OtpController::class, 'verify'])->middleware('throttle:login')->name('otp.verify');
 
-        Route::middleware(['auth:sanctum', 'abilities:staff', 'tenant'])->group(function (): void {
+        Route::middleware(['auth:sanctum', 'abilities:staff', 'branch.scope'])->group(function (): void {
             Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
             Route::get('/me', [AuthController::class, 'me'])->name('me');
         });
     });
 
-    Route::middleware(['auth:sanctum', 'abilities:staff', 'tenant', 'tenant.active', 'throttle:api'])
+    Route::middleware(['auth:sanctum', 'abilities:staff', 'branch.scope', 'throttle:api'])
         ->group(base_path('routes/api_v1.php'));
 });

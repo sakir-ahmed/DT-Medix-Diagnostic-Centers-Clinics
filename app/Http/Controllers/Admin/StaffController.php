@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StaffRequest;
 use App\Models\Branch;
 use App\Models\User;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ use Inertia\Response;
 
 class StaffController extends Controller
 {
-    public function index(Request $request, TenantContext $context): Response
+    public function index(Request $request, BranchContext $context): Response
     {
         /** @var User $actor */
         $actor = $request->user();
@@ -68,7 +68,7 @@ class StaffController extends Controller
         return back()->with('success', __('staff.created'));
     }
 
-    public function update(StaffRequest $request, User $staff, SaveStaffAction $save, TenantContext $context): RedirectResponse
+    public function update(StaffRequest $request, User $staff, SaveStaffAction $save, BranchContext $context): RedirectResponse
     {
         $this->ensureVisible($staff, $context);
         /** @var User $actor */
@@ -80,7 +80,7 @@ class StaffController extends Controller
         return back()->with('success', __('staff.updated'));
     }
 
-    private function ensureVisible(User $staff, TenantContext $context): void
+    private function ensureVisible(User $staff, BranchContext $context): void
     {
         $branchIds = $context->branchIds();
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -15,7 +14,6 @@ use Illuminate\Support\Carbon;
  * with the patient's completed age in that unit.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $test_parameter_id
  * @property string $sex
  * @property int $age_min
@@ -29,8 +27,6 @@ use Illuminate\Support\Carbon;
  */
 class ReferenceRange extends Model
 {
-    use BelongsToTenant;
-
     public const AGE_UNITS = ['days', 'months', 'years'];
 
     protected $fillable = ['sex', 'age_min', 'age_max', 'age_unit', 'low', 'high', 'critical_low', 'critical_high', 'display_text'];

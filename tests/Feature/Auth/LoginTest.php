@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use PragmaRX\Google2FA\Google2FA;
 
 beforeEach(function (): void {
-    $this->tenant = makeTenant(['slug' => 'alpha']);
-    $this->user = makeUser($this->tenant, RoleName::Receptionist, attributes: [
+    $this->center = makeCenter();
+    $this->user = makeUser(RoleName::Receptionist, attributes: [
         'username' => 'rina', 'email' => 'rina@example.test', 'mobile' => '8801712345678', 'password' => 'secret-pass',
     ]);
 });
@@ -31,13 +31,6 @@ it('rejects inactive users', function (): void {
     $this->user->forceFill(['is_active' => false])->save();
 
     $this->post(route('login.store'), ['login' => 'rina', 'password' => 'secret-pass'])->assertSessionHasErrors('login');
-    $this->assertGuest();
-});
-
-it('rejects users of another tenant on a tenant host', function (): void {
-    makeTenant(['slug' => 'beta']);
-
-    $this->post('http://beta.dtmedix.test/login', ['login' => 'rina', 'password' => 'secret-pass'])->assertSessionHasErrors('login');
     $this->assertGuest();
 });
 
@@ -87,7 +80,7 @@ it('issues and revokes an API token', function (): void {
     $response = $this->postJson('/api/v1/auth/login', ['login' => 'rina', 'password' => 'secret-pass'])
         ->assertOk()
         ->assertJsonPath('success', true)
-        ->assertJsonStructure(['data' => ['token', 'user' => ['roles', 'permissions', 'branches', 'tenant' => ['plan', 'modules']]]]);
+        ->assertJsonStructure(['data' => ['token', 'user' => ['roles', 'permissions', 'branches', 'center' => ['id', 'name']]]]);
 
     $token = $response->json('data.token');
 

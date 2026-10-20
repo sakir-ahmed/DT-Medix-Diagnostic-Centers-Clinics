@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 |   php artisan test --group=performance
 */
 it('searches 500,000 patients by mobile, name and ID in under 300 ms', function (): void {
-    $tenant = makeTenant();
+    makeCenter();
     $now = now()->toDateTimeString();
     $names = ['Rahim', 'Karim', 'Fatema', 'Ayesha', 'Hasan', 'Nusrat', 'Sabbir', 'Mitu', 'Jamal', 'Rupa'];
     $rows = [];
@@ -19,7 +19,6 @@ it('searches 500,000 patients by mobile, name and ID in under 300 ms', function 
     DB::disableQueryLog();
     for ($i = 1; $i <= 500000; $i++) {
         $rows[] = [
-            'tenant_id' => $tenant->id,
             'patient_code' => sprintf('P-26-%06d', $i),
             'name' => $names[$i % 10].' '.$names[($i * 7) % 10].' '.$i,
             'sex' => $i % 2 === 0 ? 'male' : 'female',
@@ -39,7 +38,7 @@ it('searches 500,000 patients by mobile, name and ID in under 300 ms', function 
 
     foreach (['01700250000', 'Fatema Has', 'P-26-499999'] as $term) {
         $start = hrtime(true);
-        $found = inTenant($tenant, fn () => Patient::query()->search($term)->orderByDesc('id')->limit(10)->get());
+        $found = value(fn () => Patient::query()->search($term)->orderByDesc('id')->limit(10)->get());
         $elapsedMs = (hrtime(true) - $start) / 1e6;
 
         expect($found)->not->toBeEmpty()

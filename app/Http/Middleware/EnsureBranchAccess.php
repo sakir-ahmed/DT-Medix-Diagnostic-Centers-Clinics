@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use App\Models\Branch;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Branch routes 404 unless the branch belongs to the tenant and the user
+ * Branch routes 404 unless the branch exists and the user
  * may work in it. The resolved branch becomes the current branch.
  */
 class EnsureBranchAccess
 {
-    public function __construct(private readonly TenantContext $context) {}
+    public function __construct(private readonly BranchContext $context) {}
 
     public function handle(Request $request, Closure $next): Response
     {

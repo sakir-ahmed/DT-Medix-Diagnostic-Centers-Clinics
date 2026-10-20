@@ -6,8 +6,8 @@ namespace App\Http\Middleware;
 
 use App\Models\Branch;
 use App\Models\User;
+use App\Support\BranchContext;
 use App\Support\Navigation;
-use App\Support\Tenancy\TenantContext;
 use App\Support\Translations;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -23,7 +23,7 @@ class HandleInertiaRequests extends Middleware
      *
      * @var list<string>
      */
-    protected $withoutSsr = ['admin', 'admin/*', 'platform', 'platform/*', 'login', 'two-factor*', 'portal/*', 'profile*'];
+    protected $withoutSsr = ['admin', 'admin/*', 'login', 'two-factor*', 'portal/*', 'profile*'];
 
     public function version(Request $request): ?string
     {
@@ -35,8 +35,8 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $context = app(TenantContext::class);
-        $tenant = $context->tenant();
+        $context = app(BranchContext::class);
+        $center = center();
         /** @var User|null $user */
         $user = $request->user('web');
 
@@ -46,7 +46,7 @@ class HandleInertiaRequests extends Middleware
                 'name' => config('app.name'),
                 'locale' => app()->getLocale(),
                 'locales' => ['en', 'bn'],
-                'idle_timeout' => (int) ($tenant?->setting('idle_timeout_minutes') ?? 15),
+                'idle_timeout' => (int) ($center?->setting('idle_timeout_minutes') ?? 15),
             ],
             'translations' => fn (): array => Translations::for(app()->getLocale()),
             'auth' => fn (): ?array => $user === null ? null : [
@@ -57,33 +57,27 @@ class HandleInertiaRequests extends Middleware
                     'username' => $user->username,
                     'locale' => $user->locale,
                     'two_factor' => $user->hasTwoFactorEnabled(),
-                    'is_super_admin' => $tenant === null && $user->isSuperAdmin(),
+                    'is_super_admin' => $user->isSuperAdmin(),
                 ],
-                'roles' => $tenant === null ? [] : $user->getRoleNames()->values()->all(),
-                'permissions' => $tenant === null ? [] : $user->getAllPermissions()->pluck('name')->values()->all(),
+                'roles' => $user->getRoleNames()->values()->all(),
+                'permissions' => $user->getAllPermissions()->pluck('name')->values()->all(),
             ],
-            'tenant' => fn (): ?array => $tenant === null ? null : [
-                'id' => $tenant->id,
-                'name' => $tenant->name,
-                'name_bn' => $tenant->name_bn,
-                'plan' => $tenant->plan->value,
-                'status' => $tenant->status->value,
-                'trial_days_left' => $tenant->trialDaysLeft(),
-                'read_only' => $tenant->isReadOnly(),
-                'modules' => $tenant->enabledModules(),
+            'center' => fn (): ?array => $center === null ? null : [
+                'id' => $center->id,
+                'name' => $center->name,
+                'name_bn' => $center->name_bn,
             ],
-            'branches' => fn (): array => $tenant === null || $user === null ? [] : Branch::query()
+            'branches' => fn (): array => $user === null ? [] : Branch::query()
                 ->where('is_active', true)
                 ->orderBy('code')
                 ->get(['id', 'code', 'name'])
                 ->map(fn (Branch $branch): array => ['id' => $branch->id, 'code' => $branch->code, 'name' => $branch->name])
                 ->all(),
             'current_branch_id' => $context->currentBranchId(),
-            'navigation' => fn (): array => $user === null || $tenant === null ? [] : Navigation::for($user, $tenant),
-            'ziggy' => fn (): ?array => $request->is('admin', 'admin/*', 'platform', 'platform/*')
+            'navigation' => fn (): array => $user === null ? [] : Navigation::for($user),
+            'ziggy' => fn (): ?array => $request->is('admin', 'admin/*')
                 ? null
                 : [...(new Ziggy)->toArray(), 'location' => $request->url()],
-            'impersonating' => $request->hasSession() && $request->session()->has('impersonator_id'),
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
                 'error' => fn () => $request->session()->get('error'),

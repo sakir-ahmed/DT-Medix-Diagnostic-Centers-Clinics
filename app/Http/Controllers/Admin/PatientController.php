@@ -162,7 +162,7 @@ class PatientController extends Controller
         abort_if($patient->photo_path === null, 404);
         $logger->log($patient->id, 'photo');
 
-        return Storage::disk((string) config('tenancy.storage_disk'))->response($patient->photo_path, null, [
+        return Storage::disk((string) config('center.storage_disk'))->response($patient->photo_path, null, [
             'Cache-Control' => 'private, max-age=300',
         ]);
     }

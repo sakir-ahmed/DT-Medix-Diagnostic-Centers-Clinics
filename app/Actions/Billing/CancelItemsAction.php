@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Cancels order lines. Lines not yet collected cancel with a reason.
- * Collected lines cancel only when the tenant allows a refund and a
+ * Collected lines cancel only when the center allows a refund and a
  * manager approves with login and PIN.
  */
 final class CancelItemsAction
@@ -50,7 +50,7 @@ final class CancelItemsAction
             $collected = $items->contains(fn (OrderItem $item): bool => $item->status->isCollected());
 
             if ($collected) {
-                if (! (bool) tenant()?->setting('collected_samples_refundable')) {
+                if (! (bool) center()?->setting('collected_samples_refundable')) {
                     throw DomainException::make('COLLECTED_NOT_REFUNDABLE', 409);
                 }
 

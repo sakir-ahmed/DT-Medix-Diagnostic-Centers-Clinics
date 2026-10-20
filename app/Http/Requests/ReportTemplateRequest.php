@@ -23,7 +23,7 @@ class ReportTemplateRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:150'],
             'type' => ['required', Rule::enum(ReportStyle::class)],
-            'department_id' => ['nullable', 'integer', Rule::exists('departments', 'id')->where('tenant_id', tenant()?->id)],
+            'department_id' => ['nullable', 'integer', Rule::exists('departments', 'id')],
             'options' => ['nullable', 'array'],
             'options.*' => ['boolean'],
             'default_findings' => ['nullable', 'string', 'max:10000'],

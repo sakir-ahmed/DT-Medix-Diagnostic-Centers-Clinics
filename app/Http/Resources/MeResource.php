@@ -19,8 +19,6 @@ class MeResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $tenant = $this->tenant;
-
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -35,13 +33,9 @@ class MeResource extends JsonResource
                 'code' => $branch->code,
                 'name' => $branch->name,
             ])->all(),
-            'tenant' => $tenant === null ? null : [
-                'id' => $tenant->id,
-                'name' => $tenant->name,
-                'plan' => $tenant->plan->value,
-                'status' => $tenant->status->value,
-                'trial_days_left' => $tenant->trialDaysLeft(),
-                'modules' => $tenant->enabledModules(),
+            'center' => center() === null ? null : [
+                'id' => center()->id,
+                'name' => center()->name,
             ],
         ];
     }

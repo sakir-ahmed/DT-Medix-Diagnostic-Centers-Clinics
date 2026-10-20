@@ -7,8 +7,7 @@ namespace App\Actions\Staff;
 use App\Enums\RoleName;
 use App\Exceptions\DomainException;
 use App\Models\User;
-use App\Services\PlanGate;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -17,7 +16,7 @@ use Illuminate\Support\Facades\DB;
  */
 final class SaveStaffAction
 {
-    public function __construct(private readonly PlanGate $planGate, private readonly TenantContext $context) {}
+    public function __construct(private readonly BranchContext $context) {}
 
     /**
      * Roles the acting user may assign.
@@ -27,7 +26,7 @@ final class SaveStaffAction
     public static function assignableRoles(User $actor): array
     {
         if ($actor->can('branches.all') && $actor->can('settings.manage')) {
-            return array_map(fn (RoleName $role): string => $role->value, RoleName::tenantRoles());
+            return array_map(fn (RoleName $role): string => $role->value, RoleName::staffRoles());
         }
 
         return [
@@ -49,12 +48,6 @@ final class SaveStaffAction
 
         if ($allowedBranches !== null && array_diff($data['branch_ids'], $allowedBranches) !== []) {
             abort(404);
-        }
-
-        if ($staff === null) {
-            $tenant = $this->context->tenant();
-            abort_if($tenant === null, 404);
-            $this->planGate->ensureCanAddUser($tenant);
         }
 
         return DB::transaction(function () use ($data, $staff): User {

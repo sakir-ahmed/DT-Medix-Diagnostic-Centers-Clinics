@@ -17,7 +17,7 @@ use App\Models\ReferenceRange;
 use App\Models\ReportTemplate;
 use App\Models\Test;
 use App\Services\Catalog\PriceResolver;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -74,7 +74,7 @@ class TestController extends Controller
      * Type-ahead for the reception counter: tests and packages (packages
      * expand into their tests) with price, TAT, sample and preparation.
      */
-    public function lookup(Request $request, PriceResolver $prices, TenantContext $context): JsonResponse
+    public function lookup(Request $request, PriceResolver $prices, BranchContext $context): JsonResponse
     {
         $q = trim((string) $request->query('q', ''));
         $branchId = $context->currentBranchId();

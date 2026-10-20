@@ -76,8 +76,8 @@ it('limits sends to five per hour per IP and mobile', function (): void {
 });
 
 it('signs staff in by OTP through the API', function (): void {
-    $tenant = makeTenant();
-    makeUser($tenant, RoleName::Receptionist, attributes: ['mobile' => '8801712345678']);
+    makeCenter();
+    makeUser(RoleName::Receptionist, attributes: ['mobile' => '8801712345678']);
     $code = null;
 
     $this->postJson('/api/v1/auth/otp/send', ['mobile' => '01712345678'])->assertOk();

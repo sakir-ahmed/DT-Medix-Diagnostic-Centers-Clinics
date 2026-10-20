@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 class DoctorController extends Controller
 {
     /**
-     * Active doctors of the tenant.
+     * Active doctors of the center.
      */
     public function index(Request $request): JsonResponse
     {

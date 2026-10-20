@@ -21,7 +21,6 @@ const props = defineProps({
     doctors: { type: Array, default: () => [] },
     appointments: { type: Array, default: () => [] },
     slots: { type: Array, default: () => [] },
-    tenant_id: { type: Number, default: null },
     branch_id: { type: Number, default: null },
 });
 
@@ -54,10 +53,10 @@ let channelName = null;
 
 onMounted(() => {
     const connection = echo();
-    if (!connection || !props.tenant_id || !props.branch_id) {
+    if (!connection || !props.branch_id) {
         return;
     }
-    channelName = `tenant.${props.tenant_id}.branch.${props.branch_id}.reception`;
+    channelName = `branch.${props.branch_id}.reception`;
     connection.private(channelName).listen('.AppointmentUpdated', () => {
         router.reload({ only: ['appointments', 'slots'], preserveScroll: true });
     });

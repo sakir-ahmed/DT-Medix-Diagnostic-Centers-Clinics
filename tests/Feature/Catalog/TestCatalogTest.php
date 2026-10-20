@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Actions\Catalog\SaveTestAction;
-use App\Actions\Tenants\SeedTenantDefaultsAction;
+use App\Actions\Center\SeedCenterDefaultsAction;
 use App\Enums\RoleName;
 use App\Models\BranchTestPrice;
 use App\Models\Department;
@@ -12,10 +12,10 @@ use App\Models\Test;
 use Inertia\Testing\AssertableInertia as Assert;
 
 beforeEach(function (): void {
-    $this->tenant = makeTenant();
-    inTenant($this->tenant, fn () => app(SeedTenantDefaultsAction::class)->execute());
-    $this->manager = makeUser($this->tenant, RoleName::BranchManager);
-    $this->department = inTenant($this->tenant, fn () => Department::query()->where('code', 'BIO')->firstOrFail());
+    $this->center = makeCenter();
+    value(fn () => app(SeedCenterDefaultsAction::class)->execute());
+    $this->manager = makeUser(RoleName::BranchManager);
+    $this->department = value(fn () => Department::query()->where('code', 'BIO')->firstOrFail());
 });
 
 function testPayload(int $departmentId, array $overrides = []): array
@@ -35,7 +35,7 @@ function testPayload(int $departmentId, array $overrides = []): array
 it('creates a test with parameters, ranges and critical limits', function (): void {
     $this->actingAs($this->manager)->post(route('admin.tests.store'), testPayload($this->department->id))->assertSessionHasNoErrors()->assertRedirect();
 
-    $test = inTenant($this->tenant, fn () => Test::query()->with('parameters.ranges')->where('code', 'LIPID')->firstOrFail());
+    $test = value(fn () => Test::query()->with('parameters.ranges')->where('code', 'LIPID')->firstOrFail());
 
     expect($test->price)->toBe('1200.00')
         ->and($test->parameters->pluck('code')->all())->toBe(['TC', 'TG', 'HDL', 'LDL'])
@@ -45,7 +45,7 @@ it('creates a test with parameters, ranges and critical limits', function (): vo
 
 it('updates parameters and removes the ones left out', function (): void {
     $this->actingAs($this->manager)->post(route('admin.tests.store'), testPayload($this->department->id));
-    $test = inTenant($this->tenant, fn () => Test::query()->with('parameters')->firstOrFail());
+    $test = value(fn () => Test::query()->with('parameters')->firstOrFail());
 
     $payload = testPayload($this->department->id);
     $payload['parameters'] = [array_merge($payload['parameters'][0], ['id' => $test->parameters[0]->id, 'name' => 'Cholesterol, total'])];
@@ -61,7 +61,7 @@ it('rejects formulas that reference unknown codes or unsafe characters', functio
     $payload['parameters'][3]['formula'] = $formula;
 
     $this->actingAs($this->manager)->post(route('admin.tests.store'), $payload)->assertSessionHas('error_code', 'INVALID_FORMULA');
-    expect(inTenant($this->tenant, fn () => Test::query()->count()))->toBe(0);
+    expect(value(fn () => Test::query()->count()))->toBe(0);
 })->with(['{TC} - {XYZ}', '{TC}; system()', 'no codes']);
 
 it('validates ranges and duplicate codes', function (): void {
@@ -74,12 +74,12 @@ it('validates ranges and duplicate codes', function (): void {
 });
 
 it('stores optional branch prices used at the counter', function (): void {
-    $branch = mainBranch($this->tenant);
+    $branch = mainBranch();
     $payload = testPayload($this->department->id, ['branch_prices' => [$branch->id => '1100']]);
 
     $this->actingAs($this->manager)->post(route('admin.tests.store'), $payload)->assertSessionHasNoErrors();
 
-    expect(inTenant($this->tenant, fn () => BranchTestPrice::query()->value('price')))->toBe('1100.00');
+    expect(value(fn () => BranchTestPrice::query()->value('price')))->toBe('1100.00');
 
     $this->actingAs($this->manager)->getJson(route('admin.tests.lookup', ['q' => 'LIPID']))
         ->assertOk()->assertJsonPath('results.0.price', '1100.00');
@@ -87,11 +87,11 @@ it('stores optional branch prices used at the counter', function (): void {
 
 it('expands a package into its tests in the counter lookup', function (): void {
     $action = app(SaveTestAction::class);
-    $ids = inTenant($this->tenant, fn () => collect(['FBS', 'HBA1C', 'CREAT'])->map(fn ($code) => $action->execute(['code' => $code, 'name' => $code.' test', 'department_id' => $this->department->id, 'price' => '300', 'tat_hours' => 4])->id)->all());
+    $ids = value(fn () => collect(['FBS', 'HBA1C', 'CREAT'])->map(fn ($code) => $action->execute(['code' => $code, 'name' => $code.' test', 'department_id' => $this->department->id, 'price' => '300', 'tat_hours' => 4])->id)->all());
 
     $this->actingAs($this->manager)->post(route('admin.packages.store'), ['code' => 'DIAB', 'name' => 'Diabetes Panel', 'price' => '800', 'test_ids' => $ids])->assertSessionHasNoErrors();
 
-    $package = inTenant($this->tenant, fn () => Package::query()->with('tests')->firstOrFail());
+    $package = value(fn () => Package::query()->with('tests')->firstOrFail());
     expect($package->tests->pluck('code')->sort()->values()->all())->toBe(['CREAT', 'FBS', 'HBA1C']);
 
     $this->actingAs($this->manager)->getJson(route('admin.tests.lookup', ['q' => 'Diab']))
@@ -101,35 +101,11 @@ it('expands a package into its tests in the counter lookup', function (): void {
         ->assertJsonCount(3, 'results.0.tests');
 });
 
-it('rejects a package with tests of another tenant', function (): void {
-    $foreign = inTenant(makeTenant(), function () {
-        app(SeedTenantDefaultsAction::class)->execute();
-
-        return app(SaveTestAction::class)->execute(['code' => 'X', 'name' => 'X', 'department_id' => Department::query()->value('id'), 'price' => '1', 'tat_hours' => 1]);
-    });
-    $own = inTenant($this->tenant, fn () => app(SaveTestAction::class)->execute(['code' => 'Y', 'name' => 'Y', 'department_id' => $this->department->id, 'price' => '1', 'tat_hours' => 1]));
-
-    $this->actingAs($this->manager)->post(route('admin.packages.store'), ['code' => 'P', 'name' => 'P', 'price' => '1', 'test_ids' => [$own->id, $foreign->id]])
-        ->assertSessionHasErrors('test_ids.1');
-});
-
 it('lets technicians view the catalog but not change it', function (): void {
-    $tech = makeUser($this->tenant, RoleName::LabTechnician);
+    $tech = makeUser(RoleName::LabTechnician);
 
     $this->actingAs($tech)->get(route('admin.tests.index'))->assertOk();
     $this->actingAs($tech)->post(route('admin.tests.store'), testPayload($this->department->id))->assertForbidden();
-});
-
-it('returns 404 for tests of another tenant', function (): void {
-    $foreign = inTenant(makeTenant(), function () {
-        app(SeedTenantDefaultsAction::class)->execute();
-
-        return app(SaveTestAction::class)->execute(['code' => 'X', 'name' => 'X', 'department_id' => Department::query()->value('id'), 'price' => '1', 'tat_hours' => 1]);
-    });
-    $token = $this->manager->createToken('t', ['staff'])->plainTextToken;
-
-    $this->actingAs($this->manager)->get(route('admin.tests.edit', $foreign))->assertNotFound();
-    $this->withToken($token)->getJson("/api/v1/tests/{$foreign->id}/parameters")->assertNotFound();
 });
 
 it('manages tests and packages through the API', function (): void {

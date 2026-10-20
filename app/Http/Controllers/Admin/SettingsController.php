@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\Settings\UpdateTenantSettingsAction;
+use App\Actions\Settings\UpdateCenterSettingsAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SettingsRequest;
 use Illuminate\Http\RedirectResponse;
@@ -15,27 +15,27 @@ class SettingsController extends Controller
 {
     public function edit(): Response
     {
-        $tenant = tenant();
-        abort_if($tenant === null, 404);
+        $center = center();
+        abort_if($center === null, 404);
 
         return Inertia::render('Admin/Settings/Edit', [
             'center' => [
-                'name' => $tenant->name,
-                'name_bn' => $tenant->name_bn,
-                'contact_mobile' => $tenant->contact_mobile === null ? null : substr($tenant->contact_mobile, 2),
-                'contact_email' => $tenant->contact_email,
-                'address' => $tenant->address,
+                'name' => $center->name,
+                'name_bn' => $center->name_bn,
+                'contact_mobile' => $center->contact_mobile === null ? null : substr($center->contact_mobile, 2),
+                'contact_email' => $center->contact_email,
+                'address' => $center->address,
             ],
-            'settings' => $tenant->allSettings(),
+            'settings' => $center->allSettings(),
         ]);
     }
 
-    public function update(SettingsRequest $request, UpdateTenantSettingsAction $update): RedirectResponse
+    public function update(SettingsRequest $request, UpdateCenterSettingsAction $update): RedirectResponse
     {
-        $tenant = tenant();
-        abort_if($tenant === null, 404);
+        $center = center();
+        abort_if($center === null, 404);
 
-        $update->execute($tenant, $request->validated());
+        $update->execute($center, $request->validated());
 
         return back()->with('success', __('settings.saved'));
     }

@@ -30,7 +30,7 @@ class StaffRequest extends FormRequest
     public function rules(): array
     {
         $staff = $this->route('staff');
-        $roles = array_map(fn (RoleName $role): string => $role->value, RoleName::tenantRoles());
+        $roles = array_map(fn (RoleName $role): string => $role->value, RoleName::staffRoles());
 
         return [
             'name' => ['required', 'string', 'max:150'],
@@ -42,7 +42,7 @@ class StaffRequest extends FormRequest
             'password' => [$staff === null ? 'required' : 'nullable', 'string', Password::defaults()],
             'role' => ['required', Rule::in($roles)],
             'branch_ids' => ['required', 'array', 'min:1'],
-            'branch_ids.*' => ['integer', Rule::exists('branches', 'id')->where('tenant_id', tenant()?->id)],
+            'branch_ids.*' => ['integer', Rule::exists('branches', 'id')],
             'is_active' => ['boolean'],
             'locale' => ['nullable', Rule::in(['en', 'bn'])],
         ];

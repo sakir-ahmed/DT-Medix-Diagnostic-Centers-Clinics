@@ -7,7 +7,7 @@ namespace App\Support;
 use App\Enums\RoleName;
 
 /**
- * Permission catalogue and the default permissions of each tenant role.
+ * Permission catalogue and the default permissions of each staff role.
  * Policies and menus check permissions, never role names.
  */
 final class Permissions

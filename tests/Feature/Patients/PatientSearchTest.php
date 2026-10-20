@@ -7,17 +7,17 @@ use App\Enums\RoleName;
 use App\Models\Patient;
 
 beforeEach(function (): void {
-    $this->tenant = makeTenant();
-    $this->user = makeUser($this->tenant, RoleName::Receptionist);
+    $this->center = makeCenter();
+    $this->user = makeUser(RoleName::Receptionist);
     $action = app(RegisterPatientAction::class);
-    inTenant($this->tenant, function () use ($action): void {
+    value(function () use ($action): void {
         $action->execute(['name' => 'Rahim Uddin', 'sex' => 'male', 'age_years' => 40, 'mobile' => '01711000001'], true);
         $action->execute(['name' => 'Karim Mia', 'sex' => 'male', 'age_years' => 30, 'mobile' => '01811000002'], true);
     });
 });
 
 it('finds patients by mobile, name prefix and patient ID', function (string $term, string $expected): void {
-    $names = inTenant($this->tenant, fn () => Patient::query()->search($term)->pluck('name')->all());
+    $names = value(fn () => Patient::query()->search($term)->pluck('name')->all());
 
     expect($names)->toBe([$expected]);
 })->with([

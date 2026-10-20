@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Enums\PaymentMethod;
 use App\Models\Concerns\BelongsToBranch;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -15,7 +14,6 @@ use Illuminate\Support\Carbon;
  * A money receipt for one payment line.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $branch_id
  * @property int $invoice_id
  * @property int $patient_id
@@ -32,7 +30,6 @@ use Illuminate\Support\Carbon;
 class Payment extends Model
 {
     use BelongsToBranch;
-    use BelongsToTenant;
 
     protected $fillable = ['branch_id', 'invoice_id', 'patient_id', 'receipt_no', 'method', 'amount', 'reference', 'status', 'received_by', 'paid_at'];
 

@@ -7,7 +7,7 @@ namespace App\Actions\Patients;
 use App\Exceptions\DomainException;
 use App\Models\Patient;
 use App\Services\SequenceGenerator;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +20,7 @@ final class RegisterPatientAction
     public function __construct(
         private readonly FindDuplicatePatientsAction $duplicates,
         private readonly SequenceGenerator $sequences,
-        private readonly TenantContext $context,
+        private readonly BranchContext $context,
     ) {}
 
     /**

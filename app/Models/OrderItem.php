@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\OrderItemStatus;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,7 +17,6 @@ use Illuminate\Support\Carbon;
  * package pricing and the invoice discount allocation.
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $order_id
  * @property int $test_id
  * @property int|null $package_id
@@ -43,8 +41,6 @@ use Illuminate\Support\Carbon;
  */
 class OrderItem extends Model
 {
-    use BelongsToTenant;
-
     protected $fillable = ['order_id', 'test_id', 'package_id', 'department_id', 'sample_id', 'code', 'name', 'price', 'net_amount', 'vat_applicable', 'tat_hours', 'expected_at', 'status'];
 
     protected function casts(): array

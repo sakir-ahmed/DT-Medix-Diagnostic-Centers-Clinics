@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Concerns\BelongsToTenant;
 use Database\Factories\DoctorFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +15,6 @@ use Spatie\Activitylog\Support\LogOptions;
 
 /**
  * @property int $id
- * @property int $tenant_id
  * @property int|null $user_id
  * @property string $name
  * @property string|null $name_bn
@@ -36,8 +34,6 @@ use Spatie\Activitylog\Support\LogOptions;
  */
 class Doctor extends Model
 {
-    use BelongsToTenant;
-
     /** @use HasFactory<DoctorFactory> */
     use HasFactory;
 

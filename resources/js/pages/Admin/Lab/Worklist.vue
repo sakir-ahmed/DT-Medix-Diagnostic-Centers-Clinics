@@ -80,14 +80,13 @@ let channelName = null;
 
 onMounted(() => {
     const connection = echo();
-    const tenantId = page.props.tenant?.id;
     const branchId = page.props.current_branch_id;
 
-    if (!connection || !tenantId || !branchId) {
+    if (!connection || !branchId) {
         return;
     }
 
-    channelName = `tenant.${tenantId}.branch.${branchId}.lab`;
+    channelName = `branch.${branchId}.lab`;
     connection.private(channelName).listen('.SampleUpdated', () => {
         router.reload({ only: ['samples'], preserveScroll: true });
     });

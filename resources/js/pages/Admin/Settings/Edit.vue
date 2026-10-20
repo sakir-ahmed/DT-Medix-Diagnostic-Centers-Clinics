@@ -51,7 +51,7 @@ const switches = ['vat_enabled', 'service_charge_enabled', 'allow_self_verificat
                     <FormField id="name_bn" :label="t('fields.name_bn')" :error="form.errors.name_bn" optional>
                         <TextInput id="name_bn" v-model="form.name_bn" lang="bn" />
                     </FormField>
-                    <FormField id="contact_mobile" :label="t('platform.contact_mobile')" :error="form.errors.contact_mobile" optional>
+                    <FormField id="contact_mobile" :label="t('settings.contact_mobile')" :error="form.errors.contact_mobile" optional>
                         <MobileInput id="contact_mobile" v-model="form.contact_mobile" :invalid="!!form.errors.contact_mobile" />
                     </FormField>
                     <FormField id="contact_email" :label="t('fields.email')" :error="form.errors.contact_email" optional>

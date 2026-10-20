@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Concerns\BelongsToTenant;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Database\Factories\BranchFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +16,6 @@ use Spatie\Activitylog\Support\LogOptions;
 
 /**
  * @property int $id
- * @property int $tenant_id
  * @property string $code
  * @property string $name
  * @property string|null $name_bn
@@ -30,8 +28,6 @@ use Spatie\Activitylog\Support\LogOptions;
  */
 class Branch extends Model
 {
-    use BelongsToTenant;
-
     /** @use HasFactory<BranchFactory> */
     use HasFactory;
 
@@ -44,7 +40,7 @@ class Branch extends Model
     {
         // A branch is itself branch-scoped: non-owner users only see their branches.
         static::addGlobalScope('accessible', function (Builder $builder): void {
-            $branchIds = app(TenantContext::class)->branchIds();
+            $branchIds = app(BranchContext::class)->branchIds();
 
             if ($branchIds !== null) {
                 $builder->whereIn($builder->qualifyColumn('id'), $branchIds);

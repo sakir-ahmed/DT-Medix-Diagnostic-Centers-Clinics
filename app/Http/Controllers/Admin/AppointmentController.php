@@ -16,7 +16,7 @@ use App\Models\Branch;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Services\SlotService;
-use App\Support\Tenancy\TenantContext;
+use App\Support\BranchContext;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -25,7 +25,7 @@ use Inertia\Response;
 
 class AppointmentController extends Controller
 {
-    public function index(Request $request, SlotService $slots, TenantContext $context): Response
+    public function index(Request $request, SlotService $slots, BranchContext $context): Response
     {
         $date = Carbon::parse($request->query('date', now()->toDateString()))->startOfDay();
         $doctorId = $request->query('doctor_id');
@@ -49,12 +49,11 @@ class AppointmentController extends Controller
             ])->values(),
             'appointments' => AppointmentResource::collection($appointments)->resolve(),
             'slots' => $doctor === null || $branchId === null ? [] : $slots->slots($doctor, $branchId, $date),
-            'tenant_id' => tenant()?->id,
             'branch_id' => $branchId,
         ]);
     }
 
-    public function store(AppointmentRequest $request, BookAppointmentAction $book, TenantContext $context): RedirectResponse
+    public function store(AppointmentRequest $request, BookAppointmentAction $book, BranchContext $context): RedirectResponse
     {
         $branch = Branch::query()->whereKey($context->currentBranchId())->where('is_active', true)->first();
         abort_if($branch === null, 404);

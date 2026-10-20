@@ -10,34 +10,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('tenants', function (Blueprint $table): void {
+        Schema::create('centers', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
             $table->string('name_bn')->nullable();
-            $table->string('slug')->unique();
-            $table->string('domain')->nullable()->unique();
-            $table->string('plan')->default('starter');
-            $table->string('status')->default('trial')->index();
-            $table->date('trial_ends_at')->nullable();
-            $table->date('subscription_ends_at')->nullable();
-            $table->timestamp('read_only_since')->nullable();
-            $table->timestamp('suspended_at')->nullable();
-            $table->timestamp('scheduled_deletion_at')->nullable();
-            $table->json('limits')->nullable();
-            $table->json('modules')->nullable();
-            $table->json('settings')->nullable();
-            $table->unsignedInteger('message_credits')->default(0);
+            $table->text('address')->nullable();
             $table->string('contact_name')->nullable();
             $table->string('contact_mobile', 20)->nullable();
             $table->string('contact_email')->nullable();
-            $table->text('address')->nullable();
+            $table->string('logo_path')->nullable();
+            $table->json('settings')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::create('users', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('username')->nullable()->unique();
             $table->string('email')->nullable()->unique();
@@ -72,7 +59,6 @@ return new class extends Migration
 
         Schema::create('branches', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->string('code', 10);
             $table->string('name');
             $table->string('name_bn')->nullable();
@@ -85,7 +71,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['tenant_id', 'code']);
+            $table->unique('code');
         });
 
         Schema::create('branch_user', function (Blueprint $table): void {
@@ -96,7 +82,6 @@ return new class extends Migration
 
         Schema::create('patient_access_logs', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->unsignedBigInteger('patient_id')->index();
             $table->string('action', 40);
@@ -106,7 +91,7 @@ return new class extends Migration
             $table->string('user_agent')->nullable();
             $table->timestamp('created_at')->useCurrent();
 
-            $table->index(['tenant_id', 'created_at']);
+            $table->index('created_at');
         });
 
         Schema::create('idempotency_keys', function (Blueprint $table): void {
@@ -132,6 +117,6 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('users');
-        Schema::dropIfExists('tenants');
+        Schema::dropIfExists('centers');
     }
 };

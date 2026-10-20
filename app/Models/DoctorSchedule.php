@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Concerns\BelongsToBranch;
-use App\Models\Concerns\BelongsToTenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -13,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * Weekly schedule of a doctor at one branch (weekday 0 = Sunday).
  *
  * @property int $id
- * @property int $tenant_id
  * @property int $doctor_id
  * @property int $branch_id
  * @property int $weekday
@@ -26,7 +24,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class DoctorSchedule extends Model
 {
     use BelongsToBranch;
-    use BelongsToTenant;
 
     protected $fillable = ['doctor_id', 'branch_id', 'weekday', 'start_time', 'end_time', 'slot_minutes', 'max_patients', 'is_active'];
 

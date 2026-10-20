@@ -1,9 +1,9 @@
 <?php
 
 declare(strict_types=1);
-use App\Models\Tenant;
+use App\Models\Center;
+use App\Support\CenterCache;
 use App\Support\Money;
-use App\Support\Tenancy\TenantContext;
 
 if (! function_exists('normalize_bd_mobile')) {
     /**
@@ -31,10 +31,23 @@ if (! function_exists('normalize_bd_mobile')) {
     }
 }
 
-if (! function_exists('tenant')) {
-    function tenant(): ?Tenant
+if (! function_exists('center')) {
+    /**
+     * The one center of this installation, loaded once per request.
+     */
+    function center(): ?Center
     {
-        return app(TenantContext::class)->tenant();
+        return CenterCache::get();
+    }
+}
+
+if (! function_exists('forget_center')) {
+    /**
+     * Drop the cached center after its profile or settings change.
+     */
+    function forget_center(): void
+    {
+        CenterCache::reset();
     }
 }
 

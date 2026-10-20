@@ -21,8 +21,8 @@ function navigationKeys(Assert $page): array
 }
 
 it('shows each role only its menu', function (RoleName $role, array $mustHave, array $mustNotHave): void {
-    $tenant = makeTenant();
-    $user = makeUser($tenant, $role);
+    $center = makeCenter();
+    $user = makeUser($role);
 
     $this->actingAs($user)->get(route('admin.dashboard'))->assertInertia(function (Assert $page) use ($mustHave, $mustNotHave): void {
         $keys = navigationKeys($page);
@@ -42,15 +42,15 @@ it('shows each role only its menu', function (RoleName $role, array $mustHave, a
     'accountant' => [RoleName::Accountant, ['dashboard'], ['settings', 'staff', 'access_log']],
 ]);
 
-it('shares permissions and tenant details with the frontend', function (): void {
-    $tenant = makeTenant();
+it('shares permissions and center details with the frontend', function (): void {
+    $center = makeCenter();
 
-    $this->actingAs(makeUser($tenant, RoleName::Receptionist))
+    $this->actingAs(makeUser(RoleName::Receptionist))
         ->get(route('admin.dashboard'))
         ->assertInertia(fn (Assert $page) => $page
             ->component('Admin/Dashboard')
-            ->where('tenant.id', $tenant->id)
+            ->where('center.id', $center->id)
             ->where('auth.roles', ['receptionist'])
             ->has('translations.common')
-            ->where('current_branch_id', mainBranch($tenant)->id));
+            ->where('current_branch_id', mainBranch()->id));
 });

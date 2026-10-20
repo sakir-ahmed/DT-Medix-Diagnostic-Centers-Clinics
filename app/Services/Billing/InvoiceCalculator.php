@@ -20,7 +20,7 @@ final class InvoiceCalculator
 {
     public function recalculate(Invoice $invoice): Invoice
     {
-        $tenant = tenant();
+        $center = center();
         /** @var \Illuminate\Database\Eloquent\Collection<int, OrderItem> $items */
         $items = OrderItem::query()->where('order_id', $invoice->order_id)->orderBy('id')->get();
         $active = $items->filter(fn (OrderItem $item): bool => $item->status !== OrderItemStatus::Cancelled)->values();
@@ -37,8 +37,8 @@ final class InvoiceCalculator
 
         $net = Money::sub($subtotal, $discount);
         $vatBase = Money::add('0', ...$active->filter(fn (OrderItem $i): bool => $i->vat_applicable)->map(fn (OrderItem $i): string => (string) $i->net_amount)->all());
-        $vat = $tenant?->setting('vat_enabled') ? Money::percent($vatBase, (string) $tenant->setting('vat_percent')) : '0.00';
-        $service = $tenant?->setting('service_charge_enabled') ? Money::percent($net, (string) $tenant->setting('service_charge_percent')) : '0.00';
+        $vat = $center?->setting('vat_enabled') ? Money::percent($vatBase, (string) $center->setting('vat_percent')) : '0.00';
+        $service = $center?->setting('service_charge_enabled') ? Money::percent($net, (string) $center->setting('service_charge_percent')) : '0.00';
         $total = Money::add($net, $vat, $service);
 
         $paid = Money::add('0', ...$invoice->payments()->where('status', 'completed')->pluck('amount')->map(fn ($a): string => (string) $a)->all());

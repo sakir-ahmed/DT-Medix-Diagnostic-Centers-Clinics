@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\RoleName;
-use App\Models\Concerns\BelongsToTenant;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -16,12 +15,10 @@ use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Spatie\Activitylog\Support\LogOptions;
-use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property int $id
- * @property int|null $tenant_id
  * @property string $name
  * @property string|null $username
  * @property string|null $email
@@ -33,11 +30,9 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string|null $two_factor_secret
  * @property Carbon|null $two_factor_confirmed_at
  * @property Carbon|null $last_login_at
- * @property-read Tenant|null $tenant
  */
 class User extends Authenticatable
 {
-    use BelongsToTenant;
     use HasApiTokens;
 
     /** @use HasFactory<UserFactory> */
@@ -83,28 +78,11 @@ class User extends Authenticatable
     }
 
     /**
-     * Platform role assignments use team ID 0 (no tenant).
+     * The hidden Datatech support login on this server.
      */
-    public const PLATFORM_TEAM_ID = 0;
-
     public function isSuperAdmin(): bool
     {
-        if ($this->tenant_id !== null) {
-            return false;
-        }
-
-        $registrar = app(PermissionRegistrar::class);
-        $previous = $registrar->getPermissionsTeamId();
-        $registrar->setPermissionsTeamId(self::PLATFORM_TEAM_ID);
-
-        try {
-            $this->unsetRelation('roles');
-
-            return $this->hasRole(RoleName::SuperAdmin->value);
-        } finally {
-            $registrar->setPermissionsTeamId($previous);
-            $this->unsetRelation('roles');
-        }
+        return $this->hasRole(RoleName::SuperAdmin->value);
     }
 
     public function hasTwoFactorEnabled(): bool

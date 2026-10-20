@@ -28,7 +28,7 @@ class MessageTemplateController extends Controller
                 'is_active' => $t->is_active,
                 'placeholders' => $t->key->placeholders(),
             ]),
-            'samples' => MessageTemplateRenderer::sampleValues((string) tenant()?->name),
+            'samples' => MessageTemplateRenderer::sampleValues((string) center()?->name),
             'costPerSegment' => (string) config('services.bdbulksms.cost_per_segment'),
         ]);
     }

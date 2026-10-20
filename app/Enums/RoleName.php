@@ -19,13 +19,13 @@ enum RoleName: string
     /**
      * @return list<self>
      */
-    public static function tenantRoles(): array
+    public static function staffRoles(): array
     {
         return array_values(array_filter(self::cases(), fn (self $role): bool => $role !== self::SuperAdmin));
     }
 
     /**
-     * Roles that see every branch of the tenant.
+     * Roles that see every branch of the center.
      */
     public function seesAllBranches(): bool
     {
