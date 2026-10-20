@@ -1,7 +1,7 @@
 # DT Medix
 
-**Cloud management system for diagnostic centers and clinics in Bangladesh.**
-Developed by **Datatech BD Ltd**, Dhaka.
+**DT Medix** — clinic & diagnostics management, a product of **Datatech BD Ltd** (datatechbd.com) — _Software that runs business._
+**Cloud management system for diagnostic centers and clinics in Bangladesh.** Developed by Datatech BD Ltd, Dhaka.
 
 DT Medix connects the whole diagnostic workflow in one place:
 
@@ -138,7 +138,7 @@ Center roles: `owner`, `branch-manager`, `receptionist`, `sample-collector`, `la
 
 - HTTPS only; `APP_ENV=production`, `APP_DEBUG=false`.
 - Run the queue worker, scheduler and Reverb under a process supervisor.
-- The PHP image must include Chromium and the Inter and Noto Sans Bengali fonts for PDF reports.
+- The PHP image must include Chromium and the Inter and Hind Siliguri fonts for PDF reports.
 - Schedule encrypted daily backups and test a restore before going live.
 - Confirm data protection, health records, referral commission and VAT or invoice rules with a legal advisor and the client's accountant.
 
@@ -149,6 +149,11 @@ Note: the Phase 0-3 migrations still carry `tenant_id` columns and a `tenants` t
 ## Support
 
 Datatech BD Ltd, Dhaka, Bangladesh.
+
+- Email: info@datatechbd.com
+- Phone: +880 1575-888775
+- WhatsApp: +880 1575-888775
+- Address: Flat 4-A, Dhumketu Shikder Tower, Holding No. 66, Paschim Monipur, Mirpur, Dhaka-1216, Bangladesh
 
 ## License
 

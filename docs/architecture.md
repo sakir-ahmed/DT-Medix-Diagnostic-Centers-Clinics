@@ -273,7 +273,7 @@ Patient data is sensitive health data. Design for least access, auditing and no 
 
 ## 13. Reports, PDFs, Barcodes, Imports & Messaging
 
-- **PDF:** use `spatie/laravel-pdf` with the Browsershot (headless Chromium) driver, because simple PDF libraries mis-render Bangla conjunct letters. The Docker image includes Chromium and the fonts (Inter, Noto Sans Bengali). Layouts are HTML with CSS `@page` (A4). A single report must generate in under 5 seconds; batches run in a queue.
+- **PDF:** use `spatie/laravel-pdf` with the Browsershot (headless Chromium) driver, because simple PDF libraries mis-render Bangla conjunct letters. The Docker image includes Chromium and the fonts (Inter, Hind Siliguri). Layouts are HTML with CSS `@page` (A4). A single report must generate in under 5 seconds; batches run in a queue.
 - **Barcode and QR:** Code 128 sample labels with `picqer/php-barcode-generator`; QR codes with `endroid/qr-code` for report verification.
 - **Import:** `maatwebsite/excel`, run in a queue with chunking, a dry-run validation step, a downloadable row-level error report, and a safe re-run (match on an external key). Never leave a half-imported dataset without a summary.
 - **Messaging:** a `MessageChannel` interface with `SmsChannel` and `WhatsAppChannel`. Templates are stored for the center, bilingual, with placeholders. WhatsApp templates must match the names approved by Meta. Fall back to SMS when WhatsApp fails.

@@ -26,7 +26,7 @@ function active(item) {
 <template>
     <nav class="flex h-full flex-col bg-surface" :aria-label="$t('nav.main')">
         <div class="flex h-12 shrink-0 items-center gap-2 border-b border-border px-3">
-            <span class="flex h-7 w-7 items-center justify-center rounded-md bg-accent text-accent-foreground"><AppIcon name="heart-pulse" /></span>
+            <img src="/images/brand/logo-mark.svg" alt="" class="h-8 w-8 shrink-0" />
             <span v-if="!collapsed" class="truncate text-sm font-semibold">{{ brand ?? page.props.tenant?.name ?? page.props.app?.name }}</span>
         </div>
         <div class="min-h-0 flex-1 overflow-y-auto px-2 py-2">

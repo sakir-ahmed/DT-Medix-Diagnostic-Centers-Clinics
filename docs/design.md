@@ -2,6 +2,8 @@
 
 > Shared Datatech design system, adapted for a clinical product. Sections 6, 7 and 9 to 11 are specific to DT Medix; the rest is generic. Screens per role are listed in `prd.md`.
 
+> **Brand:** DT Medix is a product of **Datatech BD Ltd** (datatechbd.com) — _"Software that runs business."_ Logo assets live in `public/images/brand/` (`logo-mark.svg`, `logo-primary.png`, `logo-primary-reversed.png`, `logo-512.png`); the favicon is the logo mark.
+
 ---
 
 ## 1. Principles
@@ -24,42 +26,61 @@ Define tokens once in `resources/css/app.css`. Components use token classes (`bg
 ```css
 @import "tailwindcss";
 
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+/* Datatech brand fonts, self hosted: Poppins for headlines, Hind Siliguri for Bangla (Inter stays the body face). */
+@font-face { font-family: 'Poppins'; font-weight: 500; font-display: swap; src: url('./fonts/poppins-latin-500.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-weight: 600; font-display: swap; src: url('./fonts/poppins-latin-600.woff2') format('woff2'); }
+@font-face { font-family: 'Poppins'; font-weight: 700; font-display: swap; src: url('./fonts/poppins-latin-700.woff2') format('woff2'); }
+@font-face { font-family: 'Hind Siliguri'; font-weight: 400; font-display: swap; src: url('./fonts/hind-siliguri-bengali-400.woff2') format('woff2'); unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0-1CF9, U+200C-200D, U+20B9, U+25CC; }
+@font-face { font-family: 'Hind Siliguri'; font-weight: 500; font-display: swap; src: url('./fonts/hind-siliguri-bengali-500.woff2') format('woff2'); unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0-1CF9, U+200C-200D, U+20B9, U+25CC; }
+@font-face { font-family: 'Hind Siliguri'; font-weight: 600; font-display: swap; src: url('./fonts/hind-siliguri-bengali-600.woff2') format('woff2'); unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0-1CF9, U+200C-200D, U+20B9, U+25CC; }
+@font-face { font-family: 'Hind Siliguri'; font-weight: 700; font-display: swap; src: url('./fonts/hind-siliguri-bengali-700.woff2') format('woff2'); unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0-1CF9, U+200C-200D, U+20B9, U+25CC; }
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans:
-    "Inter", "Noto Sans Bengali", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'Inter', 'Hind Siliguri', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Poppins', 'Hind Siliguri', ui-sans-serif, system-ui, sans-serif;
 
-  --color-background: oklch(0.985 0.002 247);
-  --color-surface: oklch(1 0 0);
-  --color-foreground: oklch(0.21 0.034 265);
-  --color-muted: oklch(0.55 0.02 255);
-  --color-border: oklch(0.92 0.005 255);
+    /* Datatech BD Ltd. brand: Cloud, Midnight Navy, Datatech Blue, Bright Sky, Slate. */
+    --color-background: #f5f7fa; /* Cloud */
+    --color-surface: #ffffff;
+    --color-foreground: #0a1428; /* Midnight Navy */
+    --color-muted: #4a5568; /* Slate */
+    --color-border: #dfe6f0;
+    --color-subtle: #eaeff7;
 
-  --color-primary: oklch(0.21 0.034 265); /* slate-900 */
-  --color-primary-foreground: oklch(0.98 0.003 248);
-  --color-accent: oklch(0.6 0.118 184.704); /* teal-600 */
-  --color-accent-foreground: oklch(0.984 0.014 180.72);
-  --color-warning: oklch(0.769 0.188 70); /* amber-500 */
-  --color-success: oklch(0.596 0.145 163); /* emerald-600 */
-  --color-danger: oklch(0.586 0.253 17); /* rose-600 */
+    --color-primary: #0b63ce; /* Datatech Blue */
+    --color-primary-foreground: #ffffff;
+    --color-accent: #38a8ff; /* Bright Sky */
+    --color-accent-foreground: #0a1428;
+    --color-warning: oklch(0.769 0.188 70);
+    --color-success: oklch(0.596 0.145 163);
+    --color-danger: oklch(0.586 0.253 17);
+    --color-info: oklch(0.546 0.245 262.881);
 }
 
 .dark {
-  --color-background: oklch(0.129 0.042 265); /* slate-950 */
-  --color-surface: oklch(0.208 0.042 265); /* slate-900 */
-  --color-foreground: oklch(0.984 0.003 248);
-  --color-muted: oklch(0.704 0.04 256);
-  --color-border: oklch(0.279 0.041 260);
-  --color-primary: oklch(0.984 0.003 248);
-  --color-primary-foreground: oklch(0.21 0.034 265);
+    --color-background: #0a1428; /* Midnight Navy */
+    --color-surface: #101d36;
+    --color-foreground: #f5f7fa;
+    --color-muted: #afc0d6; /* Soft Grey */
+    --color-border: #22345a;
+    --color-subtle: #182747;
+    --color-primary: #38a8ff;
+    --color-primary-foreground: #0a1428;
+    --color-accent-foreground: #0a1428;
 }
 ```
 
 **Meaning of colors**
 
-- Primary (slate): navigation, main buttons, headers.
-- Accent (teal): active tab, selected items, links, highlights. Calm and clinical.
+- Primary (Datatech Blue): navigation, main buttons, headers.
+- Accent (Bright Sky): active tab, selected items, links, highlights.
 - Warning (amber): pending status, approaching TAT, caution badges.
 - Success (emerald): normal result, completed payment, verified or released report.
 - Danger (rose): critical or abnormal result, overdue due, TAT breach, cancel, delete.
@@ -70,7 +91,7 @@ Adjust token values to taste, but keep the names stable.
 
 ## 3. Typography
 
-- **Fonts:** `Inter` for Latin, **`Noto Sans Bengali`** for Bangla (Inter has no Bangla glyphs). Self-host fonts; don't depend on a CDN.
+- **Fonts:** `Inter` for Latin body text, **`Poppins`** for headlines and display (h1–h3 use `--font-display`), **`Hind Siliguri`** for Bangla (Inter has no Bangla glyphs). Poppins and Hind Siliguri are self-hosted in `resources/css/fonts/`; Inter comes from `@fontsource/inter`. Don't depend on a CDN.
 - Bangla text needs slightly more line height: use `leading-relaxed` when the locale is `bn`.
 
 | Use                     | Classes                                                                     |
@@ -154,7 +175,7 @@ The reception screen is where most daily time is spent. A returning patient must
 
 ## 10. Printed Report Layout (A4)
 
-- Portrait A4, 12mm margins, body text 10 to 10.5pt, fonts Inter and Noto Sans Bengali. Provide a **"print without header"** option for pre-printed letterhead.
+- Portrait A4, 12mm margins, body text 10 to 10.5pt, fonts Inter and Hind Siliguri. Provide a **"print without header"** option for pre-printed letterhead.
 - **Header:** logo, center name, address, phone, registration / license number. **Patient block** in two columns: name, age and sex, patient ID, sample ID, referrer, collected, received and reported date and time.
 - **Results table** follows section 25: parameter name left, result right-aligned with tabular digits, unit left, reference range left, flag as a bold letter (`H`, `L`, `C`). The report must remain readable in black and white, so flags never rely on color alone. Group by test with a section heading; method and interpretation notes sit under the group.
 - **Footer on every page:** "Page X of Y", report number and a verification QR code. **Last page:** signature blocks (technologist, pathologist or radiologist with name, qualification, BMDC registration number and signature image) and the line "Clinical correlation is advised."
@@ -352,7 +373,7 @@ Every report page uses the same layout so users learn it once:
 - Numbers are right-aligned with tabular figures; text left-aligned; negative amounts show a minus sign **and** rose color; zero shows "–".
 - Compare-to option ("vs previous period") adds change columns.
 - Exports contain exactly what the screen shows (same filters, same totals) and a header block: business name, branch, report name, date range, generated by, generated at.
-- **PDF reports** embed Noto Sans Bengali so Bangla renders correctly; Excel exports keep real numeric cells (not text) and a frozen header row.
+- **PDF reports** embed Hind Siliguri so Bangla renders correctly; Excel exports keep real numeric cells (not text) and a frozen header row.
 - Heavy reports (more than about 10,000 rows or over 5 seconds) run as a **queued job**: show "We're preparing your report", then a notification and toast with a download link when done.
 - The **Print view** is a clean layout (no sidebar, no buttons, page breaks between sections, A4) and also 80mm for receipt-style reports (shift close, daily summary).
 - Reports must match the dashboard numbers exactly for the same filters.

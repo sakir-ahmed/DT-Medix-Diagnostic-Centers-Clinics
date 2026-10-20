@@ -6,7 +6,7 @@
 
 ## 1. Vision
 
-**DT Medix** is a cloud management system for small diagnostic centers and clinics in Bangladesh. Today these centers run patient registration, appointments, test orders, reports, payments, doctor commissions and patient history through disconnected tools (paper registers, spreadsheets, separate billing software). DT Medix connects them in one flow:
+**DT Medix** is a cloud management system for small diagnostic centers and clinics in Bangladesh, a product of **Datatech BD Ltd** (datatechbd.com) — _"Software that runs business."_ Today these centers run patient registration, appointments, test orders, reports, payments, doctor commissions and patient history through disconnected tools (paper registers, spreadsheets, separate billing software). DT Medix connects them in one flow:
 
 ```text
 Patient -> Appointment -> Test Order -> Lab Processing -> Report -> SMS / WhatsApp -> Payment

@@ -159,7 +159,7 @@ Vue components must have a single root element.
 
 # Project Instructions
 
-This is a Laravel 13 project (DT Medix, a single-business product for one diagnostic center or clinic per installation, with multiple branches) built from the specification in `docs/`.
+This is a Laravel 13 project (DT Medix, a single-business product of **Datatech BD Ltd** (datatechbd.com) — _"Software that runs business."_ — for one diagnostic center or clinic per installation, with multiple branches) built from the specification in `docs/`.
 
 Read these files before writing any code, in this order:
 

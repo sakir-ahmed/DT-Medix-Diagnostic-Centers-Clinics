@@ -241,7 +241,7 @@ return [
             'to' => env('BACKUP_NOTIFY_EMAIL', 'ops@dtmedix.test'),
 
             'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+                'address' => env('MAIL_FROM_ADDRESS', 'info@datatechbd.com'),
                 'name' => env('MAIL_FROM_NAME', 'Example'),
             ],
         ],
