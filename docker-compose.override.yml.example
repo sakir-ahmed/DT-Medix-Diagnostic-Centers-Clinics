@@ -1,0 +1,97 @@
+# Development overrides. Merged automatically by `docker compose up`.
+# This file is a template: it is committed as docker-compose.override.yml.example.
+# Copy it to docker-compose.override.yml (git-ignored) and tweak it locally:
+#   cp docker-compose.override.yml.example docker-compose.override.yml
+# To skip the overrides (production-like run): docker compose -f docker-compose.yml up -d
+#
+# Optional profile:
+#   docker compose --profile tools up -d    # Adminer + RedisInsight
+
+services:
+  # Redis exposed on the host for local tools and for running the app outside
+  # Docker. Override the host side with REDIS_PORT.
+  redis:
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    # Also join the `backend` network so the profile tools below can reach it.
+    networks:
+      default: {}
+      backend: {}
+
+  # MySQL is already published in the base file on "${FORWARD_DB_PORT:-3306}:3306".
+  # Change FORWARD_DB_PORT in .env to move it (or copy the redis block above
+  # and adapt it if you need an extra host mapping).
+  mysql:
+    networks:
+      default: {}
+      backend: {}
+
+  # ---- Reverb (websockets) ----
+  # Published in the base file on "${REVERB_PORT:-8081}:8080". Clients (and
+  # VITE_REVERB_PORT in the built frontend) connect to this host port; to move
+  # it, set REVERB_PORT in .env — no override needed.
+
+  # ---- Mailpit: local SMTP catcher (no mail ever leaves the machine) ----
+  # Web UI: http://localhost:8025
+  # Add this to .env to route Laravel mail through Mailpit:
+  #   MAIL_MAILER=smtp
+  #   MAIL_HOST=mailpit
+  #   MAIL_PORT=1025
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - "${MAILPIT_UI:-8025}:8025"
+      - "${MAILPIT_SMTP:-1025}:1025"
+
+  # ---- Xdebug (optional, commented out) ----
+  # The php:*-fpm base image does not ship Xdebug. To debug step-by-step:
+  #   1. Build it into the image: add `pecl install xdebug && docker-php-ext-enable xdebug`
+  #      to a local Dockerfile tweak, then `docker compose build app`.
+  #   2. Uncomment and adjust:
+  # app:
+  #   environment:
+  #     XDEBUG_MODE: develop,debug
+  #     PHP_IDE_CONFIG: serverName=dt-medix
+  #   # Port 9003 is already reachable on Docker Desktop (macOS/Windows);
+  #   # on Linux add: ports: ["9003:9003"]
+
+  # ---- profile: tools ----
+  adminer:
+    image: adminer:latest
+    profiles: ["tools"]
+    restart: unless-stopped
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+    # Host 8082: nginx uses 80 by default and Reverb uses 8081.
+    ports:
+      - "${ADMINER_PORT:-8082}:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - backend
+
+  # Redis GUI: browse cache keys, sessions and queue state.
+  # In the UI add a database: host "redis", port 6379.
+  redisinsight:
+    image: redis/redisinsight:latest
+    profiles: ["tools"]
+    restart: unless-stopped
+    ports:
+      - "${REDISINSIGHT_PORT:-5540}:5540"
+    volumes:
+      - redisinsight-data:/data
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - backend
+
+networks:
+  # Private network for the profile tools; the app stack itself keeps the
+  # compose default network (mysql/redis join both when the override is used).
+  backend:
+
+volumes:
+  redisinsight-data:

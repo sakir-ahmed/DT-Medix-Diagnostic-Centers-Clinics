@@ -99,6 +99,19 @@ The seeder creates the hidden Datatech `super-admin` from `.env` (never commit r
 
 For local development, the seeder also creates one center with two branches so branch isolation can be tested.
 
+### Docker
+
+The full stack (app, nginx, MySQL, Redis, queue worker, scheduler, Reverb) runs with Docker Compose:
+
+```sh
+cp docker-compose.override.yml.example docker-compose.override.yml   # local overrides, git-ignored
+docker compose up -d
+docker compose exec app php artisan key:generate
+docker compose exec app php artisan migrate --seed
+```
+
+Then open http://localhost:80 (set `APP_PORT` in `.env` to change it). Services, overrides, logging and common commands: `docs/docker.md`.
+
 ### Background processes
 
 | Process                                                    | Command                     |
