@@ -91,6 +91,7 @@ class HandleInertiaRequests extends Middleware
                 'info' => fn () => $request->session()->get('info'),
                 'duplicates' => fn () => $request->session()->get('duplicates'),
                 'created_patient_id' => fn () => $request->session()->get('created_patient_id'),
+                'print_order_id' => fn () => $request->session()->get('print_order_id'),
             ],
         ];
     }

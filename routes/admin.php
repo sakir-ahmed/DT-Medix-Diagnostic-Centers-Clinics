@@ -3,16 +3,23 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Admin\AccessLogController;
+use App\Http\Controllers\Admin\AppointmentController;
+use App\Http\Controllers\Admin\ApprovalController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\BranchSwitchController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\DoctorQueueController;
 use App\Http\Controllers\Admin\MessageTemplateController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\Admin\PrintController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ReceptionController;
 use App\Http\Controllers\Admin\ReferrerController;
+use App\Http\Controllers\Admin\RefundController;
 use App\Http\Controllers\Admin\ReportTemplateController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -82,6 +89,7 @@ Route::middleware('can:patients.view')->group(function (): void {
     Route::get('/patients/lookup', [PatientController::class, 'lookup'])->name('patients.lookup');
     Route::get('/patients/{patient}', [PatientController::class, 'show'])->name('patients.show');
     Route::get('/patients/{patient}/photo', [PatientController::class, 'photo'])->name('patients.photo');
+    Route::get('/patients/{patient}/summary', [PatientController::class, 'summary'])->name('patients.summary');
 });
 
 Route::post('/patients', [PatientController::class, 'store'])->middleware('can:patients.create')->name('patients.store');
@@ -123,6 +131,46 @@ Route::middleware('can:templates.manage')->group(function (): void {
     Route::post('/report-templates', [ReportTemplateController::class, 'store'])->name('report-templates.store');
     Route::get('/report-templates/{reportTemplate}/edit', [ReportTemplateController::class, 'edit'])->name('report-templates.edit');
     Route::put('/report-templates/{reportTemplate}', [ReportTemplateController::class, 'update'])->name('report-templates.update');
+});
+
+Route::middleware('can:orders.create')->group(function (): void {
+    Route::get('/reception', [ReceptionController::class, 'index'])->name('reception.index');
+    Route::post('/reception', [ReceptionController::class, 'store'])->name('reception.store');
+});
+
+Route::middleware('can:appointments.view')->group(function (): void {
+    Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+});
+
+Route::middleware('can:appointments.manage')->group(function (): void {
+    Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+    Route::patch('/appointments/{appointment}/status', [AppointmentController::class, 'updateStatus'])->name('appointments.status');
+});
+
+Route::middleware('can:queue.view')->group(function (): void {
+    Route::get('/my-queue', [DoctorQueueController::class, 'index'])->name('doctor.queue');
+    Route::post('/my-queue/next', [DoctorQueueController::class, 'next'])->name('doctor.queue.next');
+});
+
+Route::middleware('can:orders.view')->group(function (): void {
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders/{order}/print', [PrintController::class, 'show'])->name('orders.print');
+});
+
+Route::post('/orders/{order}/payments', [OrderController::class, 'pay'])->middleware('can:payments.collect')->name('orders.payments.store');
+Route::post('/orders/{order}/cancel', [OrderController::class, 'cancel'])->middleware('can:orders.cancel')->name('orders.cancel');
+
+Route::middleware('can:discounts.approve')->group(function (): void {
+    Route::get('/approvals', [ApprovalController::class, 'index'])->name('approvals.index');
+    Route::post('/approvals/{discountRequest}', [ApprovalController::class, 'decide'])->name('approvals.decide');
+});
+
+Route::post('/refunds', [RefundController::class, 'store'])->middleware('can:refunds.request')->name('refunds.store');
+
+Route::middleware('can:refunds.approve')->group(function (): void {
+    Route::get('/refunds', [RefundController::class, 'index'])->name('refunds.index');
+    Route::post('/refunds/{refund}/decide', [RefundController::class, 'decide'])->name('refunds.decide');
 });
 
 Route::middleware('can:message-templates.manage')->group(function (): void {

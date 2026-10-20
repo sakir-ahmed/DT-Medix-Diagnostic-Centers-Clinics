@@ -105,4 +105,12 @@ class Invoice extends Model
     {
         return $this->hasMany(Refund::class)->orderBy('id');
     }
+
+    /**
+     * @return HasMany<DiscountRequest, $this>
+     */
+    public function discountRequests(): HasMany
+    {
+        return $this->hasMany(DiscountRequest::class)->orderBy('id');
+    }
 }

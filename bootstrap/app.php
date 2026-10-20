@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Exceptions\DomainException;
+use App\Http\Middleware\EnsureBranchAccess;
 use App\Http\Middleware\EnsureIdempotency;
 use App\Http\Middleware\EnsureKnownHost;
 use App\Http\Middleware\EnsureSuperAdmin;
@@ -58,6 +59,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'idle' => IdleTimeout::class,
             'super-admin' => EnsureSuperAdmin::class,
             'idempotent' => EnsureIdempotency::class,
+            'branch' => EnsureBranchAccess::class,
             'locale' => SetLocale::class,
             'abilities' => CheckAbilities::class,
             'ability' => CheckForAnyAbility::class,

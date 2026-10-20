@@ -13,7 +13,7 @@ This note is for the next developer or AI agent. Read `CLAUDE.md` and the files 
 | 0 | Foundation, tenancy and UI kit | Done, tested, pushed (`e87e003`) |
 | 1 | Branches, staff, doctors and patients | Done, tested, pushed (`7251ac9`) |
 | 2 | Test catalog, packages and report templates | Done, tested, pushed (`470ab21`) |
-| 3 | Appointments and reception billing (cash) | **In progress, not committed** (about 30% done, backend only) |
+| 3 | Appointments and reception billing (cash) | Done in the working tree, not committed |
 | 4 to 12 | Lab, reports, payments, messaging, commission, history, dashboard, subscription, home collection | Not started |
 
 Test suite at the last commit: **165 tests passing** (`php artisan test`), plus the separate performance test (`php artisan test --group=performance`, 500,000 patients searched in under 300 ms). Pint and PHPStan (level 5) were clean.
@@ -55,37 +55,19 @@ Test suite at the last commit: **165 tests passing** (`php artisan test`), plus 
 
 ---
 
-## 3. Phase 3 work in progress (uncommitted files)
+## 3. Phase 3: appointments and cash billing
 
-These files exist in the working tree but are **not committed and not tested**:
+Implemented in the working tree. Not committed yet. Phases 4 to 12 are unchanged.
 
-- Migration `database/migrations/2026_10_18_000001_create_reception_tables.php`: `appointments`, `orders`, `invoices`, `samples`, `order_items`, `payments`, `discount_requests`, `refunds`.
-- Enums: `AppointmentStatus` (with allowed transitions), `InvoiceStatus`, `OrderItemStatus`, `SampleStatus`, `PaymentMethod`, `ApprovalStatus`.
-- Models: `Appointment`, `Order`, `OrderItem`, `Invoice`, `Sample`, `Payment`, `DiscountRequest`, `Refund`.
-- Services:
-  - `Services/Billing/DocumentNumbers.php`: invoice `INV-BR01-26-000123`, receipt `MR-BR01-26-000045`, sample `BR01-261015-0042`, all through `SequenceGenerator` under a row lock.
-  - `Services/Billing/InvoiceCalculator.php`: recalculates subtotal, discount (allocated to items as `net_amount`), VAT and service charge (if enabled), total, paid, refunded, due and status. The due is never typed.
-  - `Services/ApprovalService.php`: manager approval by login plus approval PIN and a permission, rate limited, error `APPROVAL_INVALID`.
-  - `Services/SlotService.php`: free slots from schedules minus leave, booked slots and `max_patients`.
-- Actions: `Appointments/BookAppointmentAction.php` (lock on doctor, `SLOT_UNAVAILABLE`, token per doctor, branch and day, follow-up type and fee), `Appointments/ChangeAppointmentStatusAction.php` (transitions, timestamps, `next()` for the doctor queue).
-- Event `Events/AppointmentUpdated.php` (broadcast with IDs only).
+- Appointments: day view, free slots, booking, token numbers, follow-up fee, status flow, doctor queue with Next patient. The day view and the queue subscribe to `AppointmentUpdated` (IDs only) when Reverb is configured.
+- Cash billing: `CreateOrderAction`, `CollectPaymentAction`, discount request and decision, `CancelItemsAction`, refund request and decision. Money goes through `App\Support\Money`. Over-limit discounts wait for approval unless the cashier can approve or a manager passes login and PIN. Collected items cancel only when `collected_samples_refundable` is on and `cancellations.approve` is verified (`COLLECTED_NOT_REFUNDABLE` otherwise).
+- Package price is split across its tests. A test appears once; the package wins over a standalone line.
+- Saving an order inserts pending sample rows and prints Code 128 labels. Collection stays in Phase 4.
+- Admin screens: reception counter (cash only, change calculator, previous due shown and not collected), appointments, doctor queue, orders, approvals, refunds. Patient Visits, Tests, and Billing tabs are filled. Documents and Timeline stay empty.
+- Print: A5, 80mm, money receipt, and sample label. No portal QR. The API returns a PDF (`spatie/laravel-pdf`).
+- Tests cover booking, follow-up fee, status flow, package allocation, discount approval, partial payment, `PAYMENT_EXCEEDS_DUE`, cancel and refund, cross-tenant and cross-branch 404, and invoice numbers under forked processes (`concurrency` group). Pint and PHPStan were clean on this tree.
 
-### Phase 3: remaining tasks
-1. **Billing actions** in `app/Actions/Billing/`:
-   - `CreateOrderAction`: patient, tests and packages (package price allocated across its tests), referrer, urgency, optional appointment, price snapshots via `PriceResolver`, samples grouped by sample type and container, invoice number, discount check (above `discount_limit_percent` needs `discounts.approve` or an approver through `ApprovalService`, else `DISCOUNT_LIMIT_EXCEEDED` or a pending `DiscountRequest`), referrer discounts and free cases need a reason, initial payments, recalculation. All in one `DB::transaction()`.
-   - `CollectPaymentAction`: one or more lines, `PAYMENT_EXCEEDS_DUE`, `INVOICE_ALREADY_PAID`, money receipt number per line.
-   - Discount request and decision actions (activity log).
-   - `CancelItemsAction`: items not yet collected cancel directly; collected items need approval (`cancellations.approve`) and follow `collected_samples_refundable`; excess paid creates a pending refund.
-   - Refund request and decision (`refunds.approve`), only up to the overpaid amount (`InvoiceCalculator::overpaid()`), activity log.
-2. **Form requests, admin controllers and routes** (`routes/admin.php`): appointments (day view, slots, book, status), doctor queue (`admin.doctor.queue`, next patient), reception counter (`admin.reception.index`), orders index and show, payments, cancel, refunds, approvals page (`admin.approvals.index`).
-3. **API** (`routes/api_v1.php`, branch routes under `/branches/{branch}`): `/doctors/{doctor}/slots`, `/appointments` (idempotent), `/appointments/{id}/status`, `/doctor/queue`, `/orders` (idempotent), `/orders/{order}`, `/orders/{order}/cancel`, discount requests, `/invoices/{invoice}/payments` (idempotent), `/refunds`, `/invoices/{invoice}/print?format=a5|thermal` (PDF).
-4. **Printing:** Blade print views for invoice (A5 and 80mm), money receipt and sample labels (Code 128 with `picqer/php-barcode-generator`, portal QR with `endroid/qr-code`); "Save and print" prints all three. PDF for the API through spatie/laravel-pdf (use `Pdf::fake()` in tests).
-5. **Vue pages:** reception counter (design.md section 6, shortcuts `/`, F2, F3, F4, F9, Esc), appointments day view and queue list, doctor "My queue", orders list and detail, approvals.
-6. **Translations** for every new key in `lang/en` and `lang/bn`.
-7. **Tests:** booking and slots, follow-up fee, status flow, order creation with package allocation and price snapshot, discount limit and approval, partial payment and calculated due, `PAYMENT_EXCEEDS_DUE`, cancel and refund flows, cross-tenant and cross-branch 404 for every endpoint, and an **invoice number concurrency test** (suggested: forked processes against a temporary SQLite file, in a separate `concurrency` group).
-8. Run Pint, PHPStan, the full suite, mark Phase 3 `[x]` in `docs/roadmap.md`, commit and push.
-
-Phases 4 to 12 follow `docs/roadmap.md` unchanged.
+Left for later: sample collection and lab work, payment gateways, due collection, shifts, SMS, the patient portal and its QR, commission, the week view, and consultation-fee collection.
 
 ---
 
@@ -127,7 +109,7 @@ php artisan serve
 
 - Inertia **v3** is used because Inertia v2 does not support Laravel 13 (docs mention v2).
 - SSR entry (`resources/js/ssr.js`) builds, but SSR is disabled by default (`INERTIA_SSR_ENABLED=false`); it is meant for public pages only.
-- The Reverb client (`resources/js/lib/echo.js`) exists but no page subscribes yet; the notification bell reads a `notifications` prop that is not shared yet.
+- The Reverb client (`resources/js/lib/echo.js`) is used by the appointments day view and the doctor queue. The notification bell still reads a `notifications` prop that is not shared yet.
 - Dashboard (`Admin/Dashboard`) is a setup checklist placeholder until Phase 10.
-- Patient record tabs other than Overview show an empty state until Phases 3 and 9.
+- Patient Visits, Tests, and Billing are filled. Documents and Timeline stay empty until Phase 9.
 - `.agents/` and `.junie/` folders come from Laravel Boost; Boost skills could not be installed into `.claude/skills` because of sandbox restrictions.

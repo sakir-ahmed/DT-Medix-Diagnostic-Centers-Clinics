@@ -125,6 +125,7 @@ class TestController extends Controller
             'label' => $test->name,
             'price' => $price,
             'meta' => $price,
+            'vat_applicable' => (bool) $test->vat_applicable,
             'tat_hours' => $test->tat_hours,
             'sample_type' => $test->sample_type,
             'preparation' => $test->preparation,

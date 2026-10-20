@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Api\V1\AppointmentController;
 use App\Http\Controllers\Api\V1\CatalogController;
 use App\Http\Controllers\Api\V1\DoctorController;
+use App\Http\Controllers\Api\V1\InvoiceController;
+use App\Http\Controllers\Api\V1\OrderController;
 use App\Http\Controllers\Api\V1\PatientController;
 use App\Http\Controllers\Api\V1\ReferrerController;
+use App\Http\Controllers\Api\V1\RefundController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +39,22 @@ Route::put('/packages/{package}', [CatalogController::class, 'updatePackage'])->
 Route::get('/report-templates', [CatalogController::class, 'reportTemplates'])->middleware('can:templates.manage')->name('report-templates.index');
 Route::post('/report-templates', [CatalogController::class, 'storeReportTemplate'])->middleware('can:templates.manage')->name('report-templates.store');
 Route::put('/report-templates/{reportTemplate}', [CatalogController::class, 'updateReportTemplate'])->middleware('can:templates.manage')->name('report-templates.update');
+
+Route::prefix('branches/{branch}')->middleware('branch')->group(function (): void {
+    Route::get('/doctors/{doctor}/slots', [AppointmentController::class, 'slots'])->middleware('can:appointments.view')->name('doctors.slots');
+    Route::post('/appointments', [AppointmentController::class, 'store'])->middleware(['can:appointments.manage', 'idempotent'])->name('appointments.store');
+    Route::patch('/appointments/{appointment}/status', [AppointmentController::class, 'updateStatus'])->middleware('can:appointments.manage')->name('appointments.status');
+    Route::get('/doctor/queue', [AppointmentController::class, 'queue'])->middleware('can:queue.view')->name('doctor.queue');
+
+    Route::post('/orders', [OrderController::class, 'store'])->middleware(['can:orders.create', 'idempotent'])->name('orders.store');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->middleware('can:orders.view')->name('orders.show');
+    Route::post('/orders/{order}/cancel', [OrderController::class, 'cancel'])->middleware('can:orders.cancel')->name('orders.cancel');
+    Route::post('/orders/{order}/discount-requests', [OrderController::class, 'storeDiscount'])->middleware('can:invoices.discount')->name('orders.discount-requests.store');
+    Route::post('/discount-requests/{discountRequest}/approve', [OrderController::class, 'decideDiscount'])->middleware('can:discounts.approve')->name('discount-requests.approve');
+
+    Route::post('/invoices/{invoice}/payments', [InvoiceController::class, 'pay'])->middleware(['can:payments.collect', 'idempotent'])->name('invoices.payments.store');
+    Route::get('/invoices/{invoice}/print', [InvoiceController::class, 'print'])->middleware('can:orders.view')->name('invoices.print');
+
+    Route::post('/refunds', [RefundController::class, 'store'])->middleware('can:refunds.request')->name('refunds.store');
+    Route::post('/refunds/{refund}/approve', [RefundController::class, 'decide'])->middleware('can:refunds.approve')->name('refunds.approve');
+});

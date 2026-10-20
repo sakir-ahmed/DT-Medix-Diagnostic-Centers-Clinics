@@ -11,8 +11,12 @@ use App\Exceptions\DomainException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientRequest;
 use App\Http\Resources\PatientResource;
+use App\Models\Appointment;
+use App\Models\Invoice;
+use App\Models\OrderItem;
 use App\Models\Patient;
 use App\Services\PatientAccessLogger;
+use App\Support\Money;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -94,6 +98,51 @@ class PatientController extends Controller
             'family' => PatientResource::collection($family)->resolve(),
             'tab' => $request->query('tab', 'overview'),
             'bloodGroups' => Patient::BLOOD_GROUPS,
+            'visits' => Appointment::query()->with('doctor')->where('patient_id', $patient->id)->orderByDesc('appointment_date')->orderByDesc('id')->limit(30)->get()
+                ->map(fn (Appointment $appointment): array => [
+                    'id' => $appointment->id,
+                    'date' => $appointment->appointment_date->toDateString(),
+                    'time' => substr((string) $appointment->start_time, 0, 5),
+                    'token_no' => $appointment->token_no,
+                    'doctor' => $appointment->doctor->name,
+                    'fee' => money($appointment->fee),
+                    'visit_type' => $appointment->visit_type,
+                    'status' => $appointment->status->value,
+                ])->values(),
+            'ordered_tests' => OrderItem::query()->with('order')->whereHas('order', fn ($query) => $query->where('patient_id', $patient->id))->orderByDesc('id')->limit(30)->get()
+                ->map(fn (OrderItem $item): array => [
+                    'id' => $item->id,
+                    'order_id' => $item->order_id,
+                    'code' => $item->code,
+                    'name' => $item->name,
+                    'price' => money($item->price),
+                    'status' => $item->status->value,
+                    'created_at' => $item->created_at?->toIso8601String(),
+                ])->values(),
+            'invoices' => Invoice::query()->where('patient_id', $patient->id)->orderByDesc('id')->limit(30)->get()
+                ->map(fn (Invoice $invoice): array => [
+                    'id' => $invoice->id,
+                    'order_id' => $invoice->order_id,
+                    'invoice_no' => $invoice->invoice_no,
+                    'total' => money($invoice->total),
+                    'paid' => money($invoice->paid),
+                    'due' => money($invoice->due),
+                    'status' => $invoice->status->value,
+                    'created_at' => $invoice->created_at?->toIso8601String(),
+                ])->values(),
+        ]);
+    }
+
+    public function summary(Patient $patient, PatientAccessLogger $logger): JsonResponse
+    {
+        $logger->log($patient->id, 'view');
+        $amounts = Invoice::query()->where('patient_id', $patient->id)->pluck('due')->map(fn (mixed $amount): string => (string) $amount)->all();
+
+        return response()->json([
+            'patient' => (new PatientResource($patient))->resolve() + [
+                'photo_url' => $patient->photo_path === null ? null : route('admin.patients.photo', $patient),
+                'due' => Money::add('0.00', ...$amounts),
+            ],
         ]);
     }
 

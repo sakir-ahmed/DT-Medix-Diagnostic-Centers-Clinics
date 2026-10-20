@@ -32,6 +32,8 @@ return [
     'APPROVAL_REQUIRED' => 'This action needs a manager approval.',
     'APPROVAL_INVALID' => 'The approver login or PIN is not correct, or the approver lacks permission.',
     'DISCOUNT_LIMIT_EXCEEDED' => 'The discount is above your limit and needs manager approval.',
+    'COLLECTED_NOT_REFUNDABLE' => 'A collected sample cannot be cancelled because collected samples are not refundable.',
+    'REFUND_EXCEEDS_OVERPAID' => 'The refund is larger than the amount paid beyond the invoice total.',
     'INVALID_STATE' => 'This action is not allowed in the current status.',
     'BRANCH_MISMATCH' => 'This item belongs to another branch.',
     'REASON_REQUIRED' => 'A reason is required.',

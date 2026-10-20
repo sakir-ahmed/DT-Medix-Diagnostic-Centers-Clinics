@@ -5,8 +5,10 @@ import PatientFormSlideOver from '@/components/patients/PatientFormSlideOver.vue
 import DataTable from '@/components/ui-kit/DataTable.vue';
 import DateText from '@/components/ui-kit/DateText.vue';
 import EmptyState from '@/components/ui-kit/EmptyState.vue';
+import MoneyText from '@/components/ui-kit/MoneyText.vue';
 import PageHeader from '@/components/ui-kit/PageHeader.vue';
 import PatientBanner from '@/components/ui-kit/PatientBanner.vue';
+import StatusBadge from '@/components/ui-kit/StatusBadge.vue';
 import TabsNav from '@/components/ui-kit/TabsNav.vue';
 import UiButton from '@/components/ui-kit/UiButton.vue';
 import { usePermissions } from '@/composables/usePermissions';
@@ -17,6 +19,9 @@ const props = defineProps({
     family: { type: Array, default: () => [] },
     tab: { type: String, default: 'overview' },
     bloodGroups: { type: Array, default: () => [] },
+    visits: { type: Array, default: () => [] },
+    ordered_tests: { type: Array, default: () => [] },
+    invoices: { type: Array, default: () => [] },
 });
 
 const { t } = useI18n();
@@ -47,6 +52,32 @@ const details = [
     ['patients.preferred_language', 'preferred_locale', 'locale'],
     ['patients.registered_at_branch', 'registered_branch'],
     ['patients.registered', 'created_at', 'date'],
+];
+
+const visitColumns = [
+    { key: 'date', label: t('appointments.day'), type: 'date' },
+    { key: 'time', label: t('appointments.time'), type: 'text' },
+    { key: 'doctor', label: t('appointments.doctor'), type: 'text', grow: true },
+    { key: 'visit_type', label: t('appointments.visit_type'), type: 'text' },
+    { key: 'fee', label: t('appointments.fee'), type: 'money' },
+    { key: 'status', label: t('common.status'), type: 'status' },
+];
+
+const testColumns = [
+    { key: 'code', label: t('billing.code'), type: 'id' },
+    { key: 'name', label: t('billing.test'), type: 'text', grow: true },
+    { key: 'price', label: t('billing.price'), type: 'money' },
+    { key: 'status', label: t('common.status'), type: 'status' },
+    { key: 'created_at', label: t('patients.registered'), type: 'datetime' },
+];
+
+const invoiceColumns = [
+    { key: 'invoice_no', label: t('billing.invoice_no'), type: 'id' },
+    { key: 'total', label: t('billing.total'), type: 'money' },
+    { key: 'paid', label: t('billing.paid'), type: 'money' },
+    { key: 'due', label: t('billing.due'), type: 'money' },
+    { key: 'status', label: t('common.status'), type: 'status' },
+    { key: 'created_at', label: t('patients.registered'), type: 'datetime' },
 ];
 
 const familyColumns = [
@@ -106,6 +137,46 @@ const familyColumns = [
                 />
             </section>
         </div>
+        <DataTable
+            v-else-if="activeTab === 'visits'"
+            :columns="visitColumns"
+            :rows="visits"
+            :empty-title="t('patients.tab_empty')"
+            empty-icon="calendar-check"
+            :sync-url="false"
+        >
+            <template #cell-visit_type="{ value }">{{ value === 'follow_up' ? t('appointments.visit_follow_up') : t('appointments.visit_new') }}</template>
+            <template #cell-fee="{ value }"><MoneyText :value="value" symbol /></template>
+            <template #cell-status="{ value }"><StatusBadge :status="value" /></template>
+        </DataTable>
+        <DataTable
+            v-else-if="activeTab === 'tests'"
+            :columns="testColumns"
+            :rows="ordered_tests"
+            :empty-title="t('patients.tab_empty')"
+            empty-icon="vial"
+            :sync-url="false"
+            clickable
+            @row-click="(row) => router.visit(route('admin.orders.show', row.order_id))"
+        >
+            <template #cell-price="{ value }"><MoneyText :value="value" symbol /></template>
+            <template #cell-status="{ value }"><StatusBadge :status="value" /></template>
+        </DataTable>
+        <DataTable
+            v-else-if="activeTab === 'billing'"
+            :columns="invoiceColumns"
+            :rows="invoices"
+            :empty-title="t('patients.tab_empty')"
+            empty-icon="receipt"
+            :sync-url="false"
+            clickable
+            @row-click="(row) => router.visit(route('admin.orders.show', row.order_id))"
+        >
+            <template #cell-total="{ value }"><MoneyText :value="value" symbol /></template>
+            <template #cell-paid="{ value }"><MoneyText :value="value" symbol /></template>
+            <template #cell-due="{ value }"><MoneyText :value="value" symbol /></template>
+            <template #cell-status="{ value }"><StatusBadge :status="value" /></template>
+        </DataTable>
         <div v-else class="card">
             <EmptyState icon="clock-rotate-left" :title="t('patients.tab_empty')" />
         </div>
