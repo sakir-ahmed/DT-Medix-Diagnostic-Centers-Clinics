@@ -81,6 +81,7 @@ class HomeController extends Controller
                 'tests_count' => $department->tests_count,
             ])->all(),
             'doctors' => $doctors->map(fn (Doctor $doctor): array => [
+                'id' => $doctor->id,
                 'name' => $locale === 'bn' && filled($doctor->name_bn) ? $doctor->name_bn : $doctor->name,
                 'specialty' => $doctor->specialty,
                 'qualifications' => $doctor->qualifications,

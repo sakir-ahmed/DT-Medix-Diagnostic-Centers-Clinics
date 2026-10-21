@@ -52,7 +52,9 @@ const name = (item) => (locale.value === 'bn' && item.name_bn ? item.name_bn : i
             <section class="mt-10">
                 <div class="flex items-end justify-between gap-3">
                     <h2 class="section-title">{{ t('public.popular_tests') }}</h2>
-                    <Link :href="route('login')" class="text-[13px] font-medium text-primary hover:underline">{{ t('public.staff_sign_in') }}</Link>
+                    <Link :href="route('public.tests')" class="inline-flex items-center gap-1 text-[13px] font-medium text-primary hover:underline">
+                        {{ t('public.view_all') }} <AppIcon name="arrow-right" size="sm" />
+                    </Link>
                 </div>
                 <div class="mt-3 overflow-hidden rounded-lg border border-border bg-surface">
                     <ul class="divide-y divide-border">
@@ -82,9 +84,14 @@ const name = (item) => (locale.value === 'bn' && item.name_bn ? item.name_bn : i
             </section>
 
             <section v-if="center.doctors?.length" class="mt-10">
-                <h2 class="section-title">{{ t('public.our_doctors') }}</h2>
+                <div class="flex items-end justify-between gap-3">
+                    <h2 class="section-title">{{ t('public.our_doctors') }}</h2>
+                    <Link :href="route('public.doctors')" class="inline-flex items-center gap-1 text-[13px] font-medium text-primary hover:underline">
+                        {{ t('public.view_all') }} <AppIcon name="arrow-right" size="sm" />
+                    </Link>
+                </div>
                 <div class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    <article v-for="doctor in center.doctors" :key="doctor.name" class="card">
+                    <Link v-for="doctor in center.doctors" :key="doctor.name" :href="route('public.booking', { doctor: doctor.id })" class="card transition-colors duration-100 hover:border-accent">
                         <div class="flex items-center gap-3">
                             <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
                                 <AppIcon name="user-doctor" size="lg" />
@@ -99,7 +106,7 @@ const name = (item) => (locale.value === 'bn' && item.name_bn ? item.name_bn : i
                             <span v-if="doctor.days?.length" class="inline-flex items-center gap-1 text-muted"><AppIcon name="calendar-check" size="sm" /> {{ doctor.days.join(', ') }}</span>
                             <span v-if="Number(doctor.consultation_fee) > 0" class="font-semibold tabular-nums">{{ formatMoney(doctor.consultation_fee) }}</span>
                         </div>
-                    </article>
+                    </Link>
                 </div>
             </section>
 
