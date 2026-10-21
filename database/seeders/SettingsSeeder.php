@@ -7,29 +7,25 @@ namespace Database\Seeders;
 use App\Actions\Center\SeedCenterDefaultsAction;
 use App\Enums\RoleName;
 use App\Models\Branch;
-use App\Models\Center;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
 /**
- * The center profile of this installation, its first branches, the
- * catalog defaults and the hidden Datatech super-admin from .env.
+ * Installation defaults: settings from the CENTER_* env values, the
+ * first branches, the catalog defaults and the hidden Datatech
+ * super-admin from SUPER_ADMIN_* env values.
  */
-class CenterSeeder extends Seeder
+class SettingsSeeder extends Seeder
 {
     public function run(SeedCenterDefaultsAction $defaults): void
     {
-        if (Center::query()->doesntExist()) {
-            Center::query()->create([
-                'name' => (string) config('center.name'),
-                'name_bn' => config('center.name_bn'),
-                'address' => config('center.address'),
-                'contact_mobile' => normalize_bd_mobile(config('center.mobile')),
-                'contact_email' => config('center.email'),
-            ]);
-        }
-
-        forget_center();
+        settings()->set(array_filter([
+            'center_name' => config('center.name'),
+            'center_name_bn' => config('center.name_bn'),
+            'center_address' => config('center.address'),
+            'center_contact_mobile' => normalize_bd_mobile(config('center.mobile')),
+            'center_contact_email' => config('center.email'),
+        ], fn (mixed $value): bool => ! blank($value)));
 
         Branch::query()->firstOrCreate(['code' => 'BR01'], ['name' => 'Main Branch', 'address' => config('center.address'), 'phone' => normalize_bd_mobile(config('center.mobile'))]);
         Branch::query()->firstOrCreate(['code' => 'BR02'], ['name' => 'Mirpur Collection Center', 'address' => 'Mirpur 10, Dhaka']);

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\Center;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Test;
@@ -21,18 +20,18 @@ class HomeController extends Controller
 {
     public function __invoke(Request $request): Response
     {
-        $center = center();
-        $title = $center === null ? (string) config('app.name') : $center->name;
+        $configured = settings()->has('center_name');
+        $title = $configured ? (string) setting('center_name') : (string) config('app.name');
 
         return Inertia::render('Public/Home', [
-            'center' => $center === null ? null : $this->center($center),
+            'center' => $configured ? $this->center() : null,
         ])->withViewData(['meta_title' => $title]);
     }
 
     /**
      * @return array<string, mixed>
      */
-    private function center(Center $center): array
+    private function center(): array
     {
         $locale = app()->getLocale();
 
@@ -62,10 +61,10 @@ class HomeController extends Controller
         );
 
         return [
-            'name' => $center->name,
-            'name_bn' => $center->name_bn,
-            'address' => $center->address,
-            'phone' => $center->contact_mobile,
+            'name' => setting('center_name'),
+            'name_bn' => setting('center_name_bn'),
+            'address' => setting('center_address'),
+            'phone' => setting('center_contact_mobile'),
             'stats' => [
                 'tests' => Test::query()->where('is_active', true)->count(),
                 'doctors' => Doctor::query()->where('is_active', true)->count(),

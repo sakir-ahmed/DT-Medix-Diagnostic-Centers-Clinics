@@ -33,9 +33,8 @@ class MeResource extends JsonResource
                 'code' => $branch->code,
                 'name' => $branch->name,
             ])->all(),
-            'center' => center() === null ? null : [
-                'id' => center()->id,
-                'name' => center()->name,
+            'center' => [
+                'name' => setting('center_name'),
             ],
         ];
     }

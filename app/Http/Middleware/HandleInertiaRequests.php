@@ -36,7 +36,6 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         $context = app(BranchContext::class);
-        $center = center();
         /** @var User|null $user */
         $user = $request->user('web');
 
@@ -46,7 +45,7 @@ class HandleInertiaRequests extends Middleware
                 'name' => config('app.name'),
                 'locale' => app()->getLocale(),
                 'locales' => ['en', 'bn'],
-                'idle_timeout' => (int) ($center?->setting('idle_timeout_minutes') ?? 15),
+                'idle_timeout' => (int) setting('idle_timeout_minutes', 15),
             ],
             'translations' => fn (): array => Translations::for(app()->getLocale()),
             'auth' => fn (): ?array => $user === null ? null : [
@@ -62,10 +61,9 @@ class HandleInertiaRequests extends Middleware
                 'roles' => $user->getRoleNames()->values()->all(),
                 'permissions' => $user->getAllPermissions()->pluck('name')->values()->all(),
             ],
-            'center' => fn (): ?array => $center === null ? null : [
-                'id' => $center->id,
-                'name' => $center->name,
-                'name_bn' => $center->name_bn,
+            'center' => fn (): array => [
+                'name' => setting('center_name'),
+                'name_bn' => setting('center_name_bn'),
             ],
             'branches' => fn (): array => $user === null ? [] : Branch::query()
                 ->where('is_active', true)

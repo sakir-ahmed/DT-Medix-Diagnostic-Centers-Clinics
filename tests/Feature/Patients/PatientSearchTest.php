@@ -7,7 +7,7 @@ use App\Enums\RoleName;
 use App\Models\Patient;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $this->user = makeUser(RoleName::Receptionist);
     $action = app(RegisterPatientAction::class);
     value(function () use ($action): void {

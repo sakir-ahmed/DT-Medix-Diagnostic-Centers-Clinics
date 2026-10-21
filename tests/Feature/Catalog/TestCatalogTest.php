@@ -12,7 +12,7 @@ use App\Models\Test;
 use Inertia\Testing\AssertableInertia as Assert;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     value(fn () => app(SeedCenterDefaultsAction::class)->execute());
     $this->manager = makeUser(RoleName::BranchManager);
     $this->department = value(fn () => Department::query()->where('code', 'BIO')->firstOrFail());

@@ -10,16 +10,10 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('centers', function (Blueprint $table): void {
+        Schema::create('settings', function (Blueprint $table): void {
             $table->id();
-            $table->string('name');
-            $table->string('name_bn')->nullable();
-            $table->text('address')->nullable();
-            $table->string('contact_name')->nullable();
-            $table->string('contact_mobile', 20)->nullable();
-            $table->string('contact_email')->nullable();
-            $table->string('logo_path')->nullable();
-            $table->json('settings')->nullable();
+            $table->string('key', 100)->unique();
+            $table->text('value')->nullable();
             $table->timestamps();
         });
 
@@ -117,6 +111,6 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('users');
-        Schema::dropIfExists('centers');
+        Schema::dropIfExists('settings');
     }
 };

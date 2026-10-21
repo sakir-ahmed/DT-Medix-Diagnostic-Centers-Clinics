@@ -65,7 +65,7 @@ final class BookAppointmentAction
      */
     private function visitTypeAndFee(Patient $patient, Doctor $doctor, Carbon $date): array
     {
-        $days = $doctor->follow_up_days ?? (int) (center()?->setting('follow_up_days') ?? 7);
+        $days = $doctor->follow_up_days ?? setting('follow_up_days', 7);
 
         $recent = Appointment::query()->withoutGlobalScope('branch')
             ->where('patient_id', $patient->id)
@@ -80,7 +80,7 @@ final class BookAppointmentAction
         }
 
         $fee = Money::isZero((string) $doctor->follow_up_fee)
-            ? Money::percent((string) $doctor->consultation_fee, (string) (center()?->setting('follow_up_fee_percent') ?? 0))
+            ? Money::percent((string) $doctor->consultation_fee, (string) setting('follow_up_fee_percent', 0))
             : Money::of((string) $doctor->follow_up_fee);
 
         return ['follow_up', $fee];

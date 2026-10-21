@@ -7,7 +7,7 @@ use App\Models\Referrer;
 use Illuminate\Support\Facades\DB;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $this->owner = makeUser(RoleName::Owner);
 });
 

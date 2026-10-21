@@ -12,7 +12,7 @@ use App\Services\SmsService;
 use Inertia\Testing\AssertableInertia as Assert;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     value(fn () => app(SeedCenterDefaultsAction::class)->execute());
     $this->owner = makeUser(RoleName::Owner);
 });
@@ -34,7 +34,7 @@ it('creates a narrative template with quick phrases and renders its preview', fu
         ->assertInertia(fn (Assert $page) => $page->component('Admin/ReportTemplates/Form')
             ->where('template.default_findings', 'Lung fields are clear.')
             ->where('template.phrases.0.shortcut', 'clear-lungs')
-            ->where('center.name', $this->center->name));
+            ->where('center.name', 'Test Diagnostic Center'));
 });
 
 it('keeps only known table options', function (): void {

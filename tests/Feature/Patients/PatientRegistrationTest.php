@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia as Assert;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $this->receptionist = makeUser(RoleName::Receptionist);
 });
 

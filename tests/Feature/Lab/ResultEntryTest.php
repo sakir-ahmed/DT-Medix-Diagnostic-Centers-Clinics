@@ -26,7 +26,7 @@ use App\Services\Lab\ResultRows;
 use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     value(fn () => app(SeedCenterDefaultsAction::class)->execute());
     $this->branch = mainBranch();
     $this->department = value(fn () => Department::query()->where('code', 'BIO')->firstOrFail());

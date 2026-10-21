@@ -20,7 +20,6 @@ class ReceptionController extends Controller
 {
     public function index(): Response
     {
-        $center = center();
 
         return Inertia::render('Admin/Reception/Index', [
             'doctors' => Doctor::query()->where('is_active', true)->orderBy('name')->get(['id', 'name'])->map(fn (Doctor $doctor): array => [
@@ -31,11 +30,11 @@ class ReceptionController extends Controller
                 'value' => $referrer->id,
                 'label' => $referrer->name,
             ])->values(),
-            'discount_limit_percent' => (int) ($center?->setting('discount_limit_percent') ?? 10),
-            'vat_enabled' => (bool) $center?->setting('vat_enabled'),
-            'vat_percent' => (string) ($center?->setting('vat_percent') ?? 0),
-            'service_charge_enabled' => (bool) $center?->setting('service_charge_enabled'),
-            'service_charge_percent' => (string) ($center?->setting('service_charge_percent') ?? 0),
+            'discount_limit_percent' => setting('discount_limit_percent', 10),
+            'vat_enabled' => (bool) setting('vat_enabled'),
+            'vat_percent' => (string) setting('vat_percent', 0),
+            'service_charge_enabled' => (bool) setting('service_charge_enabled'),
+            'service_charge_percent' => (string) setting('service_charge_percent', 0),
             'bloodGroups' => Patient::BLOOD_GROUPS,
         ]);
     }

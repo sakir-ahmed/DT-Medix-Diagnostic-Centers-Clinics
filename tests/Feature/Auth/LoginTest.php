@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use PragmaRX\Google2FA\Google2FA;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $this->user = makeUser(RoleName::Receptionist, attributes: [
         'username' => 'rina', 'email' => 'rina@example.test', 'mobile' => '8801712345678', 'password' => 'secret-pass',
     ]);
@@ -80,7 +80,7 @@ it('issues and revokes an API token', function (): void {
     $response = $this->postJson('/api/v1/auth/login', ['login' => 'rina', 'password' => 'secret-pass'])
         ->assertOk()
         ->assertJsonPath('success', true)
-        ->assertJsonStructure(['data' => ['token', 'user' => ['roles', 'permissions', 'branches', 'center' => ['id', 'name']]]]);
+        ->assertJsonStructure(['data' => ['token', 'user' => ['roles', 'permissions', 'branches', 'center' => ['name']]]]);
 
     $token = $response->json('data.token');
 

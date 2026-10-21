@@ -57,7 +57,6 @@ class ReportTemplateController extends Controller
     private function form(?ReportTemplate $template): Response
     {
         $template?->load('phrases');
-        $center = center();
 
         return Inertia::render('Admin/ReportTemplates/Form', [
             'template' => $template === null ? null : [
@@ -74,7 +73,7 @@ class ReportTemplateController extends Controller
             ],
             'defaultOptions' => ReportTemplate::DEFAULT_OPTIONS,
             'departments' => Department::query()->orderBy('sort_order')->get(['id', 'name'])->map(fn (Department $d): array => ['value' => $d->id, 'label' => $d->name]),
-            'center' => ['name' => $center?->name, 'address' => $center?->address, 'phone' => $center?->contact_mobile === null ? null : substr($center->contact_mobile, 2)],
+            'center' => ['name' => setting('center_name'), 'address' => setting('center_address'), 'phone' => setting('center_contact_mobile') === null ? null : substr((string) setting('center_contact_mobile'), 2)],
         ]);
     }
 }

@@ -10,7 +10,7 @@ beforeEach(function (): void {
 });
 
 it('lists the seeded demo accounts on the login page in demo mode', function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     makeUser(RoleName::Owner, attributes: ['username' => 'demo.owner']);
 
     $this->get(route('login'))
@@ -20,7 +20,7 @@ it('lists the seeded demo accounts on the login page in demo mode', function ():
 
 it('hides the demo accounts when demo mode is off', function (): void {
     config(['app.demo' => false]);
-    $this->center = makeCenter();
+    makeCenter();
     makeUser(RoleName::Owner, attributes: ['username' => 'demo.owner']);
 
     $this->get(route('login'))
@@ -29,7 +29,7 @@ it('hides the demo accounts when demo mode is off', function (): void {
 });
 
 it('signs in a demo account with one click', function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $owner = makeUser(RoleName::Owner, attributes: ['username' => 'demo.owner']);
 
     $this->post(route('demo.login', $owner))
@@ -39,7 +39,7 @@ it('signs in a demo account with one click', function (): void {
 });
 
 it('refuses non-demo accounts and disabled demo mode', function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $demoUser = makeUser(RoleName::Owner, attributes: ['username' => 'demo.owner']);
     $plainUser = makeUser(RoleName::Owner, attributes: ['username' => 'something.else']);
     $superAdmin = makeUser(RoleName::SuperAdmin, attributes: ['username' => 'demo.datatech']);
@@ -54,7 +54,7 @@ it('refuses non-demo accounts and disabled demo mode', function (): void {
 });
 
 it('renders the public center website with tests, doctors and stats', function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $branch = mainBranch();
 
     $doctor = value(fn (): Doctor => Doctor::query()->create([

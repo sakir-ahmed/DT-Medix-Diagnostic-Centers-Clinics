@@ -30,7 +30,7 @@ use App\Models\User;
 use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     value(fn () => app(SeedCenterDefaultsAction::class)->execute());
     $this->branch = mainBranch();
     $this->department = value(fn () => Department::query()->where('code', 'BIO')->firstOrFail());
@@ -335,7 +335,7 @@ it('refuses a payment above the due and a payment on a settled invoice', functio
 });
 
 it('adds vat only when the center has it enabled', function (): void {
-    $this->center->forceFill(['settings' => ['vat_enabled' => true, 'vat_percent' => 15]])->save();
+    settings()->set(['vat_enabled' => true, 'vat_percent' => 15]);
 
     $order = value(function () {
         $test = catalogLine($this->department->id, 'CBC', '200');
@@ -404,9 +404,9 @@ it('refuses to cancel a collected line unless the center allows a refund and a m
     expect($blocked?->errorCode)->toBe('COLLECTED_NOT_REFUNDABLE')
         ->and($order->items[0]->fresh()->status)->toBe(OrderItemStatus::Collected);
 
-    $settings = $this->center->settings ?? [];
+    $settings = settings()->rules();
     $settings['collected_samples_refundable'] = true;
-    $this->center->forceFill(['settings' => $settings])->save();
+    settings()->set($settings);
 
     $order = value(fn () => app(CancelItemsAction::class)->execute($order, [$order->items[0]->id], 'Patient left', 'counter-manager', '2468'));
 

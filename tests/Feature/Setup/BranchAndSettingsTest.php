@@ -8,7 +8,7 @@ use Inertia\Testing\AssertableInertia as Assert;
 use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $this->owner = makeUser(RoleName::Owner);
 });
 
@@ -43,16 +43,15 @@ it('forbids branch management for other roles', function (): void {
 it('saves center settings and logs the changed keys', function (): void {
     $this->actingAs($this->owner)->get(route('admin.settings.edit'))->assertInertia(fn (Assert $page) => $page->where('settings.release_rule', 'hold_until_paid'));
 
-    $settings = $this->center->allSettings();
+    $settings = settings()->rules();
     $settings['discount_limit_percent'] = 15;
     $settings['release_rule'] = 'manager_override';
 
     $this->actingAs($this->owner)->put(route('admin.settings.update'), ['name' => 'New Name', 'settings' => $settings])->assertSessionHasNoErrors();
 
-    $center = $this->center->fresh();
-    expect($center->name)->toBe('New Name')
-        ->and($center->setting('discount_limit_percent'))->toBe(15)
-        ->and($center->setting('release_rule'))->toBe('manager_override')
+    expect(setting('center_name'))->toBe('New Name')
+        ->and(setting('discount_limit_percent'))->toBe(15)
+        ->and(setting('release_rule'))->toBe('manager_override')
         ->and(Activity::query()->where('description', 'settings.updated')->first()?->properties['changed'])->toContain('release_rule');
 });
 

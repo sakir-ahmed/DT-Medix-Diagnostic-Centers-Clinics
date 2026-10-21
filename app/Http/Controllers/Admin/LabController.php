@@ -130,7 +130,7 @@ class LabController extends Controller
                 'name' => $attachment->original_name,
                 'size' => $attachment->size,
             ])->all(),
-            'delta_percent' => (float) (center()?->setting('delta_check_percent') ?? 50),
+            'delta_percent' => (float) setting('delta_check_percent', 50),
             'next_url' => $this->nextEntryUrl($item),
         ]);
     }

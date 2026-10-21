@@ -24,7 +24,6 @@ final class PrintDocument
         $invoice->loadMissing(['patient', 'branch', 'order.items', 'payments']);
         $patient = $invoice->patient;
         $branch = $invoice->branch;
-        $center = center();
 
         return [
             'center' => $this->centerName(),
@@ -50,8 +49,8 @@ final class PrintDocument
             'discount' => money($invoice->discount_amount),
             'vat' => money($invoice->vat_amount),
             'service' => money($invoice->service_charge),
-            'vat_enabled' => (bool) $center?->setting('vat_enabled'),
-            'service_enabled' => (bool) $center?->setting('service_charge_enabled'),
+            'vat_enabled' => (bool) setting('vat_enabled'),
+            'service_enabled' => (bool) setting('service_charge_enabled'),
             'total' => money($invoice->total),
             'paid' => money($invoice->paid),
             'due' => money($invoice->due),
@@ -103,12 +102,10 @@ final class PrintDocument
 
     private function centerName(): string
     {
-        $center = center();
-
-        if ($center === null) {
+        if (blank((string) setting('center_name'))) {
             return (string) config('app.name');
         }
 
-        return app()->getLocale() === 'bn' && filled($center->name_bn) ? $center->name_bn : $center->name;
+        return app()->getLocale() === 'bn' && filled((string) setting('center_name_bn')) ? (string) setting('center_name_bn') : (string) setting('center_name');
     }
 }

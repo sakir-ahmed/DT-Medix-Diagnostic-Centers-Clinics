@@ -9,7 +9,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $this->manager = makeUser(RoleName::BranchManager);
 });
 

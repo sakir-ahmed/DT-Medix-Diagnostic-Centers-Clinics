@@ -44,7 +44,7 @@ final class DiscountGuard
             return null;
         }
 
-        $limit = (string) (center()?->setting('discount_limit_percent') ?? 10);
+        $limit = (string) setting('discount_limit_percent', 10);
 
         return [
             'type' => $type,

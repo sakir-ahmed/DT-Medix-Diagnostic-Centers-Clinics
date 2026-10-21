@@ -21,7 +21,7 @@ function navigationKeys(Assert $page): array
 }
 
 it('shows each role only its menu', function (RoleName $role, array $mustHave, array $mustNotHave): void {
-    $center = makeCenter();
+    makeCenter();
     $user = makeUser($role);
 
     $this->actingAs($user)->get(route('admin.dashboard'))->assertInertia(function (Assert $page) use ($mustHave, $mustNotHave): void {
@@ -43,13 +43,13 @@ it('shows each role only its menu', function (RoleName $role, array $mustHave, a
 ]);
 
 it('shares permissions and center details with the frontend', function (): void {
-    $center = makeCenter();
+    makeCenter();
 
     $this->actingAs(makeUser(RoleName::Receptionist))
         ->get(route('admin.dashboard'))
         ->assertInertia(fn (Assert $page) => $page
             ->component('Admin/Dashboard')
-            ->where('center.id', $center->id)
+            ->where('center.name', 'Test Diagnostic Center')
             ->where('auth.roles', ['receptionist'])
             ->has('translations.common')
             ->where('current_branch_id', mainBranch()->id));

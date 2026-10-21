@@ -16,7 +16,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->withoutVite();
         Storage::fake('local');
-        forget_center();
+        forget_settings();
     }
 
     /**
@@ -26,7 +26,7 @@ abstract class TestCase extends BaseTestCase
     public function call($method, $uri, $parameters = [], $cookies = [], $files = [], $server = [], $content = null)
     {
         $this->app->make(BranchContext::class)->reset();
-        forget_center();
+        forget_settings();
 
         // Bearer token requests authenticate from scratch, like a real API call.
         if (isset($server['HTTP_AUTHORIZATION'])) {

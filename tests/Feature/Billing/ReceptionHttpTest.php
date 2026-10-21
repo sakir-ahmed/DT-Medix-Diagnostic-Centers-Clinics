@@ -16,7 +16,7 @@ use App\Models\Test;
 use Spatie\LaravelPdf\Facades\Pdf;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     value(fn () => app(SeedCenterDefaultsAction::class)->execute());
     $this->branch = mainBranch();
     $this->other = makeBranch('BR02');

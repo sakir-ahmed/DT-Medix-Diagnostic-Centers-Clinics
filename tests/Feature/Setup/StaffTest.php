@@ -7,7 +7,7 @@ use App\Models\User;
 use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     $this->owner = makeUser(RoleName::Owner);
 });
 

@@ -10,7 +10,7 @@ use App\Models\Patient;
 
 beforeEach(function (): void {
     $this->travelTo('2026-10-16 08:00:00');
-    $this->center = makeCenter();
+    makeCenter();
     value(fn () => app(SeedCenterDefaultsAction::class)->execute());
     $this->branch = mainBranch();
     $this->other = makeBranch('BR02');

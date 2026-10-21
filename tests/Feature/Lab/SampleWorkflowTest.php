@@ -21,7 +21,7 @@ use App\Models\Test;
 use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function (): void {
-    $this->center = makeCenter();
+    makeCenter();
     value(fn () => app(SeedCenterDefaultsAction::class)->execute());
     $this->branch = mainBranch();
     $this->other = makeBranch('BR02');

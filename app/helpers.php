@@ -1,9 +1,8 @@
 <?php
 
 declare(strict_types=1);
-use App\Models\Center;
-use App\Support\CenterCache;
 use App\Support\Money;
+use App\Support\Settings;
 
 if (! function_exists('normalize_bd_mobile')) {
     /**
@@ -31,23 +30,33 @@ if (! function_exists('normalize_bd_mobile')) {
     }
 }
 
-if (! function_exists('center')) {
+if (! function_exists('settings')) {
     /**
-     * The one center of this installation, loaded once per request.
+     * The installation settings service (key-value, typed defaults).
      */
-    function center(): ?Center
+    function settings(): Settings
     {
-        return CenterCache::get();
+        return app(Settings::class);
     }
 }
 
-if (! function_exists('forget_center')) {
+if (! function_exists('setting')) {
     /**
-     * Drop the cached center after its profile or settings change.
+     * Read one configuration value.
      */
-    function forget_center(): void
+    function setting(string $key, mixed $default = null): mixed
     {
-        CenterCache::reset();
+        return settings()->get($key, $default);
+    }
+}
+
+if (! function_exists('forget_settings')) {
+    /**
+     * Drop the cached settings after direct database changes (tests).
+     */
+    function forget_settings(): void
+    {
+        settings()->flush();
     }
 }
 

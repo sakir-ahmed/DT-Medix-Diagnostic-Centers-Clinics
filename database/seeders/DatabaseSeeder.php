@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PermissionSeeder::class,
-            CenterSeeder::class,
+            SettingsSeeder::class,
             DemoStaffSeeder::class,
             DemoCatalogSeeder::class,
             DemoClinicalDataSeeder::class,
