@@ -1,7 +1,7 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
-import FlashToasts from '@/components/ui-kit/FlashToasts.vue';
+import FlashToasts from '@/components/layout/FlashToasts.vue';
 import LanguageSwitch from '@/components/ui-kit/LanguageSwitch.vue';
 import ThemeToggle from '@/components/ui-kit/ThemeToggle.vue';
 import AppIcon from '@/components/ui-kit/AppIcon.vue';

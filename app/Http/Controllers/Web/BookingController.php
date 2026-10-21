@@ -19,7 +19,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -50,7 +49,7 @@ final class BookingController extends Controller
         $selectedId = (int) $request->query('doctor', 0);
 
         return Inertia::render('Public/Booking', [
-            'doctors' => $this->bookableDoctors()->all(),
+            'doctors' => $this->bookableDoctors(),
             'selectedDoctorId' => $selectedId > 0 ? $selectedId : null,
             'booked' => $booked,
             'centerName' => setting('center_name'),
@@ -122,9 +121,9 @@ final class BookingController extends Controller
     }
 
     /**
-     * @return Collection<int, array<string, mixed>>
+     * @return list<array<string, mixed>>
      */
-    private function bookableDoctors(): Collection
+    private function bookableDoctors(): array
     {
         $weekdays = SiteController::weekdays();
 
@@ -146,7 +145,8 @@ final class BookingController extends Controller
                     ->map(fn ($schedule): string => (string) $weekdays[$schedule->weekday])
                     ->values()
                     ->all(),
-            ]);
+            ])
+            ->all();
     }
 
     /**

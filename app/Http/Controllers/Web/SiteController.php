@@ -9,8 +9,8 @@ use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Package;
 use App\Support\LocalName;
-use Illuminate\Support\Collection;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -49,8 +49,10 @@ final class SiteController extends Controller
                     ->all(),
             ]);
 
-        return Inertia::render('Public/Doctors', ['doctors' => $doctors->all()])
-            ->withViewData(['meta_title' => __('public.doctors_page_title')]);
+        return Inertia::render('Public/Doctors', [
+            'centerName' => setting('center_name'),
+            'doctors' => $doctors->all(),
+        ])->withViewData(['meta_title' => __('public.doctors_page_title')]);
     }
 
     public function tests(): Response|RedirectResponse
@@ -73,6 +75,7 @@ final class SiteController extends Controller
             ->get();
 
         return Inertia::render('Public/Tests', [
+            'centerName' => setting('center_name'),
             'departments' => $departments
                 ->filter(fn (Department $department): bool => $department->tests->isNotEmpty())
                 ->map(fn (Department $department): array => [
