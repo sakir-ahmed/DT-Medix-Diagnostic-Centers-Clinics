@@ -35,7 +35,7 @@ const name = (item) => (locale.value === 'bn' && item.name_bn ? item.name_bn : i
                     <p class="mt-3 text-[15px] leading-relaxed text-muted">{{ t('public.center_lead') }}</p>
                     <div class="mt-5 flex flex-wrap gap-2">
                         <Link v-if="route().has('public.booking')" :href="route('public.booking')" class="btn-primary-lg"><AppIcon name="calendar-check" /> {{ t('public.book_appointment') }}</Link>
-                        <a v-if="center.phone" :href="'tel:'.center.phone" class="btn-secondary-lg"><AppIcon name="phone" /> {{ t('public.call_now') }}</a>
+                        <a v-if="center.phone" :href="'tel:'.concat(center.phone)" class="btn-secondary-lg"><AppIcon name="phone" /> {{ t('public.call_now') }}</a>
                         <Link v-if="route().has('portal.login')" :href="route('portal.login')" class="btn-secondary-lg"><AppIcon name="file-medical" /> {{ t('public.my_reports') }}</Link>
                     </div>
                 </div>
