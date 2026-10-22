@@ -32,6 +32,11 @@ return [
     'demo_password' => env('DEMO_PASSWORD'),
 
     /*
+    | Sales phone number shown in the demo banner while IS_DEMO is on.
+    */
+    'demo_contact_phone' => env('DEMO_CONTACT_PHONE', '+880 1575-888775'),
+
+    /*
     | Private disk for patient files, report attachments and exports.
     */
     'storage_disk' => env('CENTER_STORAGE_DISK', 'local'),

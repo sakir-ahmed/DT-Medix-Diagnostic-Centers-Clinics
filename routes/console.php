@@ -7,3 +7,9 @@ use Illuminate\Support\Facades\Schedule;
 Schedule::command('backup:run --only-db')->dailyAt('02:00')->onOneServer();
 Schedule::command('backup:clean')->weeklyOn(0, '03:00')->onOneServer();
 Schedule::command('backup:monitor')->dailyAt('04:00')->onOneServer();
+
+Schedule::command('demo:reset')
+    ->dailyAt('04:00')
+    ->timezone('Asia/Dhaka')
+    ->when(fn (): bool => (bool) config('app.demo') && ! app()->isProduction())
+    ->onOneServer();

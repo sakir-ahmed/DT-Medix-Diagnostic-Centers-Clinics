@@ -42,6 +42,7 @@ return [
     'stat_departments' => 'বিভাগ',
     'popular_tests' => 'জনপ্রিয় টেস্ট',
     'report_in' => ':hours ঘণ্টায় রিপোর্ট',
+    'dashboard' => 'ড্যাশবোর্ড',
     'staff_sign_in' => 'স্টাফ সাইন ইন',
     'departments_title' => 'আমাদের বিভাগসমূহ',
     'tests_count' => ':count টি টেস্ট',

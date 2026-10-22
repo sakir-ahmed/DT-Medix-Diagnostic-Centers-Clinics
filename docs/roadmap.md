@@ -141,6 +141,18 @@ Mark finished phases with `[x]`.
 
 ---
 
+## Phase 13: HR, Attendance & Payroll
+
+- [x] Employees, work shifts, holidays, leave requests with approval
+- [x] Attendance: manual entry, ZKTeco ADMS push endpoint, CSV file import, daily calculation (late, early, overtime), manual edits protected
+- [x] Monthly attendance sheet and summary report
+- [x] Payroll runs per branch and month, payslips with snapshots, finalize (immutable) and mark paid, payroll register and printable payslip
+- [x] Permissions, navigation, English and Bangla, demo data, cross-branch tests
+
+**Acceptance:** device punches are deduplicated; the same punch sent twice creates one record; manual attendance is never overwritten by device data; a finalized payroll run cannot change; a branch user gets 404 for another branch's employees, attendance and payroll.
+
+---
+
 ## Later Modules (not in this project scope)
 
 Inpatient (IPD) and bed management, pharmacy, corporate and insurance billing, reagent inventory, analyzer interfacing, PACS viewer, full accounting, native mobile apps, offline mode.

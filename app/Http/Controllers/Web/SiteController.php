@@ -173,6 +173,11 @@ final class SiteController extends Controller
         return $this->staticPage('Public/Faq', 'faq');
     }
 
+    public function guide(): Response|RedirectResponse
+    {
+        return $this->staticPage('Public/Guide', 'guide');
+    }
+
     public function privacy(): Response|RedirectResponse
     {
         return $this->staticPage('Public/Privacy', 'privacy');

@@ -14,10 +14,14 @@ import {
     faUserDoctor, faUserPlus, faUserShield, faUsers, faVial, faWallet, faWifi, faXmark,
     faMicroscope, faXRay, faShieldHalved, faAward, faCircleQuestion, faClipboardCheck, faHouseChimneyMedical, faUserCheck, faHourglassHalf, faMapLocationDot, faHeartCircleCheck, faHandHoldingHeart, faCalendarDays, faHeadset, faRoute, faLayerGroup, faDatabase, faUsersGear, faFingerprint, faRocket,
     faBuildingShield,
+    faDroplet,
+    faGaugeHigh,
 } from '@fortawesome/free-solid-svg-icons';
 import { faBell as farBell, faCircle as farCircle, faFolderOpen as farFolderOpen, faFileLines as farFileLines } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
+    faGaugeHigh,
+    faDroplet,
     faBuildingShield,
     faMicroscope, faXRay, faShieldHalved, faAward, faCircleQuestion, faClipboardCheck, faHouseChimneyMedical, faUserCheck, faHourglassHalf, faMapLocationDot, faHeartCircleCheck, faHandHoldingHeart, faCalendarDays, faHeadset, faRoute, faLayerGroup, faDatabase, faUsersGear, faFingerprint, faRocket,
     faArrowDown, faArrowRight, faArrowUp, faArrowsRotate, faBan, faBarcode, faBars, faBell, faBolt, faBoxArchive,

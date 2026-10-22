@@ -5,17 +5,22 @@ declare(strict_types=1);
 use App\Http\Controllers\Admin\AccessLogController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\ApprovalController;
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\BranchSwitchController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\DoctorQueueController;
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\HrSetupController;
 use App\Http\Controllers\Admin\LabController;
+use App\Http\Controllers\Admin\LeaveController;
 use App\Http\Controllers\Admin\MessageTemplateController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\Admin\PayrollController;
 use App\Http\Controllers\Admin\PrintController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReceptionController;
@@ -209,4 +214,50 @@ Route::middleware('can:message-templates.manage')->group(function (): void {
     Route::get('/message-templates', [MessageTemplateController::class, 'index'])->name('message-templates.index');
     Route::put('/message-templates/{messageTemplate}', [MessageTemplateController::class, 'update'])->name('message-templates.update');
     Route::post('/message-templates/{messageTemplate}/reset', [MessageTemplateController::class, 'reset'])->name('message-templates.reset');
+});
+
+// HR, attendance and payroll (docs/prd.md module Q)
+Route::middleware('can:hr.view')->group(function (): void {
+    Route::get('/employees', [EmployeeController::class, 'index'])->name('employees.index');
+    Route::get('/leaves', [LeaveController::class, 'index'])->name('leaves.index');
+});
+
+Route::middleware('can:hr.manage')->group(function (): void {
+    Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
+    Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employees.update');
+    Route::get('/hr-setup', [HrSetupController::class, 'index'])->name('hr-setup.index');
+    Route::post('/hr-setup/shifts', [HrSetupController::class, 'storeShift'])->name('hr-setup.shifts.store');
+    Route::put('/hr-setup/shifts/{shift}', [HrSetupController::class, 'updateShift'])->name('hr-setup.shifts.update');
+    Route::post('/hr-setup/devices', [HrSetupController::class, 'storeDevice'])->name('hr-setup.devices.store');
+    Route::put('/hr-setup/devices/{device}', [HrSetupController::class, 'updateDevice'])->name('hr-setup.devices.update');
+    Route::post('/hr-setup/holidays', [HrSetupController::class, 'storeHoliday'])->name('hr-setup.holidays.store');
+    Route::delete('/hr-setup/holidays/{holiday}', [HrSetupController::class, 'destroyHoliday'])->name('hr-setup.holidays.destroy');
+});
+
+Route::middleware('can:attendance.view')->get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+
+Route::middleware('can:attendance.manage')->group(function (): void {
+    Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+    Route::delete('/attendance/{record}', [AttendanceController::class, 'destroy'])->name('attendance.destroy');
+    Route::post('/attendance/import', [AttendanceController::class, 'import'])->name('attendance.import');
+    Route::post('/attendance/recalculate', [AttendanceController::class, 'recalculate'])->name('attendance.recalculate');
+});
+
+Route::middleware('can:leaves.manage')->group(function (): void {
+    Route::post('/leaves', [LeaveController::class, 'store'])->name('leaves.store');
+    Route::post('/leaves/{leave}/approve', [LeaveController::class, 'approve'])->name('leaves.approve');
+    Route::post('/leaves/{leave}/reject', [LeaveController::class, 'reject'])->name('leaves.reject');
+});
+
+Route::middleware('can:payroll.view')->group(function (): void {
+    Route::get('/payroll', [PayrollController::class, 'index'])->name('payroll.index');
+    Route::get('/payroll/{run}', [PayrollController::class, 'show'])->name('payroll.show');
+    Route::get('/payslips/{payslip}', [PayrollController::class, 'payslip'])->name('payslips.show');
+});
+
+Route::middleware('can:payroll.manage')->group(function (): void {
+    Route::post('/payroll', [PayrollController::class, 'generate'])->name('payroll.generate');
+    Route::post('/payroll/{run}/finalize', [PayrollController::class, 'finalize'])->name('payroll.finalize');
+    Route::put('/payslips/{payslip}', [PayrollController::class, 'updatePayslip'])->name('payslips.update');
+    Route::post('/payslips/{payslip}/pay', [PayrollController::class, 'pay'])->name('payslips.pay');
 });

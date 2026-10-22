@@ -49,6 +49,9 @@ final class Settings
         'idle_timeout_minutes' => 15,
         'tat_target_hours' => 24,
         'collected_samples_refundable' => false,
+
+        // HR and payroll (docs/prd.md module Q)
+        'hr_late_days_per_deduction' => 3,
     ];
 
     /** @var array<string, mixed>|null */

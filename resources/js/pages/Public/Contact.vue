@@ -1,6 +1,8 @@
 <script setup>
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import CtaBand from '@/components/public/CtaBand.vue';
+import FaqList from '@/components/public/FaqList.vue';
 import PageHero from '@/components/public/PageHero.vue';
 import SectionHeading from '@/components/public/SectionHeading.vue';
 import AppIcon from '@/components/ui-kit/AppIcon.vue';
@@ -14,6 +16,13 @@ const page = usePage();
 const site = computed(() => page.props.site ?? {});
 const branches = computed(() => site.value.branches ?? []);
 const before = ['id', 'fasting', 'early', 'booking'];
+const quick = [
+    { key: 'book', icon: 'calendar-check', href: 'public.booking' },
+    { key: 'home', icon: 'house-chimney-medical', href: 'public.home-collection' },
+    { key: 'prices', icon: 'tag', href: 'public.tests' },
+    { key: 'reports', icon: 'file-circle-check', href: 'public.reports' },
+];
+const hours = ['lab', 'reception', 'reports'];
 
 const directions = (address) => 'https://www.google.com/maps/search/?api=1&query='.concat(encodeURIComponent(address));
 </script>
@@ -57,6 +66,50 @@ const directions = (address) => 'https://www.google.com/maps/search/?api=1&query
             </div>
         </section>
 
+        <section class="site-container pb-2">
+            <h2 class="site-h2">{{ t('site.quick.title') }}</h2>
+            <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <Link v-for="item in quick" :key="item.key" :href="route(item.href)" class="site-card flex items-center gap-3">
+                    <span class="site-icon"><AppIcon :name="item.icon" size="lg" /></span>
+                    <span class="min-w-0">
+                        <span class="block text-[14px] font-semibold">{{ t(`site.quick.${item.key}.title`) }}</span>
+                        <span class="block text-xs text-muted">{{ t(`site.quick.${item.key}.text`) }}</span>
+                    </span>
+                </Link>
+            </div>
+        </section>
+
+        <section class="site-container site-section">
+            <div class="grid gap-8 lg:grid-cols-5">
+                <div class="lg:col-span-3">
+                    <SectionHeading :title="t('site.hours_table.title')" :lead="t('site.hours_table.lead')" />
+                    <div class="mt-6 overflow-hidden rounded-xl border border-border bg-surface">
+                        <table class="w-full text-left text-[14px]">
+                            <thead class="bg-subtle text-xs font-semibold tracking-wide text-muted uppercase">
+                                <tr><th class="px-4 py-2.5">{{ t('site.hours_table.service') }}</th><th class="px-4 py-2.5">{{ t('site.hours_table.time') }}</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-border">
+                                <tr v-for="row in hours" :key="row"><td class="px-4 py-3 font-medium">{{ t(`site.hours_table.${row}`) }}</td><td class="px-4 py-3 text-muted">{{ t('site.hours_table.daily') }}</td></tr>
+                                <tr><td class="px-4 py-3 font-medium">{{ t('site.hours_table.consult') }}</td><td class="px-4 py-3 text-muted">{{ t('site.hours_table.consult_value') }}</td></tr>
+                                <tr><td class="px-4 py-3 font-medium">{{ t('site.hours_table.home') }}</td><td class="px-4 py-3 text-muted">{{ t('site.hours_table.home_value') }}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <div class="site-hero flex h-full flex-col justify-between rounded-xl border border-border bg-surface p-6">
+                        <div>
+                            <span class="site-icon h-12 w-12"><AppIcon name="map-location-dot" size="xl" /></span>
+                            <h3 class="mt-4 font-display text-lg font-bold">{{ t('site.map.title') }}</h3>
+                            <p class="mt-2 text-[14px] leading-relaxed text-muted">{{ site.address ?? t('site.contact.not_set') }}</p>
+                            <p class="mt-2 text-[13px] leading-relaxed text-muted">{{ t('site.map.text') }}</p>
+                        </div>
+                        <a v-if="site.address" :href="directions(site.address)" target="_blank" rel="noopener" class="btn-primary-lg mt-5 w-full justify-center"><AppIcon name="location-dot" /> {{ t('site.map.open') }}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section v-if="branches.length" class="border-y border-border bg-subtle/50">
             <div class="site-container site-section">
                 <SectionHeading :title="t('site.contact.branches_title')" :lead="t('site.contact.branches_lead')" />
@@ -83,5 +136,18 @@ const directions = (address) => 'https://www.google.com/maps/search/?api=1&query
                 </li>
             </ul>
         </section>
+
+        <section class="border-t border-border bg-subtle/50">
+            <div class="site-container site-section">
+                <div class="mx-auto max-w-3xl">
+                    <SectionHeading :eyebrow="t('site.home.faq_badge')" :title="t('site.home.faq_title')" />
+                    <div class="mt-6"><FaqList :limit="5" /></div>
+                    <Link :href="route('public.faq')" class="mt-4 inline-flex items-center gap-1 text-[14px] font-semibold text-primary hover:underline">{{ t('public.view_all') }} <AppIcon name="arrow-right" size="sm" /></Link>
+                </div>
+            </div>
+        </section>
+
+        <CtaBand :title="t('site.home.cta_title')" :text="t('site.home.cta_text')" />
+        <div class="h-4" />
     </PublicLayout>
 </template>

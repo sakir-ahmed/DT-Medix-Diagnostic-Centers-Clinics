@@ -234,6 +234,20 @@ const flow = ['patient', 'appointment', 'order', 'lab', 'report', 'message', 'pa
                 </div>
             </section>
 
+            <!-- Patient guide -->
+            <section class="site-container pb-2">
+                <div class="site-hero flex flex-col items-start justify-between gap-4 rounded-2xl border border-border bg-surface p-6 sm:flex-row sm:items-center lg:p-8">
+                    <div class="flex items-start gap-4">
+                        <span class="site-icon h-12 w-12"><AppIcon name="clipboard-check" size="xl" /></span>
+                        <div>
+                            <h3 class="font-display text-lg font-bold">{{ t('site.guide.teaser_title') }}</h3>
+                            <p class="mt-1 max-w-xl text-[14px] leading-relaxed text-muted">{{ t('site.guide.teaser_text') }}</p>
+                        </div>
+                    </div>
+                    <Link :href="route('public.guide')" class="btn-secondary-lg shrink-0">{{ t('site.common.learn_more') }} <AppIcon name="arrow-right" size="sm" /></Link>
+                </div>
+            </section>
+
             <!-- FAQ -->
             <section class="site-container site-section">
                 <div class="grid gap-8 lg:grid-cols-3">

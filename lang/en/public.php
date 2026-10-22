@@ -42,6 +42,7 @@ return [
     'stat_departments' => 'Departments',
     'popular_tests' => 'Popular tests',
     'report_in' => 'Report in :hours h',
+    'dashboard' => 'Dashboard',
     'staff_sign_in' => 'Staff sign in',
     'departments_title' => 'Our departments',
     'tests_count' => ':count tests',

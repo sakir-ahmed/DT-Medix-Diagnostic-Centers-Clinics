@@ -172,6 +172,17 @@ Exports to PDF and Excel. Dashboard totals must equal the report totals.
 - Column mapping, **dry-run validation**, duplicate handling choices, row-level error report, safe re-run, and an import summary.
 - Downloadable templates and a checklist for setting up a new center.
 
+### Q. HR, Attendance & Payroll _(added after the first release scope)_
+
+- **Employees:** staff records per branch (code, designation, department, joining date, salary structure, bank or mobile-banking payout details, optional link to a login user).
+- **Work shifts:** start and end time, grace minutes, weekly off days; center-wide holidays.
+- **Attendance:** daily record per employee (present, late, half day, absent, leave, weekly off, holiday) from two sources: **ZKTeco devices** (push to a secure endpoint using the ADMS protocol, plus CSV or DAT file import) and **manual entry** by an authorized user. Manual edits are never overwritten by device data. Every manual change is logged.
+- **Leave:** requests by type with approve or reject; approved leave counts in attendance and payroll.
+- **Payroll:** monthly run per branch from attendance: basic and allowances, overtime, absence and late deductions, advance and other deductions; draft, finalized (immutable) and paid with method and reference; printable payslips and a payroll register.
+- **Reports:** monthly attendance sheet, late and absence summary, payroll register.
+- Permissions: `hr.view`, `hr.manage`, `attendance.view`, `attendance.manage`, `leaves.manage`, `payroll.view`, `payroll.manage`. Salary data is visible only to roles with `payroll.view`.
+- Payroll here is a **calculation and record**; the app does not send money. Full double-entry accounting remains out of scope.
+
 ### P. Patient Portal & API
 
 - Public booking page and patient portal (mobile OTP login): reports, due payment, appointments.
@@ -252,7 +263,7 @@ Exports to PDF and Excel. Dashboard totals must equal the report totals.
 - Analyzer interfacing (HL7, ASTM) and PACS or DICOM viewing.
 - Reagent and consumables inventory.
 - Corporate and insurance panel billing.
-- Full double-entry accounting, payroll payment processing, NBR e-filing.
+- Full double-entry accounting, payroll payment processing (money transfer), NBR e-filing. Payroll calculation and records are in scope (module Q).
 - Telemedicine and video consultation.
 - Native mobile apps (separate project).
 - Full offline mode.

@@ -87,6 +87,13 @@ final class Navigation
                 ['key' => 'expenses', 'route' => 'admin.expenses.index', 'icon' => 'receipt', 'permission' => 'expenses.view'],
                 ['key' => 'mis_reports', 'route' => 'admin.mis.index', 'icon' => 'chart-pie', 'permission' => 'mis.view'],
             ],
+            'hr' => [
+                ['key' => 'employees', 'route' => 'admin.employees.index', 'icon' => 'users', 'permission' => 'hr.view'],
+                ['key' => 'attendance', 'route' => 'admin.attendance.index', 'icon' => 'calendar-days', 'permission' => 'attendance.view'],
+                ['key' => 'leaves', 'route' => 'admin.leaves.index', 'icon' => 'calendar', 'permission' => 'hr.view'],
+                ['key' => 'payroll', 'route' => 'admin.payroll.index', 'icon' => 'wallet', 'permission' => 'payroll.view'],
+                ['key' => 'hr_setup', 'route' => 'admin.hr-setup.index', 'icon' => 'sliders', 'permission' => 'hr.manage'],
+            ],
             'catalog' => [
                 ['key' => 'departments', 'route' => 'admin.departments.index', 'icon' => 'building', 'permission' => 'catalog.manage'],
                 ['key' => 'tests', 'route' => 'admin.tests.index', 'icon' => 'flask', 'permission' => 'catalog.view'],

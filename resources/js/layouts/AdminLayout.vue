@@ -2,6 +2,7 @@
 import { usePage } from '@inertiajs/vue3';
 import { computed, onMounted, ref } from 'vue';
 import { Toaster } from 'vue-sonner';
+import DemoBanner from '@/components/layout/DemoBanner.vue';
 import AppSidebar from '@/components/layout/AppSidebar.vue';
 import BranchSwitcher from '@/components/layout/BranchSwitcher.vue';
 import FlashToasts from '@/components/layout/FlashToasts.vue';
@@ -45,6 +46,7 @@ function toggleSidebar() {
 </script>
 
 <template>
+    <DemoBanner />
     <div class="flex min-h-screen bg-background" :lang="locale">
         <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded focus:bg-surface focus:p-2">{{ $t('nav.skip_to_content') }}</a>
 

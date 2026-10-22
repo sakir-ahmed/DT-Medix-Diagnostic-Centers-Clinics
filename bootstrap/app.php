@@ -69,7 +69,7 @@ return Application::configure(basePath: dirname(__DIR__))
             SubstituteBindings::class,
         ]);
 
-        $middleware->validateCsrfTokens(except: ['payments/*/callback', 'payments/*/ipn', 'webhooks/*']);
+        $middleware->validateCsrfTokens(except: ['payments/*/callback', 'payments/*/ipn', 'webhooks/*', 'iclock/*']);
         $middleware->redirectGuestsTo(fn (Request $request): string => $request->is('portal', 'portal/*') ? route('portal.login') : route('login'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {

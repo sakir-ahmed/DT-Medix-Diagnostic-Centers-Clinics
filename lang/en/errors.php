@@ -3,6 +3,11 @@
 declare(strict_types=1);
 
 return [
+    'LEAVE_OVERLAP' => 'This employee already has leave in these dates.',
+    'LEAVE_ALREADY_DECIDED' => 'This leave request was already approved or rejected.',
+    'PAYROLL_LOCKED' => 'This payroll run is finalized and cannot be changed.',
+    'PAYROLL_NOT_FINALIZED' => 'Finalize the payroll run before marking salaries as paid.',
+    'PAYSLIP_ALREADY_PAID' => 'This payslip is already marked as paid.',
     'UNAUTHENTICATED' => 'Please sign in to continue.',
     'FORBIDDEN' => 'You do not have permission to do this.',
     'NOT_FOUND' => 'The record was not found.',

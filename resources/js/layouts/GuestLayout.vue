@@ -1,12 +1,15 @@
 <script setup>
 import { Toaster } from 'vue-sonner';
+import DemoBanner from '@/components/layout/DemoBanner.vue';
 import FlashToasts from '@/components/layout/FlashToasts.vue';
 import LanguageSwitch from '@/components/ui-kit/LanguageSwitch.vue';
 import ThemeToggle from '@/components/ui-kit/ThemeToggle.vue';
 </script>
 
 <template>
-    <div class="flex min-h-screen flex-col items-center justify-center bg-background px-4 py-8">
+    <div>
+    <DemoBanner />
+    <div class="relative flex min-h-screen flex-col items-center justify-center bg-background px-4 py-8">
         <div class="absolute top-3 right-3 flex gap-1.5">
             <LanguageSwitch />
             <ThemeToggle />
@@ -20,5 +23,6 @@ import ThemeToggle from '@/components/ui-kit/ThemeToggle.vue';
         </div>
         <Toaster position="top-center" rich-colors :visible-toasts="3" />
         <FlashToasts />
+    </div>
     </div>
 </template>

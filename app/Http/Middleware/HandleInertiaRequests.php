@@ -66,6 +66,7 @@ class HandleInertiaRequests extends Middleware
                 'name' => setting('center_name'),
                 'name_bn' => setting('center_name_bn'),
             ],
+            'demo' => fn (): ?array => config('app.demo') ? ['phone' => (string) config('center.demo_contact_phone')] : null,
             'site' => fn (): ?array => $request->routeIs('home', 'public.*') ? SiteProfile::current() : null,
             'branches' => fn (): array => $user === null ? [] : Branch::query()
                 ->where('is_active', true)

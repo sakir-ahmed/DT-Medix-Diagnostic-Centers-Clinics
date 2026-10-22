@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\BookingController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\LocaleController;
 use App\Http\Controllers\Web\SiteController;
+use App\Http\Controllers\Web\ZkPushController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -22,10 +23,17 @@ Route::get('/home-collection', [SiteController::class, 'homeCollection'])->name(
 Route::get('/reports', [SiteController::class, 'reports'])->name('public.reports');
 Route::get('/contact', [SiteController::class, 'contact'])->name('public.contact');
 Route::get('/faq', [SiteController::class, 'faq'])->name('public.faq');
+Route::get('/patient-guide', [SiteController::class, 'guide'])->name('public.guide');
 Route::get('/privacy', [SiteController::class, 'privacy'])->name('public.privacy');
 Route::get('/booking', [BookingController::class, 'create'])->name('public.booking');
 Route::get('/booking/slots', [BookingController::class, 'slots'])->middleware('throttle:60,1')->name('public.booking.slots');
 Route::post('/booking', [BookingController::class, 'store'])->middleware('throttle:10,1')->name('public.booking.store');
+
+Route::middleware('throttle:240,1')->group(function (): void {
+    Route::match(['get', 'post'], '/iclock/cdata', [ZkPushController::class, 'cdata'])->name('zk.cdata');
+    Route::get('/iclock/getrequest', [ZkPushController::class, 'getrequest'])->name('zk.getrequest');
+    Route::post('/iclock/devicecmd', [ZkPushController::class, 'devicecmd'])->name('zk.devicecmd');
+});
 
 Route::middleware('guest')->group(function (): void {
     Route::get('/login', [LoginController::class, 'create'])->name('login');

@@ -14,6 +14,7 @@ dataset('site pages', [
     'reports' => ['public.reports', 'Public/Reports'],
     'contact' => ['public.contact', 'Public/Contact'],
     'faq' => ['public.faq', 'Public/Faq'],
+    'guide' => ['public.guide', 'Public/Guide'],
     'privacy' => ['public.privacy', 'Public/Privacy'],
 ]);
 
@@ -29,7 +30,7 @@ it('sends visitors home when the center profile is not set up', function (string
     Setting::query()->where('key', 'center_name')->delete();
 
     get(route($route))->assertRedirect(route('home'));
-})->with(['public.about', 'public.services', 'public.home-collection', 'public.reports', 'public.contact', 'public.faq', 'public.privacy']);
+})->with(['public.about', 'public.services', 'public.home-collection', 'public.reports', 'public.contact', 'public.faq', 'public.guide', 'public.privacy']);
 
 it('shares the public contact profile and active branches', function (): void {
     makeCenter();

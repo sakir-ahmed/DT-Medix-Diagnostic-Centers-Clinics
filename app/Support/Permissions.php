@@ -35,6 +35,7 @@ final class Permissions
             'shifts.manage', 'shifts.review', 'collections.view',
             'commissions.view', 'commissions.manage', 'commissions.own', 'payouts.manage',
             'expenses.view', 'expenses.manage', 'mis.view',
+            'hr.view', 'hr.manage', 'attendance.view', 'attendance.manage', 'leaves.manage', 'payroll.view', 'payroll.manage',
             'import.manage', 'export.data',
         ];
     }
@@ -61,6 +62,7 @@ final class Permissions
                 'dues.view', 'dues.collect', 'dues.remind',
                 'shifts.manage', 'shifts.review', 'collections.view',
                 'expenses.view', 'expenses.manage', 'mis.view',
+                'hr.view', 'hr.manage', 'attendance.view', 'attendance.manage', 'leaves.manage',
             ],
             RoleName::Receptionist => [
                 'dashboard.view', 'patients.view', 'patients.create', 'patients.update',
@@ -89,6 +91,7 @@ final class Permissions
                 'dashboard.view', 'branches.all', 'referrers.view', 'dues.view', 'dues.collect',
                 'shifts.review', 'collections.view', 'commissions.view', 'commissions.manage',
                 'payouts.manage', 'expenses.view', 'expenses.manage', 'mis.view',
+                'hr.view', 'attendance.view', 'payroll.view', 'payroll.manage',
             ],
         };
     }

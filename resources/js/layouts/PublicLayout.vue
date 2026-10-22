@@ -1,6 +1,7 @@
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed, ref, watch } from 'vue';
+import DemoBanner from '@/components/layout/DemoBanner.vue';
 import FlashToasts from '@/components/layout/FlashToasts.vue';
 import LanguageSwitch from '@/components/ui-kit/LanguageSwitch.vue';
 import ThemeToggle from '@/components/ui-kit/ThemeToggle.vue';
@@ -17,6 +18,7 @@ const { t } = useI18n();
 const page = usePage();
 const menuOpen = ref(false);
 
+const user = computed(() => page.props.auth?.user ?? null);
 const site = computed(() => page.props.site ?? null);
 const name = computed(() => site.value?.name ?? props.centerName);
 const isCenter = computed(() => Boolean(name.value));
@@ -44,6 +46,7 @@ const footerCenter = computed(() => [
     { label: t('site.nav.about'), href: route('public.about') },
     { label: t('site.nav.services'), href: route('public.services') },
     { label: t('site.nav.contact'), href: route('public.contact') },
+    { label: t('site.guide.nav'), href: route('public.guide') },
     { label: t('site.nav.faq'), href: route('public.faq') },
     { label: t('site.nav.privacy'), href: route('public.privacy') },
 ]);
@@ -55,6 +58,7 @@ watch(() => page.url, () => {
 
 <template>
     <div class="flex min-h-screen flex-col bg-background text-base">
+        <DemoBanner />
         <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-primary-foreground">{{ t('site.common.skip') }}</a>
 
         <div v-if="isCenter" class="hidden bg-primary text-primary-foreground sm:block">
@@ -68,39 +72,49 @@ watch(() => page.url, () => {
         </div>
 
         <header class="sticky top-0 z-30 border-b border-border bg-surface/95 backdrop-blur">
-            <div class="site-container flex h-16 items-center gap-3">
-                <Link :href="route('home')" class="flex min-w-0 items-center gap-2.5">
-                    <img src="/images/brand/logo-primary.png" alt="" class="h-9 w-auto shrink-0" />
-                    <span class="truncate font-display font-semibold">{{ name ?? 'DT Medix' }}</span>
+            <div class="mx-auto flex h-16 w-full max-w-7xl items-center gap-3 px-4">
+                <Link :href="route('home')" class="flex min-w-0 shrink-0 items-center gap-2.5 xl:max-w-[13rem]">
+                    <img v-if="isCenter" src="/images/brand/logo-mark.svg" alt="" class="h-10 w-10 shrink-0" />
+                    <img v-else src="/images/brand/logo-primary.png" alt="DT Medix" class="h-9 w-auto shrink-0" />
+                    <span v-if="isCenter" class="min-w-0 font-display text-[15px] leading-tight font-semibold">
+                        <span class="line-clamp-2">{{ name }}</span>
+                    </span>
                 </Link>
 
-                <nav v-if="isCenter" class="ml-4 hidden items-center gap-0.5 xl:flex" :aria-label="t('public.nav_primary')">
+                <nav v-if="isCenter" class="ml-2 hidden min-w-0 flex-1 items-center justify-center gap-0.5 xl:flex" :aria-label="t('public.nav_primary')">
                     <Link
                         v-for="item in nav"
                         :key="item.href"
                         :href="item.href"
-                        class="rounded-md px-2.5 py-1.5 text-[13px] font-medium whitespace-nowrap transition-colors duration-100"
+                        class="rounded-md px-2 py-1.5 text-[13px] font-medium whitespace-nowrap transition-colors duration-100"
                         :class="item.active ? 'bg-primary/10 text-primary' : 'text-muted hover:bg-subtle hover:text-foreground'"
                     >
                         {{ item.label }}
                     </Link>
                 </nav>
 
-                <div class="ml-auto flex items-center gap-1.5">
+                <div class="ml-auto flex shrink-0 items-center gap-1.5">
                     <Link
+                        v-if="user"
+                        :href="route('admin.dashboard')"
+                        class="inline-flex h-9 items-center gap-1.5 rounded-md border border-border px-3 text-[13px] font-semibold whitespace-nowrap text-primary transition-colors duration-100 hover:bg-subtle"
+                    >
+                        <AppIcon name="gauge-high" size="sm" />
+                        {{ t('public.dashboard') }}
+                    </Link>
+                    <Link
+                        v-else
                         :href="route('login')"
-                        class="inline-flex h-9 items-center gap-1.5 rounded-md px-2.5 text-[13px] font-medium text-muted transition-colors duration-100 hover:bg-subtle hover:text-foreground"
-                        :title="t('public.staff_sign_in')"
+                        class="inline-flex h-9 items-center gap-1.5 rounded-md px-2.5 text-[13px] font-medium whitespace-nowrap text-muted transition-colors duration-100 hover:bg-subtle hover:text-foreground"
                     >
                         <AppIcon name="right-from-bracket" size="sm" />
-                        <span class="hidden xl:inline">{{ t('public.staff_sign_in') }}</span>
-                        <span class="sr-only xl:hidden">{{ t('public.staff_sign_in') }}</span>
+                        {{ t('public.staff_sign_in') }}
                     </Link>
                     <LanguageSwitch />
                     <ThemeToggle />
                     <Link v-if="isCenter && !route().current('public.booking')" :href="route('public.booking')" class="btn-primary-lg ml-1 hidden !h-10 !text-[14px] whitespace-nowrap md:inline-flex">
                         <AppIcon name="calendar-check" />
-                        {{ t('public.book_appointment') }}
+                        {{ t('site.common.book_short') }}
                     </Link>
                     <button
                         v-if="isCenter"
@@ -122,6 +136,9 @@ watch(() => page.url, () => {
                     </li>
                     <li>
                         <Link :href="route('public.faq')" class="block rounded-md px-3 py-2.5 text-[14px] font-medium text-muted">{{ t('site.nav.faq') }}</Link>
+                    </li>
+                    <li>
+                        <Link :href="user ? route('admin.dashboard') : route('login')" class="block rounded-md px-3 py-2.5 text-[14px] font-semibold text-primary">{{ user ? t('public.dashboard') : t('public.staff_sign_in') }}</Link>
                     </li>
                     <li class="pt-1">
                         <Link :href="route('public.booking')" class="btn-primary-lg w-full justify-center"><AppIcon name="calendar-check" /> {{ t('public.book_appointment') }}</Link>
@@ -163,7 +180,7 @@ watch(() => page.url, () => {
                     <p class="text-xs font-semibold tracking-wide text-muted uppercase">{{ t('site.nav.company') }}</p>
                     <ul class="mt-3 space-y-2 text-[13px]">
                         <li v-for="item in footerCenter" :key="item.href"><Link :href="item.href" class="text-muted hover:text-foreground">{{ item.label }}</Link></li>
-                        <li><Link :href="route('login')" class="text-muted hover:text-foreground">{{ t('public.staff_sign_in') }}</Link></li>
+                        <li><Link :href="user ? route('admin.dashboard') : route('login')" class="text-muted hover:text-foreground">{{ user ? t('public.dashboard') : t('public.staff_sign_in') }}</Link></li>
                     </ul>
                 </nav>
 
