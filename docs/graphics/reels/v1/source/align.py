@@ -40,11 +40,11 @@ PHRASES = [
     [('আর', 'ar2'), ('installation-এর', None), ('পর', None), ('প্রথম', 'prothom'), ('মাস', None), ('সম্পূর্ণ', None), ('FREE!', 'free1'), ('আর', None), ('yearly', 'yearly'), ('payment', None), ('করলে', None)],
     [('পাবেন', 'paben'), ('আরও', None), ('২', None, 2), ('মাস', None)],
     [('FREE!', 'free2')],
-    [('DT', 'dtm2'), ('Medix—', None, 3), ('আপনার', None), ('diagnostic', 'diag2'), ('center,', None)],
+    [('DT', 'dtm2'), ('Medix', None, 3), ('আপনার', None), ('diagnostic', 'diag2'), ('center,', None)],
     [('আরও', None), ('smart,', 'smart')],
     [('fast', 'fast'), ('and', None), ('organized.', 'org')],
     [('আজই', 'ajai1'), ('FREE', None), ('Demo', 'demo'), ('নিন!', None)],
-    [('DT', 'dtm3'), ('Medix—', None, 3), ('A', None), ('Product', 'product'), ('of', None), ('Datatech', None), ('BD', None), ('Ltd.', 'ltd', 3)],
+    [('DT', 'dtm3'), ('Medix', None, 3), ('A', None), ('Product', 'product'), ('of', None), ('Datatech', None), ('BD', None), ('Ltd.', 'ltd', 3)],
     [('Call', 'call')],
     [('or', None), ('WhatsApp:', None), ('+880', None, 6), ('1575-888775', None, 12)],
     [('Email:', 'email')],
@@ -178,37 +178,72 @@ def main():
     ph_syl = [sum((w[2] if len(w) > 2 else syl(w[0])) for w in p) for p in PHRASES]
     print('phrase syllables', sum(ph_syl), ph_syl)
 
-    assert len(PHRASES) == len(segs), (len(PHRASES), len(segs))
-    groups = [(i, i + 1, i, i + 1) for i in range(len(segs)) if PHRASES[i]]
+    # Flatten the script and match contiguous word spans to segments by syllable consistency
+    flat = [w for p in PHRASES for w in p]
+    wsyl = [(w[2] if len(w) > 2 else syl(w[0])) for w in flat]
+    punct = [bool(re.search('[,.!?:—।]$', w[0])) or '—' in w[0] for w in flat]
+    cum = [0]
+    for x in wsyl:
+        cum.append(cum[-1] + x)
+    use = [k for k in range(len(segs)) if segs[k][1] - segs[k][0] > 30]  # drop the start-up blip
+    S = len(use)
+    Wn = len(flat)
+    target = []
+    for k in use:
+        dur = (segs[k][1] - segs[k][0]) / 100.0
+        target.append(0.5 * (seg_n[k] + dur / 0.19))
+    INF = 1e18
+    dp = [[INF] * (Wn + 1) for _ in range(S + 1)]
+    bk = [[0] * (Wn + 1) for _ in range(S + 1)]
+    dp[0][0] = 0
+    for j in range(1, S + 1):
+        m = target[j - 1]
+        for i in range(j - 1, Wn):
+            if dp[j - 1][i] >= INF:
+                continue
+            for e in range(i + 1, min(Wn, i + 40) + 1):
+                est = cum[e] - cum[i]
+                c = dp[j - 1][i] + (est - m) ** 2 / (m + 3) - (3.0 if punct[e - 1] else 0) + (0.8 if e < Wn and not punct[e - 1] else 0)
+                if c < dp[j][e]:
+                    dp[j][e] = c
+                    bk[j][e] = i
+    spans = []
+    e = Wn
+    for j in range(S, 0, -1):
+        i = bk[j][e]
+        spans.append((i, e, use[j - 1]))
+        e = i
+    spans.reverse()
+    print('dp cost', dp[S][Wn])
+    groups = []
+    for (i, e, k) in spans:
+        groups.append((i, e, k))
+        print('seg %2d %6.2f-%6.2f est %3d target %5.1f  %s' % (k, segs[k][0] / 100, segs[k][1] / 100, cum[e] - cum[i], target[use.index(k)], ' '.join(w[0] for w in flat[i:e])[:70]))
 
     words = []
-    for (pi, ni, pj, nj) in groups:
-        ws = [w for p in PHRASES[pi:ni] for w in p]
-        sy = [(w[2] if len(w) > 2 else syl(w[0])) for w in ws]
-        pks = [p for k in range(pj, nj) for p in seg_pk[k]]
-        t0 = segs[pj][0] / 100.0
-        t1 = segs[nj - 1][1] / 100.0
+    for (i0, e0, k) in groups:
+        ws = flat[i0:e0]
+        sy = wsyl[i0:e0]
+        pks = seg_pk[k]
+        t0 = segs[k][0] / 100.0
+        t1 = segs[k][1] / 100.0
         total = sum(sy)
-        cum = 0
-        for w, s in zip(ws, sy):
-            # start at the peak where this word's first syllable falls
+        cm = 0
+        for w, x in zip(ws, sy):
             if pks:
-                idx = min(len(pks) - 1, int(round(cum * len(pks) / total)))
+                idx = min(len(pks) - 1, int(round(cm * len(pks) / total)))
                 st = pks[idx] / 100.0 - 0.06
-                idx_end = min(len(pks) - 1, max(idx, int(round((cum + s) * len(pks) / total)) - 1))
+                idx_end = min(len(pks) - 1, max(idx, int(round((cm + x) * len(pks) / total)) - 1))
                 en = pks[idx_end] / 100.0 + 0.12
             else:
                 st, en = t0, t1
             st = max(t0, st)
-            if cum == 0:
+            if cm == 0:
                 st = t0
-            words.append({'word': w[0], 'tag': w[1], 'start': round(st, 3), 'end': round(min(t1, en), 3), 'group': [pi, ni]})
-            cum += s
+            words.append({'word': w[0], 'tag': w[1], 'start': round(st, 3), 'end': round(min(t1, en), 3), 'seg': k})
+            cm += x
     tags = {w['tag']: {'start': w['start'], 'end': w['end']} for w in words if w['tag']}
     json.dump({'words': words, 'tags': tags, 'segments': [(a / 100, b / 100) for a, b in segs]}, open(OUT, 'w'), ensure_ascii=False, indent=1)
-    for (pi, ni, pj, nj) in groups:
-        print('phr %2d-%2d seg %2d-%2d  %6.2f-%6.2f  syl est %3d peaks %3d  %s' % (pi, ni - 1, pj, nj - 1, segs[pj][0] / 100, segs[nj - 1][1] / 100,
-              sum(ph_syl[pi:ni]), sum(seg_n[pj:nj]), ' '.join(w[0] for p in PHRASES[pi:ni] for w in p)[:60]))
 
 
 main()

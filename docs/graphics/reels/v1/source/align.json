@@ -5,1220 +5,854 @@
    "tag": "bhai",
    "start": 1.02,
    "end": 1.19,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "আপনার",
    "tag": null,
    "start": 1.21,
    "end": 1.67,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "diagnostic",
    "tag": null,
    "start": 1.67,
    "end": 2.22,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "center-এর",
    "tag": null,
    "start": 2.21,
    "end": 2.5,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "পুরো",
    "tag": null,
    "start": 2.57,
    "end": 2.75,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "operation",
    "tag": null,
    "start": 2.73,
    "end": 3.33,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "কি",
    "tag": null,
    "start": 3.35,
    "end": 3.53,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "এখনো",
    "tag": "ekhono",
    "start": 3.54,
    "end": 4.02,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "আলাদা",
    "tag": null,
    "start": 4.11,
    "end": 4.74,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "আলাদা",
    "tag": null,
    "start": 4.64,
    "end": 4.93,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "system-এ",
    "tag": "system",
    "start": 4.95,
    "end": 5.26,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "চলছে?",
    "tag": "chalche",
    "start": 5.27,
    "end": 5.61,
-   "group": [
-    1,
-    2
-   ]
+   "seg": 1
   },
   {
    "word": "Patient,",
    "tag": "pat",
    "start": 6.38,
    "end": 6.81,
-   "group": [
-    2,
-    3
-   ]
+   "seg": 2
   },
   {
    "word": "appointment,",
    "tag": "app",
    "start": 7.0,
-   "end": 7.65,
-   "group": [
-    2,
-    3
-   ]
+   "end": 7.37,
+   "seg": 2
   },
   {
    "word": "billing,",
    "tag": "bil1",
-   "start": 7.9,
-   "end": 8.59,
-   "group": [
-    2,
-    3
-   ]
+   "start": 7.47,
+   "end": 8.08,
+   "seg": 2
   },
   {
    "word": "sample,",
    "tag": "sam",
-   "start": 8.68,
-   "end": 8.95,
-   "group": [
-    2,
-    3
-   ]
+   "start": 8.41,
+   "end": 8.59,
+   "seg": 2
   },
   {
    "word": "lab",
    "tag": "lab1",
-   "start": 9.12,
-   "end": 9.3,
-   "group": [
-    2,
-    3
-   ]
+   "start": 8.68,
+   "end": 8.86,
+   "seg": 2
   },
   {
    "word": "report,",
    "tag": null,
-   "start": 9.37,
-   "end": 9.73,
-   "group": [
-    2,
-    3
-   ]
+   "start": 8.77,
+   "end": 9.3,
+   "seg": 2
   },
   {
    "word": "staff—সবকিছু",
    "tag": "staff",
-   "start": 9.84,
-   "end": 11.01,
-   "group": [
-    2,
-    3
-   ]
+   "start": 9.37,
+   "end": 10.2,
+   "seg": 2
   },
   {
    "word": "একসাথে",
    "tag": "manage",
-   "start": 11.0,
-   "end": 11.79,
-   "group": [
-    2,
-    3
-   ]
+   "start": 10.63,
+   "end": 11.18,
+   "seg": 2
   },
   {
    "word": "manage",
    "tag": null,
-   "start": 11.97,
-   "end": 12.51,
-   "group": [
-    2,
-    3
-   ]
+   "start": 11.16,
+   "end": 11.34,
+   "seg": 2
   },
   {
    "word": "করুন",
    "tag": "manage_end",
-   "start": 12.48,
-   "end": 12.99,
-   "group": [
-    2,
-    3
-   ]
+   "start": 11.39,
+   "end": 11.79,
+   "seg": 2
   },
   {
    "word": "DT",
    "tag": null,
-   "start": 13.69,
-   "end": 14.08,
-   "group": [
-    3,
-    4
-   ]
+   "start": 11.97,
+   "end": 12.51,
+   "seg": 2
   },
   {
    "word": "Medix-এ!",
    "tag": "medix1",
-   "start": 14.06,
-   "end": 14.53,
-   "group": [
-    3,
-    4
-   ]
+   "start": 12.48,
+   "end": 12.99,
+   "seg": 2
   },
   {
    "word": "Patient",
    "tag": "patient2",
-   "start": 14.49,
-   "end": 14.96,
-   "group": [
-    3,
-    4
-   ]
+   "start": 13.69,
+   "end": 14.08,
+   "seg": 3
   },
   {
    "word": "Registration",
    "tag": "reg",
-   "start": 15.02,
-   "end": 15.82,
-   "group": [
-    3,
-    4
-   ]
+   "start": 14.06,
+   "end": 14.67,
+   "seg": 3
   },
   {
    "word": "থেকে",
    "tag": null,
-   "start": 15.8,
-   "end": 16.14,
-   "group": [
-    3,
-    4
-   ]
+   "start": 14.65,
+   "end": 14.96,
+   "seg": 3
   },
   {
    "word": "Barcode",
    "tag": "barcode",
-   "start": 16.43,
-   "end": 17.12,
-   "group": [
-    4,
-    5
-   ]
+   "start": 15.02,
+   "end": 15.43,
+   "seg": 3
   },
   {
    "word": "Sample",
    "tag": null,
-   "start": 17.45,
-   "end": 17.87,
-   "group": [
-    5,
-    6
-   ]
+   "start": 15.47,
+   "end": 15.82,
+   "seg": 3
   },
   {
    "word": "Tracking,",
    "tag": null,
-   "start": 18.15,
-   "end": 18.92,
-   "group": [
-    5,
-    6
-   ]
+   "start": 15.8,
+   "end": 16.14,
+   "seg": 3
   },
   {
    "word": "Lab",
    "tag": "labres",
-   "start": 18.89,
-   "end": 19.25,
-   "group": [
-    5,
-    6
-   ]
+   "start": 16.43,
+   "end": 16.69,
+   "seg": 4
   },
   {
    "word": "Result,",
    "tag": null,
-   "start": 19.26,
-   "end": 19.79,
-   "group": [
-    5,
-    6
-   ]
+   "start": 16.77,
+   "end": 17.12,
+   "seg": 4
   },
   {
    "word": "Billing,",
    "tag": "bill2",
-   "start": 19.79,
-   "end": 20.61,
-   "group": [
-    5,
-    6
-   ]
+   "start": 17.45,
+   "end": 17.73,
+   "seg": 5
   },
   {
    "word": "Report,",
    "tag": "report",
-   "start": 20.64,
-   "end": 21.27,
-   "group": [
-    5,
-    6
-   ]
+   "start": 17.69,
+   "end": 18.54,
+   "seg": 5
   },
   {
    "word": "Attendance,",
    "tag": "attend",
-   "start": 21.98,
-   "end": 23.08,
-   "group": [
-    6,
-    7
-   ]
+   "start": 18.74,
+   "end": 19.25,
+   "seg": 5
   },
   {
    "word": "Payroll—",
    "tag": "payroll",
-   "start": 23.03,
-   "end": 23.77,
-   "group": [
-    6,
-    7
-   ]
+   "start": 19.26,
+   "end": 19.79,
+   "seg": 5
   },
   {
    "word": "সব",
    "tag": "ek",
-   "start": 24.41,
-   "end": 24.75,
-   "group": [
-    7,
-    8
-   ]
+   "start": 19.79,
+   "end": 19.97,
+   "seg": 5
   },
   {
    "word": "এক",
    "tag": null,
-   "start": 24.66,
-   "end": 25.02,
-   "group": [
-    7,
-    8
-   ]
+   "start": 20.36,
+   "end": 20.54,
+   "seg": 5
   },
   {
    "word": "platform-এ।",
    "tag": "platform",
-   "start": 24.91,
-   "end": 26.11,
-   "group": [
-    7,
-    8
-   ]
+   "start": 20.43,
+   "end": 21.27,
+   "seg": 5
   },
   {
    "word": "আর",
    "tag": "ar1",
-   "start": 26.58,
-   "end": 26.76,
-   "group": [
-    8,
-    9
-   ]
+   "start": 21.98,
+   "end": 22.15,
+   "seg": 6
   },
   {
    "word": "এখন",
    "tag": null,
-   "start": 26.7,
-   "end": 26.88,
-   "group": [
-    8,
-    9
-   ]
+   "start": 22.32,
+   "end": 22.5,
+   "seg": 6
   },
   {
    "word": "চলছে",
    "tag": null,
-   "start": 26.85,
-   "end": 27.22,
-   "group": [
-    8,
-    9
-   ]
+   "start": 22.51,
+   "end": 23.08,
+   "seg": 6
   },
   {
    "word": "Special",
    "tag": "special",
-   "start": 27.51,
-   "end": 27.87,
-   "group": [
-    9,
-    10
-   ]
+   "start": 23.03,
+   "end": 23.21,
+   "seg": 6
   },
   {
    "word": "Offer!",
    "tag": null,
-   "start": 27.91,
-   "end": 28.25,
-   "group": [
-    9,
-    10
-   ]
+   "start": 23.22,
+   "end": 23.77,
+   "seg": 6
   },
   {
    "word": "Regular",
    "tag": "regular",
-   "start": 28.17,
-   "end": 28.83,
-   "group": [
-    9,
-    10
-   ]
+   "start": 24.41,
+   "end": 24.84,
+   "seg": 7
   },
   {
    "word": "Price",
    "tag": null,
-   "start": 28.98,
-   "end": 29.16,
-   "group": [
-    9,
-    10
-   ]
+   "start": 24.84,
+   "end": 25.02,
+   "seg": 7
   },
   {
    "word": "১২,০০০",
    "tag": "n12k",
-   "start": 29.18,
-   "end": 30.01,
-   "group": [
-    9,
-    10
-   ]
+   "start": 24.91,
+   "end": 25.9,
+   "seg": 7
   },
   {
    "word": "টাকা,",
    "tag": null,
-   "start": 30.75,
-   "end": 31.15,
-   "group": [
-    10,
-    11
-   ]
+   "start": 25.89,
+   "end": 26.11,
+   "seg": 7
   },
   {
    "word": "কিন্তু",
    "tag": "kintu",
-   "start": 31.05,
-   "end": 31.6,
-   "group": [
-    10,
-    11
-   ]
+   "start": 26.58,
+   "end": 27.22,
+   "seg": 8
   },
   {
    "word": "এখন",
    "tag": null,
-   "start": 31.61,
-   "end": 32.04,
-   "group": [
-    10,
-    11
-   ]
+   "start": 27.51,
+   "end": 27.87,
+   "seg": 9
   },
   {
    "word": "মাত্র",
    "tag": "matro",
-   "start": 31.99,
-   "end": 32.17,
-   "group": [
-    10,
-    11
-   ]
+   "start": 27.91,
+   "end": 28.09,
+   "seg": 9
   },
   {
    "word": "৫,০০০",
    "tag": "n5k",
-   "start": 32.11,
-   "end": 32.64,
-   "group": [
-    10,
-    11
-   ]
+   "start": 28.07,
+   "end": 28.5,
+   "seg": 9
   },
   {
    "word": "টাকা",
    "tag": null,
-   "start": 32.85,
-   "end": 33.2,
-   "group": [
-    10,
-    11
-   ]
+   "start": 28.44,
+   "end": 29.16,
+   "seg": 9
   },
   {
    "word": "per",
    "tag": "per",
-   "start": 33.91,
-   "end": 34.23,
-   "group": [
-    11,
-    12
-   ]
+   "start": 29.18,
+   "end": 29.36,
+   "seg": 9
   },
   {
    "word": "month,",
    "tag": null,
-   "start": 34.24,
-   "end": 34.49,
-   "group": [
-    11,
-    12
-   ]
+   "start": 29.41,
+   "end": 29.59,
+   "seg": 9
   },
   {
    "word": "per",
    "tag": null,
-   "start": 34.52,
-   "end": 35.11,
-   "group": [
-    11,
-    12
-   ]
+   "start": 29.7,
+   "end": 29.88,
+   "seg": 9
   },
   {
    "word": "branch!",
    "tag": "branch",
-   "start": 35.1,
-   "end": 35.46,
-   "group": [
-    11,
-    12
-   ]
+   "start": 29.9,
+   "end": 30.01,
+   "seg": 9
   },
   {
    "word": "Installation",
    "tag": "installation",
-   "start": 35.73,
-   "end": 36.49,
-   "group": [
-    12,
-    13
-   ]
+   "start": 30.75,
+   "end": 31.41,
+   "seg": 10
   },
   {
    "word": "মাত্র",
    "tag": null,
-   "start": 37.19,
-   "end": 37.37,
-   "group": [
-    13,
-    14
-   ]
+   "start": 31.42,
+   "end": 31.6,
+   "seg": 10
   },
   {
    "word": "২৫,০০০",
    "tag": "n25k",
-   "start": 37.54,
-   "end": 38.42,
-   "group": [
-    13,
-    14
-   ]
+   "start": 31.61,
+   "end": 32.29,
+   "seg": 10
   },
   {
    "word": "টাকা",
    "tag": null,
-   "start": 38.36,
-   "end": 38.66,
-   "group": [
-    13,
-    14
-   ]
+   "start": 32.18,
+   "end": 32.52,
+   "seg": 10
   },
   {
    "word": "one-time।",
    "tag": "onetime",
-   "start": 38.84,
-   "end": 39.63,
-   "group": [
-    13,
-    14
-   ]
+   "start": 32.46,
+   "end": 33.2,
+   "seg": 10
   },
   {
    "word": "আর",
    "tag": "ar2",
-   "start": 40.5,
-   "end": 40.75,
-   "group": [
-    14,
-    15
-   ]
+   "start": 33.91,
+   "end": 34.08,
+   "seg": 11
   },
   {
    "word": "installation-এর",
    "tag": null,
-   "start": 40.7,
-   "end": 41.52,
-   "group": [
-    14,
-    15
-   ]
+   "start": 34.05,
+   "end": 34.87,
+   "seg": 11
   },
   {
    "word": "পর",
    "tag": null,
-   "start": 41.51,
-   "end": 41.69,
-   "group": [
-    14,
-    15
-   ]
+   "start": 34.93,
+   "end": 35.11,
+   "seg": 11
   },
   {
    "word": "প্রথম",
    "tag": "prothom",
-   "start": 41.77,
-   "end": 42.12,
-   "group": [
-    14,
-    15
-   ]
+   "start": 35.1,
+   "end": 35.46,
+   "seg": 11
   },
   {
    "word": "মাস",
    "tag": null,
-   "start": 42.12,
-   "end": 42.3,
-   "group": [
-    14,
-    15
-   ]
+   "start": 35.73,
+   "end": 36.01,
+   "seg": 12
   },
   {
    "word": "সম্পূর্ণ",
    "tag": null,
-   "start": 42.31,
-   "end": 42.64,
-   "group": [
-    14,
-    15
-   ]
+   "start": 36.08,
+   "end": 36.38,
+   "seg": 12
   },
   {
    "word": "FREE!",
    "tag": "free1",
-   "start": 43.2,
-   "end": 43.38,
-   "group": [
-    14,
-    15
-   ]
+   "start": 36.38,
+   "end": 36.49,
+   "seg": 12
   },
   {
    "word": "আর",
    "tag": null,
-   "start": 43.39,
-   "end": 43.57,
-   "group": [
-    14,
-    15
-   ]
+   "start": 37.19,
+   "end": 37.37,
+   "seg": 13
   },
   {
    "word": "yearly",
    "tag": "yearly",
-   "start": 43.78,
-   "end": 43.96,
-   "group": [
-    14,
-    15
-   ]
+   "start": 37.54,
+   "end": 37.72,
+   "seg": 13
   },
   {
    "word": "payment",
    "tag": null,
-   "start": 43.9,
-   "end": 44.42,
-   "group": [
-    14,
-    15
-   ]
+   "start": 37.67,
+   "end": 38.0,
+   "seg": 13
   },
   {
    "word": "করলে",
    "tag": null,
-   "start": 44.48,
-   "end": 45.0,
-   "group": [
-    14,
-    15
-   ]
+   "start": 38.11,
+   "end": 38.42,
+   "seg": 13
   },
   {
    "word": "পাবেন",
    "tag": "paben",
-   "start": 45.58,
-   "end": 45.76,
-   "group": [
-    15,
-    16
-   ]
+   "start": 38.36,
+   "end": 38.54,
+   "seg": 13
   },
   {
    "word": "আরও",
    "tag": null,
-   "start": 45.74,
-   "end": 45.92,
-   "group": [
-    15,
-    16
-   ]
+   "start": 38.48,
+   "end": 39.02,
+   "seg": 13
   },
   {
    "word": "২",
    "tag": null,
-   "start": 46.03,
-   "end": 46.37,
-   "group": [
-    15,
-    16
-   ]
+   "start": 39.09,
+   "end": 39.41,
+   "seg": 13
   },
   {
    "word": "মাস",
    "tag": null,
-   "start": 46.19,
-   "end": 46.37,
-   "group": [
-    15,
-    16
-   ]
+   "start": 39.53,
+   "end": 39.63,
+   "seg": 13
   },
   {
    "word": "FREE!",
    "tag": "free2",
-   "start": 47.4,
-   "end": 48.08,
-   "group": [
-    16,
-    17
-   ]
+   "start": 39.53,
+   "end": 39.63,
+   "seg": 13
   },
   {
    "word": "DT",
    "tag": "dtm2",
-   "start": 48.43,
-   "end": 48.74,
-   "group": [
-    17,
-    18
-   ]
+   "start": 40.5,
+   "end": 40.88,
+   "seg": 14
   },
   {
-   "word": "Medix—",
+   "word": "Medix",
    "tag": null,
-   "start": 48.67,
-   "end": 49.0,
-   "group": [
-    17,
-    18
-   ]
+   "start": 40.83,
+   "end": 41.69,
+   "seg": 14
   },
   {
    "word": "আপনার",
    "tag": null,
-   "start": 48.91,
-   "end": 49.45,
-   "group": [
-    17,
-    18
-   ]
+   "start": 41.77,
+   "end": 42.3,
+   "seg": 14
   },
   {
    "word": "diagnostic",
    "tag": "diag2",
-   "start": 49.38,
-   "end": 49.75,
-   "group": [
-    17,
-    18
-   ]
+   "start": 42.31,
+   "end": 43.38,
+   "seg": 14
   },
   {
    "word": "center,",
    "tag": null,
-   "start": 49.8,
-   "end": 50.19,
-   "group": [
-    17,
-    18
-   ]
+   "start": 43.39,
+   "end": 44.08,
+   "seg": 14
   },
   {
    "word": "আরও",
    "tag": null,
-   "start": 50.92,
-   "end": 51.7,
-   "group": [
-    18,
-    19
-   ]
+   "start": 44.24,
+   "end": 44.78,
+   "seg": 14
   },
   {
    "word": "smart,",
    "tag": "smart",
-   "start": 51.6,
-   "end": 51.72,
-   "group": [
-    18,
-    19
-   ]
+   "start": 44.85,
+   "end": 45.0,
+   "seg": 14
   },
   {
    "word": "fast",
    "tag": "fast",
-   "start": 52.25,
-   "end": 52.44,
-   "group": [
-    19,
-    20
-   ]
+   "start": 45.58,
+   "end": 45.76,
+   "seg": 15
   },
   {
    "word": "and",
    "tag": null,
-   "start": 52.54,
-   "end": 52.72,
-   "group": [
-    19,
-    20
-   ]
+   "start": 45.74,
+   "end": 45.92,
+   "seg": 15
   },
   {
    "word": "organized.",
    "tag": "org",
-   "start": 52.68,
-   "end": 53.12,
-   "group": [
-    19,
-    20
-   ]
+   "start": 45.74,
+   "end": 46.37,
+   "seg": 15
   },
   {
    "word": "আজই",
    "tag": "ajai1",
-   "start": 53.44,
-   "end": 53.9,
-   "group": [
-    20,
-    21
-   ]
+   "start": 47.4,
+   "end": 47.64,
+   "seg": 16
   },
   {
    "word": "FREE",
    "tag": null,
-   "start": 53.95,
-   "end": 54.13,
-   "group": [
-    20,
-    21
-   ]
+   "start": 47.59,
+   "end": 47.77,
+   "seg": 16
   },
   {
    "word": "Demo",
    "tag": "demo",
-   "start": 54.05,
-   "end": 54.23,
-   "group": [
-    20,
-    21
-   ]
+   "start": 47.96,
+   "end": 48.08,
+   "seg": 16
   },
   {
    "word": "নিন!",
    "tag": null,
-   "start": 54.21,
-   "end": 54.39,
-   "group": [
-    20,
-    21
-   ]
+   "start": 47.96,
+   "end": 48.08,
+   "seg": 16
   },
   {
    "word": "DT",
    "tag": "dtm3",
-   "start": 54.74,
-   "end": 54.99,
-   "group": [
-    21,
-    22
-   ]
+   "start": 48.43,
+   "end": 48.74,
+   "seg": 17
   },
   {
-   "word": "Medix—",
+   "word": "Medix",
    "tag": null,
-   "start": 54.92,
-   "end": 55.1,
-   "group": [
-    21,
-    22
-   ]
+   "start": 48.67,
+   "end": 49.09,
+   "seg": 17
   },
   {
    "word": "A",
    "tag": null,
-   "start": 55.34,
-   "end": 55.52,
-   "group": [
-    21,
-    22
-   ]
+   "start": 49.14,
+   "end": 49.32,
+   "seg": 17
   },
   {
    "word": "Product",
    "tag": "product",
-   "start": 55.44,
-   "end": 55.62,
-   "group": [
-    21,
-    22
-   ]
+   "start": 49.27,
+   "end": 49.45,
+   "seg": 17
   },
   {
    "word": "of",
    "tag": null,
-   "start": 55.58,
-   "end": 55.76,
-   "group": [
-    21,
-    22
-   ]
+   "start": 49.38,
+   "end": 49.56,
+   "seg": 17
   },
   {
    "word": "Datatech",
    "tag": null,
-   "start": 55.58,
-   "end": 55.87,
-   "group": [
-    21,
-    22
-   ]
+   "start": 49.57,
+   "end": 50.19,
+   "seg": 17
   },
   {
    "word": "BD",
    "tag": null,
-   "start": 55.9,
-   "end": 56.08,
-   "group": [
-    21,
-    22
-   ]
+   "start": 50.92,
+   "end": 51.41,
+   "seg": 18
   },
   {
    "word": "Ltd.",
    "tag": "ltd",
-   "start": 56.14,
-   "end": 56.29,
-   "group": [
-    21,
-    22
-   ]
+   "start": 51.39,
+   "end": 51.72,
+   "seg": 18
   },
   {
    "word": "Call",
    "tag": "call",
-   "start": 57.05,
-   "end": 57.34,
-   "group": [
-    22,
-    23
-   ]
+   "start": 52.25,
+   "end": 52.44,
+   "seg": 19
   },
   {
    "word": "or",
    "tag": null,
-   "start": 57.72,
-   "end": 58.0,
-   "group": [
-    23,
-    24
-   ]
+   "start": 52.54,
+   "end": 52.72,
+   "seg": 19
   },
   {
    "word": "WhatsApp:",
    "tag": null,
-   "start": 58.03,
-   "end": 58.21,
-   "group": [
-    23,
-    24
-   ]
+   "start": 52.68,
+   "end": 53.12,
+   "seg": 19
   },
   {
    "word": "+880",
    "tag": null,
-   "start": 58.18,
-   "end": 58.57,
-   "group": [
-    23,
-    24
-   ]
+   "start": 53.44,
+   "end": 54.39,
+   "seg": 20
   },
   {
    "word": "1575-888775",
    "tag": null,
-   "start": 58.66,
-   "end": 59.72,
-   "group": [
-    23,
-    24
-   ]
+   "start": 54.74,
+   "end": 56.29,
+   "seg": 21
   },
   {
    "word": "Email:",
    "tag": "email",
-   "start": 60.49,
-   "end": 60.99,
-   "group": [
-    24,
-    25
-   ]
+   "start": 57.05,
+   "end": 57.34,
+   "seg": 22
   },
   {
    "word": "sales@datatechbd.com",
    "tag": null,
-   "start": 61.4,
-   "end": 62.55,
-   "group": [
-    25,
-    26
-   ]
+   "start": 57.72,
+   "end": 59.72,
+   "seg": 23
   },
   {
    "word": "Live",
    "tag": "live",
-   "start": 62.58,
-   "end": 62.76,
-   "group": [
-    25,
-    26
-   ]
+   "start": 60.49,
+   "end": 60.73,
+   "seg": 24
   },
   {
    "word": "Demo:",
    "tag": null,
-   "start": 62.83,
-   "end": 63.01,
-   "group": [
-    25,
-    26
-   ]
+   "start": 60.77,
+   "end": 60.99,
+   "seg": 24
   },
   {
    "word": "dt-medix.datatechbd.com",
    "tag": null,
-   "start": 62.94,
-   "end": 63.85,
-   "group": [
-    25,
-    26
-   ]
+   "start": 61.4,
+   "end": 63.41,
+   "seg": 25
   },
   {
    "word": "আজই",
    "tag": "ajai2",
-   "start": 64.84,
-   "end": 65.17,
-   "group": [
-    26,
-    27
-   ]
+   "start": 63.35,
+   "end": 63.85,
+   "seg": 25
   },
   {
    "word": "যোগাযোগ",
    "tag": null,
-   "start": 65.13,
-   "end": 65.48,
-   "group": [
-    26,
-    27
-   ]
+   "start": 64.84,
+   "end": 65.31,
+   "seg": 26
   },
   {
    "word": "করুন",
    "tag": null,
-   "start": 65.49,
-   "end": 65.67,
-   "group": [
-    26,
-    27
-   ]
+   "start": 65.21,
+   "end": 65.39,
+   "seg": 26
   },
   {
    "word": "এবং",
    "tag": null,
-   "start": 65.87,
-   "end": 66.05,
-   "group": [
-    26,
-    27
-   ]
+   "start": 65.3,
+   "end": 65.48,
+   "seg": 26
   },
   {
    "word": "আপনার",
    "tag": null,
-   "start": 65.96,
-   "end": 66.28,
-   "group": [
-    26,
-    27
-   ]
+   "start": 65.49,
+   "end": 66.14,
+   "seg": 26
   },
   {
    "word": "diagnostic",
    "tag": "diag3",
-   "start": 66.25,
-   "end": 66.8,
-   "group": [
-    26,
-    27
-   ]
+   "start": 66.1,
+   "end": 66.63,
+   "seg": 26
   },
   {
    "word": "center-কে",
    "tag": null,
-   "start": 66.79,
-   "end": 67.14,
-   "group": [
-    26,
-    27
-   ]
+   "start": 66.62,
+   "end": 66.97,
+   "seg": 26
   },
   {
    "word": "আরও",
    "tag": null,
-   "start": 67.08,
+   "start": 66.96,
    "end": 67.41,
-   "group": [
-    26,
-    27
-   ]
+   "seg": 26
   },
   {
    "word": "smart",
    "tag": "smart2",
    "start": 67.49,
    "end": 67.67,
-   "group": [
-    26,
-    27
-   ]
+   "seg": 26
   },
   {
    "word": "way-তে",
    "tag": null,
    "start": 67.94,
-   "end": 68.32,
-   "group": [
-    26,
-    27
-   ]
+   "end": 68.12,
+   "seg": 26
   },
   {
    "word": "manage",
    "tag": "manage2",
-   "start": 68.26,
+   "start": 68.14,
    "end": 68.44,
-   "group": [
-    26,
-    27
-   ]
+   "seg": 26
   },
   {
    "word": "করুন।",
    "tag": "end",
    "start": 68.35,
    "end": 68.83,
-   "group": [
-    26,
-    27
-   ]
+   "seg": 26
   }
  ],
  "tags": {
@@ -1244,214 +878,214 @@
   },
   "app": {
    "start": 7.0,
-   "end": 7.65
+   "end": 7.37
   },
   "bil1": {
-   "start": 7.9,
-   "end": 8.59
+   "start": 7.47,
+   "end": 8.08
   },
   "sam": {
-   "start": 8.68,
-   "end": 8.95
+   "start": 8.41,
+   "end": 8.59
   },
   "lab1": {
-   "start": 9.12,
-   "end": 9.3
+   "start": 8.68,
+   "end": 8.86
   },
   "staff": {
-   "start": 9.84,
-   "end": 11.01
+   "start": 9.37,
+   "end": 10.2
   },
   "manage": {
-   "start": 11.0,
-   "end": 11.79
+   "start": 10.63,
+   "end": 11.18
   },
   "manage_end": {
+   "start": 11.39,
+   "end": 11.79
+  },
+  "medix1": {
    "start": 12.48,
    "end": 12.99
   },
-  "medix1": {
-   "start": 14.06,
-   "end": 14.53
-  },
   "patient2": {
-   "start": 14.49,
-   "end": 14.96
+   "start": 13.69,
+   "end": 14.08
   },
   "reg": {
-   "start": 15.02,
-   "end": 15.82
+   "start": 14.06,
+   "end": 14.67
   },
   "barcode": {
-   "start": 16.43,
-   "end": 17.12
+   "start": 15.02,
+   "end": 15.43
   },
   "labres": {
-   "start": 18.89,
-   "end": 19.25
+   "start": 16.43,
+   "end": 16.69
   },
   "bill2": {
-   "start": 19.79,
-   "end": 20.61
+   "start": 17.45,
+   "end": 17.73
   },
   "report": {
-   "start": 20.64,
-   "end": 21.27
+   "start": 17.69,
+   "end": 18.54
   },
   "attend": {
-   "start": 21.98,
-   "end": 23.08
+   "start": 18.74,
+   "end": 19.25
   },
   "payroll": {
-   "start": 23.03,
-   "end": 23.77
+   "start": 19.26,
+   "end": 19.79
   },
   "ek": {
-   "start": 24.41,
-   "end": 24.75
+   "start": 19.79,
+   "end": 19.97
   },
   "platform": {
-   "start": 24.91,
-   "end": 26.11
+   "start": 20.43,
+   "end": 21.27
   },
   "ar1": {
-   "start": 26.58,
-   "end": 26.76
+   "start": 21.98,
+   "end": 22.15
   },
   "special": {
-   "start": 27.51,
-   "end": 27.87
+   "start": 23.03,
+   "end": 23.21
   },
   "regular": {
-   "start": 28.17,
-   "end": 28.83
+   "start": 24.41,
+   "end": 24.84
   },
   "n12k": {
-   "start": 29.18,
-   "end": 30.01
+   "start": 24.91,
+   "end": 25.9
   },
   "kintu": {
-   "start": 31.05,
-   "end": 31.6
+   "start": 26.58,
+   "end": 27.22
   },
   "matro": {
-   "start": 31.99,
-   "end": 32.17
+   "start": 27.91,
+   "end": 28.09
   },
   "n5k": {
-   "start": 32.11,
-   "end": 32.64
+   "start": 28.07,
+   "end": 28.5
   },
   "per": {
-   "start": 33.91,
-   "end": 34.23
+   "start": 29.18,
+   "end": 29.36
   },
   "branch": {
+   "start": 29.9,
+   "end": 30.01
+  },
+  "installation": {
+   "start": 30.75,
+   "end": 31.41
+  },
+  "n25k": {
+   "start": 31.61,
+   "end": 32.29
+  },
+  "onetime": {
+   "start": 32.46,
+   "end": 33.2
+  },
+  "ar2": {
+   "start": 33.91,
+   "end": 34.08
+  },
+  "prothom": {
    "start": 35.1,
    "end": 35.46
   },
-  "installation": {
-   "start": 35.73,
+  "free1": {
+   "start": 36.38,
    "end": 36.49
   },
-  "n25k": {
-   "start": 37.54,
-   "end": 38.42
-  },
-  "onetime": {
-   "start": 38.84,
-   "end": 39.63
-  },
-  "ar2": {
-   "start": 40.5,
-   "end": 40.75
-  },
-  "prothom": {
-   "start": 41.77,
-   "end": 42.12
-  },
-  "free1": {
-   "start": 43.2,
-   "end": 43.38
-  },
   "yearly": {
-   "start": 43.78,
-   "end": 43.96
+   "start": 37.54,
+   "end": 37.72
   },
   "paben": {
+   "start": 38.36,
+   "end": 38.54
+  },
+  "free2": {
+   "start": 39.53,
+   "end": 39.63
+  },
+  "dtm2": {
+   "start": 40.5,
+   "end": 40.88
+  },
+  "diag2": {
+   "start": 42.31,
+   "end": 43.38
+  },
+  "smart": {
+   "start": 44.85,
+   "end": 45.0
+  },
+  "fast": {
    "start": 45.58,
    "end": 45.76
   },
-  "free2": {
+  "org": {
+   "start": 45.74,
+   "end": 46.37
+  },
+  "ajai1": {
    "start": 47.4,
+   "end": 47.64
+  },
+  "demo": {
+   "start": 47.96,
    "end": 48.08
   },
-  "dtm2": {
+  "dtm3": {
    "start": 48.43,
    "end": 48.74
   },
-  "diag2": {
-   "start": 49.38,
-   "end": 49.75
+  "product": {
+   "start": 49.27,
+   "end": 49.45
   },
-  "smart": {
-   "start": 51.6,
+  "ltd": {
+   "start": 51.39,
    "end": 51.72
   },
-  "fast": {
+  "call": {
    "start": 52.25,
    "end": 52.44
   },
-  "org": {
-   "start": 52.68,
-   "end": 53.12
-  },
-  "ajai1": {
-   "start": 53.44,
-   "end": 53.9
-  },
-  "demo": {
-   "start": 54.05,
-   "end": 54.23
-  },
-  "dtm3": {
-   "start": 54.74,
-   "end": 54.99
-  },
-  "product": {
-   "start": 55.44,
-   "end": 55.62
-  },
-  "ltd": {
-   "start": 56.14,
-   "end": 56.29
-  },
-  "call": {
+  "email": {
    "start": 57.05,
    "end": 57.34
   },
-  "email": {
-   "start": 60.49,
-   "end": 60.99
-  },
   "live": {
-   "start": 62.58,
-   "end": 62.76
+   "start": 60.49,
+   "end": 60.73
   },
   "ajai2": {
-   "start": 64.84,
-   "end": 65.17
+   "start": 63.35,
+   "end": 63.85
   },
   "diag3": {
-   "start": 66.25,
-   "end": 66.8
+   "start": 66.1,
+   "end": 66.63
   },
   "smart2": {
    "start": 67.49,
    "end": 67.67
   },
   "manage2": {
-   "start": 68.26,
+   "start": 68.14,
    "end": 68.44
   },
   "end": {
