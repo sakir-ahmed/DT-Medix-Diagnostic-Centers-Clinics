@@ -5,6 +5,7 @@ declare(strict_types=1);
 return [
     'nav' => [
         'about' => 'আমাদের সম্পর্কে',
+        'tests' => 'পরীক্ষা',
         'services' => 'সেবাসমূহ',
         'home_collection' => 'হোম কালেকশন',
         'reports' => 'রিপোর্ট',

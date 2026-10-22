@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             DemoCatalogSeeder::class,
             DemoClinicalDataSeeder::class,
             DemoHrSeeder::class,
+            DemoActivitySeeder::class,
         ]);
     }
 }

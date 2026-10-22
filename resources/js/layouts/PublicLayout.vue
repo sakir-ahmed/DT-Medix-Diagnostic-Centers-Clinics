@@ -27,7 +27,7 @@ const year = new Date().getFullYear();
 const nav = computed(() => [
     { label: t('site.nav.about'), href: route('public.about'), active: route().current('public.about') },
     { label: t('site.nav.services'), href: route('public.services'), active: route().current('public.services') },
-    { label: t('public.nav_tests'), href: route('public.tests'), active: route().current('public.tests') },
+    { label: t('site.nav.tests'), href: route('public.tests'), active: route().current('public.tests') },
     { label: t('public.nav_doctors'), href: route('public.doctors'), active: route().current('public.doctors') },
     { label: t('site.nav.home_collection'), href: route('public.home-collection'), active: route().current('public.home-collection') },
     { label: t('site.nav.reports'), href: route('public.reports'), active: route().current('public.reports') },
@@ -72,7 +72,7 @@ watch(() => page.url, () => {
         </div>
 
         <header class="sticky top-0 z-30 border-b border-border bg-surface/95 backdrop-blur">
-            <div class="mx-auto flex h-16 w-full max-w-7xl items-center gap-3 px-4">
+            <div class="site-container flex h-16 items-center gap-3">
                 <Link :href="route('home')" class="flex min-w-0 shrink-0 items-center gap-2.5 xl:max-w-[13rem]">
                     <img v-if="isCenter" src="/images/brand/logo-mark.svg" alt="" class="h-10 w-10 shrink-0" />
                     <img v-else src="/images/brand/logo-primary.png" alt="DT Medix" class="h-9 w-auto shrink-0" />
@@ -86,7 +86,7 @@ watch(() => page.url, () => {
                         v-for="item in nav"
                         :key="item.href"
                         :href="item.href"
-                        class="rounded-md px-2 py-1.5 text-[13px] font-medium whitespace-nowrap transition-colors duration-100"
+                        class="rounded-md px-2.5 py-1.5 text-[13px] font-medium whitespace-nowrap transition-colors duration-100"
                         :class="item.active ? 'bg-primary/10 text-primary' : 'text-muted hover:bg-subtle hover:text-foreground'"
                     >
                         {{ item.label }}
