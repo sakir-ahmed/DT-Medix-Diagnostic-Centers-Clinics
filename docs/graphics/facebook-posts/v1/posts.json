@@ -3,7 +3,7 @@
   "publisher": "Datatech BD Ltd.",
   "version": "v1",
   "image_size": "1080x1080",
-  "count": 50,
+  "count": 56,
   "posts": [
     {
       "id": "post-01",
@@ -1904,6 +1904,240 @@
       },
       "alt_text": "Try the free demo - DT Medix, a product of Datatech BD Ltd.",
       "suggested_schedule_day": 1
+    },
+    {
+      "id": "post-51",
+      "number": 51,
+      "type": "price",
+      "image": "images/post-51.jpg",
+      "image_language": "en",
+      "icon": "tag",
+      "headline_en": "Only 5,000 BDT per month per branch",
+      "subline_en": "Launch offer for diagnostic centers and clinics. Regular price is 12,000 BDT.",
+      "bullets_en": [
+        "Regular price 12,000 BDT",
+        "Installation: 25,000 BDT (one time)",
+        "1st month: FREE (after installation)",
+        "Yearly payment: 2 months FREE (pay 10, use 12)"
+      ],
+      "headline_bn": "মাসে শাখাপ্রতি মাত্র ৫,০০০ টাকা",
+      "subline_bn": "ডায়াগনস্টিক সেন্টার ও ক্লিনিকের জন্য লঞ্চ অফার। নিয়মিত মূল্য ১২,০০০ টাকা।",
+      "bullets_bn": [
+        "নিয়মিত মূল্য ১২,০০০ টাকা",
+        "ইনস্টলেশন: ২৫,০০০ টাকা (এককালীন)",
+        "১ম মাস: ফ্রি (ইনস্টলেশনের পর)",
+        "বার্ষিক পেমেন্ট: ২ মাস ফ্রি (১০ মাসের মূল্যে ১২ মাস)"
+      ],
+      "caption_en": "Only 5,000 BDT per month per branch Launch offer for diagnostic centers and clinics. Regular price is 12,000 BDT.\n\n- Regular price 12,000 BDT\n- Installation: 25,000 BDT (one time)\n- 1st month: FREE (after installation)\n- Yearly payment: 2 months FREE (pay 10, use 12)\n\nTry the free demo: dt-medix.datatechbd.com or call +880 1575-888775. datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "caption_bn": "মাসে শাখাপ্রতি মাত্র ৫,০০০ টাকা ডায়াগনস্টিক সেন্টার ও ক্লিনিকের জন্য লঞ্চ অফার। নিয়মিত মূল্য ১২,০০০ টাকা।\n\n- নিয়মিত মূল্য ১২,০০০ টাকা\n- ইনস্টলেশন: ২৫,০০০ টাকা (এককালীন)\n- ১ম মাস: ফ্রি (ইনস্টলেশনের পর)\n- বার্ষিক পেমেন্ট: ২ মাস ফ্রি (১০ মাসের মূল্যে ১২ মাস)\n\nফ্রি ডেমো: dt-medix.datatechbd.com অথবা কল করুন +880 1575-888775। datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "hashtags": [
+        "Pricing",
+        "LaunchOffer",
+        "DiagnosticCenter",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Only 5,000 BDT per month per branch - DT Medix pricing, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 2
+    },
+    {
+      "id": "post-52",
+      "number": 52,
+      "type": "price",
+      "image": "images/post-52.jpg",
+      "image_language": "bn",
+      "icon": "tag",
+      "headline_en": "Only 5,000 BDT per month per branch",
+      "subline_en": "Launch offer for diagnostic centers and clinics. Regular price is 12,000 BDT.",
+      "bullets_en": [
+        "Regular price 12,000 BDT",
+        "Installation: 25,000 BDT (one time)",
+        "1st month: FREE (after installation)",
+        "Yearly payment: 2 months FREE (pay 10, use 12)"
+      ],
+      "headline_bn": "মাসে শাখাপ্রতি মাত্র ৫,০০০ টাকা",
+      "subline_bn": "ডায়াগনস্টিক সেন্টার ও ক্লিনিকের জন্য লঞ্চ অফার। নিয়মিত মূল্য ১২,০০০ টাকা।",
+      "bullets_bn": [
+        "নিয়মিত মূল্য ১২,০০০ টাকা",
+        "ইনস্টলেশন: ২৫,০০০ টাকা (এককালীন)",
+        "১ম মাস: ফ্রি (ইনস্টলেশনের পর)",
+        "বার্ষিক পেমেন্ট: ২ মাস ফ্রি (১০ মাসের মূল্যে ১২ মাস)"
+      ],
+      "caption_en": "Only 5,000 BDT per month per branch Launch offer for diagnostic centers and clinics. Regular price is 12,000 BDT.\n\n- Regular price 12,000 BDT\n- Installation: 25,000 BDT (one time)\n- 1st month: FREE (after installation)\n- Yearly payment: 2 months FREE (pay 10, use 12)\n\nTry the free demo: dt-medix.datatechbd.com or call +880 1575-888775. datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "caption_bn": "মাসে শাখাপ্রতি মাত্র ৫,০০০ টাকা ডায়াগনস্টিক সেন্টার ও ক্লিনিকের জন্য লঞ্চ অফার। নিয়মিত মূল্য ১২,০০০ টাকা।\n\n- নিয়মিত মূল্য ১২,০০০ টাকা\n- ইনস্টলেশন: ২৫,০০০ টাকা (এককালীন)\n- ১ম মাস: ফ্রি (ইনস্টলেশনের পর)\n- বার্ষিক পেমেন্ট: ২ মাস ফ্রি (১০ মাসের মূল্যে ১২ মাস)\n\nফ্রি ডেমো: dt-medix.datatechbd.com অথবা কল করুন +880 1575-888775। datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "hashtags": [
+        "Pricing",
+        "LaunchOffer",
+        "DiagnosticCenter",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Only 5,000 BDT per month per branch - DT Medix pricing, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 3
+    },
+    {
+      "id": "post-53",
+      "number": 53,
+      "type": "price",
+      "image": "images/post-53.jpg",
+      "image_language": "en",
+      "icon": "tag",
+      "headline_en": "Start now. First month is free.",
+      "subline_en": "Install once, go live, and pay the monthly fee only after your free first month.",
+      "bullets_en": [
+        "Install: 25,000 BDT (one time)",
+        "Month 1: FREE (after installation)",
+        "Month 2 onward: 5,000 BDT (per month, per branch)"
+      ],
+      "headline_bn": "এখনই শুরু করুন। ১ম মাস ফ্রি।",
+      "subline_bn": "একবার ইনস্টল করুন, চালু করুন, আর মাসিক ফি দিন ফ্রি মাসের পর।",
+      "bullets_bn": [
+        "ইনস্টল: ২৫,০০০ টাকা (এককালীন)",
+        "১ম মাস: ফ্রি (ইনস্টলেশনের পর)",
+        "২য় মাস থেকে: ৫,০০০ টাকা (প্রতি মাসে, শাখাপ্রতি)"
+      ],
+      "caption_en": "Start now. First month is free. Install once, go live, and pay the monthly fee only after your free first month.\n\n- Install: 25,000 BDT (one time)\n- Month 1: FREE (after installation)\n- Month 2 onward: 5,000 BDT (per month, per branch)\n\nTry the free demo: dt-medix.datatechbd.com or call +880 1575-888775. datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "caption_bn": "এখনই শুরু করুন। ১ম মাস ফ্রি। একবার ইনস্টল করুন, চালু করুন, আর মাসিক ফি দিন ফ্রি মাসের পর।\n\n- ইনস্টল: ২৫,০০০ টাকা (এককালীন)\n- ১ম মাস: ফ্রি (ইনস্টলেশনের পর)\n- ২য় মাস থেকে: ৫,০০০ টাকা (প্রতি মাসে, শাখাপ্রতি)\n\nফ্রি ডেমো: dt-medix.datatechbd.com অথবা কল করুন +880 1575-888775। datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "hashtags": [
+        "Pricing",
+        "LaunchOffer",
+        "DiagnosticCenter",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Start now. First month is free. - DT Medix pricing, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 4
+    },
+    {
+      "id": "post-54",
+      "number": 54,
+      "type": "price",
+      "image": "images/post-54.jpg",
+      "image_language": "bn",
+      "icon": "tag",
+      "headline_en": "Start now. First month is free.",
+      "subline_en": "Install once, go live, and pay the monthly fee only after your free first month.",
+      "bullets_en": [
+        "Install: 25,000 BDT (one time)",
+        "Month 1: FREE (after installation)",
+        "Month 2 onward: 5,000 BDT (per month, per branch)"
+      ],
+      "headline_bn": "এখনই শুরু করুন। ১ম মাস ফ্রি।",
+      "subline_bn": "একবার ইনস্টল করুন, চালু করুন, আর মাসিক ফি দিন ফ্রি মাসের পর।",
+      "bullets_bn": [
+        "ইনস্টল: ২৫,০০০ টাকা (এককালীন)",
+        "১ম মাস: ফ্রি (ইনস্টলেশনের পর)",
+        "২য় মাস থেকে: ৫,০০০ টাকা (প্রতি মাসে, শাখাপ্রতি)"
+      ],
+      "caption_en": "Start now. First month is free. Install once, go live, and pay the monthly fee only after your free first month.\n\n- Install: 25,000 BDT (one time)\n- Month 1: FREE (after installation)\n- Month 2 onward: 5,000 BDT (per month, per branch)\n\nTry the free demo: dt-medix.datatechbd.com or call +880 1575-888775. datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "caption_bn": "এখনই শুরু করুন। ১ম মাস ফ্রি। একবার ইনস্টল করুন, চালু করুন, আর মাসিক ফি দিন ফ্রি মাসের পর।\n\n- ইনস্টল: ২৫,০০০ টাকা (এককালীন)\n- ১ম মাস: ফ্রি (ইনস্টলেশনের পর)\n- ২য় মাস থেকে: ৫,০০০ টাকা (প্রতি মাসে, শাখাপ্রতি)\n\nফ্রি ডেমো: dt-medix.datatechbd.com অথবা কল করুন +880 1575-888775। datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "hashtags": [
+        "Pricing",
+        "LaunchOffer",
+        "DiagnosticCenter",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Start now. First month is free. - DT Medix pricing, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 5
+    },
+    {
+      "id": "post-55",
+      "number": 55,
+      "type": "price",
+      "image": "images/post-55.jpg",
+      "image_language": "en",
+      "icon": "tag",
+      "headline_en": "Pay 10 months. Use 12.",
+      "subline_en": "Pay yearly and get 2 months free on every branch.",
+      "bullets_en": [
+        "2 months FREE (pay 10, use 12)",
+        "50,000 BDT per branch for a full year"
+      ],
+      "headline_bn": "১০ মাসের মূল্যে ১২ মাস।",
+      "subline_bn": "বার্ষিক পেমেন্টে প্রতি শাখায় ২ মাস ফ্রি।",
+      "bullets_bn": [
+        "২ মাস ফ্রি (১০ মাসের মূল্যে ১২ মাস)",
+        "৫০,০০০ টাকা শাখাপ্রতি পুরো বছরের জন্য"
+      ],
+      "caption_en": "Pay 10 months. Use 12. Pay yearly and get 2 months free on every branch.\n\n- 2 months FREE (pay 10, use 12)\n- 50,000 BDT per branch for a full year\n\nTry the free demo: dt-medix.datatechbd.com or call +880 1575-888775. datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "caption_bn": "১০ মাসের মূল্যে ১২ মাস। বার্ষিক পেমেন্টে প্রতি শাখায় ২ মাস ফ্রি।\n\n- ২ মাস ফ্রি (১০ মাসের মূল্যে ১২ মাস)\n- ৫০,০০০ টাকা শাখাপ্রতি পুরো বছরের জন্য\n\nফ্রি ডেমো: dt-medix.datatechbd.com অথবা কল করুন +880 1575-888775। datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "hashtags": [
+        "Pricing",
+        "LaunchOffer",
+        "DiagnosticCenter",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Pay 10 months. Use 12. - DT Medix pricing, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 6
+    },
+    {
+      "id": "post-56",
+      "number": 56,
+      "type": "price",
+      "image": "images/post-56.jpg",
+      "image_language": "bn",
+      "icon": "tag",
+      "headline_en": "Pay 10 months. Use 12.",
+      "subline_en": "Pay yearly and get 2 months free on every branch.",
+      "bullets_en": [
+        "2 months FREE (pay 10, use 12)",
+        "50,000 BDT per branch for a full year"
+      ],
+      "headline_bn": "১০ মাসের মূল্যে ১২ মাস।",
+      "subline_bn": "বার্ষিক পেমেন্টে প্রতি শাখায় ২ মাস ফ্রি।",
+      "bullets_bn": [
+        "২ মাস ফ্রি (১০ মাসের মূল্যে ১২ মাস)",
+        "৫০,০০০ টাকা শাখাপ্রতি পুরো বছরের জন্য"
+      ],
+      "caption_en": "Pay 10 months. Use 12. Pay yearly and get 2 months free on every branch.\n\n- 2 months FREE (pay 10, use 12)\n- 50,000 BDT per branch for a full year\n\nTry the free demo: dt-medix.datatechbd.com or call +880 1575-888775. datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "caption_bn": "১০ মাসের মূল্যে ১২ মাস। বার্ষিক পেমেন্টে প্রতি শাখায় ২ মাস ফ্রি।\n\n- ২ মাস ফ্রি (১০ মাসের মূল্যে ১২ মাস)\n- ৫০,০০০ টাকা শাখাপ্রতি পুরো বছরের জন্য\n\nফ্রি ডেমো: dt-medix.datatechbd.com অথবা কল করুন +880 1575-888775। datatechbd.com\n\n#Pricing #LaunchOffer #DiagnosticCenter #DTMedix #DatatechBD",
+      "hashtags": [
+        "Pricing",
+        "LaunchOffer",
+        "DiagnosticCenter",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Pay 10 months. Use 12. - DT Medix pricing, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 7
     }
   ]
 }

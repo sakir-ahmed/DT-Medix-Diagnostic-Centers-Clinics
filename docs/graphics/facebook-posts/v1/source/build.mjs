@@ -187,5 +187,136 @@ P.forEach(([icon, kind, first, second, tags], i) => {
         suggested_schedule_day: (i % 7) + 1,
     });
 });
+
+// ---- Pricing posters (51-56): offer, first month free, yearly plan; English and Bangla each ----
+const PRICE = {
+    en: {
+        label: 'Launch offer', foot: 'Free demo available', per: 'BDT per month, per branch', bdt: 'BDT',
+        regular: 'Regular price 12,000 BDT', off: '58% OFF', free: 'FREE',
+        offerHead: 'Only 5,000 BDT per month per branch', offerSub: 'Launch offer for diagnostic centers and clinics. Regular price is 12,000 BDT.',
+        pills: [['Installation', '25,000 BDT', 'one time'], ['1st month', 'FREE', 'after installation'], ['Yearly payment', '2 months FREE', 'pay 10, use 12']],
+        startHead: 'Start now. First month is free.', startSub: 'Install once, go live, and pay the monthly fee only after your free first month.',
+        steps: [['Install', '25,000 BDT', 'one time'], ['Month 1', 'FREE', 'after installation'], ['Month 2 onward', '5,000 BDT', 'per month, per branch']],
+        yearHead: 'Pay 10 months. Use 12.', yearSub: 'Pay yearly and get 2 months free on every branch.',
+        yearTotal: '50,000 BDT', yearNote: 'per branch for a full year', paid: 'paid', month: 'month',
+    },
+    bn: {
+        label: 'লঞ্চ অফার', foot: 'ফ্রি ডেমো আছে', per: 'টাকা প্রতি মাসে, শাখাপ্রতি', bdt: 'টাকা',
+        regular: 'নিয়মিত মূল্য ১২,০০০ টাকা', off: '৫৮% ছাড়', free: 'ফ্রি',
+        offerHead: 'মাসে শাখাপ্রতি মাত্র ৫,০০০ টাকা', offerSub: 'ডায়াগনস্টিক সেন্টার ও ক্লিনিকের জন্য লঞ্চ অফার। নিয়মিত মূল্য ১২,০০০ টাকা।',
+        pills: [['ইনস্টলেশন', '২৫,০০০ টাকা', 'এককালীন'], ['১ম মাস', 'ফ্রি', 'ইনস্টলেশনের পর'], ['বার্ষিক পেমেন্ট', '২ মাস ফ্রি', '১০ মাসের মূল্যে ১২ মাস']],
+        startHead: 'এখনই শুরু করুন। ১ম মাস ফ্রি।', startSub: 'একবার ইনস্টল করুন, চালু করুন, আর মাসিক ফি দিন ফ্রি মাসের পর।',
+        steps: [['ইনস্টল', '২৫,০০০ টাকা', 'এককালীন'], ['১ম মাস', 'ফ্রি', 'ইনস্টলেশনের পর'], ['২য় মাস থেকে', '৫,০০০ টাকা', 'প্রতি মাসে, শাখাপ্রতি']],
+        yearHead: '১০ মাসের মূল্যে ১২ মাস।', yearSub: 'বার্ষিক পেমেন্টে প্রতি শাখায় ২ মাস ফ্রি।',
+        yearTotal: '৫০,০০০ টাকা', yearNote: 'শাখাপ্রতি পুরো বছরের জন্য', paid: 'পেইড', month: 'মাস',
+    },
+};
+const bnDigits = (n) => String(n).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d]);
+const priceCss = `
+.stage.price{background:linear-gradient(150deg,#0A1428 0%,#0B2D66 55%,#0B63CE 100%);color:#fff}
+.stage.price .ring1{background:#E8590C;opacity:.22;right:-260px;top:-260px;width:700px;height:700px}
+.stage.price .ring2{background:#38A8FF;opacity:.10}
+.stage.price .chip{background:#E8590C;color:#fff}
+.pc{position:absolute;left:72px;right:72px;top:176px;bottom:136px;display:flex;flex-direction:column}
+.pc h1{font-size:62px;line-height:1.14;margin-bottom:14px}
+.stage.bn .pc h1{font-size:60px;line-height:1.24}
+.pc p.sub{font-size:29px;line-height:1.38;color:#C9DCF5;font-weight:500}
+.hero{position:relative;margin-top:26px;background:rgba(255,255,255,.10);border:2px solid rgba(255,255,255,.22);border-radius:36px;padding:34px 44px 38px}
+.hero .off{position:absolute;right:34px;top:-30px;background:#E8590C;border-radius:999px;padding:12px 30px;font-size:34px;font-weight:700;font-family:'Poppins','Hind Siliguri',sans-serif;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.hero s{display:block;font-size:34px;color:#B7CBE8;text-decoration-color:#FF7A2E;text-decoration-thickness:4px;font-weight:600}
+.hero .big{display:flex;align-items:flex-end;gap:22px;margin-top:2px}
+.hero .big b{font-family:'Poppins',sans-serif;font-size:210px;line-height:1;font-weight:700;letter-spacing:-6px;color:#fff}
+.stage.bn .hero .big b{font-family:'Hind Siliguri','Poppins',sans-serif;font-size:180px;letter-spacing:-2px}
+.hero .big span{font-size:34px;line-height:1.3;font-weight:600;padding-bottom:30px;color:#fff}
+.hero .big u{text-decoration:none;color:#FFB06B;font-size:44px;font-weight:700;display:block}
+.pills{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pill{border-radius:26px;padding:22px 24px;background:rgba(255,255,255,.12);border-left:10px solid #38A8FF}
+.pill.g{border-left-color:#22C27A}.pill.o{border-left-color:#FF7A2E}
+.pill small{display:block;font-size:22px;font-weight:600;color:#B7CBE8;letter-spacing:.3px}
+.pill b{display:block;font-size:35px;line-height:1.15;margin:4px 0 2px;font-family:'Poppins','Hind Siliguri',sans-serif;font-weight:700}
+.stage.bn .pill b{font-size:34px}
+.pill i{font-style:normal;font-size:22px;color:#D5E4F8}
+.tl{display:flex;flex-direction:column;gap:18px;margin-top:30px}
+.tl .st{display:flex;align-items:center;gap:26px;border-radius:30px;padding:26px 32px;background:rgba(255,255,255,.12)}
+.tl .st.g{background:#16915A}.tl .st.b{background:#0B63CE}
+.tl .n{flex:none;width:76px;height:76px;border-radius:50%;background:#fff;color:#0A1428;font-size:40px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif}
+.tl .st small{display:block;font-size:26px;font-weight:600;color:#D5E4F8}
+.tl .st b{font-size:50px;font-family:'Poppins','Hind Siliguri',sans-serif;line-height:1.15}
+.stage.bn .tl .st b{font-size:46px}
+.tl .st i{font-style:normal;font-size:26px;margin-left:auto;color:#EAF3FF;text-align:right}
+.note{margin-top:auto;font-size:28px;color:#C9DCF5;font-weight:600}
+.note s{text-decoration-color:#FF7A2E;text-decoration-thickness:3px}
+.months{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:30px}
+.months div{border-radius:22px;background:#0B63CE;padding:18px 0 14px;text-align:center}
+.months div.f{background:#16915A;outline:4px solid #7CF0B7}
+.months b{display:block;font-size:44px;font-family:'Poppins','Hind Siliguri',sans-serif;line-height:1.1}
+.months i{display:block;font-style:normal;font-size:20px;color:#DCEBFF;margin-top:2px}
+.total{margin-top:auto;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.12);border-radius:30px;padding:26px 36px}
+.total b{font-size:68px;font-family:'Poppins','Hind Siliguri',sans-serif;line-height:1.1}
+.total span{font-size:28px;color:#D5E4F8;font-weight:600;text-align:right}
+.total em{font-style:normal;background:#E8590C;border-radius:999px;padding:10px 26px;font-size:32px;font-weight:700;display:inline-block;margin-bottom:6px}
+`;
+
+function priceHtml(n, variant, lang) {
+    const T = PRICE[lang];
+    const n5 = lang === 'bn' ? '৫,০০০' : '5,000';
+    let body = '';
+    let head;
+    let sub;
+    if (variant === 'offer') {
+        head = T.offerHead;
+        sub = T.offerSub;
+        body = `<div class="hero"><div class="off">${T.off}</div><s>${T.regular}</s><div class="big"><b>${n5}</b><span><u>${T.bdt}</u>${T.per.replace(T.bdt + ' ', '')}</span></div></div>
+<div class="pills">${T.pills.map((p, i) => `<div class="pill ${i === 1 ? 'g' : i === 2 ? 'o' : ''}"><small>${p[0]}</small><b>${p[1]}</b><i>${p[2]}</i></div>`).join('')}</div>`;
+    } else if (variant === 'start') {
+        head = T.startHead;
+        sub = T.startSub;
+        body = `<div class="tl">${T.steps.map((s, i) => `<div class="st ${i === 1 ? 'g' : i === 2 ? 'b' : ''}"><div class="n">${lang === 'bn' ? bnDigits(i + 1) : i + 1}</div><div><small>${s[0]}</small><b>${s[1]}</b></div><i>${s[2]}</i></div>`).join('')}</div>
+<div class="note"><s>${T.regular}</s> &rarr; ${n5} ${T.bdt}</div>`;
+    } else {
+        head = T.yearHead;
+        sub = T.yearSub;
+        body = `<div class="months">${Array.from({ length: 12 }, (_, m) => m >= 10
+            ? `<div class="f"><b>${T.free}</b><i>${T.month} ${lang === 'bn' ? bnDigits(m + 1) : m + 1}</i></div>`
+            : `<div><b>${lang === 'bn' ? bnDigits(m + 1) : m + 1}</b><i>${T.paid}</i></div>`).join('')}</div>
+<div class="total"><div><em>${T.pills[2][1]}</em><br><b>${T.yearTotal}</b></div><span>${T.yearNote}<br>${n5} ${T.bdt} &times; ${lang === 'bn' ? '১০' : '10'}</span></div>`;
+    }
+    const theme = themes[1];
+    return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>post-${n}</title><style>${css(theme)}${priceCss}</style></head><body>
+<div class="stage price ${lang === 'bn' ? 'bn' : ''}" id="s"><div class="ring1"></div><div class="ring2"></div>
+<div class="top"><div class="brand">${mark}<span>DT Medix</span></div><div class="chip">${T.label}</div></div>
+<div class="pc"><h1>${head}</h1><p class="sub">${sub}</p>${body}</div>
+<div class="foot"><span>${T.foot}</span><b>${PHONE}</b><span>${SITE}</span></div></div>
+<script>function fit(){var s=document.getElementById('s'),k=Math.min(innerWidth,innerHeight)/1080;s.style.transform='scale('+k+')'}fit();addEventListener('resize',fit)</script>
+</body></html>`;
+}
+
+[['offer', 'en'], ['offer', 'bn'], ['start', 'en'], ['start', 'bn'], ['year', 'en'], ['year', 'bn']].forEach(([variant, lang], k) => {
+    const idx = P.length + k;
+    const n = String(idx + 1).padStart(2, '0');
+    writeFileSync(`post-${n}.html`, priceHtml(n, variant, lang));
+    const en = PRICE.en;
+    const bn = PRICE.bn;
+    const key = { offer: ['offerHead', 'offerSub'], start: ['startHead', 'startSub'], year: ['yearHead', 'yearSub'] }[variant];
+    const bullets = {
+        offer: (L) => [`${L.regular}`, `${L.pills[0][0]}: ${L.pills[0][1]} (${L.pills[0][2]})`, `${L.pills[1][0]}: ${L.pills[1][1]} (${L.pills[1][2]})`, `${L.pills[2][0]}: ${L.pills[2][1]} (${L.pills[2][2]})`],
+        start: (L) => L.steps.map((s) => `${s[0]}: ${s[1]} (${s[2]})`),
+        year: (L) => [`${L.pills[2][1]} (${L.pills[2][2]})`, `${L.yearTotal} ${L.yearNote}`],
+    }[variant];
+    const tags = ['Pricing', 'LaunchOffer', 'DiagnosticCenter', 'DTMedix', 'DatatechBD'];
+    const tagText = tags.map((x) => `#${x}`).join(' ');
+    out.push({
+        id: `post-${n}`, number: idx + 1, type: 'price', image: `images/post-${n}.jpg`, image_language: lang, icon: 'tag',
+        headline_en: en[key[0]], subline_en: en[key[1]], bullets_en: bullets(en),
+        headline_bn: bn[key[0]], subline_bn: bn[key[1]], bullets_bn: bullets(bn),
+        caption_en: `${en[key[0]]} ${en[key[1]]}\n\n${bullets(en).map((x) => `- ${x}`).join('\n')}\n\nTry the free demo: dt-medix.datatechbd.com or call ${PHONE}. ${SITE}\n\n${tagText}`,
+        caption_bn: `${bn[key[0]]} ${bn[key[1]]}\n\n${bullets(bn).map((x) => `- ${x}`).join('\n')}\n\nফ্রি ডেমো: dt-medix.datatechbd.com অথবা কল করুন ${PHONE}। ${SITE}\n\n${tagText}`,
+        hashtags: tags,
+        call_to_action: { label_en: 'Try the free demo', label_bn: 'ফ্রি ডেমো চালিয়ে দেখুন', phone: PHONE, website: SITE },
+        alt_text: `${en[key[0]]} - DT Medix pricing, a product of Datatech BD Ltd.`,
+        suggested_schedule_day: (idx % 7) + 1,
+    });
+});
+
 writeFileSync('../posts.json', JSON.stringify({ brand: 'DT Medix', publisher: 'Datatech BD Ltd.', version: 'v1', image_size: '1080x1080', count: out.length, posts: out }, null, 2));
 console.log('built', out.length);
