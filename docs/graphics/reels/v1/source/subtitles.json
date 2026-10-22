@@ -1,0 +1,317 @@
+[
+  {
+    "id": "seg-0-1792659160293",
+    "start": 0,
+    "end": 2,
+    "startLabel": "00:00",
+    "endLabel": "00:02",
+    "timeLabel": "00:00 - 00:02",
+    "text": "“ভাই, আপনার diagnostic"
+  },
+  {
+    "id": "seg-1-1792659160293",
+    "start": 2,
+    "end": 4,
+    "startLabel": "00:02",
+    "endLabel": "00:04",
+    "timeLabel": "00:02 - 00:04",
+    "text": "center-এর পুরো operation কি এখনো"
+  },
+  {
+    "id": "seg-2-1792659160293",
+    "start": 4,
+    "end": 6,
+    "startLabel": "00:04",
+    "endLabel": "00:06",
+    "timeLabel": "00:04 - 00:06",
+    "text": "আলাদা আলাদা system-এ চলছে?"
+  },
+  {
+    "id": "seg-3-1792659160293",
+    "start": 6,
+    "end": 8,
+    "startLabel": "00:06",
+    "endLabel": "00:08",
+    "timeLabel": "00:06 - 00:08",
+    "text": "Patient, appointment,"
+  },
+  {
+    "id": "seg-4-1792659160293",
+    "start": 8,
+    "end": 10,
+    "startLabel": "00:08",
+    "endLabel": "00:10",
+    "timeLabel": "00:08 - 00:10",
+    "text": "billing, sample,"
+  },
+  {
+    "id": "seg-5-1792659160293",
+    "start": 10,
+    "end": 12,
+    "startLabel": "00:10",
+    "endLabel": "00:12",
+    "timeLabel": "00:10 - 00:12",
+    "text": "lab report,"
+  },
+  {
+    "id": "seg-6-1792659160293",
+    "start": 12,
+    "end": 14,
+    "startLabel": "00:12",
+    "endLabel": "00:14",
+    "timeLabel": "00:12 - 00:14",
+    "text": "staff—সবকিছু একসাথে manage করুন"
+  },
+  {
+    "id": "seg-7-1792659160293",
+    "start": 14,
+    "end": 16,
+    "startLabel": "00:14",
+    "endLabel": "00:16",
+    "timeLabel": "00:14 - 00:16",
+    "text": "DT Medix-এ! Patient"
+  },
+  {
+    "id": "seg-8-1792659160293",
+    "start": 16,
+    "end": 18,
+    "startLabel": "00:16",
+    "endLabel": "00:18",
+    "timeLabel": "00:16 - 00:18",
+    "text": "Registration থেকে Barcode Sample"
+  },
+  {
+    "id": "seg-9-1792659160293",
+    "start": 18,
+    "end": 20,
+    "startLabel": "00:18",
+    "endLabel": "00:20",
+    "timeLabel": "00:18 - 00:20",
+    "text": "Tracking, Lab Result,"
+  },
+  {
+    "id": "seg-10-1792659160293",
+    "start": 20,
+    "end": 22,
+    "startLabel": "00:20",
+    "endLabel": "00:22",
+    "timeLabel": "00:20 - 00:22",
+    "text": "Billing, Report,"
+  },
+  {
+    "id": "seg-11-1792659160293",
+    "start": 22,
+    "end": 24,
+    "startLabel": "00:22",
+    "endLabel": "00:24",
+    "timeLabel": "00:22 - 00:24",
+    "text": "Attendance, Payroll—সব"
+  },
+  {
+    "id": "seg-12-1792659160293",
+    "start": 24,
+    "end": 26,
+    "startLabel": "00:24",
+    "endLabel": "00:26",
+    "timeLabel": "00:24 - 00:26",
+    "text": "এক platform-এ।"
+  },
+  {
+    "id": "seg-13-1792659160293",
+    "start": 26,
+    "end": 28,
+    "startLabel": "00:26",
+    "endLabel": "00:28",
+    "timeLabel": "00:26 - 00:28",
+    "text": "আর এখন চলছে Special Offer!"
+  },
+  {
+    "id": "seg-14-1792659160294",
+    "start": 28,
+    "end": 30,
+    "startLabel": "00:28",
+    "endLabel": "00:30",
+    "timeLabel": "00:28 - 00:30",
+    "text": "Regular Price ১২,০০০"
+  },
+  {
+    "id": "seg-15-1792659160294",
+    "start": 30,
+    "end": 32,
+    "startLabel": "00:30",
+    "endLabel": "00:32",
+    "timeLabel": "00:30 - 00:32",
+    "text": "টাকা, কিন্তু এখন মাত্র"
+  },
+  {
+    "id": "seg-16-1792659160294",
+    "start": 32,
+    "end": 34,
+    "startLabel": "00:32",
+    "endLabel": "00:34",
+    "timeLabel": "00:32 - 00:34",
+    "text": "৫,০০০ টাকা per month, per"
+  },
+  {
+    "id": "seg-17-1792659160294",
+    "start": 34,
+    "end": 36,
+    "startLabel": "00:34",
+    "endLabel": "00:36",
+    "timeLabel": "00:34 - 00:36",
+    "text": "branch! Installation"
+  },
+  {
+    "id": "seg-18-1792659160294",
+    "start": 36,
+    "end": 38,
+    "startLabel": "00:36",
+    "endLabel": "00:38",
+    "timeLabel": "00:36 - 00:38",
+    "text": "মাত্র ২৫,০০০ টাকা"
+  },
+  {
+    "id": "seg-19-1792659160294",
+    "start": 38,
+    "end": 40,
+    "startLabel": "00:38",
+    "endLabel": "00:40",
+    "timeLabel": "00:38 - 00:40",
+    "text": "one-time। আর installation-এর"
+  },
+  {
+    "id": "seg-20-1792659160294",
+    "start": 40,
+    "end": 42,
+    "startLabel": "00:40",
+    "endLabel": "00:42",
+    "timeLabel": "00:40 - 00:42",
+    "text": "পর প্রথম মাস সম্পূর্ণ"
+  },
+  {
+    "id": "seg-21-1792659160294",
+    "start": 42,
+    "end": 44,
+    "startLabel": "00:42",
+    "endLabel": "00:44",
+    "timeLabel": "00:42 - 00:44",
+    "text": "FREE! আর yearly payment করলে"
+  },
+  {
+    "id": "seg-22-1792659160294",
+    "start": 44,
+    "end": 46,
+    "startLabel": "00:44",
+    "endLabel": "00:46",
+    "timeLabel": "00:44 - 00:46",
+    "text": "পাবেন আরও ২ মাস FREE!"
+  },
+  {
+    "id": "seg-23-1792659160294",
+    "start": 46,
+    "end": 48,
+    "startLabel": "00:46",
+    "endLabel": "00:48",
+    "timeLabel": "00:46 - 00:48",
+    "text": "DT Medix — আপনার diagnostic"
+  },
+  {
+    "id": "seg-24-1792659160294",
+    "start": 48,
+    "end": 50,
+    "startLabel": "00:48",
+    "endLabel": "00:50",
+    "timeLabel": "00:48 - 00:50",
+    "text": "center, আরও smart,"
+  },
+  {
+    "id": "seg-25-1792659160294",
+    "start": 50,
+    "end": 52,
+    "startLabel": "00:50",
+    "endLabel": "00:52",
+    "timeLabel": "00:50 - 00:52",
+    "text": "fast and organized. আজই FREE"
+  },
+  {
+    "id": "seg-26-1792659160294",
+    "start": 52,
+    "end": 54,
+    "startLabel": "00:52",
+    "endLabel": "00:54",
+    "timeLabel": "00:52 - 00:54",
+    "text": "Demo নিন! DT Medix —"
+  },
+  {
+    "id": "seg-27-1792659160294",
+    "start": 54,
+    "end": 56,
+    "startLabel": "00:54",
+    "endLabel": "00:56",
+    "timeLabel": "00:54 - 00:56",
+    "text": "A Product of Datatech BD Ltd."
+  },
+  {
+    "id": "seg-28-1792659160294",
+    "start": 56,
+    "end": 58,
+    "startLabel": "00:56",
+    "endLabel": "00:58",
+    "timeLabel": "00:56 - 00:58",
+    "text": "📞 Call or WhatsApp: +880"
+  },
+  {
+    "id": "seg-29-1792659160294",
+    "start": 58,
+    "end": 60,
+    "startLabel": "00:58",
+    "endLabel": "01:00",
+    "timeLabel": "00:58 - 01:00",
+    "text": "1575-888775 📧 Email: sales@datatechbd.com"
+  },
+  {
+    "id": "seg-30-1792659160294",
+    "start": 60,
+    "end": 62,
+    "startLabel": "01:00",
+    "endLabel": "01:02",
+    "timeLabel": "01:00 - 01:02",
+    "text": "🌐 Live Demo:"
+  },
+  {
+    "id": "seg-31-1792659160294",
+    "start": 62,
+    "end": 64,
+    "startLabel": "01:02",
+    "endLabel": "01:04",
+    "timeLabel": "01:02 - 01:04",
+    "text": "dt-medix.datatechbd.com আজই যোগাযোগ"
+  },
+  {
+    "id": "seg-32-1792659160294",
+    "start": 64,
+    "end": 66,
+    "startLabel": "01:04",
+    "endLabel": "01:06",
+    "timeLabel": "01:04 - 01:06",
+    "text": "করুন এবং আপনার diagnostic"
+  },
+  {
+    "id": "seg-33-1792659160294",
+    "start": 66,
+    "end": 68,
+    "startLabel": "01:06",
+    "endLabel": "01:08",
+    "timeLabel": "01:06 - 01:08",
+    "text": "center-কে আরও smart way-তে manage"
+  },
+  {
+    "id": "seg-34-1792659160294",
+    "start": 68,
+    "end": 69.2,
+    "startLabel": "01:08",
+    "endLabel": "01:10",
+    "timeLabel": "01:08 - 01:10",
+    "text": "করুন।”"
+  }
+]
