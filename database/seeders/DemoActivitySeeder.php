@@ -381,7 +381,8 @@ class DemoActivitySeeder extends Seeder
         $roll = mt_rand(1, 100);
 
         $stage = match (true) {
-            $age >= 3 => $roll <= 93 ? 'done' : ($roll <= 97 ? 'rejected' : 'received'),
+            $age >= 5 => $roll <= 98 ? 'done' : 'rejected',
+            $age >= 3 => $roll <= 90 ? 'done' : ($roll <= 94 ? 'rejected' : 'received'),
             $age >= 1 => $roll <= 55 ? 'done' : ($roll <= 75 ? 'received' : ($roll <= 90 ? 'collected' : 'none')),
             default => $roll <= 30 ? 'done' : ($roll <= 55 ? 'received' : ($roll <= 80 ? 'collected' : 'none')),
         };

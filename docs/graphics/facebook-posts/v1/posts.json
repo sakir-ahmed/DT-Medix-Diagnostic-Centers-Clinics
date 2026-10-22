@@ -1,0 +1,1909 @@
+{
+  "brand": "DT Medix",
+  "publisher": "Datatech BD Ltd.",
+  "version": "v1",
+  "image_size": "1080x1080",
+  "count": 50,
+  "posts": [
+    {
+      "id": "post-01",
+      "number": 1,
+      "type": "feature",
+      "image": "images/post-01.jpg",
+      "image_language": "en",
+      "icon": "users",
+      "headline_en": "One patient. One record.",
+      "subline_en": "Register in seconds and never create a duplicate again.",
+      "bullets_en": [
+        "Duplicate warning on mobile and name",
+        "Family members linked on one mobile",
+        "Allergy alerts on every screen"
+      ],
+      "headline_bn": "একজন রোগী, একটিই রেকর্ড",
+      "subline_bn": "কয়েক সেকেন্ডে নিবন্ধন, কখনও ডুপ্লিকেট নয়।",
+      "bullets_bn": [
+        "মোবাইল ও নামে ডুপ্লিকেট সতর্কতা",
+        "এক মোবাইলে পরিবারের সদস্য যুক্ত",
+        "প্রতিটি স্ক্রিনে অ্যালার্জি সতর্কতা"
+      ],
+      "caption_en": "One patient. One record. Register in seconds and never create a duplicate again.\n\n- Duplicate warning on mobile and name\n- Family members linked on one mobile\n- Allergy alerts on every screen\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#PatientRegistration #DiagnosticCenter #DTMedix #DatatechBD",
+      "caption_bn": "একজন রোগী, একটিই রেকর্ড কয়েক সেকেন্ডে নিবন্ধন, কখনও ডুপ্লিকেট নয়।\n\n- মোবাইল ও নামে ডুপ্লিকেট সতর্কতা\n- এক মোবাইলে পরিবারের সদস্য যুক্ত\n- প্রতিটি স্ক্রিনে অ্যালার্জি সতর্কতা\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#PatientRegistration #DiagnosticCenter #DTMedix #DatatechBD",
+      "hashtags": [
+        "PatientRegistration",
+        "DiagnosticCenter",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "One patient. One record. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 1
+    },
+    {
+      "id": "post-02",
+      "number": 2,
+      "type": "feature",
+      "image": "images/post-02.jpg",
+      "image_language": "en",
+      "icon": "file",
+      "headline_en": "Built for the busy counter.",
+      "subline_en": "Search, order, take cash and print without leaving the screen.",
+      "bullets_en": [
+        "Type-ahead patient and test search",
+        "Invoice, receipt and labels in one action",
+        "Keyboard shortcuts for speed"
+      ],
+      "headline_bn": "ব্যস্ত কাউন্টারের জন্য তৈরি",
+      "subline_bn": "সার্চ, অর্ডার, ক্যাশ ও প্রিন্ট, এক স্ক্রিনেই।",
+      "bullets_bn": [
+        "রোগী ও টেস্টের দ্রুত সার্চ",
+        "এক ক্লিকে ইনভয়েস, রসিদ ও লেবেল",
+        "কিবোর্ড শর্টকাটে গতি"
+      ],
+      "caption_en": "Built for the busy counter. Search, order, take cash and print without leaving the screen.\n\n- Type-ahead patient and test search\n- Invoice, receipt and labels in one action\n- Keyboard shortcuts for speed\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Billing #ReceptionDesk #DTMedix #DatatechBD",
+      "caption_bn": "ব্যস্ত কাউন্টারের জন্য তৈরি সার্চ, অর্ডার, ক্যাশ ও প্রিন্ট, এক স্ক্রিনেই।\n\n- রোগী ও টেস্টের দ্রুত সার্চ\n- এক ক্লিকে ইনভয়েস, রসিদ ও লেবেল\n- কিবোর্ড শর্টকাটে গতি\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Billing #ReceptionDesk #DTMedix #DatatechBD",
+      "hashtags": [
+        "Billing",
+        "ReceptionDesk",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Built for the busy counter. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 2
+    },
+    {
+      "id": "post-03",
+      "number": 3,
+      "type": "feature",
+      "image": "images/post-03.jpg",
+      "image_language": "en",
+      "icon": "calendar",
+      "headline_en": "Serials without the shouting.",
+      "subline_en": "Slots, tokens and a live doctor queue.",
+      "bullets_en": [
+        "Only free slots are offered",
+        "Token number issued automatically",
+        "Doctor sees the next patient"
+      ],
+      "headline_bn": "চিৎকার ছাড়াই সিরিয়াল",
+      "subline_bn": "স্লট, টোকেন ও ডাক্তারের লাইভ কিউ।",
+      "bullets_bn": [
+        "শুধু ফাঁকা স্লট দেখায়",
+        "টোকেন নম্বর স্বয়ংক্রিয়",
+        "ডাক্তার পরবর্তী রোগী দেখেন"
+      ],
+      "caption_en": "Serials without the shouting. Slots, tokens and a live doctor queue.\n\n- Only free slots are offered\n- Token number issued automatically\n- Doctor sees the next patient\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Appointments #ClinicManagement #DTMedix #DatatechBD",
+      "caption_bn": "চিৎকার ছাড়াই সিরিয়াল স্লট, টোকেন ও ডাক্তারের লাইভ কিউ।\n\n- শুধু ফাঁকা স্লট দেখায়\n- টোকেন নম্বর স্বয়ংক্রিয়\n- ডাক্তার পরবর্তী রোগী দেখেন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Appointments #ClinicManagement #DTMedix #DatatechBD",
+      "hashtags": [
+        "Appointments",
+        "ClinicManagement",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Serials without the shouting. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 3
+    },
+    {
+      "id": "post-04",
+      "number": 4,
+      "type": "feature",
+      "image": "images/post-04.jpg",
+      "image_language": "en",
+      "icon": "phone",
+      "headline_en": "Let patients book from their phone.",
+      "subline_en": "Pick a doctor, a day and a time. Done.",
+      "bullets_en": [
+        "No phone call, no waiting in line",
+        "Free slots only, token on screen",
+        "English and Bangla"
+      ],
+      "headline_bn": "ফোন থেকেই বুকিং",
+      "subline_bn": "ডাক্তার, দিন ও সময় বেছে নিন। ব্যস, শেষ।",
+      "bullets_bn": [
+        "ফোন বা লাইনে দাঁড়ানো ছাড়াই",
+        "ফাঁকা স্লট, স্ক্রিনেই টোকেন",
+        "ইংরেজি ও বাংলা"
+      ],
+      "caption_en": "Let patients book from their phone. Pick a doctor, a day and a time. Done.\n\n- No phone call, no waiting in line\n- Free slots only, token on screen\n- English and Bangla\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#OnlineBooking #Bangladesh #DTMedix #DatatechBD",
+      "caption_bn": "ফোন থেকেই বুকিং ডাক্তার, দিন ও সময় বেছে নিন। ব্যস, শেষ।\n\n- ফোন বা লাইনে দাঁড়ানো ছাড়াই\n- ফাঁকা স্লট, স্ক্রিনেই টোকেন\n- ইংরেজি ও বাংলা\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#OnlineBooking #Bangladesh #DTMedix #DatatechBD",
+      "hashtags": [
+        "OnlineBooking",
+        "Bangladesh",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Let patients book from their phone. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 4
+    },
+    {
+      "id": "post-05",
+      "number": 5,
+      "type": "feature",
+      "image": "images/post-05.jpg",
+      "image_language": "en",
+      "icon": "flask",
+      "headline_en": "Your price list, always in order.",
+      "subline_en": "Departments, tests, parameters and packages in one catalog.",
+      "bullets_en": [
+        "Preparation notes shown at the counter",
+        "Turnaround time per test",
+        "Optional branch price lists"
+      ],
+      "headline_bn": "আপনার মূল্য তালিকা সবসময় গোছানো",
+      "subline_bn": "বিভাগ, টেস্ট, প্যারামিটার ও প্যাকেজ এক ক্যাটালগে।",
+      "bullets_bn": [
+        "কাউন্টারে প্রস্তুতির নোট",
+        "প্রতিটি টেস্টের রিপোর্ট সময়",
+        "শাখাভেদে মূল্য তালিকা"
+      ],
+      "caption_en": "Your price list, always in order. Departments, tests, parameters and packages in one catalog.\n\n- Preparation notes shown at the counter\n- Turnaround time per test\n- Optional branch price lists\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#TestCatalog #LabSoftware #DTMedix #DatatechBD",
+      "caption_bn": "আপনার মূল্য তালিকা সবসময় গোছানো বিভাগ, টেস্ট, প্যারামিটার ও প্যাকেজ এক ক্যাটালগে।\n\n- কাউন্টারে প্রস্তুতির নোট\n- প্রতিটি টেস্টের রিপোর্ট সময়\n- শাখাভেদে মূল্য তালিকা\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#TestCatalog #LabSoftware #DTMedix #DatatechBD",
+      "hashtags": [
+        "TestCatalog",
+        "LabSoftware",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Your price list, always in order. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 5
+    },
+    {
+      "id": "post-06",
+      "number": 6,
+      "type": "feature",
+      "image": "images/post-06.jpg",
+      "image_language": "en",
+      "icon": "activity",
+      "headline_en": "The right range for every patient.",
+      "subline_en": "Reference ranges by age and sex, flagged automatically.",
+      "bullets_en": [
+        "Normal, high, low and critical flags",
+        "Critical limits per parameter",
+        "Range saved with the result"
+      ],
+      "headline_bn": "প্রতিটি রোগীর জন্য সঠিক রেঞ্জ",
+      "subline_bn": "বয়স ও লিঙ্গভেদে রেফারেন্স রেঞ্জ, স্বয়ংক্রিয় ফ্ল্যাগ।",
+      "bullets_bn": [
+        "স্বাভাবিক, বেশি, কম ও ক্রিটিক্যাল চিহ্ন",
+        "প্রতি প্যারামিটারে ক্রিটিক্যাল সীমা",
+        "ফলাফলের সাথে রেঞ্জ সংরক্ষিত"
+      ],
+      "caption_en": "The right range for every patient. Reference ranges by age and sex, flagged automatically.\n\n- Normal, high, low and critical flags\n- Critical limits per parameter\n- Range saved with the result\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Pathology #LabAutomation #DTMedix #DatatechBD",
+      "caption_bn": "প্রতিটি রোগীর জন্য সঠিক রেঞ্জ বয়স ও লিঙ্গভেদে রেফারেন্স রেঞ্জ, স্বয়ংক্রিয় ফ্ল্যাগ।\n\n- স্বাভাবিক, বেশি, কম ও ক্রিটিক্যাল চিহ্ন\n- প্রতি প্যারামিটারে ক্রিটিক্যাল সীমা\n- ফলাফলের সাথে রেঞ্জ সংরক্ষিত\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Pathology #LabAutomation #DTMedix #DatatechBD",
+      "hashtags": [
+        "Pathology",
+        "LabAutomation",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "The right range for every patient. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 6
+    },
+    {
+      "id": "post-07",
+      "number": 7,
+      "type": "feature",
+      "image": "images/post-07.jpg",
+      "image_language": "en",
+      "icon": "barcode",
+      "headline_en": "Every sample labeled. No mix-ups.",
+      "subline_en": "Barcode labels from collection to the lab bench.",
+      "bullets_en": [
+        "Code 128 labels, printed in one click",
+        "Receive, reject and recollect with a reason",
+        "Scan a label to open the sample"
+      ],
+      "headline_bn": "প্রতিটি নমুনায় লেবেল, গুলিয়ে যাওয়ার সুযোগ নেই",
+      "subline_bn": "সংগ্রহ থেকে ল্যাব পর্যন্ত বারকোড লেবেল।",
+      "bullets_bn": [
+        "এক ক্লিকে কোড ১২৮ লেবেল প্রিন্ট",
+        "কারণসহ গ্রহণ, বাতিল ও পুনঃসংগ্রহ",
+        "লেবেল স্ক্যান করলেই নমুনা খোলে"
+      ],
+      "caption_en": "Every sample labeled. No mix-ups. Barcode labels from collection to the lab bench.\n\n- Code 128 labels, printed in one click\n- Receive, reject and recollect with a reason\n- Scan a label to open the sample\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#SampleTracking #LabSafety #DTMedix #DatatechBD",
+      "caption_bn": "প্রতিটি নমুনায় লেবেল, গুলিয়ে যাওয়ার সুযোগ নেই সংগ্রহ থেকে ল্যাব পর্যন্ত বারকোড লেবেল।\n\n- এক ক্লিকে কোড ১২৮ লেবেল প্রিন্ট\n- কারণসহ গ্রহণ, বাতিল ও পুনঃসংগ্রহ\n- লেবেল স্ক্যান করলেই নমুনা খোলে\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#SampleTracking #LabSafety #DTMedix #DatatechBD",
+      "hashtags": [
+        "SampleTracking",
+        "LabSafety",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Every sample labeled. No mix-ups. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 7
+    },
+    {
+      "id": "post-08",
+      "number": 8,
+      "type": "feature",
+      "image": "images/post-08.jpg",
+      "image_language": "en",
+      "icon": "clock",
+      "headline_en": "See what is waiting. See what is late.",
+      "subline_en": "A lab worklist with turnaround countdown.",
+      "bullets_en": [
+        "Time left on every sample",
+        "Urgent samples pinned to the top",
+        "Filter by department and status"
+      ],
+      "headline_bn": "কী অপেক্ষায়, কী দেরিতে, সব দেখুন",
+      "subline_bn": "টিএটি কাউন্টডাউনসহ ল্যাব ওয়ার্কলিস্ট।",
+      "bullets_bn": [
+        "প্রতিটি নমুনায় বাকি সময়",
+        "জরুরি নমুনা সবার উপরে",
+        "বিভাগ ও অবস্থা অনুযায়ী ফিল্টার"
+      ],
+      "caption_en": "See what is waiting. See what is late. A lab worklist with turnaround countdown.\n\n- Time left on every sample\n- Urgent samples pinned to the top\n- Filter by department and status\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#LabWorkflow #TurnaroundTime #DTMedix #DatatechBD",
+      "caption_bn": "কী অপেক্ষায়, কী দেরিতে, সব দেখুন টিএটি কাউন্টডাউনসহ ল্যাব ওয়ার্কলিস্ট।\n\n- প্রতিটি নমুনায় বাকি সময়\n- জরুরি নমুনা সবার উপরে\n- বিভাগ ও অবস্থা অনুযায়ী ফিল্টার\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#LabWorkflow #TurnaroundTime #DTMedix #DatatechBD",
+      "hashtags": [
+        "LabWorkflow",
+        "TurnaroundTime",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "See what is waiting. See what is late. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 1
+    },
+    {
+      "id": "post-09",
+      "number": 9,
+      "type": "feature",
+      "image": "images/post-09.jpg",
+      "image_language": "en",
+      "icon": "file",
+      "headline_en": "Enter results at typing speed.",
+      "subline_en": "A result grid made for keyboards.",
+      "bullets_en": [
+        "Tab and Enter move through fields",
+        "Previous result shown beside the new one",
+        "Calculated parameters filled for you"
+      ],
+      "headline_bn": "টাইপিংয়ের গতিতে ফলাফল এন্ট্রি",
+      "subline_bn": "কিবোর্ডের জন্য তৈরি রেজাল্ট গ্রিড।",
+      "bullets_bn": [
+        "ট্যাব ও এন্টারে ঘর বদল",
+        "আগের ফলাফল পাশেই দেখা যায়",
+        "হিসাবকৃত প্যারামিটার নিজে থেকে পূরণ"
+      ],
+      "caption_en": "Enter results at typing speed. A result grid made for keyboards.\n\n- Tab and Enter move through fields\n- Previous result shown beside the new one\n- Calculated parameters filled for you\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#ResultEntry #MedicalLab #DTMedix #DatatechBD",
+      "caption_bn": "টাইপিংয়ের গতিতে ফলাফল এন্ট্রি কিবোর্ডের জন্য তৈরি রেজাল্ট গ্রিড।\n\n- ট্যাব ও এন্টারে ঘর বদল\n- আগের ফলাফল পাশেই দেখা যায়\n- হিসাবকৃত প্যারামিটার নিজে থেকে পূরণ\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#ResultEntry #MedicalLab #DTMedix #DatatechBD",
+      "hashtags": [
+        "ResultEntry",
+        "MedicalLab",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Enter results at typing speed. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 2
+    },
+    {
+      "id": "post-10",
+      "number": 10,
+      "type": "feature",
+      "image": "images/post-10.jpg",
+      "image_language": "en",
+      "icon": "shield",
+      "headline_en": "Critical results never slip through.",
+      "subline_en": "A critical value must be acknowledged before it moves on.",
+      "bullets_en": [
+        "Who was informed and when",
+        "Logged for every critical value",
+        "A dedicated critical results log"
+      ],
+      "headline_bn": "ক্রিটিক্যাল ফলাফল কখনও বাদ পড়ে না",
+      "subline_bn": "স্বীকৃতি ছাড়া ক্রিটিক্যাল মান এগোয় না।",
+      "bullets_bn": [
+        "কাকে কখন জানানো হয়েছে",
+        "প্রতিটি ক্রিটিক্যাল মানের লগ",
+        "আলাদা ক্রিটিক্যাল ফলাফল তালিকা"
+      ],
+      "caption_en": "Critical results never slip through. A critical value must be acknowledged before it moves on.\n\n- Who was informed and when\n- Logged for every critical value\n- A dedicated critical results log\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#PatientSafety #CriticalValues #DTMedix #DatatechBD",
+      "caption_bn": "ক্রিটিক্যাল ফলাফল কখনও বাদ পড়ে না স্বীকৃতি ছাড়া ক্রিটিক্যাল মান এগোয় না।\n\n- কাকে কখন জানানো হয়েছে\n- প্রতিটি ক্রিটিক্যাল মানের লগ\n- আলাদা ক্রিটিক্যাল ফলাফল তালিকা\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#PatientSafety #CriticalValues #DTMedix #DatatechBD",
+      "hashtags": [
+        "PatientSafety",
+        "CriticalValues",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Critical results never slip through. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 3
+    },
+    {
+      "id": "post-11",
+      "number": 11,
+      "type": "feature",
+      "image": "images/post-11.jpg",
+      "image_language": "en",
+      "icon": "file",
+      "headline_en": "Findings and impression, done right.",
+      "subline_en": "A narrative editor for ultrasound, X-ray and ECG.",
+      "bullets_en": [
+        "Quick phrases with a slash shortcut",
+        "Report templates per department",
+        "Attach images to the result"
+      ],
+      "headline_bn": "ফাইন্ডিংস ও ইমপ্রেশন, সঠিকভাবে",
+      "subline_bn": "আল্ট্রাসাউন্ড, এক্স-রে ও ইসিজির জন্য নারেটিভ এডিটর।",
+      "bullets_bn": [
+        "স্ল্যাশ শর্টকাটে কুইক ফ্রেজ",
+        "বিভাগভিত্তিক রিপোর্ট টেমপ্লেট",
+        "ফলাফলে ছবি সংযুক্ত করুন"
+      ],
+      "caption_en": "Findings and impression, done right. A narrative editor for ultrasound, X-ray and ECG.\n\n- Quick phrases with a slash shortcut\n- Report templates per department\n- Attach images to the result\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Radiology #Imaging #DTMedix #DatatechBD",
+      "caption_bn": "ফাইন্ডিংস ও ইমপ্রেশন, সঠিকভাবে আল্ট্রাসাউন্ড, এক্স-রে ও ইসিজির জন্য নারেটিভ এডিটর।\n\n- স্ল্যাশ শর্টকাটে কুইক ফ্রেজ\n- বিভাগভিত্তিক রিপোর্ট টেমপ্লেট\n- ফলাফলে ছবি সংযুক্ত করুন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Radiology #Imaging #DTMedix #DatatechBD",
+      "hashtags": [
+        "Radiology",
+        "Imaging",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Findings and impression, done right. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 4
+    },
+    {
+      "id": "post-12",
+      "number": 12,
+      "type": "feature",
+      "image": "images/post-12.jpg",
+      "image_language": "en",
+      "icon": "box",
+      "headline_en": "Health packages in two clicks.",
+      "subline_en": "Bundle popular tests into one price.",
+      "bullets_en": [
+        "A package expands into its tests",
+        "Package price kept on the invoice",
+        "Shown on your public website"
+      ],
+      "headline_bn": "দুই ক্লিকে হেলথ প্যাকেজ",
+      "subline_bn": "জনপ্রিয় টেস্ট এক দামে একসাথে।",
+      "bullets_bn": [
+        "প্যাকেজ খুললে টেস্টের তালিকা",
+        "ইনভয়েসে প্যাকেজ মূল্য",
+        "পাবলিক ওয়েবসাইটেও দেখা যায়"
+      ],
+      "caption_en": "Health packages in two clicks. Bundle popular tests into one price.\n\n- A package expands into its tests\n- Package price kept on the invoice\n- Shown on your public website\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#HealthCheckup #DiagnosticPackages #DTMedix #DatatechBD",
+      "caption_bn": "দুই ক্লিকে হেলথ প্যাকেজ জনপ্রিয় টেস্ট এক দামে একসাথে।\n\n- প্যাকেজ খুললে টেস্টের তালিকা\n- ইনভয়েসে প্যাকেজ মূল্য\n- পাবলিক ওয়েবসাইটেও দেখা যায়\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#HealthCheckup #DiagnosticPackages #DTMedix #DatatechBD",
+      "hashtags": [
+        "HealthCheckup",
+        "DiagnosticPackages",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Health packages in two clicks. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 5
+    },
+    {
+      "id": "post-13",
+      "number": 13,
+      "type": "feature",
+      "image": "images/post-13.jpg",
+      "image_language": "en",
+      "icon": "shield",
+      "headline_en": "Discounts with a paper trail.",
+      "subline_en": "Limits, reasons and manager approval built in.",
+      "bullets_en": [
+        "Over-limit discounts wait for approval",
+        "Manager PIN at the counter",
+        "Every override is logged"
+      ],
+      "headline_bn": "প্রতিটি ছাড়ের হিসাব থাকে",
+      "subline_bn": "সীমা, কারণ ও ম্যানেজারের অনুমোদন যুক্ত।",
+      "bullets_bn": [
+        "সীমার বেশি ছাড় অনুমোদনের অপেক্ষায়",
+        "কাউন্টারে ম্যানেজার পিন",
+        "প্রতিটি ওভাররাইড লগ হয়"
+      ],
+      "caption_en": "Discounts with a paper trail. Limits, reasons and manager approval built in.\n\n- Over-limit discounts wait for approval\n- Manager PIN at the counter\n- Every override is logged\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Accountability #Billing #DTMedix #DatatechBD",
+      "caption_bn": "প্রতিটি ছাড়ের হিসাব থাকে সীমা, কারণ ও ম্যানেজারের অনুমোদন যুক্ত।\n\n- সীমার বেশি ছাড় অনুমোদনের অপেক্ষায়\n- কাউন্টারে ম্যানেজার পিন\n- প্রতিটি ওভাররাইড লগ হয়\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Accountability #Billing #DTMedix #DatatechBD",
+      "hashtags": [
+        "Accountability",
+        "Billing",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Discounts with a paper trail. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 6
+    },
+    {
+      "id": "post-14",
+      "number": 14,
+      "type": "feature",
+      "image": "images/post-14.jpg",
+      "image_language": "en",
+      "icon": "rotate",
+      "headline_en": "Refunds that need a reason and a yes.",
+      "subline_en": "No silent refunds. Ever.",
+      "bullets_en": [
+        "Reason is required",
+        "Manager approval is required",
+        "Full history on the invoice"
+      ],
+      "headline_bn": "কারণ ও অনুমোদন ছাড়া রিফান্ড নয়",
+      "subline_bn": "নীরবে কোনো রিফান্ড হয় না।",
+      "bullets_bn": [
+        "কারণ লিখতে হয়",
+        "ম্যানেজারের অনুমোদন লাগে",
+        "ইনভয়েসে পূর্ণ ইতিহাস"
+      ],
+      "caption_en": "Refunds that need a reason and a yes. No silent refunds. Ever.\n\n- Reason is required\n- Manager approval is required\n- Full history on the invoice\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Refunds #InternalControl #DTMedix #DatatechBD",
+      "caption_bn": "কারণ ও অনুমোদন ছাড়া রিফান্ড নয় নীরবে কোনো রিফান্ড হয় না।\n\n- কারণ লিখতে হয়\n- ম্যানেজারের অনুমোদন লাগে\n- ইনভয়েসে পূর্ণ ইতিহাস\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Refunds #InternalControl #DTMedix #DatatechBD",
+      "hashtags": [
+        "Refunds",
+        "InternalControl",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Refunds that need a reason and a yes. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 7
+    },
+    {
+      "id": "post-15",
+      "number": 15,
+      "type": "feature",
+      "image": "images/post-15.jpg",
+      "image_language": "en",
+      "icon": "wallet",
+      "headline_en": "Part payment today, balance later.",
+      "subline_en": "The due is calculated, never typed.",
+      "bullets_en": [
+        "Partial payments with money receipts",
+        "Due shown on the next visit",
+        "Overdue list with aging"
+      ],
+      "headline_bn": "আজ আংশিক, বাকিটা পরে",
+      "subline_bn": "বকেয়া হিসাব হয় নিজে, হাতে লিখতে হয় না।",
+      "bullets_bn": [
+        "আংশিক পেমেন্ট ও মানি রিসিট",
+        "পরবর্তী ভিজিটে বকেয়া দেখা যায়",
+        "এজিংসহ বকেয়া তালিকা"
+      ],
+      "caption_en": "Part payment today, balance later. The due is calculated, never typed.\n\n- Partial payments with money receipts\n- Due shown on the next visit\n- Overdue list with aging\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Dues #CashManagement #DTMedix #DatatechBD",
+      "caption_bn": "আজ আংশিক, বাকিটা পরে বকেয়া হিসাব হয় নিজে, হাতে লিখতে হয় না।\n\n- আংশিক পেমেন্ট ও মানি রিসিট\n- পরবর্তী ভিজিটে বকেয়া দেখা যায়\n- এজিংসহ বকেয়া তালিকা\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Dues #CashManagement #DTMedix #DatatechBD",
+      "hashtags": [
+        "Dues",
+        "CashManagement",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Part payment today, balance later. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 1
+    },
+    {
+      "id": "post-16",
+      "number": 16,
+      "type": "feature",
+      "image": "images/post-16.jpg",
+      "image_language": "en",
+      "icon": "building",
+      "headline_en": "Many branches. One owner view.",
+      "subline_en": "Switch branches in one click.",
+      "bullets_en": [
+        "A branch switcher on every screen",
+        "Staff assigned to branches",
+        "Shared catalog, separate data"
+      ],
+      "headline_bn": "অনেক শাখা, মালিকের এক দৃষ্টি",
+      "subline_bn": "এক ক্লিকে শাখা বদল।",
+      "bullets_bn": [
+        "প্রতিটি স্ক্রিনে শাখা সুইচার",
+        "কর্মী শাখাভিত্তিক নিযুক্ত",
+        "একই ক্যাটালগ, আলাদা ডেটা"
+      ],
+      "caption_en": "Many branches. One owner view. Switch branches in one click.\n\n- A branch switcher on every screen\n- Staff assigned to branches\n- Shared catalog, separate data\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#MultiBranch #BusinessSoftware #DTMedix #DatatechBD",
+      "caption_bn": "অনেক শাখা, মালিকের এক দৃষ্টি এক ক্লিকে শাখা বদল।\n\n- প্রতিটি স্ক্রিনে শাখা সুইচার\n- কর্মী শাখাভিত্তিক নিযুক্ত\n- একই ক্যাটালগ, আলাদা ডেটা\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#MultiBranch #BusinessSoftware #DTMedix #DatatechBD",
+      "hashtags": [
+        "MultiBranch",
+        "BusinessSoftware",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Many branches. One owner view. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 2
+    },
+    {
+      "id": "post-17",
+      "number": 17,
+      "type": "feature",
+      "image": "images/post-17.jpg",
+      "image_language": "en",
+      "icon": "lock",
+      "headline_en": "Branch staff see only their branch.",
+      "subline_en": "Isolation that is tested, not just promised.",
+      "bullets_en": [
+        "Cross-branch access returns not found",
+        "Checked by automated tests",
+        "Owners see everything"
+      ],
+      "headline_bn": "শাখার কর্মী শুধু নিজ শাখা দেখেন",
+      "subline_bn": "দাবি নয়, পরীক্ষিত পৃথকীকরণ।",
+      "bullets_bn": [
+        "অন্য শাখার তথ্য খুললে পাওয়া যায় না",
+        "স্বয়ংক্রিয় টেস্টে যাচাই করা",
+        "মালিক সবকিছু দেখেন"
+      ],
+      "caption_en": "Branch staff see only their branch. Isolation that is tested, not just promised.\n\n- Cross-branch access returns not found\n- Checked by automated tests\n- Owners see everything\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#DataSecurity #AccessControl #DTMedix #DatatechBD",
+      "caption_bn": "শাখার কর্মী শুধু নিজ শাখা দেখেন দাবি নয়, পরীক্ষিত পৃথকীকরণ।\n\n- অন্য শাখার তথ্য খুললে পাওয়া যায় না\n- স্বয়ংক্রিয় টেস্টে যাচাই করা\n- মালিক সবকিছু দেখেন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#DataSecurity #AccessControl #DTMedix #DatatechBD",
+      "hashtags": [
+        "DataSecurity",
+        "AccessControl",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Branch staff see only their branch. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 3
+    },
+    {
+      "id": "post-18",
+      "number": 18,
+      "type": "feature",
+      "image": "images/post-18.jpg",
+      "image_language": "en",
+      "icon": "users",
+      "headline_en": "Eight roles. The right screens for each.",
+      "subline_en": "Owner, manager, reception, collector, lab, pathologist, doctor, accountant.",
+      "bullets_en": [
+        "Menus match permissions",
+        "Least privilege by default",
+        "Easy to assign and change"
+      ],
+      "headline_bn": "আটটি ভূমিকা, প্রত্যেকের জন্য সঠিক স্ক্রিন",
+      "subline_bn": "মালিক, ম্যানেজার, রিসেপশন, কালেক্টর, ল্যাব, প্যাথলজিস্ট, ডাক্তার, হিসাবরক্ষক।",
+      "bullets_bn": [
+        "অনুমতি অনুযায়ী মেনু",
+        "ডিফল্টভাবে ন্যূনতম অ্যাক্সেস",
+        "ভূমিকা দেওয়া ও বদল সহজ"
+      ],
+      "caption_en": "Eight roles. The right screens for each. Owner, manager, reception, collector, lab, pathologist, doctor, accountant.\n\n- Menus match permissions\n- Least privilege by default\n- Easy to assign and change\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#UserRoles #Permissions #DTMedix #DatatechBD",
+      "caption_bn": "আটটি ভূমিকা, প্রত্যেকের জন্য সঠিক স্ক্রিন মালিক, ম্যানেজার, রিসেপশন, কালেক্টর, ল্যাব, প্যাথলজিস্ট, ডাক্তার, হিসাবরক্ষক।\n\n- অনুমতি অনুযায়ী মেনু\n- ডিফল্টভাবে ন্যূনতম অ্যাক্সেস\n- ভূমিকা দেওয়া ও বদল সহজ\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#UserRoles #Permissions #DTMedix #DatatechBD",
+      "hashtags": [
+        "UserRoles",
+        "Permissions",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Eight roles. The right screens for each. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 4
+    },
+    {
+      "id": "post-19",
+      "number": 19,
+      "type": "feature",
+      "image": "images/post-19.jpg",
+      "image_language": "en",
+      "icon": "eye",
+      "headline_en": "Know who opened which patient record.",
+      "subline_en": "An access log for every view.",
+      "bullets_en": [
+        "User, time and IP address",
+        "Patient record, report and history views",
+        "Searchable by patient ID"
+      ],
+      "headline_bn": "কে কোন রোগীর রেকর্ড খুলেছে, জানুন",
+      "subline_bn": "প্রতিটি দেখার অ্যাক্সেস লগ।",
+      "bullets_bn": [
+        "ব্যবহারকারী, সময় ও আইপি",
+        "রেকর্ড, রিপোর্ট ও হিস্ট্রি দেখার লগ",
+        "রোগী আইডি দিয়ে সার্চ"
+      ],
+      "caption_en": "Know who opened which patient record. An access log for every view.\n\n- User, time and IP address\n- Patient record, report and history views\n- Searchable by patient ID\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#PatientPrivacy #AuditTrail #DTMedix #DatatechBD",
+      "caption_bn": "কে কোন রোগীর রেকর্ড খুলেছে, জানুন প্রতিটি দেখার অ্যাক্সেস লগ।\n\n- ব্যবহারকারী, সময় ও আইপি\n- রেকর্ড, রিপোর্ট ও হিস্ট্রি দেখার লগ\n- রোগী আইডি দিয়ে সার্চ\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#PatientPrivacy #AuditTrail #DTMedix #DatatechBD",
+      "hashtags": [
+        "PatientPrivacy",
+        "AuditTrail",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Know who opened which patient record. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 5
+    },
+    {
+      "id": "post-20",
+      "number": 20,
+      "type": "feature",
+      "image": "images/post-20.jpg",
+      "image_language": "en",
+      "icon": "globe",
+      "headline_en": "English and Bangla, one click.",
+      "subline_en": "The whole interface speaks your language.",
+      "bullets_en": [
+        "Screens, receipts and messages",
+        "Bangla names supported",
+        "Bangla digits when you want them"
+      ],
+      "headline_bn": "ইংরেজি ও বাংলা, এক ক্লিকে",
+      "subline_bn": "পুরো সফটওয়্যার আপনার ভাষায়।",
+      "bullets_bn": [
+        "স্ক্রিন, রসিদ ও বার্তা",
+        "বাংলা নাম সমর্থিত",
+        "চাইলে বাংলা সংখ্যা"
+      ],
+      "caption_en": "English and Bangla, one click. The whole interface speaks your language.\n\n- Screens, receipts and messages\n- Bangla names supported\n- Bangla digits when you want them\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Bangla #BanglaSoftware #DTMedix #DatatechBD",
+      "caption_bn": "ইংরেজি ও বাংলা, এক ক্লিকে পুরো সফটওয়্যার আপনার ভাষায়।\n\n- স্ক্রিন, রসিদ ও বার্তা\n- বাংলা নাম সমর্থিত\n- চাইলে বাংলা সংখ্যা\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Bangla #BanglaSoftware #DTMedix #DatatechBD",
+      "hashtags": [
+        "Bangla",
+        "BanglaSoftware",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "English and Bangla, one click. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 6
+    },
+    {
+      "id": "post-21",
+      "number": 21,
+      "type": "hr",
+      "image": "images/post-21.jpg",
+      "image_language": "en",
+      "icon": "fingerprint",
+      "headline_en": "Fingerprint punches flow in by themselves.",
+      "subline_en": "ZKTeco devices push attendance straight to DT Medix.",
+      "bullets_en": [
+        "Works with ZKTeco push (ADMS)",
+        "Or import the device file",
+        "No retyping, no lost punches"
+      ],
+      "headline_bn": "আঙুলের ছাপের উপস্থিতি নিজে থেকেই আসে",
+      "subline_bn": "জেডকেটেকো ডিভাইস সরাসরি ডিটি মেডিক্সে উপস্থিতি পাঠায়।",
+      "bullets_bn": [
+        "জেডকেটেকো পুশ (ADMS) সমর্থিত",
+        "অথবা ডিভাইস ফাইল ইমপোর্ট",
+        "আবার টাইপ নয়, হারানো পাঞ্চ নয়"
+      ],
+      "caption_en": "Fingerprint punches flow in by themselves. ZKTeco devices push attendance straight to DT Medix.\n\n- Works with ZKTeco push (ADMS)\n- Or import the device file\n- No retyping, no lost punches\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#ZKTeco #EmployeeAttendance #DTMedix #DatatechBD",
+      "caption_bn": "আঙুলের ছাপের উপস্থিতি নিজে থেকেই আসে জেডকেটেকো ডিভাইস সরাসরি ডিটি মেডিক্সে উপস্থিতি পাঠায়।\n\n- জেডকেটেকো পুশ (ADMS) সমর্থিত\n- অথবা ডিভাইস ফাইল ইমপোর্ট\n- আবার টাইপ নয়, হারানো পাঞ্চ নয়\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#ZKTeco #EmployeeAttendance #DTMedix #DatatechBD",
+      "hashtags": [
+        "ZKTeco",
+        "EmployeeAttendance",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Fingerprint punches flow in by themselves. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 7
+    },
+    {
+      "id": "post-22",
+      "number": 22,
+      "type": "hr",
+      "image": "images/post-22.jpg",
+      "image_language": "en",
+      "icon": "edit",
+      "headline_en": "No device? Mark attendance by hand.",
+      "subline_en": "Manual entry that device data can never overwrite.",
+      "bullets_en": [
+        "Status, in and out times, a note",
+        "Every manual change is logged",
+        "Remove it to rebuild from punches"
+      ],
+      "headline_bn": "ডিভাইস নেই? হাতেই উপস্থিতি দিন",
+      "subline_bn": "ম্যানুয়াল এন্ট্রি ডিভাইস ডেটা দিয়ে বদলায় না।",
+      "bullets_bn": [
+        "অবস্থা, প্রবেশ-প্রস্থান ও নোট",
+        "প্রতিটি পরিবর্তন লগ হয়",
+        "সরালে পাঞ্চ থেকে আবার তৈরি"
+      ],
+      "caption_en": "No device? Mark attendance by hand. Manual entry that device data can never overwrite.\n\n- Status, in and out times, a note\n- Every manual change is logged\n- Remove it to rebuild from punches\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Attendance #HRSoftware #DTMedix #DatatechBD",
+      "caption_bn": "ডিভাইস নেই? হাতেই উপস্থিতি দিন ম্যানুয়াল এন্ট্রি ডিভাইস ডেটা দিয়ে বদলায় না।\n\n- অবস্থা, প্রবেশ-প্রস্থান ও নোট\n- প্রতিটি পরিবর্তন লগ হয়\n- সরালে পাঞ্চ থেকে আবার তৈরি\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Attendance #HRSoftware #DTMedix #DatatechBD",
+      "hashtags": [
+        "Attendance",
+        "HRSoftware",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "No device? Mark attendance by hand. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 1
+    },
+    {
+      "id": "post-23",
+      "number": 23,
+      "type": "hr",
+      "image": "images/post-23.jpg",
+      "image_language": "en",
+      "icon": "clock",
+      "headline_en": "Late minutes and overtime, calculated.",
+      "subline_en": "Shifts, grace time and weekly offs.",
+      "bullets_en": [
+        "Late, early and overtime minutes",
+        "Holidays and approved leave counted",
+        "A monthly attendance sheet"
+      ],
+      "headline_bn": "দেরি ও ওভারটাইম নিজে হিসাব হয়",
+      "subline_bn": "শিফট, গ্রেস টাইম ও সাপ্তাহিক ছুটি।",
+      "bullets_bn": [
+        "দেরি, আগে যাওয়া ও ওভারটাইম মিনিট",
+        "ছুটির দিন ও অনুমোদিত ছুটি ধরা হয়",
+        "মাসিক উপস্থিতি শিট"
+      ],
+      "caption_en": "Late minutes and overtime, calculated. Shifts, grace time and weekly offs.\n\n- Late, early and overtime minutes\n- Holidays and approved leave counted\n- A monthly attendance sheet\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#ShiftManagement #Overtime #DTMedix #DatatechBD",
+      "caption_bn": "দেরি ও ওভারটাইম নিজে হিসাব হয় শিফট, গ্রেস টাইম ও সাপ্তাহিক ছুটি।\n\n- দেরি, আগে যাওয়া ও ওভারটাইম মিনিট\n- ছুটির দিন ও অনুমোদিত ছুটি ধরা হয়\n- মাসিক উপস্থিতি শিট\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#ShiftManagement #Overtime #DTMedix #DatatechBD",
+      "hashtags": [
+        "ShiftManagement",
+        "Overtime",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Late minutes and overtime, calculated. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 2
+    },
+    {
+      "id": "post-24",
+      "number": 24,
+      "type": "hr",
+      "image": "images/post-24.jpg",
+      "image_language": "en",
+      "icon": "calendar",
+      "headline_en": "Leave requests, approved in a click.",
+      "subline_en": "Approved leave flows into attendance and payroll.",
+      "bullets_en": [
+        "Casual, sick, annual and unpaid",
+        "Approve or reject with one click",
+        "No overlapping requests"
+      ],
+      "headline_bn": "এক ক্লিকে ছুটির অনুমোদন",
+      "subline_bn": "অনুমোদিত ছুটি উপস্থিতি ও বেতনে যুক্ত হয়।",
+      "bullets_bn": [
+        "নৈমিত্তিক, অসুস্থতা, বার্ষিক ও বিনা বেতন",
+        "এক ক্লিকে অনুমোদন বা প্রত্যাখ্যান",
+        "একই সময়ে দুটি আবেদন নয়"
+      ],
+      "caption_en": "Leave requests, approved in a click. Approved leave flows into attendance and payroll.\n\n- Casual, sick, annual and unpaid\n- Approve or reject with one click\n- No overlapping requests\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#LeaveManagement #HR #DTMedix #DatatechBD",
+      "caption_bn": "এক ক্লিকে ছুটির অনুমোদন অনুমোদিত ছুটি উপস্থিতি ও বেতনে যুক্ত হয়।\n\n- নৈমিত্তিক, অসুস্থতা, বার্ষিক ও বিনা বেতন\n- এক ক্লিকে অনুমোদন বা প্রত্যাখ্যান\n- একই সময়ে দুটি আবেদন নয়\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#LeaveManagement #HR #DTMedix #DatatechBD",
+      "hashtags": [
+        "LeaveManagement",
+        "HR",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Leave requests, approved in a click. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 3
+    },
+    {
+      "id": "post-25",
+      "number": 25,
+      "type": "hr",
+      "image": "images/post-25.jpg",
+      "image_language": "en",
+      "icon": "wallet",
+      "headline_en": "Payroll from attendance, not guesswork.",
+      "subline_en": "Monthly salary runs prepared for you.",
+      "bullets_en": [
+        "Basic salary, allowances and overtime",
+        "Absence and late deductions",
+        "Advance and other deductions"
+      ],
+      "headline_bn": "আন্দাজ নয়, উপস্থিতি থেকে বেতন",
+      "subline_bn": "প্রতি মাসের বেতন আপনার জন্য তৈরি।",
+      "bullets_bn": [
+        "মূল বেতন, ভাতা ও ওভারটাইম",
+        "অনুপস্থিতি ও দেরির কর্তন",
+        "অগ্রিম ও অন্যান্য কর্তন"
+      ],
+      "caption_en": "Payroll from attendance, not guesswork. Monthly salary runs prepared for you.\n\n- Basic salary, allowances and overtime\n- Absence and late deductions\n- Advance and other deductions\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Payroll #SalarySheet #DTMedix #DatatechBD",
+      "caption_bn": "আন্দাজ নয়, উপস্থিতি থেকে বেতন প্রতি মাসের বেতন আপনার জন্য তৈরি।\n\n- মূল বেতন, ভাতা ও ওভারটাইম\n- অনুপস্থিতি ও দেরির কর্তন\n- অগ্রিম ও অন্যান্য কর্তন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Payroll #SalarySheet #DTMedix #DatatechBD",
+      "hashtags": [
+        "Payroll",
+        "SalarySheet",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Payroll from attendance, not guesswork. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 4
+    },
+    {
+      "id": "post-26",
+      "number": 26,
+      "type": "hr",
+      "image": "images/post-26.jpg",
+      "image_language": "en",
+      "icon": "file",
+      "headline_en": "Printable payslips, locked after finalizing.",
+      "subline_en": "Once finalized, the numbers cannot change.",
+      "bullets_en": [
+        "Earnings and deductions on one page",
+        "Mark each salary paid with a reference",
+        "Payroll register to print"
+      ],
+      "headline_bn": "প্রিন্টযোগ্য পে-স্লিপ, চূড়ান্ত হলে লক",
+      "subline_bn": "চূড়ান্ত করার পর অঙ্ক বদলানো যায় না।",
+      "bullets_bn": [
+        "আয় ও কর্তন এক পাতায়",
+        "রেফারেন্সসহ বেতন পরিশোধ চিহ্নিত",
+        "প্রিন্টযোগ্য পে-রোল রেজিস্টার"
+      ],
+      "caption_en": "Printable payslips, locked after finalizing. Once finalized, the numbers cannot change.\n\n- Earnings and deductions on one page\n- Mark each salary paid with a reference\n- Payroll register to print\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Payslip #PayrollSoftware #DTMedix #DatatechBD",
+      "caption_bn": "প্রিন্টযোগ্য পে-স্লিপ, চূড়ান্ত হলে লক চূড়ান্ত করার পর অঙ্ক বদলানো যায় না।\n\n- আয় ও কর্তন এক পাতায়\n- রেফারেন্সসহ বেতন পরিশোধ চিহ্নিত\n- প্রিন্টযোগ্য পে-রোল রেজিস্টার\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Payslip #PayrollSoftware #DTMedix #DatatechBD",
+      "hashtags": [
+        "Payslip",
+        "PayrollSoftware",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Printable payslips, locked after finalizing. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 5
+    },
+    {
+      "id": "post-27",
+      "number": 27,
+      "type": "brand",
+      "image": "images/post-27.jpg",
+      "image_language": "en",
+      "icon": "globe",
+      "headline_en": "A website for your center, included.",
+      "subline_en": "Home, services, tests, doctors, booking and more.",
+      "bullets_en": [
+        "Price list and health packages",
+        "Online doctor booking",
+        "FAQ, patient guide and privacy policy"
+      ],
+      "headline_bn": "আপনার সেন্টারের জন্য ওয়েবসাইট, সাথেই",
+      "subline_bn": "হোম, সেবা, টেস্ট, ডাক্তার, বুকিং আরও অনেক কিছু।",
+      "bullets_bn": [
+        "মূল্য তালিকা ও হেলথ প্যাকেজ",
+        "অনলাইনে ডাক্তারের বুকিং",
+        "এফএকিউ, রোগী নির্দেশিকা ও গোপনীয়তা নীতি"
+      ],
+      "caption_en": "A website for your center, included. Home, services, tests, doctors, booking and more.\n\n- Price list and health packages\n- Online doctor booking\n- FAQ, patient guide and privacy policy\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#DiagnosticWebsite #Branding #DTMedix #DatatechBD",
+      "caption_bn": "আপনার সেন্টারের জন্য ওয়েবসাইট, সাথেই হোম, সেবা, টেস্ট, ডাক্তার, বুকিং আরও অনেক কিছু।\n\n- মূল্য তালিকা ও হেলথ প্যাকেজ\n- অনলাইনে ডাক্তারের বুকিং\n- এফএকিউ, রোগী নির্দেশিকা ও গোপনীয়তা নীতি\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#DiagnosticWebsite #Branding #DTMedix #DatatechBD",
+      "hashtags": [
+        "DiagnosticWebsite",
+        "Branding",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "A website for your center, included. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 6
+    },
+    {
+      "id": "post-28",
+      "number": 28,
+      "type": "brand",
+      "image": "images/post-28.jpg",
+      "image_language": "en",
+      "icon": "book",
+      "headline_en": "Educate patients before they arrive.",
+      "subline_en": "A patient guide that answers the common questions.",
+      "bullets_en": [
+        "How to prepare for common tests",
+        "What to bring",
+        "How to read normal, high and low flags"
+      ],
+      "headline_bn": "আসার আগেই রোগীকে জানান",
+      "subline_bn": "সাধারণ প্রশ্নের উত্তর দেয় রোগী নির্দেশিকা।",
+      "bullets_bn": [
+        "সাধারণ পরীক্ষার প্রস্তুতি",
+        "কী সাথে আনতে হবে",
+        "স্বাভাবিক, বেশি ও কম চিহ্ন কীভাবে বুঝবেন"
+      ],
+      "caption_en": "Educate patients before they arrive. A patient guide that answers the common questions.\n\n- How to prepare for common tests\n- What to bring\n- How to read normal, high and low flags\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#PatientEducation #HealthAwareness #DTMedix #DatatechBD",
+      "caption_bn": "আসার আগেই রোগীকে জানান সাধারণ প্রশ্নের উত্তর দেয় রোগী নির্দেশিকা।\n\n- সাধারণ পরীক্ষার প্রস্তুতি\n- কী সাথে আনতে হবে\n- স্বাভাবিক, বেশি ও কম চিহ্ন কীভাবে বুঝবেন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#PatientEducation #HealthAwareness #DTMedix #DatatechBD",
+      "hashtags": [
+        "PatientEducation",
+        "HealthAwareness",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Educate patients before they arrive. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 7
+    },
+    {
+      "id": "post-29",
+      "number": 29,
+      "type": "brand",
+      "image": "images/post-29.jpg",
+      "image_language": "en",
+      "icon": "home",
+      "headline_en": "Explain home collection clearly.",
+      "subline_en": "A page that shows the steps and eligible tests.",
+      "bullets_en": [
+        "Four simple steps",
+        "Eligible tests with preparation notes",
+        "A call-to-action for your front desk"
+      ],
+      "headline_bn": "হোম কালেকশন পরিষ্কারভাবে জানান",
+      "subline_bn": "ধাপ ও যোগ্য টেস্ট দেখানো একটি পাতা।",
+      "bullets_bn": [
+        "চারটি সহজ ধাপ",
+        "প্রস্তুতির নোটসহ যোগ্য টেস্ট",
+        "ফ্রন্ট ডেস্কের জন্য কল টু অ্যাকশন"
+      ],
+      "caption_en": "Explain home collection clearly. A page that shows the steps and eligible tests.\n\n- Four simple steps\n- Eligible tests with preparation notes\n- A call-to-action for your front desk\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#HomeCollection #PatientConvenience #DTMedix #DatatechBD",
+      "caption_bn": "হোম কালেকশন পরিষ্কারভাবে জানান ধাপ ও যোগ্য টেস্ট দেখানো একটি পাতা।\n\n- চারটি সহজ ধাপ\n- প্রস্তুতির নোটসহ যোগ্য টেস্ট\n- ফ্রন্ট ডেস্কের জন্য কল টু অ্যাকশন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#HomeCollection #PatientConvenience #DTMedix #DatatechBD",
+      "hashtags": [
+        "HomeCollection",
+        "PatientConvenience",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Explain home collection clearly. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 1
+    },
+    {
+      "id": "post-30",
+      "number": 30,
+      "type": "demo",
+      "image": "images/post-30.jpg",
+      "image_language": "en",
+      "icon": "bolt",
+      "headline_en": "Free demo. Try it yourself!",
+      "subline_en": "Sign in and explore every feature. Demo data resets daily at 4:00 AM, Dhaka time.",
+      "bullets_en": [
+        "No installation needed",
+        "Real screens with real sample data",
+        "Want it for your business? Call +880 1575-888775"
+      ],
+      "headline_bn": "ফ্রি ডেমো, নিজেই চালিয়ে দেখুন!",
+      "subline_bn": "সাইন ইন করে সব ফিচার দেখুন। ডেমো ডেটা প্রতিদিন ভোর ৪:০০টায় রিসেট হয়।",
+      "bullets_bn": [
+        "কিছু ইনস্টল করতে হবে না",
+        "আসল স্ক্রিন, নমুনা ডেটা",
+        "আপনার ব্যবসার জন্য চান? কল করুন +880 1575-888775"
+      ],
+      "caption_en": "Free demo. Try it yourself! Sign in and explore every feature. Demo data resets daily at 4:00 AM, Dhaka time.\n\n- No installation needed\n- Real screens with real sample data\n- Want it for your business? Call +880 1575-888775\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#FreeDemo #TryItYourself #DTMedix #DatatechBD",
+      "caption_bn": "ফ্রি ডেমো, নিজেই চালিয়ে দেখুন! সাইন ইন করে সব ফিচার দেখুন। ডেমো ডেটা প্রতিদিন ভোর ৪:০০টায় রিসেট হয়।\n\n- কিছু ইনস্টল করতে হবে না\n- আসল স্ক্রিন, নমুনা ডেটা\n- আপনার ব্যবসার জন্য চান? কল করুন +880 1575-888775\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#FreeDemo #TryItYourself #DTMedix #DatatechBD",
+      "hashtags": [
+        "FreeDemo",
+        "TryItYourself",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Free demo. Try it yourself! - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 2
+    },
+    {
+      "id": "post-31",
+      "number": 31,
+      "type": "demo",
+      "image": "images/post-31.jpg",
+      "image_language": "en",
+      "icon": "users",
+      "headline_en": "One click. Eight roles.",
+      "subline_en": "Sign in as owner, reception, lab, doctor or accountant.",
+      "bullets_en": [
+        "Demo accounts on the sign-in page",
+        "See each role's own menu",
+        "Explore at your own pace"
+      ],
+      "headline_bn": "এক ক্লিকে আটটি ভূমিকা",
+      "subline_bn": "মালিক, রিসেপশন, ল্যাব, ডাক্তার বা হিসাবরক্ষক হিসেবে সাইন ইন।",
+      "bullets_bn": [
+        "সাইন-ইন পাতায় ডেমো অ্যাকাউন্ট",
+        "প্রতিটি ভূমিকার নিজস্ব মেনু",
+        "নিজের গতিতে ঘুরে দেখুন"
+      ],
+      "caption_en": "One click. Eight roles. Sign in as owner, reception, lab, doctor or accountant.\n\n- Demo accounts on the sign-in page\n- See each role's own menu\n- Explore at your own pace\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#DemoAccounts #SoftwareDemo #DTMedix #DatatechBD",
+      "caption_bn": "এক ক্লিকে আটটি ভূমিকা মালিক, রিসেপশন, ল্যাব, ডাক্তার বা হিসাবরক্ষক হিসেবে সাইন ইন।\n\n- সাইন-ইন পাতায় ডেমো অ্যাকাউন্ট\n- প্রতিটি ভূমিকার নিজস্ব মেনু\n- নিজের গতিতে ঘুরে দেখুন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#DemoAccounts #SoftwareDemo #DTMedix #DatatechBD",
+      "hashtags": [
+        "DemoAccounts",
+        "SoftwareDemo",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "One click. Eight roles. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 3
+    },
+    {
+      "id": "post-32",
+      "number": 32,
+      "type": "brand",
+      "image": "images/post-32.jpg",
+      "image_language": "en",
+      "icon": "building",
+      "headline_en": "Software that runs business.",
+      "subline_en": "DT Medix is a product of Datatech BD Ltd.",
+      "bullets_en": [
+        "Built for diagnostic centers and clinics",
+        "Made in Bangladesh, for Bangladesh",
+        "Backed by local support"
+      ],
+      "headline_bn": "সফটওয়্যার যা ব্যবসা চালায়",
+      "subline_bn": "ডিটি মেডিক্স ডাটাটেক বিডি লিমিটেডের পণ্য।",
+      "bullets_bn": [
+        "ডায়াগনস্টিক সেন্টার ও ক্লিনিকের জন্য",
+        "বাংলাদেশে তৈরি, বাংলাদেশের জন্য",
+        "স্থানীয় সহায়তা"
+      ],
+      "caption_en": "Software that runs business. DT Medix is a product of Datatech BD Ltd.\n\n- Built for diagnostic centers and clinics\n- Made in Bangladesh, for Bangladesh\n- Backed by local support\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#DatatechBD #SoftwareThatRunsBusiness #DTMedix #DatatechBD",
+      "caption_bn": "সফটওয়্যার যা ব্যবসা চালায় ডিটি মেডিক্স ডাটাটেক বিডি লিমিটেডের পণ্য।\n\n- ডায়াগনস্টিক সেন্টার ও ক্লিনিকের জন্য\n- বাংলাদেশে তৈরি, বাংলাদেশের জন্য\n- স্থানীয় সহায়তা\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#DatatechBD #SoftwareThatRunsBusiness #DTMedix #DatatechBD",
+      "hashtags": [
+        "DatatechBD",
+        "SoftwareThatRunsBusiness",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Software that runs business. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 4
+    },
+    {
+      "id": "post-33",
+      "number": 33,
+      "type": "brand",
+      "image": "images/post-33.jpg",
+      "image_language": "en",
+      "icon": "moon",
+      "headline_en": "Light, dark and touch-friendly.",
+      "subline_en": "Comfortable on a counter PC and a collection tablet.",
+      "bullets_en": [
+        "Light and dark themes",
+        "Large touch targets for tablets",
+        "Fast, compact tables"
+      ],
+      "headline_bn": "লাইট, ডার্ক ও টাচ-বান্ধব",
+      "subline_bn": "কাউন্টারের পিসি ও কালেকশন ট্যাবলেটে আরামদায়ক।",
+      "bullets_bn": [
+        "লাইট ও ডার্ক থিম",
+        "ট্যাবলেটের জন্য বড় টাচ বোতাম",
+        "দ্রুত, কমপ্যাক্ট টেবিল"
+      ],
+      "caption_en": "Light, dark and touch-friendly. Comfortable on a counter PC and a collection tablet.\n\n- Light and dark themes\n- Large touch targets for tablets\n- Fast, compact tables\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#UIUX #Tablet #DTMedix #DatatechBD",
+      "caption_bn": "লাইট, ডার্ক ও টাচ-বান্ধব কাউন্টারের পিসি ও কালেকশন ট্যাবলেটে আরামদায়ক।\n\n- লাইট ও ডার্ক থিম\n- ট্যাবলেটের জন্য বড় টাচ বোতাম\n- দ্রুত, কমপ্যাক্ট টেবিল\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#UIUX #Tablet #DTMedix #DatatechBD",
+      "hashtags": [
+        "UIUX",
+        "Tablet",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Light, dark and touch-friendly. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 5
+    },
+    {
+      "id": "post-34",
+      "number": 34,
+      "type": "brand",
+      "image": "images/post-34.jpg",
+      "image_language": "en",
+      "icon": "message",
+      "headline_en": "Messages that never carry results.",
+      "subline_en": "Templates in English and Bangla with safe placeholders.",
+      "bullets_en": [
+        "Appointment, sample and payment notices",
+        "Results and diagnoses are blocked",
+        "Edit the text per center"
+      ],
+      "headline_bn": "বার্তায় কখনও ফলাফল নয়",
+      "subline_bn": "নিরাপদ প্লেসহোল্ডারসহ ইংরেজি ও বাংলা টেমপ্লেট।",
+      "bullets_bn": [
+        "অ্যাপয়েন্টমেন্ট, নমুনা ও পেমেন্টের বিজ্ঞপ্তি",
+        "ফলাফল ও রোগনির্ণয় আটকানো",
+        "প্রতিটি সেন্টারে লেখা বদলানো যায়"
+      ],
+      "caption_en": "Messages that never carry results. Templates in English and Bangla with safe placeholders.\n\n- Appointment, sample and payment notices\n- Results and diagnoses are blocked\n- Edit the text per center\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#PatientPrivacy #MessageTemplates #DTMedix #DatatechBD",
+      "caption_bn": "বার্তায় কখনও ফলাফল নয় নিরাপদ প্লেসহোল্ডারসহ ইংরেজি ও বাংলা টেমপ্লেট।\n\n- অ্যাপয়েন্টমেন্ট, নমুনা ও পেমেন্টের বিজ্ঞপ্তি\n- ফলাফল ও রোগনির্ণয় আটকানো\n- প্রতিটি সেন্টারে লেখা বদলানো যায়\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#PatientPrivacy #MessageTemplates #DTMedix #DatatechBD",
+      "hashtags": [
+        "PatientPrivacy",
+        "MessageTemplates",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Messages that never carry results. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 6
+    },
+    {
+      "id": "post-35",
+      "number": 35,
+      "type": "pain",
+      "image": "images/post-35.jpg",
+      "image_language": "en",
+      "icon": "file",
+      "headline_en": "Still using paper registers?",
+      "subline_en": "Move to one connected flow: patient, order, lab, report, payment.",
+      "bullets_en": [
+        "Search any patient in a moment",
+        "No more lost slips",
+        "Daily totals that add up"
+      ],
+      "headline_bn": "এখনও কাগজের খাতা?",
+      "subline_bn": "এক সংযুক্ত প্রবাহে আসুন: রোগী, অর্ডার, ল্যাব, রিপোর্ট, পেমেন্ট।",
+      "bullets_bn": [
+        "মুহূর্তে যেকোনো রোগী খুঁজুন",
+        "হারানো স্লিপ নয়",
+        "দৈনিক হিসাব মেলে"
+      ],
+      "caption_en": "Still using paper registers? Move to one connected flow: patient, order, lab, report, payment.\n\n- Search any patient in a moment\n- No more lost slips\n- Daily totals that add up\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#GoDigital #DiagnosticCenter #DTMedix #DatatechBD",
+      "caption_bn": "এখনও কাগজের খাতা? এক সংযুক্ত প্রবাহে আসুন: রোগী, অর্ডার, ল্যাব, রিপোর্ট, পেমেন্ট।\n\n- মুহূর্তে যেকোনো রোগী খুঁজুন\n- হারানো স্লিপ নয়\n- দৈনিক হিসাব মেলে\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#GoDigital #DiagnosticCenter #DTMedix #DatatechBD",
+      "hashtags": [
+        "GoDigital",
+        "DiagnosticCenter",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Still using paper registers? - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 7
+    },
+    {
+      "id": "post-36",
+      "number": 36,
+      "type": "pain",
+      "image": "images/post-36.jpg",
+      "image_language": "en",
+      "icon": "barcode",
+      "headline_en": "Lost a sample?",
+      "subline_en": "Barcode every tube and always know where it is.",
+      "bullets_en": [
+        "Collected, received or rejected",
+        "Who handled it and when",
+        "Recollect with one click"
+      ],
+      "headline_bn": "নমুনা হারিয়ে গেছে?",
+      "subline_bn": "প্রতিটি টিউবে বারকোড, সবসময় জানুন কোথায়।",
+      "bullets_bn": [
+        "সংগৃহীত, গৃহীত বা বাতিল",
+        "কে কখন হাতে নিয়েছে",
+        "এক ক্লিকে পুনঃসংগ্রহ"
+      ],
+      "caption_en": "Lost a sample? Barcode every tube and always know where it is.\n\n- Collected, received or rejected\n- Who handled it and when\n- Recollect with one click\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#SampleTracking #LabQuality #DTMedix #DatatechBD",
+      "caption_bn": "নমুনা হারিয়ে গেছে? প্রতিটি টিউবে বারকোড, সবসময় জানুন কোথায়।\n\n- সংগৃহীত, গৃহীত বা বাতিল\n- কে কখন হাতে নিয়েছে\n- এক ক্লিকে পুনঃসংগ্রহ\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#SampleTracking #LabQuality #DTMedix #DatatechBD",
+      "hashtags": [
+        "SampleTracking",
+        "LabQuality",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Lost a sample? - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 1
+    },
+    {
+      "id": "post-37",
+      "number": 37,
+      "type": "pain",
+      "image": "images/post-37.jpg",
+      "image_language": "en",
+      "icon": "user",
+      "headline_en": "Wrong patient, wrong report?",
+      "subline_en": "A patient banner on every screen keeps you sure.",
+      "bullets_en": [
+        "Name, age, sex and patient ID",
+        "Allergy alerts always visible",
+        "Duplicate checks at registration"
+      ],
+      "headline_bn": "ভুল রোগী, ভুল রিপোর্ট?",
+      "subline_bn": "প্রতিটি স্ক্রিনে রোগীর ব্যানার আপনাকে নিশ্চিত রাখে।",
+      "bullets_bn": [
+        "নাম, বয়স, লিঙ্গ ও রোগী আইডি",
+        "অ্যালার্জি সতর্কতা সবসময় দৃশ্যমান",
+        "নিবন্ধনেই ডুপ্লিকেট যাচাই"
+      ],
+      "caption_en": "Wrong patient, wrong report? A patient banner on every screen keeps you sure.\n\n- Name, age, sex and patient ID\n- Allergy alerts always visible\n- Duplicate checks at registration\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#PatientSafety #Accuracy #DTMedix #DatatechBD",
+      "caption_bn": "ভুল রোগী, ভুল রিপোর্ট? প্রতিটি স্ক্রিনে রোগীর ব্যানার আপনাকে নিশ্চিত রাখে।\n\n- নাম, বয়স, লিঙ্গ ও রোগী আইডি\n- অ্যালার্জি সতর্কতা সবসময় দৃশ্যমান\n- নিবন্ধনেই ডুপ্লিকেট যাচাই\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#PatientSafety #Accuracy #DTMedix #DatatechBD",
+      "hashtags": [
+        "PatientSafety",
+        "Accuracy",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Wrong patient, wrong report? - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 2
+    },
+    {
+      "id": "post-38",
+      "number": 38,
+      "type": "pain",
+      "image": "images/post-38.jpg",
+      "image_language": "en",
+      "icon": "wallet",
+      "headline_en": "Month-end salary headache?",
+      "subline_en": "Let attendance build the payroll for you.",
+      "bullets_en": [
+        "Attendance counted automatically",
+        "Deductions calculated",
+        "Payslips ready to print"
+      ],
+      "headline_bn": "মাস শেষে বেতনের মাথাব্যথা?",
+      "subline_bn": "উপস্থিতি থেকেই পে-রোল তৈরি হোক।",
+      "bullets_bn": [
+        "উপস্থিতি স্বয়ংক্রিয় গণনা",
+        "কর্তন হিসাব করা",
+        "প্রিন্টের জন্য পে-স্লিপ প্রস্তুত"
+      ],
+      "caption_en": "Month-end salary headache? Let attendance build the payroll for you.\n\n- Attendance counted automatically\n- Deductions calculated\n- Payslips ready to print\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#Payroll #SmallBusiness #DTMedix #DatatechBD",
+      "caption_bn": "মাস শেষে বেতনের মাথাব্যথা? উপস্থিতি থেকেই পে-রোল তৈরি হোক।\n\n- উপস্থিতি স্বয়ংক্রিয় গণনা\n- কর্তন হিসাব করা\n- প্রিন্টের জন্য পে-স্লিপ প্রস্তুত\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#Payroll #SmallBusiness #DTMedix #DatatechBD",
+      "hashtags": [
+        "Payroll",
+        "SmallBusiness",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Month-end salary headache? - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 3
+    },
+    {
+      "id": "post-39",
+      "number": 39,
+      "type": "pain",
+      "image": "images/post-39.jpg",
+      "image_language": "en",
+      "icon": "history",
+      "headline_en": "Cannot tell who changed what?",
+      "subline_en": "An activity log answers it.",
+      "bullets_en": [
+        "Discounts, refunds and payroll actions",
+        "Who did it and when",
+        "Nothing is silently edited"
+      ],
+      "headline_bn": "কে কী বদলেছে বোঝা যায় না?",
+      "subline_bn": "অ্যাক্টিভিটি লগে উত্তর পাবেন।",
+      "bullets_bn": [
+        "ছাড়, রিফান্ড ও পে-রোলের কাজ",
+        "কে করেছে ও কখন",
+        "নীরবে কিছু বদলায় না"
+      ],
+      "caption_en": "Cannot tell who changed what? An activity log answers it.\n\n- Discounts, refunds and payroll actions\n- Who did it and when\n- Nothing is silently edited\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#AuditTrail #Transparency #DTMedix #DatatechBD",
+      "caption_bn": "কে কী বদলেছে বোঝা যায় না? অ্যাক্টিভিটি লগে উত্তর পাবেন।\n\n- ছাড়, রিফান্ড ও পে-রোলের কাজ\n- কে করেছে ও কখন\n- নীরবে কিছু বদলায় না\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#AuditTrail #Transparency #DTMedix #DatatechBD",
+      "hashtags": [
+        "AuditTrail",
+        "Transparency",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Cannot tell who changed what? - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 4
+    },
+    {
+      "id": "post-40",
+      "number": 40,
+      "type": "pain",
+      "image": "images/post-40.jpg",
+      "image_language": "en",
+      "icon": "clock",
+      "headline_en": "Waiting patients losing patience?",
+      "subline_en": "Tokens and a live queue keep the line calm.",
+      "bullets_en": [
+        "Token number on booking",
+        "Doctor queue with waiting time",
+        "Fewer questions at the counter"
+      ],
+      "headline_bn": "অপেক্ষমাণ রোগীরা অধৈর্য?",
+      "subline_bn": "টোকেন ও লাইভ কিউ লাইন শান্ত রাখে।",
+      "bullets_bn": [
+        "বুকিংয়েই টোকেন নম্বর",
+        "অপেক্ষার সময়সহ ডাক্তারের কিউ",
+        "কাউন্টারে প্রশ্ন কম"
+      ],
+      "caption_en": "Waiting patients losing patience? Tokens and a live queue keep the line calm.\n\n- Token number on booking\n- Doctor queue with waiting time\n- Fewer questions at the counter\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#PatientExperience #ClinicQueue #DTMedix #DatatechBD",
+      "caption_bn": "অপেক্ষমাণ রোগীরা অধৈর্য? টোকেন ও লাইভ কিউ লাইন শান্ত রাখে।\n\n- বুকিংয়েই টোকেন নম্বর\n- অপেক্ষার সময়সহ ডাক্তারের কিউ\n- কাউন্টারে প্রশ্ন কম\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#PatientExperience #ClinicQueue #DTMedix #DatatechBD",
+      "hashtags": [
+        "PatientExperience",
+        "ClinicQueue",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Waiting patients losing patience? - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 5
+    },
+    {
+      "id": "post-41",
+      "number": 41,
+      "type": "tip",
+      "image": "images/post-41.jpg",
+      "image_language": "en",
+      "icon": "tag",
+      "headline_en": "Publish your price list.",
+      "subline_en": "Patients trust centers that show prices up front.",
+      "bullets_en": [
+        "Keep the list on your website",
+        "Update it when prices change",
+        "Show packages too"
+      ],
+      "headline_bn": "আপনার মূল্য তালিকা প্রকাশ করুন",
+      "subline_bn": "যে সেন্টার আগেই দাম দেখায়, রোগী তাকে বিশ্বাস করে।",
+      "bullets_bn": [
+        "ওয়েবসাইটে তালিকা রাখুন",
+        "দাম বদলালে হালনাগাদ করুন",
+        "প্যাকেজও দেখান"
+      ],
+      "caption_en": "Publish your price list. Patients trust centers that show prices up front.\n\n- Keep the list on your website\n- Update it when prices change\n- Show packages too\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#DiagnosticTips #Trust #DTMedix #DatatechBD",
+      "caption_bn": "আপনার মূল্য তালিকা প্রকাশ করুন যে সেন্টার আগেই দাম দেখায়, রোগী তাকে বিশ্বাস করে।\n\n- ওয়েবসাইটে তালিকা রাখুন\n- দাম বদলালে হালনাগাদ করুন\n- প্যাকেজও দেখান\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#DiagnosticTips #Trust #DTMedix #DatatechBD",
+      "hashtags": [
+        "DiagnosticTips",
+        "Trust",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Publish your price list. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 6
+    },
+    {
+      "id": "post-42",
+      "number": 42,
+      "type": "tip",
+      "image": "images/post-42.jpg",
+      "image_language": "en",
+      "icon": "barcode",
+      "headline_en": "Label samples at the patient.",
+      "subline_en": "Never label a tube away from the person it came from.",
+      "bullets_en": [
+        "Print the label at collection",
+        "Check name and ID aloud",
+        "Scan again at the lab"
+      ],
+      "headline_bn": "রোগীর সামনেই নমুনায় লেবেল দিন",
+      "subline_bn": "যার নমুনা, তার সামনে ছাড়া লেবেল নয়।",
+      "bullets_bn": [
+        "সংগ্রহের সময়ই লেবেল প্রিন্ট",
+        "নাম ও আইডি মুখে মিলিয়ে নিন",
+        "ল্যাবে আবার স্ক্যান"
+      ],
+      "caption_en": "Label samples at the patient. Never label a tube away from the person it came from.\n\n- Print the label at collection\n- Check name and ID aloud\n- Scan again at the lab\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#LabTips #SampleSafety #DTMedix #DatatechBD",
+      "caption_bn": "রোগীর সামনেই নমুনায় লেবেল দিন যার নমুনা, তার সামনে ছাড়া লেবেল নয়।\n\n- সংগ্রহের সময়ই লেবেল প্রিন্ট\n- নাম ও আইডি মুখে মিলিয়ে নিন\n- ল্যাবে আবার স্ক্যান\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#LabTips #SampleSafety #DTMedix #DatatechBD",
+      "hashtags": [
+        "LabTips",
+        "SampleSafety",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Label samples at the patient. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 7
+    },
+    {
+      "id": "post-43",
+      "number": 43,
+      "type": "tip",
+      "image": "images/post-43.jpg",
+      "image_language": "en",
+      "icon": "clock",
+      "headline_en": "Track turnaround time every week.",
+      "subline_en": "What you measure improves.",
+      "bullets_en": [
+        "Check overdue samples daily",
+        "Pin urgent tests",
+        "Talk to the slowest department"
+      ],
+      "headline_bn": "প্রতি সপ্তাহে টিএটি দেখুন",
+      "subline_bn": "যা মাপা হয়, তা-ই উন্নত হয়।",
+      "bullets_bn": [
+        "প্রতিদিন দেরির নমুনা দেখুন",
+        "জরুরি টেস্ট পিন করুন",
+        "সবচেয়ে ধীর বিভাগের সাথে কথা বলুন"
+      ],
+      "caption_en": "Track turnaround time every week. What you measure improves.\n\n- Check overdue samples daily\n- Pin urgent tests\n- Talk to the slowest department\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#ManagementTips #TAT #DTMedix #DatatechBD",
+      "caption_bn": "প্রতি সপ্তাহে টিএটি দেখুন যা মাপা হয়, তা-ই উন্নত হয়।\n\n- প্রতিদিন দেরির নমুনা দেখুন\n- জরুরি টেস্ট পিন করুন\n- সবচেয়ে ধীর বিভাগের সাথে কথা বলুন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#ManagementTips #TAT #DTMedix #DatatechBD",
+      "hashtags": [
+        "ManagementTips",
+        "TAT",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Track turnaround time every week. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 1
+    },
+    {
+      "id": "post-44",
+      "number": 44,
+      "type": "tip",
+      "image": "images/post-44.jpg",
+      "image_language": "en",
+      "icon": "shield",
+      "headline_en": "Review discounts every week.",
+      "subline_en": "Small discounts add up quickly.",
+      "bullets_en": [
+        "Look at approved and rejected requests",
+        "Ask for a reason on every override",
+        "Set a sensible limit"
+      ],
+      "headline_bn": "প্রতি সপ্তাহে ছাড় পর্যালোচনা করুন",
+      "subline_bn": "ছোট ছাড় জমে বড় হয়ে যায়।",
+      "bullets_bn": [
+        "অনুমোদিত ও প্রত্যাখ্যাত আবেদন দেখুন",
+        "প্রতিটি ওভাররাইডে কারণ চান",
+        "যুক্তিসঙ্গত সীমা রাখুন"
+      ],
+      "caption_en": "Review discounts every week. Small discounts add up quickly.\n\n- Look at approved and rejected requests\n- Ask for a reason on every override\n- Set a sensible limit\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#OwnerTips #CostControl #DTMedix #DatatechBD",
+      "caption_bn": "প্রতি সপ্তাহে ছাড় পর্যালোচনা করুন ছোট ছাড় জমে বড় হয়ে যায়।\n\n- অনুমোদিত ও প্রত্যাখ্যাত আবেদন দেখুন\n- প্রতিটি ওভাররাইডে কারণ চান\n- যুক্তিসঙ্গত সীমা রাখুন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#OwnerTips #CostControl #DTMedix #DatatechBD",
+      "hashtags": [
+        "OwnerTips",
+        "CostControl",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Review discounts every week. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 2
+    },
+    {
+      "id": "post-45",
+      "number": 45,
+      "type": "tip",
+      "image": "images/post-45.jpg",
+      "image_language": "en",
+      "icon": "database",
+      "headline_en": "Back up daily. Test the restore.",
+      "subline_en": "A backup you never restored is only a hope.",
+      "bullets_en": [
+        "Automate the backup",
+        "Practice a restore",
+        "Keep a copy off the server"
+      ],
+      "headline_bn": "প্রতিদিন ব্যাকআপ, রিস্টোর পরীক্ষা করুন",
+      "subline_bn": "যে ব্যাকআপ কখনও রিস্টোর হয়নি, তা কেবল আশা।",
+      "bullets_bn": [
+        "ব্যাকআপ স্বয়ংক্রিয় করুন",
+        "রিস্টোর অনুশীলন করুন",
+        "সার্ভারের বাইরেও একটি কপি রাখুন"
+      ],
+      "caption_en": "Back up daily. Test the restore. A backup you never restored is only a hope.\n\n- Automate the backup\n- Practice a restore\n- Keep a copy off the server\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#DataBackup #ITTips #DTMedix #DatatechBD",
+      "caption_bn": "প্রতিদিন ব্যাকআপ, রিস্টোর পরীক্ষা করুন যে ব্যাকআপ কখনও রিস্টোর হয়নি, তা কেবল আশা।\n\n- ব্যাকআপ স্বয়ংক্রিয় করুন\n- রিস্টোর অনুশীলন করুন\n- সার্ভারের বাইরেও একটি কপি রাখুন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#DataBackup #ITTips #DTMedix #DatatechBD",
+      "hashtags": [
+        "DataBackup",
+        "ITTips",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Back up daily. Test the restore. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 3
+    },
+    {
+      "id": "post-46",
+      "number": 46,
+      "type": "tip",
+      "image": "images/post-46.jpg",
+      "image_language": "en",
+      "icon": "lock",
+      "headline_en": "Never send results by text message.",
+      "subline_en": "Send a short notice and a secure link instead.",
+      "bullets_en": [
+        "Results are private health data",
+        "Keep SMS short and generic",
+        "Log who opens a report"
+      ],
+      "headline_bn": "এসএমএসে কখনও ফলাফল পাঠাবেন না",
+      "subline_bn": "পরিবর্তে ছোট বিজ্ঞপ্তি ও নিরাপদ লিংক পাঠান।",
+      "bullets_bn": [
+        "ফলাফল ব্যক্তিগত স্বাস্থ্য তথ্য",
+        "এসএমএস ছোট ও সাধারণ রাখুন",
+        "রিপোর্ট কে খুলল তার লগ রাখুন"
+      ],
+      "caption_en": "Never send results by text message. Send a short notice and a secure link instead.\n\n- Results are private health data\n- Keep SMS short and generic\n- Log who opens a report\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#PatientPrivacy #DataProtection #DTMedix #DatatechBD",
+      "caption_bn": "এসএমএসে কখনও ফলাফল পাঠাবেন না পরিবর্তে ছোট বিজ্ঞপ্তি ও নিরাপদ লিংক পাঠান।\n\n- ফলাফল ব্যক্তিগত স্বাস্থ্য তথ্য\n- এসএমএস ছোট ও সাধারণ রাখুন\n- রিপোর্ট কে খুলল তার লগ রাখুন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#PatientPrivacy #DataProtection #DTMedix #DatatechBD",
+      "hashtags": [
+        "PatientPrivacy",
+        "DataProtection",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Never send results by text message. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 4
+    },
+    {
+      "id": "post-47",
+      "number": 47,
+      "type": "demo",
+      "image": "images/post-47.jpg",
+      "image_language": "en",
+      "icon": "phone",
+      "headline_en": "Ready to modernize your center?",
+      "subline_en": "Talk to Datatech BD Ltd. about DT Medix.",
+      "bullets_en": [
+        "See a live demo",
+        "Get set up for your branches",
+        "Local support in Bangla and English"
+      ],
+      "headline_bn": "আপনার সেন্টার আধুনিক করতে প্রস্তুত?",
+      "subline_bn": "ডিটি মেডিক্স নিয়ে ডাটাটেক বিডি লিমিটেডের সাথে কথা বলুন।",
+      "bullets_bn": [
+        "লাইভ ডেমো দেখুন",
+        "আপনার শাখাগুলোর জন্য সেটআপ",
+        "বাংলা ও ইংরেজিতে স্থানীয় সহায়তা"
+      ],
+      "caption_en": "Ready to modernize your center? Talk to Datatech BD Ltd. about DT Medix.\n\n- See a live demo\n- Get set up for your branches\n- Local support in Bangla and English\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#DTMedix #DatatechBD #DTMedix #DatatechBD",
+      "caption_bn": "আপনার সেন্টার আধুনিক করতে প্রস্তুত? ডিটি মেডিক্স নিয়ে ডাটাটেক বিডি লিমিটেডের সাথে কথা বলুন।\n\n- লাইভ ডেমো দেখুন\n- আপনার শাখাগুলোর জন্য সেটআপ\n- বাংলা ও ইংরেজিতে স্থানীয় সহায়তা\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#DTMedix #DatatechBD #DTMedix #DatatechBD",
+      "hashtags": [
+        "DTMedix",
+        "DatatechBD",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Ready to modernize your center? - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 5
+    },
+    {
+      "id": "post-48",
+      "number": 48,
+      "type": "demo",
+      "image": "images/post-48.jpg",
+      "image_language": "en",
+      "icon": "message",
+      "headline_en": "Questions? Just ask.",
+      "subline_en": "We are happy to walk you through DT Medix.",
+      "bullets_en": [
+        "Call +880 1575-888775",
+        "Visit datatechbd.com",
+        "Try the free demo first"
+      ],
+      "headline_bn": "প্রশ্ন আছে? নির্দ্বিধায় জিজ্ঞাসা করুন",
+      "subline_bn": "ডিটি মেডিক্স বুঝিয়ে দিতে আমরা প্রস্তুত।",
+      "bullets_bn": [
+        "কল করুন +880 1575-888775",
+        "ভিজিট করুন datatechbd.com",
+        "আগে ফ্রি ডেমো চালিয়ে দেখুন"
+      ],
+      "caption_en": "Questions? Just ask. We are happy to walk you through DT Medix.\n\n- Call +880 1575-888775\n- Visit datatechbd.com\n- Try the free demo first\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#ContactUs #DTMedix #DTMedix #DatatechBD",
+      "caption_bn": "প্রশ্ন আছে? নির্দ্বিধায় জিজ্ঞাসা করুন ডিটি মেডিক্স বুঝিয়ে দিতে আমরা প্রস্তুত।\n\n- কল করুন +880 1575-888775\n- ভিজিট করুন datatechbd.com\n- আগে ফ্রি ডেমো চালিয়ে দেখুন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#ContactUs #DTMedix #DTMedix #DatatechBD",
+      "hashtags": [
+        "ContactUs",
+        "DTMedix",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Questions? Just ask. - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 6
+    },
+    {
+      "id": "post-49",
+      "number": 49,
+      "type": "bn",
+      "image": "images/post-49.jpg",
+      "image_language": "bn",
+      "icon": "hospital",
+      "headline_en": "Complete software for diagnostic centers",
+      "subline_en": "From patient to report, billing to payroll, in one place.",
+      "bullets_en": [
+        "Patients, appointments and billing",
+        "Lab, samples and results",
+        "Attendance and payroll"
+      ],
+      "headline_bn": "ডায়াগনস্টিক সেন্টারের জন্য সম্পূর্ণ সফটওয়্যার",
+      "subline_bn": "রোগী থেকে রিপোর্ট, বিলিং থেকে বেতন, সব এক জায়গায়।",
+      "bullets_bn": [
+        "রোগী, অ্যাপয়েন্টমেন্ট ও বিলিং",
+        "ল্যাব, নমুনা ও ফলাফল",
+        "উপস্থিতি ও বেতন"
+      ],
+      "caption_en": "Complete software for diagnostic centers From patient to report, billing to payroll, in one place.\n\n- Patients, appointments and billing\n- Lab, samples and results\n- Attendance and payroll\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#ডিটিমেডিক্স #ডায়াগনস্টিক #DTMedix #DatatechBD",
+      "caption_bn": "ডায়াগনস্টিক সেন্টারের জন্য সম্পূর্ণ সফটওয়্যার রোগী থেকে রিপোর্ট, বিলিং থেকে বেতন, সব এক জায়গায়।\n\n- রোগী, অ্যাপয়েন্টমেন্ট ও বিলিং\n- ল্যাব, নমুনা ও ফলাফল\n- উপস্থিতি ও বেতন\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#ডিটিমেডিক্স #ডায়াগনস্টিক #DTMedix #DatatechBD",
+      "hashtags": [
+        "ডিটিমেডিক্স",
+        "ডায়াগনস্টিক",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Complete software for diagnostic centers - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 7
+    },
+    {
+      "id": "post-50",
+      "number": 50,
+      "type": "bn",
+      "image": "images/post-50.jpg",
+      "image_language": "bn",
+      "icon": "bolt",
+      "headline_en": "Try the free demo",
+      "subline_en": "Sign in and explore every feature. Demo data resets daily at 4:00 AM.",
+      "bullets_en": [
+        "No installation needed",
+        "One click into eight roles",
+        "Want it for your business? Call +880 1575-888775"
+      ],
+      "headline_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+      "subline_bn": "সাইন ইন করে সব ফিচার ঘুরে দেখুন। ডেমো ডেটা প্রতিদিন ভোর ৪:০০টায় রিসেট হয়।",
+      "bullets_bn": [
+        "কিছু ইনস্টল করতে হবে না",
+        "আটটি ভূমিকায় এক ক্লিকে প্রবেশ",
+        "আপনার ব্যবসার জন্য চান? কল করুন +880 1575-888775"
+      ],
+      "caption_en": "Try the free demo Sign in and explore every feature. Demo data resets daily at 4:00 AM.\n\n- No installation needed\n- One click into eight roles\n- Want it for your business? Call +880 1575-888775\n\nTry the free demo or call +880 1575-888775. datatechbd.com\n\n#ফ্রিডেমো #ডিটিমেডিক্স #DTMedix #DatatechBD",
+      "caption_bn": "ফ্রি ডেমো চালিয়ে দেখুন সাইন ইন করে সব ফিচার ঘুরে দেখুন। ডেমো ডেটা প্রতিদিন ভোর ৪:০০টায় রিসেট হয়।\n\n- কিছু ইনস্টল করতে হবে না\n- আটটি ভূমিকায় এক ক্লিকে প্রবেশ\n- আপনার ব্যবসার জন্য চান? কল করুন +880 1575-888775\n\nফ্রি ডেমো চালিয়ে দেখুন বা কল করুন +880 1575-888775। datatechbd.com\n\n#ফ্রিডেমো #ডিটিমেডিক্স #DTMedix #DatatechBD",
+      "hashtags": [
+        "ফ্রিডেমো",
+        "ডিটিমেডিক্স",
+        "DTMedix",
+        "DatatechBD"
+      ],
+      "call_to_action": {
+        "label_en": "Try the free demo",
+        "label_bn": "ফ্রি ডেমো চালিয়ে দেখুন",
+        "phone": "+880 1575-888775",
+        "website": "datatechbd.com"
+      },
+      "alt_text": "Try the free demo - DT Medix, a product of Datatech BD Ltd.",
+      "suggested_schedule_day": 1
+    }
+  ]
+}
