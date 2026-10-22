@@ -61,12 +61,12 @@ watch(() => page.url, () => {
         <DemoBanner />
         <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-2 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-primary-foreground">{{ t('site.common.skip') }}</a>
 
-        <div v-if="isCenter" class="hidden bg-primary text-primary-foreground sm:block">
+        <div v-if="isCenter" class="hidden border-b border-border bg-subtle text-muted sm:block">
             <div class="site-container flex h-9 items-center justify-between gap-4 text-xs">
                 <span class="inline-flex items-center gap-1.5 opacity-90"><AppIcon name="clock" size="sm" /> {{ t('site.topbar.hours') }}</span>
                 <span class="hidden opacity-90 md:inline">{{ t('site.topbar.tagline') }}</span>
-                <a v-if="site?.phone" :href="'tel:' + site.phone" class="inline-flex items-center gap-1.5 font-semibold hover:underline">
-                    <AppIcon name="phone" size="sm" /> <span class="tabular-nums">{{ site.phone }}</span>
+                <a v-if="site?.phone" :href="'tel:' + site.phone" class="inline-flex items-center gap-1.5 font-semibold text-foreground hover:underline">
+                    <AppIcon name="phone" size="sm" class="text-accent" /> <span class="tabular-nums">{{ site.phone }}</span>
                 </a>
             </div>
         </div>

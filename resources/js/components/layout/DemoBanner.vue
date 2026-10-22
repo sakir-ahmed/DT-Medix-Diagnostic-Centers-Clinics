@@ -9,8 +9,8 @@ const demo = computed(() => usePage().props.demo ?? null);
 </script>
 
 <template>
-    <div v-if="demo" class="no-print w-full bg-warning px-3 py-1.5 text-center text-xs leading-snug text-accent-foreground sm:text-[13px]" role="note">
-        <AppIcon name="bolt" size="sm" />
+    <div v-if="demo" class="no-print w-full bg-primary px-3 py-1.5 text-center text-xs leading-snug text-primary-foreground sm:text-[13px]" role="note">
+        <AppIcon name="bolt" size="sm" class="text-accent" />
         <strong class="font-semibold">{{ t('demo.title') }}</strong>
         {{ t('demo.text') }}
         {{ t('demo.cta') }}
