@@ -1,0 +1,58 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'lead' => 'The cloud management system for diagnostic centers and clinics. One connected flow from patient registration to report delivery, billing and doctor commission.',
+    'flow_badge' => 'One connected flow',
+    'flow_title' => 'No more paper registers and disconnected tools',
+    'flow' => [
+        'patient' => 'Patient',
+        'appointment' => 'Appointment',
+        'order' => 'Test order',
+        'lab' => 'Lab processing',
+        'report' => 'Report',
+        'message' => 'SMS / WhatsApp',
+        'payment' => 'Payment',
+    ],
+    'modules_badge' => 'Modules',
+    'modules_title' => 'Everything a diagnostic center runs on',
+    'modules_lead' => 'Built for centers with one or many branches, in English and Bangla.',
+    'modules' => [
+        'patients' => ['title' => 'Patients', 'text' => 'Fast registration, duplicate detection, family linking and a full history timeline.'],
+        'appointments' => ['title' => 'Doctors and appointments', 'text' => 'Schedules, slots, token numbers, a live queue and online booking.'],
+        'tests' => ['title' => 'Test catalog and packages', 'text' => 'Parameters, reference ranges by age and sex, critical limits and packages.'],
+        'billing' => ['title' => 'Reception and billing', 'text' => 'Search to printed invoice in under 90 seconds, with discounts, refunds and approvals.'],
+        'lab' => ['title' => 'Sample and lab', 'text' => 'Barcode samples, worklists with TAT countdown and keyboard-first result entry.'],
+        'reports' => ['title' => 'Reports', 'text' => 'Verified, signed, versioned A4 reports with QR verification and amendments.'],
+        'payments' => ['title' => 'Payments and dues', 'text' => 'Cash, bKash, Nagad and card, partial payments, due tracking and cash shifts.'],
+        'commission' => ['title' => 'Commission and referrals', 'text' => 'Rules by referrer, department or test, statements and locked payouts.'],
+        'history' => ['title' => 'Patient history', 'text' => 'Visit timeline, parameter trends with reference bands and report comparison.'],
+        'messaging' => ['title' => 'SMS and WhatsApp', 'text' => 'Confirmations, reminders and secure report links. Never results in the text.'],
+        'dashboard' => ['title' => 'Owner dashboard', 'text' => 'Collections, dues, department revenue, TAT breaches and exports to PDF and Excel.'],
+        'import' => ['title' => 'Import and onboarding', 'text' => 'Dry-run Excel import for patients, doctors and test catalogs, with an onboarding checklist.'],
+    ],
+    'roles_badge' => 'For every role',
+    'roles_title' => 'The right screen for every person',
+    'roles_lead' => 'Each role sees only the menu and data it needs.',
+    'roles' => [
+        'owner' => ['title' => 'Owner', 'text' => 'Dashboard, collections, dues, commissions and branch comparison.'],
+        'branch_manager' => ['title' => 'Branch manager', 'text' => 'Daily operations, approvals and cash closing review.'],
+        'receptionist' => ['title' => 'Receptionist', 'text' => 'Registration, appointments, billing and due collection.'],
+        'sample_collector' => ['title' => 'Sample collector', 'text' => 'Counter and home collection with label printing.'],
+        'lab_technician' => ['title' => 'Lab technician', 'text' => 'Receive samples and enter results fast.'],
+        'pathologist' => ['title' => 'Pathologist', 'text' => 'Verify, sign and amend reports.'],
+        'doctor' => ['title' => 'Doctor', 'text' => 'Queue, consultation notes and patient history.'],
+        'accountant' => ['title' => 'Accountant', 'text' => 'Collections, payouts, expenses and financial reports.'],
+    ],
+    'security_badge' => 'Trust and safety',
+    'security_title' => 'Built for sensitive health data',
+    'security' => [
+        'isolation' => ['title' => 'Branch isolation', 'text' => 'Staff see only their own branch. Verified by automated tests.'],
+        'audit' => ['title' => 'Full audit trail', 'text' => 'Every patient record view, release and override is logged.'],
+        'privacy' => ['title' => 'Private by design', 'text' => 'No results or diagnoses in messages. Secure, expiring report links.'],
+        'backup' => ['title' => 'Backups and export', 'text' => 'Encrypted daily backups and a full data export for the center.'],
+    ],
+    'cta_title' => 'A product of Datatech BD Ltd.',
+    'cta_text' => 'Software that runs business. Talk to Datatech to set up DT Medix for your diagnostic center or clinic.',
+];

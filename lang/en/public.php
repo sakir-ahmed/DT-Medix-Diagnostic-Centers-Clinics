@@ -38,6 +38,7 @@ return [
     'call_now' => 'Call now',
     'stat_tests' => 'Tests',
     'stat_doctors' => 'Doctors',
+    'stat_home_collection' => 'Home collection tests',
     'stat_departments' => 'Departments',
     'popular_tests' => 'Popular tests',
     'report_in' => 'Report in :hours h',

@@ -16,6 +16,13 @@ Route::post('/locale', [LocaleController::class, 'update'])->name('locale.update
 
 Route::get('/doctors', [SiteController::class, 'doctors'])->name('public.doctors');
 Route::get('/tests', [SiteController::class, 'tests'])->name('public.tests');
+Route::get('/about', [SiteController::class, 'about'])->name('public.about');
+Route::get('/services', [SiteController::class, 'services'])->name('public.services');
+Route::get('/home-collection', [SiteController::class, 'homeCollection'])->name('public.home-collection');
+Route::get('/reports', [SiteController::class, 'reports'])->name('public.reports');
+Route::get('/contact', [SiteController::class, 'contact'])->name('public.contact');
+Route::get('/faq', [SiteController::class, 'faq'])->name('public.faq');
+Route::get('/privacy', [SiteController::class, 'privacy'])->name('public.privacy');
 Route::get('/booking', [BookingController::class, 'create'])->name('public.booking');
 Route::get('/booking/slots', [BookingController::class, 'slots'])->middleware('throttle:60,1')->name('public.booking.slots');
 Route::post('/booking', [BookingController::class, 'store'])->middleware('throttle:10,1')->name('public.booking.store');

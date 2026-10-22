@@ -38,6 +38,7 @@ return [
     'call_now' => 'এখনই কল করুন',
     'stat_tests' => 'টেস্ট',
     'stat_doctors' => 'ডাক্তার',
+    'stat_home_collection' => 'হোম কালেকশন পরীক্ষা',
     'stat_departments' => 'বিভাগ',
     'popular_tests' => 'জনপ্রিয় টেস্ট',
     'report_in' => ':hours ঘণ্টায় রিপোর্ট',

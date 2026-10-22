@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Package;
+use App\Models\Test;
 use App\Support\LocalName;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
@@ -99,6 +100,91 @@ final class SiteController extends Controller
                     ->all(),
             ])->all(),
         ])->withViewData(['meta_title' => __('public.tests_page_title')]);
+    }
+
+    public function about(): Response|RedirectResponse
+    {
+        return $this->staticPage('Public/About', 'about');
+    }
+
+    public function services(): Response|RedirectResponse
+    {
+        if (! settings()->has('center_name')) {
+            return redirect()->route('home');
+        }
+
+        $departments = Department::query()
+            ->where('is_active', true)
+            ->with(['tests' => fn ($query) => $query->where('is_active', true)->where('is_outsourced', false)->orderBy('sort_order')->orderBy('name')])
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+
+        return Inertia::render('Public/Services', [
+            'departments' => $departments
+                ->filter(fn (Department $department): bool => $department->tests->isNotEmpty())
+                ->map(fn (Department $department): array => [
+                    'id' => $department->id,
+                    'name' => LocalName::of($department->name, $department->name_bn),
+                    'category' => $department->category->value,
+                    'tests_count' => $department->tests->count(),
+                    'sample_tests' => $department->tests->take(5)
+                        ->map(fn (Test $test): string => LocalName::of($test->name, $test->name_bn))
+                        ->all(),
+                ])->values()->all(),
+        ])->withViewData(['meta_title' => __('site.services.title')]);
+    }
+
+    public function homeCollection(): Response|RedirectResponse
+    {
+        if (! settings()->has('center_name')) {
+            return redirect()->route('home');
+        }
+
+        $tests = Test::query()
+            ->where('is_active', true)
+            ->where('is_outsourced', false)
+            ->where('home_collection', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get(['name', 'name_bn', 'price', 'preparation']);
+
+        return Inertia::render('Public/HomeCollection', [
+            'tests' => $tests->map(fn (Test $test): array => [
+                'name' => LocalName::of($test->name, $test->name_bn),
+                'price' => (string) $test->price,
+                'preparation' => $test->preparation,
+            ])->all(),
+        ])->withViewData(['meta_title' => __('site.home_collection.title')]);
+    }
+
+    public function reports(): Response|RedirectResponse
+    {
+        return $this->staticPage('Public/Reports', 'reports');
+    }
+
+    public function contact(): Response|RedirectResponse
+    {
+        return $this->staticPage('Public/Contact', 'contact');
+    }
+
+    public function faq(): Response|RedirectResponse
+    {
+        return $this->staticPage('Public/Faq', 'faq');
+    }
+
+    public function privacy(): Response|RedirectResponse
+    {
+        return $this->staticPage('Public/Privacy', 'privacy');
+    }
+
+    private function staticPage(string $component, string $section): Response|RedirectResponse
+    {
+        if (! settings()->has('center_name')) {
+            return redirect()->route('home');
+        }
+
+        return Inertia::render($component)->withViewData(['meta_title' => __("site.{$section}.title")]);
     }
 
     /**

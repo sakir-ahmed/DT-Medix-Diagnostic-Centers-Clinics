@@ -8,6 +8,7 @@ use App\Models\Branch;
 use App\Models\User;
 use App\Support\BranchContext;
 use App\Support\Navigation;
+use App\Support\SiteProfile;
 use App\Support\Translations;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -65,6 +66,7 @@ class HandleInertiaRequests extends Middleware
                 'name' => setting('center_name'),
                 'name_bn' => setting('center_name_bn'),
             ],
+            'site' => fn (): ?array => $request->routeIs('home', 'public.*') ? SiteProfile::current() : null,
             'branches' => fn (): array => $user === null ? [] : Branch::query()
                 ->where('is_active', true)
                 ->orderBy('code')

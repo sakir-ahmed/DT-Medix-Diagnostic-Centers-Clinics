@@ -7,7 +7,9 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Doctor;
+use App\Models\Package;
 use App\Models\Test;
+use App\Support\LocalName;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -60,6 +62,13 @@ class HomeController extends Controller
             fn (int $day): array => [$day => now()->startOfWeek()->addDays($day)->locale($locale)->shortDayName]
         );
 
+        $packages = Package::query()
+            ->where('is_active', true)
+            ->with('tests:id,name,name_bn')
+            ->orderBy('name')
+            ->limit(3)
+            ->get();
+
         return [
             'name' => setting('center_name'),
             'name_bn' => setting('center_name_bn'),
@@ -69,13 +78,21 @@ class HomeController extends Controller
                 'tests' => Test::query()->where('is_active', true)->count(),
                 'doctors' => Doctor::query()->where('is_active', true)->count(),
                 'departments' => Department::query()->where('is_active', true)->count(),
+                'home_collection' => Test::query()->where('is_active', true)->where('home_collection', true)->count(),
             ],
+            'packages' => $packages->map(fn (Package $package): array => [
+                'id' => $package->id,
+                'name' => LocalName::of($package->name, $package->name_bn),
+                'price' => (string) $package->price,
+                'description' => $package->description,
+                'tests' => $package->tests->map(fn (Test $test): string => LocalName::of($test->name, $test->name_bn))->all(),
+            ])->all(),
             'tests' => $tests->map(fn (Test $test): array => [
                 'name' => $locale === 'bn' && filled($test->name_bn) ? $test->name_bn : $test->name,
                 'price' => (string) $test->price,
                 'tat_hours' => $test->tat_hours,
             ])->all(),
-            'departments' => $departments->map(fn (Department $department): array => [
+            'departments' => $departments->filter(fn (Department $department): bool => $department->tests_count > 0)->values()->map(fn (Department $department): array => [
                 'name' => $locale === 'bn' && filled($department->name_bn) ? $department->name_bn : $department->name,
                 'category' => $department->category->value,
                 'tests_count' => $department->tests_count,

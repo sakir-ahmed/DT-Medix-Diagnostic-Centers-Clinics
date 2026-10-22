@@ -151,4 +151,45 @@ h3 {
     .stat-label {
         @apply text-xs font-medium tracking-wide text-muted uppercase;
     }
+
+    .site-container {
+        @apply mx-auto w-full max-w-6xl px-4;
+    }
+
+    .site-section {
+        @apply py-12 lg:py-16;
+    }
+
+    .site-eyebrow {
+        @apply text-xs font-semibold tracking-widest text-accent uppercase;
+    }
+
+    .site-h2 {
+        @apply mt-1 font-display text-2xl font-bold tracking-tight lg:text-3xl;
+    }
+
+    .site-lead {
+        @apply mt-2 max-w-2xl text-[15px] leading-relaxed text-muted;
+    }
+
+    .site-card {
+        @apply rounded-xl border border-border bg-surface p-5 transition-all duration-150 hover:border-accent/60 hover:shadow-md;
+    }
+
+    .site-icon {
+        @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary;
+    }
+
+    .site-hero {
+        background-image: radial-gradient(60rem 28rem at 85% -10%, color-mix(in oklab, var(--color-accent) 22%, transparent), transparent 70%),
+            radial-gradient(40rem 24rem at -10% 10%, color-mix(in oklab, var(--color-primary) 14%, transparent), transparent 70%);
+    }
+
+    .btn-primary-xl {
+        @apply inline-flex h-12 items-center gap-2 rounded-lg bg-primary px-5 text-[15px] font-semibold text-primary-foreground shadow-sm transition-all duration-150 hover:opacity-90 hover:shadow-md;
+    }
+
+    .btn-secondary-xl {
+        @apply inline-flex h-12 items-center gap-2 rounded-lg border border-border bg-surface px-5 text-[15px] font-semibold transition-colors duration-150 hover:bg-subtle;
+    }
 }
