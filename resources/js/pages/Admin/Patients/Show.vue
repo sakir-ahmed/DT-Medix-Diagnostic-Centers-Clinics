@@ -12,6 +12,7 @@ import StatusBadge from '@/components/ui-kit/StatusBadge.vue';
 import TabsNav from '@/components/ui-kit/TabsNav.vue';
 import UiButton from '@/components/ui-kit/UiButton.vue';
 import { usePermissions } from '@/composables/usePermissions';
+import { formatClock } from '@/lib/format';
 import { useI18n } from '@/lib/i18n';
 
 const props = defineProps({
@@ -145,6 +146,7 @@ const familyColumns = [
             empty-icon="calendar-check"
             :sync-url="false"
         >
+            <template #cell-time="{ value }">{{ formatClock(value) }}</template>
             <template #cell-visit_type="{ value }">{{ value === 'follow_up' ? t('appointments.visit_follow_up') : t('appointments.visit_new') }}</template>
             <template #cell-fee="{ value }"><MoneyText :value="value" symbol /></template>
             <template #cell-status="{ value }"><StatusBadge :status="value" /></template>

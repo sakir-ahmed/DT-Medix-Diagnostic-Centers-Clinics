@@ -137,6 +137,20 @@ export function formatDate(value, { time = false, locale = currentLocale() } = {
     return localizeDigits(text, locale);
 }
 
+/**
+ * A "HH:MM" or "HH:MM:SS" clock string as 12-hour time: 09:30 -> 9:30 AM.
+ */
+export function formatClock(value, locale = currentLocale()) {
+    const match = /^(\d{1,2}):(\d{2})/.exec(String(value ?? ''));
+    if (!match) {
+        return '';
+    }
+    const hour = Number(match[1]);
+    const hour12 = hour % 12 === 0 ? 12 : hour % 12;
+
+    return localizeDigits(`${hour12}:${match[2]} ${hour < 12 ? 'AM' : 'PM'}`, locale);
+}
+
 export function formatTime(value, locale = currentLocale()) {
     const parts = dhakaParts(value);
     if (!parts) {

@@ -15,6 +15,7 @@ import { focusFirstError } from '@/composables/useFormErrors';
 import { useConfirm } from '@/composables/useConfirm';
 import { usePermissions } from '@/composables/usePermissions';
 import { destroy } from '@/lib/http';
+import { formatClock } from '@/lib/format';
 import { useI18n } from '@/lib/i18n';
 
 const props = defineProps({
@@ -56,7 +57,7 @@ function removeSchedule(row) {
         title: t('doctors.remove_schedule_title'),
         message: t('doctors.remove_schedule_message'),
         confirmText: t('doctors.remove_schedule'),
-        facts: [{ label: t('doctors.weekday'), value: t(`doctors.weekdays.${row.weekday}`) }, { label: t('doctors.time'), value: `${row.start_time} - ${row.end_time}` }],
+        facts: [{ label: t('doctors.weekday'), value: t(`doctors.weekdays.${row.weekday}`) }, { label: t('doctors.time'), value: `${formatClock(row.start_time)} - ${formatClock(row.end_time)}` }],
         action: () => destroy(route('admin.doctors.schedules.destroy', [props.doctor.id, row.id])),
     });
 }
@@ -129,7 +130,7 @@ const leaveColumns = [
             </form>
             <DataTable :columns="scheduleColumns" :rows="schedules" :sync-url="false" empty-icon="calendar-check" :empty-title="t('doctors.no_schedule')">
                 <template #cell-weekday="{ value }">{{ t(`doctors.weekdays.${value}`) }}</template>
-                <template #cell-time="{ row }">{{ row.start_time }} - {{ row.end_time }}</template>
+                <template #cell-time="{ row }">{{ formatClock(row.start_time) }} - {{ formatClock(row.end_time) }}</template>
                 <template #row-actions="{ row }">
                     <UiButton v-if="can('schedules.manage')" size="xs" variant="ghost-danger" icon-only icon="trash" :label="t('doctors.remove_schedule')" @click="removeSchedule(row)" />
                 </template>

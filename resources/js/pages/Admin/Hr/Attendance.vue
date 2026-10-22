@@ -12,7 +12,7 @@ import TextInput from '@/components/ui-kit/TextInput.vue';
 import UiButton from '@/components/ui-kit/UiButton.vue';
 import { focusFirstError } from '@/composables/useFormErrors';
 import { usePermissions } from '@/composables/usePermissions';
-import { formatDuration, localizeDigits } from '@/lib/format';
+import { formatClock, formatDuration, localizeDigits } from '@/lib/format';
 import { useI18n } from '@/lib/i18n';
 
 const props = defineProps({
@@ -118,8 +118,8 @@ const time = (minutes) => (minutes ? formatDuration(minutes, t) : '-');
                             <td class="px-3 py-1.5"><span class="block font-medium">{{ row.name }}</span><span class="block text-xs text-muted">{{ row.code }}</span></td>
                             <td class="px-3 py-1.5 text-muted">{{ row.shift ?? '-' }}</td>
                             <td class="px-3 py-1.5"><StatusBadge v-if="row.status" :status="row.status" :tone="tones[row.status]" :label="t(`hr.status.${row.status}`)" /><span v-else class="text-muted">{{ t('hr.unmarked') }}</span></td>
-                            <td class="px-3 py-1.5 text-right tabular-nums">{{ row.check_in ? localizeDigits(row.check_in) : '-' }}</td>
-                            <td class="px-3 py-1.5 text-right tabular-nums">{{ row.check_out ? localizeDigits(row.check_out) : '-' }}</td>
+                            <td class="px-3 py-1.5 text-right tabular-nums">{{ row.check_in ? formatClock(row.check_in) : '-' }}</td>
+                            <td class="px-3 py-1.5 text-right tabular-nums">{{ row.check_out ? formatClock(row.check_out) : '-' }}</td>
                             <td class="px-3 py-1.5 text-right tabular-nums">{{ time(row.late_minutes) }}</td>
                             <td class="px-3 py-1.5 text-right tabular-nums">{{ time(row.worked_minutes) }}</td>
                             <td class="px-3 py-1.5 text-right tabular-nums">{{ time(row.overtime_minutes) }}</td>

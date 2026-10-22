@@ -5,5 +5,5 @@
     <div>{{ $label['age'] }} / {{ $label['sex'] }}</div>
     <div>{{ $label['codes'] }}</div>
     <div>{{ $label['sample_type'] }} · {{ $label['branch_code'] }}</div>
-    <div>{{ $label['at']?->timezone('Asia/Dhaka')->format('d M H:i') }}</div>
+    <div>{{ $label['at']?->timezone('Asia/Dhaka')->format('d M, h:i A') }}</div>
 </section>

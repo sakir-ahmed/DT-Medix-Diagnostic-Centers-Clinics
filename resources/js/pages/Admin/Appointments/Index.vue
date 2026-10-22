@@ -13,6 +13,7 @@ import UiButton from '@/components/ui-kit/UiButton.vue';
 import { useConfirm } from '@/composables/useConfirm';
 import { usePermissions } from '@/composables/usePermissions';
 import { echo } from '@/lib/echo';
+import { formatClock } from '@/lib/format';
 import { useI18n } from '@/lib/i18n';
 
 const props = defineProps({
@@ -159,7 +160,7 @@ async function setStatus(row, status) {
                         :disabled="!slot.available"
                         @click="chooseSlot(slot)"
                     >
-                        {{ slot.time }}
+                        {{ formatClock(slot.time) }}
                     </button>
                 </div>
 
@@ -182,6 +183,7 @@ async function setStatus(row, status) {
                 <h2 class="mb-2 text-sm font-semibold">{{ t('appointments.queue') }}</h2>
                 <DataTable :columns="columns" :rows="appointments" :empty-title="t('appointments.empty')" empty-icon="calendar-check" :sync-url="false">
                     <template #cell-patient="{ row }">{{ row.patient?.name }} <span class="text-xs text-muted">{{ row.patient?.patient_code }}</span></template>
+                    <template #cell-time="{ value }">{{ formatClock(value) }}</template>
                     <template #cell-doctor="{ row }">{{ row.doctor?.name }}</template>
                     <template #cell-fee="{ row }"><MoneyText :value="row.fee" symbol /></template>
                     <template #cell-status="{ row }"><StatusBadge :status="row.status" /></template>

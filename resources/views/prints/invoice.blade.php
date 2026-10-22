@@ -8,7 +8,7 @@
     </p>
     <p>
         <strong>{{ $invoice['invoice_no'] }}</strong><br>
-        {{ $invoice['issued_at']?->timezone('Asia/Dhaka')->format('d M Y H:i') }}
+        {{ $invoice['issued_at']?->timezone('Asia/Dhaka')->format('d M Y, h:i A') }}
     </p>
     <p>
         {{ $invoice['patient_name'] }}<br>
@@ -30,7 +30,7 @@
                     <td>
                         {{ $item['name'] }}
                         @if ($item['expected_at'])
-                            <div class="muted">{{ __('billing.expected') }}: {{ $item['expected_at']->timezone('Asia/Dhaka')->format('d M H:i') }}</div>
+                            <div class="muted">{{ __('billing.expected') }}: {{ $item['expected_at']->timezone('Asia/Dhaka')->format('d M, h:i A') }}</div>
                         @endif
                     </td>
                     <td class="num">{{ $item['price'] }}</td>

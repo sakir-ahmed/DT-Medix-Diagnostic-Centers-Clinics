@@ -7,6 +7,7 @@ import PageHeader from '@/components/ui-kit/PageHeader.vue';
 import StatusBadge from '@/components/ui-kit/StatusBadge.vue';
 import UiButton from '@/components/ui-kit/UiButton.vue';
 import { echo } from '@/lib/echo';
+import { formatClock } from '@/lib/format';
 import { useI18n } from '@/lib/i18n';
 
 const props = defineProps({
@@ -60,6 +61,7 @@ function nextPatient() {
         <EmptyState v-if="!doctor" icon="user-doctor" :title="t('appointments.no_doctor')" />
         <DataTable v-else :columns="columns" :rows="appointments" :empty-title="t('appointments.empty')" empty-icon="user-doctor" :sync-url="false">
             <template #cell-patient="{ row }">{{ row.patient?.name }} <span class="text-xs text-muted">{{ row.patient?.patient_code }}</span></template>
+            <template #cell-time="{ value }">{{ formatClock(value) }}</template>
             <template #cell-waiting_minutes="{ value }">{{ value === null || value === undefined ? '–' : t('appointments.minutes', { count: value }) }}</template>
             <template #cell-status="{ row }"><StatusBadge :status="row.status" /></template>
         </DataTable>

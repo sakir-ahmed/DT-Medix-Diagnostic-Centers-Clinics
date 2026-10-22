@@ -6,7 +6,7 @@
         {{ $receipt['patient_name'] }}<br>
         {{ $receipt['patient_code'] }}<br>
         {{ __('billing.invoice') }} {{ $receipt['invoice_no'] }}<br>
-        {{ $receipt['paid_at']?->timezone('Asia/Dhaka')->format('d M Y H:i') }}
+        {{ $receipt['paid_at']?->timezone('Asia/Dhaka')->format('d M Y, h:i A') }}
     </p>
     <p><strong>{{ __('billing.amount') }}: {{ $receipt['amount'] }}</strong></p>
     <p>{{ __('billing.method') }}: {{ __('payments.methods.'.$receipt['method']) }}</p>

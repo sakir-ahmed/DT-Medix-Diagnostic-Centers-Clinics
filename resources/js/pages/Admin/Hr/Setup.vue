@@ -10,7 +10,7 @@ import SwitchField from '@/components/ui-kit/SwitchField.vue';
 import TextInput from '@/components/ui-kit/TextInput.vue';
 import UiButton from '@/components/ui-kit/UiButton.vue';
 import { focusFirstError } from '@/composables/useFormErrors';
-import { formatDate } from '@/lib/format';
+import { formatClock, formatDate } from '@/lib/format';
 import { useI18n } from '@/lib/i18n';
 
 defineProps({
@@ -77,7 +77,7 @@ function addHoliday() {
             <ul class="mt-2 divide-y divide-border text-[13px]">
                 <li v-for="shift in shifts" :key="shift.id" class="flex flex-wrap items-center gap-3 py-2">
                     <span class="font-medium">{{ shift.name }}</span>
-                    <span class="tabular-nums text-muted">{{ shift.start_time.slice(0, 5) }} - {{ shift.end_time.slice(0, 5) }}</span>
+                    <span class="tabular-nums text-muted">{{ formatClock(shift.start_time) }} - {{ formatClock(shift.end_time) }}</span>
                     <span class="text-muted">{{ t('hr.grace_minutes_value', { minutes: shift.grace_minutes }) }}</span>
                     <span class="text-muted">{{ t('hr.weekly_off') }}: {{ (shift.weekly_off ?? []).map(weekdayName).join(', ') || t('common.none') }}</span>
                     <StatusBadge class="ml-auto" :status="shift.is_active ? 'active' : 'suspended'" :label="shift.is_active ? t('common.active') : t('common.inactive')" />

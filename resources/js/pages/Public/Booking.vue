@@ -3,7 +3,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { computed, ref, watch } from 'vue';
 import AppIcon from '@/components/ui-kit/AppIcon.vue';
 import PublicLayout from '@/layouts/PublicLayout.vue';
-import { formatMoney } from '@/lib/format';
+import { formatClock, formatMoney } from '@/lib/format';
 import { useI18n } from '@/lib/i18n';
 
 defineOptions({ layout: null });
@@ -144,7 +144,7 @@ function formatBookingDate(value) {
                         </div>
                         <div class="flex items-center justify-between gap-3">
                             <dt class="text-muted">{{ t('public.field_time') }}</dt>
-                            <dd class="font-medium tabular-nums">{{ booked.time }}</dd>
+                            <dd class="font-medium tabular-nums">{{ formatClock(booked.time) }}</dd>
                         </div>
                         <div class="flex items-center justify-between gap-3">
                             <dt class="text-muted">{{ t('public.field_patient_name') }}</dt>
@@ -254,7 +254,7 @@ function formatBookingDate(value) {
                                 :disabled="! slot.available"
                                 @click="form.time = slot.time"
                             >
-                                {{ slot.time }}
+                                {{ formatClock(slot.time) }}
                             </button>
                         </div>
                         <p v-if="form.errors.time" class="mt-2 text-xs text-danger">{{ form.errors.time }}</p>
@@ -343,7 +343,7 @@ function formatBookingDate(value) {
                     </button>
                     <p v-if="selectedDoctor && form.time" class="text-[13px] text-muted">
                         {{ selectedDoctor.name }} - {{ selectedDoctor.specialty }},
-                        {{ form.date ? formatBookingDate(form.date) : '' }} {{ form.time }}
+                        {{ form.date ? formatBookingDate(form.date) : '' }} {{ formatClock(form.time) }}
                     </p>
                 </div>
             </form>
