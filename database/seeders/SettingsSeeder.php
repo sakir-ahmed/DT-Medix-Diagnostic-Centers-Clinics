@@ -7,27 +7,38 @@ namespace Database\Seeders;
 use App\Actions\Center\SeedCenterDefaultsAction;
 use App\Enums\RoleName;
 use App\Models\Branch;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
 /**
- * Installation defaults: settings from the CENTER_* env values, the
- * first branches, the catalog defaults and the hidden Datatech
- * super-admin with fixed credentials.
+ * Installation defaults: the demo center profile stored in the settings
+ * table (written directly, because Settings::set() skips default values;
+ * editable later from admin settings), the first branches, the
+ * catalog defaults and the hidden Datatech super-admin.
  */
 class SettingsSeeder extends Seeder
 {
     public function run(SeedCenterDefaultsAction $defaults): void
     {
-        settings()->set(array_filter([
-            'center_name' => config('center.name'),
-            'center_name_bn' => config('center.name_bn'),
-            'center_address' => config('center.address'),
-            'center_contact_mobile' => normalize_bd_mobile(config('center.mobile')),
-            'center_contact_email' => config('center.email'),
-        ], fn (mixed $value): bool => ! blank($value)));
+        $address = 'House 12, Road 5, Dhanmondi, Dhaka 1205';
+        $mobile = normalize_bd_mobile('01575888775');
 
-        Branch::query()->firstOrCreate(['code' => 'BR01'], ['name' => 'Main Branch', 'address' => config('center.address'), 'phone' => normalize_bd_mobile(config('center.mobile'))]);
+        $profile = [
+            'center_name' => 'DT Medix Diagnostic Center',
+            'center_name_bn' => 'ডিটি মেডিক্স ডায়াগনস্টিক সেন্টার',
+            'center_address' => $address,
+            'center_contact_mobile' => $mobile,
+            'center_contact_email' => 'info@dtmedix.test',
+        ];
+
+        foreach ($profile as $key => $value) {
+            Setting::query()->firstOrCreate(['key' => $key], ['value' => json_encode($value)]);
+        }
+
+        settings()->flush();
+
+        Branch::query()->firstOrCreate(['code' => 'BR01'], ['name' => 'Main Branch', 'address' => $address, 'phone' => $mobile]);
         Branch::query()->firstOrCreate(['code' => 'BR02'], ['name' => 'Mirpur Collection Center', 'address' => 'Mirpur 10, Dhaka']);
 
         $defaults->execute();

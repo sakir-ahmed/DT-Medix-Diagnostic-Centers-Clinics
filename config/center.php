@@ -10,14 +10,9 @@ declare(strict_types=1);
 return [
 
     /*
-    | The center profile created on first install. Changed later from the
-    | admin settings page.
+    | The center profile lives in the settings table (seeded by
+    | SettingsSeeder, edited from the admin settings page).
     */
-    'name' => env('CENTER_NAME', 'DT Medix Diagnostic Center'),
-    'name_bn' => env('CENTER_NAME_BN'),
-    'address' => env('CENTER_ADDRESS'),
-    'mobile' => env('CENTER_MOBILE'),
-    'email' => env('CENTER_EMAIL'),
 
     'demo_password' => 'secret',
 

@@ -18,6 +18,10 @@ return [
         'patients' => 'For patients',
         'company' => 'Our center',
         'legal' => 'Policies',
+        'home' => 'Home',
+        'patient_info' => 'Patient info',
+        'quick_links' => 'Quick links',
+        'information' => 'Information',
     ],
     'topbar' => [
         'hours' => 'Open daily 8:00 AM - 10:00 PM',
@@ -314,6 +318,24 @@ return [
         ],
     ],
 
+    'menu' => [
+        'about' => 'About us',
+        'desc' => [
+            'about' => 'Our story, mission and values',
+            'locations' => 'Addresses, phones and hours',
+            'guide' => 'Preparation and what to bring',
+            'contact' => 'Reach the front desk',
+            'services' => 'Pathology, imaging and more',
+            'tests' => 'Full test list with prices',
+            'packages' => 'Bundled check-ups for less',
+            'home_collection' => 'Samples collected at your door',
+            'reports' => 'Get your report securely',
+            'faq' => 'Answers to common questions',
+            'privacy' => 'How we protect your data',
+            'terms' => 'Rules for bookings and payments',
+        ],
+        'view_all' => 'View all',
+    ],
     'hero' => [
         'help_title' => 'Need help?',
         'private' => 'Your information stays private',
@@ -389,5 +411,9 @@ return [
     'footer' => [
         'about' => 'Reliable diagnostics and consultation with verified reports, secure delivery and respect for your privacy.',
         'visit' => 'Visit us',
+        'hours_title' => 'Opening hours',
+        'back_to_top' => 'Back to top',
+        'staff' => 'Staff sign in',
+        'rights_note' => 'All reports are verified before release.',
     ],
 ];
