@@ -24,6 +24,9 @@ Route::get('/reports', [SiteController::class, 'reports'])->name('public.reports
 Route::get('/contact', [SiteController::class, 'contact'])->name('public.contact');
 Route::get('/faq', [SiteController::class, 'faq'])->name('public.faq');
 Route::get('/patient-guide', [SiteController::class, 'guide'])->name('public.guide');
+Route::get('/packages', [SiteController::class, 'packages'])->name('public.packages');
+Route::get('/locations', [SiteController::class, 'locations'])->name('public.locations');
+Route::get('/terms', [SiteController::class, 'terms'])->name('public.terms');
 Route::get('/privacy', [SiteController::class, 'privacy'])->name('public.privacy');
 Route::get('/booking', [BookingController::class, 'create'])->name('public.booking');
 Route::get('/booking/slots', [BookingController::class, 'slots'])->middleware('throttle:60,1')->name('public.booking.slots');

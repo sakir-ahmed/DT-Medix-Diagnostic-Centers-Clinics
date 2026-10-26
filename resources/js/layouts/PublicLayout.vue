@@ -29,6 +29,7 @@ const nav = computed(() => [
     { label: t('site.nav.services'), href: route('public.services'), active: route().current('public.services') },
     { label: t('site.nav.tests'), href: route('public.tests'), active: route().current('public.tests') },
     { label: t('public.nav_doctors'), href: route('public.doctors'), active: route().current('public.doctors') },
+    { label: t('site.nav.packages'), href: route('public.packages'), active: route().current('public.packages') },
     { label: t('site.nav.home_collection'), href: route('public.home-collection'), active: route().current('public.home-collection') },
     { label: t('site.nav.reports'), href: route('public.reports'), active: route().current('public.reports') },
     { label: t('site.nav.contact'), href: route('public.contact'), active: route().current('public.contact') },
@@ -45,10 +46,12 @@ const footerPatients = computed(() => [
 const footerCenter = computed(() => [
     { label: t('site.nav.about'), href: route('public.about') },
     { label: t('site.nav.services'), href: route('public.services') },
+    { label: t('site.nav.locations'), href: route('public.locations') },
     { label: t('site.nav.contact'), href: route('public.contact') },
     { label: t('site.guide.nav'), href: route('public.guide') },
     { label: t('site.nav.faq'), href: route('public.faq') },
     { label: t('site.nav.privacy'), href: route('public.privacy') },
+    { label: t('site.nav.terms'), href: route('public.terms') },
 ]);
 
 watch(() => page.url, () => {

@@ -102,6 +102,41 @@ final class SiteController extends Controller
         ])->withViewData(['meta_title' => __('public.tests_page_title')]);
     }
 
+    public function packages(): Response|RedirectResponse
+    {
+        if (! settings()->has('center_name')) {
+            return redirect()->route('home');
+        }
+
+        $packages = Package::query()
+            ->where('is_active', true)
+            ->with('tests')
+            ->orderBy('price')
+            ->get();
+
+        return Inertia::render('Public/Packages', [
+            'packages' => $packages->map(fn (Package $package): array => [
+                'id' => $package->id,
+                'name' => LocalName::of($package->name, $package->name_bn),
+                'price' => (string) $package->price,
+                'description' => $package->description,
+                'tests' => $package->tests
+                    ->map(fn (Test $test): string => LocalName::of($test->name, $test->name_bn))
+                    ->all(),
+            ])->all(),
+        ])->withViewData(['meta_title' => __('site.packages.title')]);
+    }
+
+    public function locations(): Response|RedirectResponse
+    {
+        return $this->staticPage('Public/Locations', 'locations');
+    }
+
+    public function terms(): Response|RedirectResponse
+    {
+        return $this->staticPage('Public/Terms', 'terms');
+    }
+
     public function about(): Response|RedirectResponse
     {
         return $this->staticPage('Public/About', 'about');

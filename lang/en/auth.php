@@ -27,4 +27,12 @@ return [
     'demo_accounts' => 'Demo accounts',
     'demo_accounts_hint' => 'One click signs you in. For the demo build only.',
     'demo_login_as' => 'Sign in as :name (:role)',
+    'brand_line' => 'Diagnostic center and clinic management, in one place.',
+    'brand_points' => [
+        'reception' => 'Fast patient registration and billing',
+        'lab' => 'Lab worklists, results and verified reports',
+        'books' => 'Branch-wise accounts and commissions',
+    ],
+    'brand_credit' => 'A Datatech product by Datatech BD Ltd.',
+    'back_to_site' => 'Back to website',
 ];
