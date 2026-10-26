@@ -27,7 +27,7 @@ As decided in `docs/prd.md` section 2 and `docs/architecture.md` section 11, thi
 
 - **Center profile:** one row in `centers` (`App\Models\Center`) holding the name, address, contact and the business-rule `settings` (`Center::DEFAULT_SETTINGS`). Read it anywhere with `center()`; `forget_center()` drops the per-request cache (called automatically when the row is saved).
 - **Branches:** `branches` table. `BelongsToBranch` scopes branch-owned models to the branches the signed-in user may access; owners and `branches.all` see everything. `App\Support\BranchContext` (scoped singleton) holds the allowed branch IDs and the current branch, filled by the `branch.scope` middleware (`ResolveBranch`) from the user's assignments and the session branch.
-- **Roles:** Spatie Permission **without teams**, one role set per installation. Permission catalogue and role defaults in `app/Support/Permissions.php`; `SyncPermissionsAction` creates them. The hidden Datatech login is a user with the `super-admin` role, seeded from `SUPER_ADMIN_EMAIL` / `SUPER_ADMIN_PASSWORD`; `Gate::before` grants it everything.
+- **Roles:** Spatie Permission **without teams**, one role set per installation. Permission catalogue and role defaults in `app/Support/Permissions.php`; `SyncPermissionsAction` creates them. The hidden Datatech login is a user with the `super-admin` role, seeded by `SettingsSeeder` with fixed credentials; `Gate::before` grants it everything.
 - **Storage:** private disk (`config('center.storage_disk')`), plain paths such as `patients/{id}/...`, `results/{item}/...`, `doctors/{id}/...`.
 - **Real-time:** channels `branch.{id}.lab`, `branch.{id}.reception`, `branch.{id}.alerts`, `doctor.{id}.queue`, `owner.alerts` (payloads carry IDs only).
 - **Export:** `php artisan center:export` writes every business table as JSON plus the private files into a zip on the private disk.
@@ -74,7 +74,7 @@ npm run build
 php artisan serve
 ```
 
-- Set `CENTER_*`, `SUPER_ADMIN_EMAIL`. `SUPER_ADMIN_PASSWORD` in `.env` before seeding; without them the super-admin is skipped. Demo accounts always use the fixed password `secret`.
+- Set `CENTER_*` in `.env` before seeding. Demo accounts always use the fixed password `secret`.
 - Demo accounts (password `secret`): `demo.owner`, `demo.manager`, `demo.reception`, `demo.collector`, `demo.tech`, `demo.pathologist`, `demo.doctor`, `demo.accountant`. With `IS_DEMO=true` they appear on the login page for one-click sign-in.
 - `.env.example` targets Docker (MySQL 8, Redis). The local `.env` used during development is SQLite with file cache and sessions; tests use in-memory SQLite.
 - Quality checks: `./vendor/bin/pint`, `./vendor/bin/phpstan analyse --memory-limit=1G`, `php artisan test`, `php artisan test --group=performance`.

@@ -155,7 +155,7 @@ Center roles: `owner`, `branch-manager`, `receptionist`, `sample-collector`, `la
 - Schedule encrypted daily backups and test a restore before going live.
 - Confirm data protection, health records, referral commission and VAT or invoice rules with a legal advisor and the client's accountant.
 
-The schema has no `tenant_id` and no `tenants` table: one installation is one center (`centers` holds the single profile row). Set `CENTER_*`, `SUPER_ADMIN_*` and, for demo builds, `IS_DEMO=true` in `.env` before seeding.
+The schema has no `tenant_id` and no `tenants` table: one installation is one center (`centers` holds the single profile row). Set `CENTER_*` and, for demo builds, `IS_DEMO=true` in `.env` before seeding.
 
 ---
 

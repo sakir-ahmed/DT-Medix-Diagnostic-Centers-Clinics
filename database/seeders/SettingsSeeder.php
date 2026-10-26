@@ -13,7 +13,7 @@ use Illuminate\Database\Seeder;
 /**
  * Installation defaults: settings from the CENTER_* env values, the
  * first branches, the catalog defaults and the hidden Datatech
- * super-admin from SUPER_ADMIN_* env values.
+ * super-admin with fixed credentials.
  */
 class SettingsSeeder extends Seeder
 {
@@ -37,19 +37,10 @@ class SettingsSeeder extends Seeder
 
     private function seedSuperAdmin(): void
     {
-        $email = config('center.super_admin.email');
-        $password = config('center.super_admin.password');
-
-        if (blank($email) || blank($password)) {
-            $this->command?->warn('SUPER_ADMIN_EMAIL or SUPER_ADMIN_PASSWORD not set: the super-admin was skipped.');
-
-            return;
-        }
-
-        $user = User::query()->firstOrCreate(['email' => $email], [
-            'name' => (string) config('center.super_admin.name'),
+        $user = User::query()->firstOrCreate(['email' => 'admin@dtmedix.test'], [
+            'name' => 'Datatech Support',
             'username' => 'datatech',
-            'password' => (string) $password,
+            'password' => 'Admin@12345',
         ]);
 
         $user->syncRoles([RoleName::SuperAdmin->value]);

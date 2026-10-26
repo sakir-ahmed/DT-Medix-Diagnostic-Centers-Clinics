@@ -19,16 +19,6 @@ return [
     'mobile' => env('CENTER_MOBILE'),
     'email' => env('CENTER_EMAIL'),
 
-    /*
-    | The hidden Datatech super-admin login on this server. Never hard-code
-    | the password; the seeder skips the account when it is not set.
-    */
-    'super_admin' => [
-        'name' => env('SUPER_ADMIN_NAME', 'Datatech Support'),
-        'email' => env('SUPER_ADMIN_EMAIL'),
-        'password' => env('SUPER_ADMIN_PASSWORD'),
-    ],
-
     'demo_password' => 'secret',
 
     /*
