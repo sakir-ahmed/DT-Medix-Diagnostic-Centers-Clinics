@@ -18,7 +18,7 @@ class DemoCatalogSeeder extends Seeder
 {
     public function run(SaveTestAction $tests, SaveCatalogItemAction $catalog): void
     {
-        if (blank(config('center.demo_password')) || Test::query()->exists()) {
+        if (Test::query()->exists()) {
             return;
         }
 

@@ -74,8 +74,8 @@ npm run build
 php artisan serve
 ```
 
-- Set `CENTER_*`, `SUPER_ADMIN_EMAIL`, `SUPER_ADMIN_PASSWORD` and `DEMO_PASSWORD` in `.env` before seeding. Without the passwords the super-admin and demo accounts are skipped.
-- Demo accounts (password `DEMO_PASSWORD`): `demo.owner`, `demo.manager`, `demo.reception`, `demo.collector`, `demo.tech`, `demo.pathologist`, `demo.doctor`, `demo.accountant`. With `IS_DEMO=true` they appear on the login page for one-click sign-in.
+- Set `CENTER_*`, `SUPER_ADMIN_EMAIL`. `SUPER_ADMIN_PASSWORD` in `.env` before seeding; without them the super-admin is skipped. Demo accounts always use the fixed password `secret`.
+- Demo accounts (password `secret`): `demo.owner`, `demo.manager`, `demo.reception`, `demo.collector`, `demo.tech`, `demo.pathologist`, `demo.doctor`, `demo.accountant`. With `IS_DEMO=true` they appear on the login page for one-click sign-in.
 - `.env.example` targets Docker (MySQL 8, Redis). The local `.env` used during development is SQLite with file cache and sessions; tests use in-memory SQLite.
 - Quality checks: `./vendor/bin/pint`, `./vendor/bin/phpstan analyse --memory-limit=1G`, `php artisan test`, `php artisan test --group=performance`.
 

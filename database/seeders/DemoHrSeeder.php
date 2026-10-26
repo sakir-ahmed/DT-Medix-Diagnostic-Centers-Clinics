@@ -105,12 +105,12 @@ class DemoHrSeeder extends Seeder
 
         $ingest->execute($branch->id, $rows, 'device', AttendanceDevice::query()->withoutGlobalScopes()->first());
 
-        $admin = User::query()->orderBy('id')->first();
-        $manual->execute($employees[0], ['work_date' => $today->subDays(3)->toDateString(), 'status' => AttendanceStatus::Present->value, 'check_in' => '09:00', 'check_out' => '18:00', 'note' => 'Device was offline'], (int) $admin?->id);
+        $admin = User::query()->where('username', 'demo.owner')->first() ?? User::query()->orderBy('id')->firstOrFail();
+        $manual->execute($employees[0], ['work_date' => $today->subDays(3)->toDateString(), 'status' => AttendanceStatus::Present->value, 'check_in' => '09:00', 'check_out' => '18:00', 'note' => 'Device was offline'], $admin->id);
         $leave->execute($employees[4], ['type' => 'sick', 'from_date' => $today->addDays(2)->toDateString(), 'to_date' => $today->addDays(3)->toDateString(), 'reason' => 'Medical appointment']);
 
         $previous = $payroll->execute($branch->id, $today->subMonthNoOverflow()->format('Y-m'));
-        $finalize->execute($previous, (int) $admin?->id);
+        $finalize->execute($previous, $admin->id);
         $payroll->execute($branch->id, $today->format('Y-m'));
     }
 }

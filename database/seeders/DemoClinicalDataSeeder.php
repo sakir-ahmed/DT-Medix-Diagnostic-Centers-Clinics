@@ -44,7 +44,7 @@ class DemoClinicalDataSeeder extends Seeder
 {
     public function run(BranchContext $context, RegisterPatientAction $register): void
     {
-        if (blank(config('center.demo_password')) || Doctor::query()->exists()) {
+        if (Doctor::query()->exists()) {
             return;
         }
 

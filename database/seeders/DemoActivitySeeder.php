@@ -87,7 +87,7 @@ class DemoActivitySeeder extends Seeder
 
     public function run(BranchContext $context): void
     {
-        if (blank(config('center.demo_password')) || Test::query()->where('code', 'SGPT')->exists()) {
+        if (Test::query()->where('code', 'SGPT')->exists()) {
             return;
         }
 

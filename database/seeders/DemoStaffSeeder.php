@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
 
 /**
  * One demo account per role (username "demo.{role}") sharing
- * DEMO_PASSWORD. Skipped when the password is not set.
+ * the fixed demo password.
  */
 class DemoStaffSeeder extends Seeder
 {
@@ -32,12 +32,6 @@ class DemoStaffSeeder extends Seeder
     public function run(): void
     {
         $password = config('center.demo_password');
-
-        if (blank($password)) {
-            $this->command?->warn('DEMO_PASSWORD not set: demo accounts skipped.');
-
-            return;
-        }
 
         if (User::query()->where('username', 'demo.owner')->exists()) {
             return;

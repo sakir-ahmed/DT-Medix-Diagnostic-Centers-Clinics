@@ -29,7 +29,7 @@ return [
         'password' => env('SUPER_ADMIN_PASSWORD'),
     ],
 
-    'demo_password' => env('DEMO_PASSWORD'),
+    'demo_password' => 'secret',
 
     /*
     | Sales phone number shown in the demo banner while IS_DEMO is on.
